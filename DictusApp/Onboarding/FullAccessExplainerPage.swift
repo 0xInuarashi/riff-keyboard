@@ -50,14 +50,14 @@ struct FullAccessExplainerPage: View {
         VStack(alignment: .leading, spacing: 0) {
             ExplainerPoint(
                 systemImage: "arrow.up.forward.app",
-                lead: Text("Dictus uses it to reach the Dictus app."),
+                lead: Text("Riff uses it to reach the Riff app."),
                 detail: Text("The app is what listens and transcribes. Without Full Access, the keyboard types but cannot dictate.")
             )
             Divider()
                 .padding(.leading, ExplainerPoint.textLeading)
             ExplainerPoint(
                 systemImage: "lock.shield",
-                lead: Text("The rest, Dictus does not use."),
+                lead: Text("The rest, Riff does not use."),
                 detail: Text("No location, no contacts, and your dictations never leave your iPhone: transcription happens on the device.")
             )
             Divider()
@@ -69,7 +69,7 @@ struct FullAccessExplainerPage: View {
                 ExplainerPoint(
                     systemImage: "chevron.left.forwardslash.chevron.right",
                     lead: Text("Anyone can check."),
-                    detail: Text("Dictus is open source: anyone can read its code on GitHub."),
+                    detail: Text("Riff is open source: anyone can read its code on GitHub."),
                     showsLinkArrow: true
                 )
             }
@@ -81,7 +81,7 @@ struct FullAccessExplainerPage: View {
 
     // The public repository. A compile-time constant, so the force unwrap cannot fail.
     // swiftlint:disable:next force_unwrapping
-    static let sourceCodeURL = URL(string: "https://github.com/getdictus/dictus-ios")!
+    static let sourceCodeURL = URL(string: "https://github.com/0xInuarashi/riff-keyboard")!
 }
 
 // MARK: - A point
@@ -202,9 +202,9 @@ private struct DrawnFullAccessAlert: View {
 
     /// The alert's own material: the light grey of the capture on light, a raised slate on
     /// dark.
-    private static let alertFill = Color(light: Color(hex: 0xEDEDF0), dark: Color(hex: 0x2A3346))
+    private static let alertFill = Color(light: Color(hex: 0xEDEDED), dark: Color(hex: 0x333333))
 
     /// The page behind the alert, dimmed: the light grey darkened as in the capture, the
     /// dark navy darker.
-    private static let dimmedScreen = Color(light: Color(hex: 0xC4C4CA), dark: Color(hex: 0x060E1C))
+    private static let dimmedScreen = Color(light: Color(hex: 0xC4C4C4), dark: Color(hex: 0x101010))
 }

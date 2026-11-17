@@ -255,14 +255,12 @@ struct HomeView: View {
 
     // MARK: - Logo Section
 
-    /// Static 3-bar brand logo at the top of the home screen.
-    /// Subscribers see the Dictus Pro gradient wordmark from the paywall hero,
-    /// a quiet permanent reminder of what they unlocked.
+    /// Riff mark and the name of this edition.
     private var logoSection: some View {
         VStack(spacing: 8) {
             DictusLogo(height: 60)
                 .padding(.top, 8)
-            if proStatus.isProActive {
+            if PremiumFlags.paywallVisible && proStatus.isProActive {
                 Text("Riff Keyboard Pro")
                     .font(.dictusHeading)
                     .foregroundStyle(
@@ -280,8 +278,10 @@ struct HomeView: View {
                 }
             } else {
                 Text("Riff Keyboard")
-                    .font(.dictusHeading)
-                    .foregroundColor(.dictusAccent)
+                    .textCase(.uppercase)
+                    .font(.system(.headline, design: .monospaced, weight: .medium))
+                    .tracking(3)
+                    .foregroundStyle(Color.dictusAccent)
             }
         }
         .padding(.bottom, 8)

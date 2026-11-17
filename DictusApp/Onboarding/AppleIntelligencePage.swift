@@ -234,11 +234,11 @@ struct AppleIntelligencePage: View {
             // WHY SAY WHERE THE BUTTON LANDS: it opens Dictus's own page (Settings > Apps >
             // Dictus), two levels below the root the drawing starts from. On the first
             // device test that page was read as the place to look.
-            Text("Open Settings lands on Dictus's page: go back to the main Settings screen first. Shortcut: search “Apple Intelligence” in Settings.")
+            Text("Open Settings lands on Riff's page: go back to the main Settings screen first. Shortcut: search “Apple Intelligence” in Settings.")
             if route.hasAppleIntelligenceSwitch {
                 Text("If the page shows an Apple Intelligence switch, turn it on too.")
             }
-            Text("Apple then downloads its model, sometimes for a long time. Dictus checks again when you come back.")
+            Text("Apple then downloads its model, sometimes for a long time. Riff checks again when you come back.")
                 .foregroundStyle(.tertiary)
         }
         .font(.footnote)
@@ -457,7 +457,7 @@ struct AppleIntelligencePage: View {
 
     /// The multicolour tile Settings draws for this row on iOS 26 and 27.
     private static let siriTileGradient = LinearGradient(
-        colors: [Color(hex: 0xF5A623), Color(hex: 0xF0508C), Color(hex: 0xA65CF0), Color(hex: 0x3D9BFF)],
+        colors: [Color(hex: 0xABABAB), Color(hex: 0xBCBCBC), Color(hex: 0xD1D1D1), Color(hex: 0xEEEEEE)],
         startPoint: .topLeading,
         endPoint: .bottomTrailing
     )

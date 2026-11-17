@@ -14,7 +14,7 @@ struct VocabularyScenePage: View {
 
     var body: some View {
         OnboardingScenePage(
-            eyebrow: Text("Also in Pro",
+            eyebrow: PremiumFlags.proIncluded ? nil : Text("Also in Pro",
                           comment: "Onboarding: small label above the title of the voice notes, vocabulary and history scenes, which come after the Smart Modes and show the other Dictus Pro features (#680)."),
             title: VocabularySceneCard.title,
             line: VocabularySceneCard.line,
@@ -41,7 +41,7 @@ struct VocabularySceneCard: View {
     /// announcing the feature (#829): keyboard corrections are learned, offered as terms,
     /// then applied to dictations.
     static var line: Text {
-        Text("Correct your words in the Dictus keyboard: it learns them. Dictus suggests them for your vocabulary, on your iPhone, and adds nothing without you. After that, your dictations write them your way.",
+        Text("Correct your words in the Riff keyboard: it learns them. Riff suggests them for your vocabulary, on your iPhone, and adds nothing without you. After that, your dictations write them your way.",
              comment: "Onboarding vocabulary scene: the line under the title, also shown in What's New and the \"See the demo\" sheet. Explains the loop: corrections typed in the keyboard are learned, suggested as vocabulary terms (never added automatically), then applied to dictations (#680, #829).")
     }
 
@@ -163,7 +163,7 @@ struct VocabularyScene: View {
                 }
             }
             .sceneGroup()
-            Text("When Dictus writes one of these variants, it is replaced by your spelling.")
+            Text("When Riff writes one of these variants, it is replaced by your spelling.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 20)
@@ -186,7 +186,7 @@ struct VocabularyScene: View {
             }
             .sceneGroup()
             .sceneTapTarget(Target.analyze)
-            Text("Words from your History that Dictus may be getting wrong.")
+            Text("Words from your History that Riff may be getting wrong.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 20)
@@ -313,17 +313,17 @@ private struct VocabularySceneEditor: View {
                 SceneSectionHeader(text: Text("The correct spelling"))
                 field(frame.term, placeholder: Text("Which term?"), isFocused: frame.termFieldIsFocused)
                     .sceneTapTarget(Target.termField)
-                footer(Text("The spelling Dictus should write."))
+                footer(Text("The spelling Riff should write."))
 
-                SceneSectionHeader(text: Text("What Dictus writes instead"))
+                SceneSectionHeader(text: Text("What Riff writes instead"))
                     .padding(.top, 12)
-                field(frame.variants, placeholder: Text("How does Dictus write it instead?"), isFocused: false)
+                field(frame.variants, placeholder: Text("How does Riff write it instead?"), isFocused: false)
                 // `VocabularyEditorView`'s footer rule: the neutral line while a term is typed
                 // with nothing it replaces (#819).
                 if variantsMissing {
                     footer(Text("Optional. Without a misspelling, this term changes nothing yet. Add one when you spot it."))
                 } else {
-                    footer(Text("Separated by commas. Dictus replaces each of them with your spelling."))
+                    footer(Text("Separated by commas. Riff replaces each of them with your spelling."))
                 }
             }
             .padding(.horizontal, 16)
@@ -394,7 +394,7 @@ private struct VocabularySceneSuggestions: View {
                         .padding(.horizontal, 20)
                         .padding(.top, 8)
                 } else {
-                    Text("No suggestions for now. A suggestion appears here when Dictus writes one of your terms differently in at least two dictations, writes differently a word you typed on the keyboard, or when an unknown word comes back in at least two dictations.")
+                    Text("No suggestions for now. A suggestion appears here when Riff writes one of your terms differently in at least two dictations, writes differently a word you typed on the keyboard, or when an unknown word comes back in at least two dictations.")
                         .font(.dictusCaption)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal, 20)
@@ -479,7 +479,7 @@ private struct VocabularySceneReview: View {
                 .sceneGroup()
                 .padding(.bottom, 20)
 
-                SceneSectionHeader(text: Text("What Dictus writes instead"))
+                SceneSectionHeader(text: Text("What Riff writes instead"))
                 SceneListRow {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.green)
@@ -488,7 +488,7 @@ private struct VocabularySceneReview: View {
                     Spacer(minLength: 0)
                 }
                 .sceneGroup()
-                Text("From now on, when Dictus writes “\(variant)”, it writes “\(term)” instead.")
+                Text("From now on, when Riff writes “\(variant)”, it writes “\(term)” instead.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 20)

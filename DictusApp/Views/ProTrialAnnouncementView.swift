@@ -54,7 +54,7 @@ struct ProTrialAnnouncementView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.dictusAccent)
-                        .foregroundColor(.white)
+                        .foregroundColor(.dictusOnAccent)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .buttonStyle(GlassPressStyle())
@@ -83,7 +83,7 @@ struct ProTrialAnnouncementView: View {
             // Existing users are told what changed before they are told what they get:
             // they never saw a Pro screen, and "on us" means nothing without it.
             if announcement.kind == .existingUser {
-                Text("Dictus Pro is here")
+                Text("Riff Pro is here")
                     .font(.dictusCaption.weight(.semibold))
                     .foregroundColor(.dictusAccentHighlight)
             }
@@ -174,11 +174,11 @@ struct ProTrialAnnouncementView: View {
             )
             disclosureLine(
                 icon: "arrow.uturn.backward",
-                text: Text("When it ends, Dictus goes back to the free version by itself. Your history and your vocabulary are kept.")
+                text: Text("When it ends, Riff goes back to the free version by itself. Your history and your vocabulary are kept.")
             )
             disclosureLine(
                 icon: "crown",
-                text: Text("To keep Smart Modes, History and Vocabulary afterwards, you will need a Dictus Pro subscription.")
+                text: Text("To keep Smart Modes, History and Vocabulary afterwards, you will need a Riff Pro subscription.")
             )
         }
         .frame(maxWidth: .infinity, alignment: .leading)

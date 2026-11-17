@@ -309,7 +309,7 @@ final class KeyboardSmartModeState: ObservableObject {
             keyboard.logProbe("smartModeFanRefused", details: "reason=nothing-pinned")
             keyboard.presentStatusMessage(
                 String(
-                    localized: "Pick your Smart Modes in Dictus.",
+                    localized: "Pick your Smart Modes in Riff.",
                     comment: "Shown when the long-press fan is opened with no modes pinned."
                 ),
                 reason: "smartModeFan-empty",
@@ -547,7 +547,7 @@ final class KeyboardSmartModeState: ObservableObject {
             // the Dictus Pro row is the control, and it is a row precisely because a
             // button inside the fan would take the drag from the recogniser (#404).
             return String(
-                localized: "Smart Modes are part of Dictus Pro.",
+                localized: "Smart Modes are part of Riff Pro.",
                 comment: "Shown in the Smart Mode fan when the device can run Smart Modes but the user has no Pro subscription."
             )
         case .switchedOff:
@@ -556,7 +556,7 @@ final class KeyboardSmartModeState: ObservableObject {
             // (#423). Split out of `.notSubscribed`, which used to answer for both
             // and told a paying subscriber their own setting was a paywall.
             return String(
-                localized: "Smart Modes are off. Turn them back on in Dictus.",
+                localized: "Smart Modes are off. Turn them back on in Riff.",
                 comment: "Shown in the Smart Mode fan when a subscriber has switched Smart Modes off in Settings."
             )
         case .other:
@@ -617,7 +617,7 @@ final class KeyboardSmartModeState: ObservableObject {
             // defensive (#460): this path survives the fan being hidden.
             guard sellsPro else { return Self.unavailableSkip(name) }
             return String(
-                localized: "\(name) needs Dictus Pro. Dictated as Normal.",
+                localized: "\(name) needs Riff Pro. Dictated as Normal.",
                 comment: "Shown after a dictation whose armed Smart Mode did not run for lack of a Pro subscription. The placeholder is the mode's name."
             )
         case .appleIntelligenceNotEnabled:

@@ -24,25 +24,25 @@
         }
       }
     },
-    "%@ needs Dictus Pro. Dictated as Normal." : {
+    "%@ needs Riff Pro. Dictated as Normal." : {
       "comment" : "Shown after a dictation whose armed Smart Mode did not run for lack of a Pro subscription. The placeholder is the mode's name.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ erfordert Dictus Pro. Als Normal diktiert."
+            "value" : "%@ erfordert Riff Pro. Als Normal diktiert."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ requiere Dictus Pro. Dictado como Normal."
+            "value" : "%@ requiere Riff Pro. Dictado como Normal."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ demande Dictus Pro. Dicté en Normal."
+            "value" : "%@ demande Riff Pro. Dicté en Normal."
           }
         }
       }
@@ -470,31 +470,31 @@
         }
       }
     },
-    "Dictation interrupted. Your text is in the Dictus app." : {
+    "Dictation interrupted. Your text is in the Riff app." : {
       "comment" : "Persistent keyboard toolbar banner after a dictation whose text could not be inserted (for example after a call). Tapping it opens Dictus on that text (#860).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diktat unterbrochen. Dein Text ist in der Dictus-App."
+            "value" : "Diktat unterbrochen. Dein Text ist in der Riff-App."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictation interrupted. Your text is in the Dictus app."
+            "value" : "Dictation interrupted. Your text is in the Riff app."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictado interrumpido. Tu texto está en la app Dictus."
+            "value" : "Dictado interrumpido. Tu texto está en la app Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictée interrompue. Votre texte est dans l'app Dictus."
+            "value" : "Dictée interrompue. Votre texte est dans l'app Riff."
           }
         }
       }
@@ -1042,25 +1042,25 @@
         }
       }
     },
-    "Pick your Smart Modes in Dictus." : {
+    "Pick your Smart Modes in Riff." : {
       "comment" : "Shown when the long-press fan is opened with no modes pinned.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle deine Smart Modes in Dictus."
+            "value" : "Wähle deine Smart Modes in Riff."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elige tus Smart Modes en Dictus."
+            "value" : "Elige tus Smart Modes en Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choisissez vos modes dans Dictus."
+            "value" : "Choisissez vos modes dans Riff."
           }
         }
       }
@@ -1256,25 +1256,25 @@
         }
       }
     },
-    "Share a voice message to Dictus from a messaging app, and its transcript will show up here." : {
+    "Share a voice message to Riff from a messaging app, and its transcript will show up here." : {
       "comment" : "Keyboard voice note reader's empty state: how a voice note gets here (#639).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teile eine Sprachnachricht aus einer Messaging-App mit Dictus, und ihre Transkription erscheint hier."
+            "value" : "Teile eine Sprachnachricht aus einer Messaging-App mit Riff, und ihre Transkription erscheint hier."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comparte un mensaje de voz con Dictus desde una app de mensajería y su transcripción aparecerá aquí."
+            "value" : "Comparte un mensaje de voz con Riff desde una app de mensajería y su transcripción aparecerá aquí."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Partagez un message vocal vers Dictus depuis une app de messagerie, et sa transcription apparaîtra ici."
+            "value" : "Partagez un message vocal vers Riff depuis une app de messagerie, et sa transcription apparaîtra ici."
           }
         }
       }
@@ -1325,48 +1325,48 @@
         }
       }
     },
-    "Smart Modes are off. Turn them back on in Dictus." : {
+    "Smart Modes are off. Turn them back on in Riff." : {
       "comment" : "Shown in the Smart Mode fan when a subscriber has switched Smart Modes off in Settings.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Smart Modes sind aus. Aktiviere sie wieder in Dictus."
+            "value" : "Smart Modes sind aus. Aktiviere sie wieder in Riff."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los Smart Modes están desactivados. Vuelve a activarlos en Dictus."
+            "value" : "Los Smart Modes están desactivados. Vuelve a activarlos en Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les modes sont désactivés. Réactivez-les dans Dictus."
+            "value" : "Les modes sont désactivés. Réactivez-les dans Riff."
           }
         }
       }
     },
-    "Smart Modes are part of Dictus Pro." : {
+    "Smart Modes are part of Riff Pro." : {
       "comment" : "Shown in the Smart Mode fan when the device can run Smart Modes but the user has no Pro subscription.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Smart Modes sind Teil von Dictus Pro."
+            "value" : "Smart Modes sind Teil von Riff Pro."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los Smart Modes forman parte de Dictus Pro."
+            "value" : "Los Smart Modes forman parte de Riff Pro."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les modes font partie de Dictus Pro."
+            "value" : "Les modes font partie de Riff Pro."
           }
         }
       }

@@ -110,7 +110,7 @@ struct SmartModePickPage: View {
             HStack(spacing: 14) {
                 Image(systemName: mode.icon)
                     .font(.system(size: 18, weight: .medium))
-                    .foregroundStyle(isSelected ? Color.white : Color.dictusAccent)
+                    .foregroundStyle(isSelected ? Color.dictusOnAccent : Color.dictusAccent)
                     .frame(width: 40, height: 40)
                     .background(
                         RoundedRectangle(cornerRadius: 12, style: .continuous)
@@ -218,7 +218,7 @@ struct SmartModePickPage: View {
         } label: {
             Text(verbatim: mode.displayName)
                 .font(.body.weight(isSelected ? .semibold : .regular))
-                .foregroundStyle(isSelected ? Color.white : Color.primary)
+                .foregroundStyle(isSelected ? Color.dictusOnAccent : Color.primary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .frame(maxWidth: .infinity)
@@ -278,7 +278,7 @@ private struct SelectionMark: View {
                     .fill(Color.dictusAccent)
                 Image(systemName: "checkmark")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.dictusOnAccent)
             } else {
                 Circle()
                     .strokeBorder(Color.secondary.opacity(0.5), lineWidth: 2)

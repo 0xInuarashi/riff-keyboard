@@ -30,8 +30,8 @@ struct OnboardingSuccessView: View {
         OnboardingCenteredPage(
             title: Text("You're all set"),
             message: keyboardCanDictate
-                ? Text("Dictus is waiting in the keyboard of every app. Hold the globe, and speak.")
-                : Text("Dictus is waiting in the keyboard of every app. To dictate, open the Dictus app.")
+                ? Text("Riff is waiting in the keyboard of every app. Hold the globe, and speak.")
+                : Text("Riff is waiting in the keyboard of every app. To dictate, open the Riff app.")
         ) {
             ZStack(alignment: .bottomTrailing) {
                 DictusIconTile(logoHeight: 64)
@@ -44,7 +44,7 @@ struct OnboardingSuccessView: View {
                         .fill(Color.dictusSuccess)
                     Image(systemName: "checkmark")
                         .font(.system(size: 20, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.dictusOnAccent)
                 }
                 .frame(width: 44, height: 44)
                 .overlay(Circle().strokeBorder(Color.dictusBackground, lineWidth: 4))

@@ -63,7 +63,7 @@ struct VoiceNoteSettingsSections: View {
         // onboarding's line, which the other three screens reuse (#686).
         ProFeatureHowItWorksSection(
             feature: .voiceNotes,
-            explanation: Text("Long-press a voice message in WhatsApp, Telegram, Signal or Messages, tap Share, then Dictus. Audio files from Voice Memos, Files or Mail work the same way."),
+            explanation: Text("Long-press a voice message in WhatsApp, Telegram, Signal or Messages, tap Share, then Riff Keyboard. Audio files from Voice Memos, Files or Mail work the same way."),
             isAvailable: isAvailable
         )
 

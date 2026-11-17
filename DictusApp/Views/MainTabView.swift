@@ -265,7 +265,6 @@ struct MainTabView: View {
                     }
                     .tag(2)
                 }
-                .tint(.dictusAccent)
                 // The voice note sheet hangs off the Home tab; a sheet on a tab that is
                 // not on screen does not present, so a Live Activity tap brings Home
                 // forward first.

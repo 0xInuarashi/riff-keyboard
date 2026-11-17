@@ -72,7 +72,7 @@ struct SwipeUpHintView: View {
         .buttonStyle(GlassPressStyle(pressedScale: 0.97))
         .accessibilityLabel("History")
         .accessibilityHint(isLocked
-            ? "Part of Dictus Pro. Opens the subscription screen."
+            ? "Part of Riff Pro. Opens the subscription screen."
             : "Shows your saved transcriptions")
         .onAppear {
             guard !isLocked, !reduceMotion else { return }
@@ -100,7 +100,7 @@ struct SwipeUpHintView: View {
                 // reads the same wherever the user meets one.
                 Text("PRO")
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(.dictusOnAccent)
                     .padding(.vertical, 2)
                     .padding(.horizontal, 6)
                     .background(Color.dictusAccent)

@@ -66,14 +66,14 @@ struct VocabularyListView: View {
             // live, so it names the button that finds them (#829).
             ProFeatureHowItWorksSection(
                 feature: .vocabulary,
-                explanation: Text("Correct your words in the Dictus keyboard: it learns them. Tap Analyze my transcriptions: Dictus compares them with your dictations and suggests terms to accept, edit or ignore. Nothing is added without you, and everything stays on your iPhone. Your terms then correct your dictations automatically.",
+                explanation: Text("Correct your words in the Riff keyboard: it learns them. Tap Analyze my transcriptions: Riff compares them with your dictations and suggests terms to accept, edit or ignore. Nothing is added without you, and everything stays on your iPhone. Your terms then correct your dictations automatically.",
                                   comment: "Vocabulary screen: the paragraph of the \"How it works\" card. 'Analyze my transcriptions' is the button further down the same screen (#829)."),
                 isAvailable: isAvailable
             )
 
             Section {
                 if store.isEmpty {
-                    Text("No terms yet. Add the words Dictus gets wrong.")
+                    Text("No terms yet. Add the words Riff gets wrong.")
                         .font(.dictusCaption)
                         .foregroundColor(.secondary)
                 } else {
@@ -97,7 +97,7 @@ struct VocabularyListView: View {
                     Text("Could not save. Your device may be out of storage.")
                         .foregroundColor(.red)
                 } else {
-                    Text("When Dictus writes one of these variants, it is replaced by your spelling.")
+                    Text("When Riff writes one of these variants, it is replaced by your spelling.")
                 }
             }
             .proFeatureContent(isAvailable: isAvailable)
@@ -125,7 +125,7 @@ struct VocabularyListView: View {
                     Label("Analyze my transcriptions", systemImage: "text.magnifyingglass")
                 }
             } footer: {
-                Text("Words from your History that Dictus may be getting wrong.")
+                Text("Words from your History that Riff may be getting wrong.")
             }
             .proFeatureContent(isAvailable: isAvailable)
 
@@ -375,16 +375,16 @@ struct VocabularyEditorView: View {
                     Text("This term is already in your vocabulary.")
                         .foregroundColor(.red)
                 } else {
-                    Text("The spelling Dictus should write.")
+                    Text("The spelling Riff should write.")
                 }
             }
 
             Section {
-                TextField("How does Dictus write it instead?", text: $variantsLine)
+                TextField("How does Riff write it instead?", text: $variantsLine)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
             } header: {
-                Text("What Dictus writes instead")
+                Text("What Riff writes instead")
             } footer: {
                 // Three states, in the order they can occur. The middle one does not
                 // block Save (#819): it says, without a warning tint, that a term
@@ -396,7 +396,7 @@ struct VocabularyEditorView: View {
                     Text("Optional. Without a misspelling, this term changes nothing yet. Add one when you spot it.")
                         .foregroundColor(.secondary)
                 } else {
-                    Text("Separated by commas. Dictus replaces each of them with your spelling.")
+                    Text("Separated by commas. Riff replaces each of them with your spelling.")
                 }
             }
         }

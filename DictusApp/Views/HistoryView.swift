@@ -133,7 +133,7 @@ struct HistoryView: View {
             Image(systemName: "lock.fill")
                 .font(.system(size: 40))
                 .foregroundColor(.dictusAccent.opacity(0.7))
-            Text("History is part of Dictus Pro")
+            Text("History is part of Riff Pro")
                 .font(.dictusSubheading)
                 .multilineTextAlignment(.center)
             Text("Your saved transcriptions stay on this device and are never sent anywhere. You can delete them at any time from Settings.")

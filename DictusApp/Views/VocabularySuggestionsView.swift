@@ -58,7 +58,7 @@ struct VocabularySuggestionsView: View {
         List {
             if let suggestions {
                 if suggestions.isEmpty && pairs.isEmpty {
-                    Text("No suggestions for now. A suggestion appears here when Dictus writes one of your terms differently in at least two dictations, writes differently a word you typed on the keyboard, or when an unknown word comes back in at least two dictations.")
+                    Text("No suggestions for now. A suggestion appears here when Riff writes one of your terms differently in at least two dictations, writes differently a word you typed on the keyboard, or when an unknown word comes back in at least two dictations.")
                         .font(.dictusCaption)
                         .foregroundColor(.secondary)
                 } else {
@@ -81,9 +81,9 @@ struct VocabularySuggestionsView: View {
                                 row(suggestion, rank: pairs.count + index + 1)
                             }
                         } header: {
-                            Text("Words you typed that Dictus writes differently")
+                            Text("Words you typed that Riff writes differently")
                         } footer: {
-                            Text("Add opens a new term with your spelling and what Dictus wrote instead, both filled in. Ignore hides the suggestion for good.")
+                            Text("Add opens a new term with your spelling and what Riff wrote instead, both filled in. Ignore hides the suggestion for good.")
                         }
                     }
                     if !historyOnly.isEmpty {
@@ -94,7 +94,7 @@ struct VocabularySuggestionsView: View {
                         } header: {
                             Text("Not in the dictionary, seen in several dictations")
                         } footer: {
-                            Text("Add opens a new term with this word as what Dictus writes instead: you type the correct spelling. Ignore hides the word for good.")
+                            Text("Add opens a new term with this word as what Riff writes instead: you type the correct spelling. Ignore hides the word for good.")
                         }
                     }
                 }

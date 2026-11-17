@@ -23,7 +23,7 @@ final class SettingsFrenchCopyTests: XCTestCase {
         "The Apple Intelligence model is downloading on your device. Try again in a few minutes.",
         "Apple Intelligence isn't supported on this device. Polish requires an iPhone 15 Pro / 15 Pro Max or newer.",
         "Polish requires iOS 26 or later.",
-        "Polish isn't available in this build of Dictus.",
+        "Polish isn't available in this build of Riff.",
         "Apple Intelligence is unavailable (%@).",
         "Open iPhone Settings",
         "Reset learned words",

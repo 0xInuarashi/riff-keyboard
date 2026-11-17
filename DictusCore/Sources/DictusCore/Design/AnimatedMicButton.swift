@@ -186,11 +186,11 @@ public struct AnimatedMicButton: View {
                                 .lineLimit(1)
                         }
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(.dictusOnAccent)
                 } else {
-                    Image(systemName: "mic.fill")
+                    Image(systemName: status == .recording ? "stop.fill" : "mic.fill")
                         .font(.system(size: isPill ? 14 : 16, weight: .medium))
-                        .foregroundColor(.white)
+                        .foregroundColor(.dictusOnAccent)
                         .scaleEffect(status == .recording ? pulseScale * 0.9 + 0.1 : 1.0)
                 }
 
@@ -198,7 +198,7 @@ public struct AnimatedMicButton: View {
                 armedBadge
             }
         }
-        .buttonStyle(GlassPressStyle(pressedScale: showsPressFeedback ? 0.88 : 1,
+        .buttonStyle(GlassPressStyle(pressedScale: showsPressFeedback ? 0.96 : 1,
                                      pressedOpacity: showsPressFeedback ? 0.85 : 1))
         .disabled(!isTappable)
         .onChange(of: status) { newStatus in
@@ -218,11 +218,6 @@ public struct AnimatedMicButton: View {
 
     /// The mode's glyph on a white disc, straddling the button's lower-right edge.
     ///
-    /// White and not a tint of the button: the disc has to survive every fill the
-    /// status can put behind it — accent blue at rest, red while recording, a washed
-    /// highlight while transcribing — and white is the only value that reads on all
-    /// three without becoming a fourth colour in the product.
-    ///
     /// It straddles the edge rather than sitting inside it so the silhouette itself
     /// changes. That is the whole point of the badge: the signal has to survive being
     /// seen out of the corner of the eye, at which distance a glyph *inside* a 56×36
@@ -233,7 +228,7 @@ public struct AnimatedMicButton: View {
             badgeContent(badge)
                 .foregroundColor(.dictusAccent)
                 .frame(width: badgeDiameter, height: badgeDiameter)
-                .background(Circle().fill(.white))
+                .background(Circle().fill(Color.dictusOnAccent))
                 .shadow(color: .black.opacity(0.18), radius: 1.5, y: 0.5)
                 .offset(x: badgeOffset.width, y: badgeOffset.height)
         }
@@ -273,16 +268,16 @@ public struct AnimatedMicButton: View {
         switch status {
         case .idle, .ready, .failed:
             // Glass ring with soft glow pulsing 0.3-0.6 opacity over 2s
-            DictusHalo(isPill: isPill, color: .dictusAccent, opacity: glowOpacity, lineWidth: 2)
+            DictusHalo(isPill: isPill, color: .dictusAccent, opacity: glowOpacity, lineWidth: 1)
 
         case .recording:
             // Red pulse ring scaling 1.0-1.3 over 0.8s
-            DictusHalo(isPill: isPill, color: .dictusRecording, opacity: 0.5, lineWidth: 3)
+            DictusHalo(isPill: isPill, color: .dictusRecording, opacity: 0.55, lineWidth: 1.25)
                 .scaleEffect(pulseScale)
 
         case .transcribing, .processing, .requested:
             // Static glass ring during transcription and the LLM stage
-            DictusHalo(isPill: isPill, color: .dictusAccent, opacity: 0.4, lineWidth: 2)
+            DictusHalo(isPill: isPill, color: .dictusAccent, opacity: 0.4, lineWidth: 1)
         }
     }
 
@@ -316,7 +311,7 @@ public struct AnimatedMicButton: View {
         case .recording:
             return .dictusRecording
         case .transcribing, .processing:
-            return .dictusAccentHighlight.opacity(0.5)
+            return .dictusAccentHighlight
         default:
             return restingFace?.fill ?? .dictusAccent
         }
@@ -389,8 +384,9 @@ public struct AnimatedMicButton: View {
 
     private func startRecordingAnimation() {
         glowOpacity = 0.5
+        guard !reduceMotion else { return }
         withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
-            pulseScale = 1.3
+            pulseScale = 1.10
         }
     }
 
@@ -398,6 +394,7 @@ public struct AnimatedMicButton: View {
         pulseScale = 1.0
         glowOpacity = 0.4
         shimmerOffset = -1.0
+        guard !reduceMotion else { return }
         withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
             shimmerOffset = 2.0
         }
@@ -451,7 +448,7 @@ public struct DictusHalo: View {
         AnimatedMicButton(status: .transcribing) {}
     }
     .padding()
-    .background(Color(hex: 0x0A1628))
+    .background(Color.dictusBackground)
 }
 
 #Preview("Pill") {
@@ -463,6 +460,6 @@ public struct DictusHalo: View {
         AnimatedMicButton(status: .transcribing, isPill: true) {}
     }
     .padding()
-    .background(Color(hex: 0x0A1628))
+    .background(Color.dictusBackground)
 }
 #endif

@@ -3,19 +3,15 @@
 // Branded processing/transcribing animation using logo-inspired pulsing bars.
 import SwiftUI
 
-/// Animated processing indicator using brand colors.
-///
-/// WHY not a standard ProgressView spinner:
-/// The default iOS spinner feels generic. This uses 3 bars (echoing the logo)
-/// that pulse sequentially with the brand blue gradient, creating a branded
-/// "thinking" animation that fits the Dictus identity.
+/// Staggered light bars for processing.
 public struct ProcessingAnimation: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var phase: CGFloat = 0
 
     /// Overall height of the animation.
     public var height: CGFloat = 48
 
-    @ScaledMetric private var barWidth: CGFloat = 8
+    private var barWidth: CGFloat { min(height * 0.08, 4) }
 
     public init(height: CGFloat = 48) {
         self.height = height
@@ -41,6 +37,7 @@ public struct ProcessingAnimation: View {
         }
         .frame(height: height)
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
                 phase = 1
             }

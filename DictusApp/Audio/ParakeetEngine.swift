@@ -299,7 +299,7 @@ enum ParakeetEngineError: Error, DiagnosableError {
     var errorDescription: String? {
         switch self {
         case .unavailable:
-            return String(localized: "This model needs a newer version of iOS. Open Dictus and choose another model.",
+            return String(localized: "This model needs a newer version of iOS. Open Riff and choose another model.",
                           comment: "Shown when the selected model requires an iOS version this device does not run (issue #313).")
         }
     }

@@ -854,7 +854,7 @@ struct ToolbarView: View {
             onRecoveredTranscriptionTap?()
         } label: {
             HStack(spacing: 6) {
-                Text("Dictation interrupted. Your text is in the Dictus app.")
+                Text("Dictation interrupted. Your text is in the Riff app.")
                     .font(.caption)
                     .fontWeight(.medium)
                     .lineLimit(2)

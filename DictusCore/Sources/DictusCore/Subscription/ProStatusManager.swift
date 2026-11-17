@@ -20,6 +20,7 @@ public struct ProTrialEnvironment {
     /// `PremiumFlags.paywallVisible`. With it down no trial starts and nothing about
     /// one appears (#279).
     public var paywallVisible: Bool
+    var proIncluded = false
     /// The App Group, or a test suite.
     public var defaults: UserDefaults
     /// Where the trial is recorded. Built from `defaults` in `.live`.
@@ -40,13 +41,15 @@ public struct ProTrialEnvironment {
     /// Production: the real clock, the real device, the shipping flag, the App Group
     /// and the Keychain.
     public static var live: ProTrialEnvironment {
-        ProTrialEnvironment(
+        var environment = ProTrialEnvironment(
             now: Date.init,
             deviceIsCapable: { SmartModeAvailability.deviceIsCapable },
             paywallVisible: PremiumFlags.paywallVisible,
             defaults: AppGroup.defaults,
             store: .live
         )
+        environment.proIncluded = PremiumFlags.proIncluded
+        return environment
     }
 }
 
@@ -72,7 +75,7 @@ public struct ProTrialEnvironment {
 /// never subscribe before it ends.
 @MainActor
 public final class ProStatusManager: ObservableObject {
-    /// Entitled to Pro right now: paid, or a trial running. What every Pro surface reads.
+    /// Feature access from the build configuration, a purchase or an active trial.
     @Published public private(set) var isProActive: Bool
 
     /// A StoreKit entitlement exists. What the paywall reads to decide whether to sell.
@@ -107,7 +110,10 @@ public final class ProStatusManager: ObservableObject {
         // observed value and every `FeatureGate` answer come from one expression (#460).
         let now = environment.now()
         self.isProActive = ProStatusManager.entitlement(
-            in: environment.defaults, now: now, trialsEnabled: environment.paywallVisible
+            in: environment.defaults,
+            now: now,
+            trialsEnabled: environment.paywallVisible,
+            proIncluded: environment.proIncluded
         )
         self.isPaid = ProStatusManager.isPaid(in: environment.defaults)
         self.trialState = ProTrialState(record: environment.store.mirroredRecord, now: now)
@@ -188,7 +194,10 @@ public final class ProStatusManager: ObservableObject {
     public func refreshFromAppGroup() {
         let now = environment.now()
         isProActive = ProStatusManager.entitlement(
-            in: environment.defaults, now: now, trialsEnabled: environment.paywallVisible
+            in: environment.defaults,
+            now: now,
+            trialsEnabled: environment.paywallVisible,
+            proIncluded: environment.proIncluded
         )
         isPaid = ProStatusManager.isPaid(in: environment.defaults)
         trialState = ProTrialState(record: environment.store.mirroredRecord, now: now)
@@ -372,7 +381,12 @@ public final class ProStatusManager: ObservableObject {
     /// path per surface. Since #593 it answers "paid or trial running", and no call site
     /// had to change for it.
     nonisolated public static var isProActiveStatic: Bool {
-        entitlement(in: AppGroup.defaults, now: Date(), trialsEnabled: PremiumFlags.paywallVisible)
+        entitlement(
+            in: AppGroup.defaults,
+            now: Date(),
+            trialsEnabled: PremiumFlags.paywallVisible,
+            proIncluded: PremiumFlags.proIncluded
+        )
     }
 
     /// The entitlement rule against explicit inputs: which store, which instant, and
@@ -383,7 +397,9 @@ public final class ProStatusManager: ObservableObject {
     /// constant that would otherwise pin one side of the trial branch for them.
     nonisolated public static func entitlement(in defaults: UserDefaults,
                                                now: Date,
-                                               trialsEnabled: Bool) -> Bool {
+                                               trialsEnabled: Bool,
+                                               proIncluded: Bool = false) -> Bool {
+        if proIncluded { return true }
         #if DEBUG
         // Compiled out of Release entirely, along with the flag and its key. See
         // `PremiumFlags.debugProEntitlementForced` for why it has to exist at all: #460

@@ -25,7 +25,7 @@ struct SwipeBackOverlayView: View {
     var body: some View {
         ZStack {
             LinearGradient(
-                colors: [Color(hex: 0x0D2040), Color(hex: 0x071020)],
+                colors: [Color(hex: 0x232323), Color(hex: 0x080808)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -61,10 +61,9 @@ struct SwipeBackOverlayView: View {
                         }
 
                         Circle()
-                            .fill(Color.dictusAccent)
+                            .fill(.white)
                             .frame(width: 14, height: 14)
-                            .shadow(color: Color.dictusAccent.opacity(0.7), radius: 10)
-                            .shadow(color: Color.dictusAccent.opacity(0.4), radius: 20)
+                            .shadow(color: Color.white.opacity(0.35), radius: 6)
                     }
                     .offset(
                         x: -30 + swipeProgress * 80,
@@ -165,10 +164,6 @@ private struct SwipeHandView: View {
 
 /// iPhone mockup with BrandWaveform-style animated bars and home indicator.
 ///
-/// WHY 17 bars with brand color scheme:
-/// Matches the real BrandWaveform visual identity — blue gradient center bars,
-/// white opacity edge bars. 17 bars fit the 140pt mockup width cleanly.
-///
 /// WHY fixed-height waveform container:
 /// The bars animate height changes. Without a fixed container, the VStack would
 /// recalculate layout on each frame, causing the "Listening..." text below to bounce.
@@ -176,28 +171,13 @@ private struct SwipeHandView: View {
 private struct IPhoneMockupView: View {
     var isAnimating: Bool
 
-    // 17 bars — symmetric: outer white → inner blue gradient → outer white
+    // Seventeen bars fit the narrow phone illustration.
     private let barHeightsIdle: [CGFloat] = [
         6, 10, 5, 12, 8, 16, 22, 14, 28, 14, 22, 16, 8, 12, 5, 10, 6
     ]
     private let barHeightsActive: [CGFloat] = [
         12, 18, 10, 22, 16, 30, 40, 24, 46, 24, 38, 28, 14, 20, 8, 16, 10
     ]
-
-    /// Bar colors matching BrandWaveform: gradient blue center, white opacity edges.
-    private func barColor(at index: Int) -> Color {
-        let center: CGFloat = 8
-        let distance = abs(CGFloat(index) - center) / center
-
-        if distance < 0.35 {
-            return .dictusGradientStart
-        } else if distance < 0.55 {
-            return .dictusAccent
-        } else {
-            let opacity = (1.0 - distance) * 0.7 + 0.2
-            return .white.opacity(opacity)
-        }
-    }
 
     var body: some View {
         ZStack {
@@ -219,9 +199,9 @@ private struct IPhoneMockupView: View {
                 HStack(spacing: 2) {
                     ForEach(0..<17, id: \.self) { i in
                         RoundedRectangle(cornerRadius: 1.5)
-                            .fill(barColor(at: i))
+                            .fill(DictusWaveformStyle.barColor(at: i, count: 17, color: .white))
                             .frame(
-                                width: 3,
+                                width: 2.5,
                                 height: isAnimating
                                     ? barHeightsActive[i]
                                     : barHeightsIdle[i]

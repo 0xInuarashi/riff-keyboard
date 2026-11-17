@@ -124,6 +124,10 @@ final class ProTrialTests: XCTestCase {
         let store = ProTrialStore(keychain: InMemoryKeychain(), defaults: defaults)
 
         XCTAssertFalse(ProStatusManager.entitlement(in: defaults, now: t0, trialsEnabled: true), "never started")
+        XCTAssertTrue(ProStatusManager.entitlement(
+            in: defaults, now: t0, trialsEnabled: false, proIncluded: true
+        ))
+        XCTAssertFalse(defaults.bool(forKey: SharedKeys.proActive))
 
         XCTAssertNotNil(store.startIfNeverStarted(now: t0))
         XCTAssertTrue(ProStatusManager.entitlement(in: defaults, now: t0, trialsEnabled: true), "trial running")

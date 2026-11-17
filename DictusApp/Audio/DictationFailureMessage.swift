@@ -66,7 +66,7 @@ enum DictationFailureMessage {
     /// The engine is alive but delivering nothing, and restarting it in place did not help.
     /// A new process is the only remedy that works, so it is the only one offered.
     static var microphoneStoppedResponding: String {
-        String(localized: "The microphone stopped responding. Close Dictus and open it again.",
+        String(localized: "The microphone stopped responding. Close Riff and open it again.",
                comment: "Shown when the audio engine reports running but captures no samples, and a forced restart does not recover it (issue #313).")
     }
 

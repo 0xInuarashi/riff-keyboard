@@ -319,30 +319,23 @@ struct KeyboardWaveformView: View {
     let maxHeight: CGFloat
     @ObservedObject var driver: KeyboardWaveformDriver
 
-    @Environment(\.colorScheme) private var colorScheme
-
     private let barCount = 30
-    private let barSpacing: CGFloat = 2
 
     var body: some View {
-        HStack(spacing: barSpacing) {
+        HStack(spacing: 1) {
             ForEach(0..<barCount, id: \.self) { index in
                 let height = barHeight(at: index)
 
                 Capsule()
-                    .fill(resolvedBarColor(at: index))
+                    .fill(DictusWaveformStyle.barColor(at: index, count: barCount))
+                    .frame(maxWidth: 2.5)
                     .frame(height: height)
+                    .frame(maxWidth: .infinity)
             }
         }
         .frame(height: maxHeight)
     }
 
-    /// Height of one bar under whichever animation is running.
-    ///
-    /// The two self-driven animations share the 4 pt floor: it is what keeps the
-    /// row reading as a waveform at rest rather than as a blank strip. The
-    /// travelling peak needs it more than the sine does -- its baseline is 0.05,
-    /// so most of its bars sit on that floor at any instant (#267).
     private func barHeight(at index: Int) -> CGFloat {
         let energy: Float
         let minHeight: CGFloat
@@ -350,31 +343,18 @@ struct KeyboardWaveformView: View {
         switch driver.animation {
         case .sweep:
             energy = driver.processingEnergy(at: index, phase: driver.processingPhase)
-            minHeight = 4
+            minHeight = 3
         case .travellingPeak:
             energy = ProcessingWaveform.level(
                 at: index,
                 peakPosition: ProcessingWaveform.peakPosition(phase: driver.processingPhase)
             )
-            minHeight = 4
+            minHeight = 3
         case .micLevels, .still:
             energy = index < driver.displayLevels.count ? driver.displayLevels[index] : 0
-            minHeight = 2
+            minHeight = 1.5
         }
 
         return max(minHeight + CGFloat(energy) * (maxHeight - minHeight), minHeight)
-    }
-
-    private func resolvedBarColor(at index: Int) -> Color {
-        let center = Float(barCount - 1) / 2.0
-        let distanceFromCenter = abs(Float(index) - center) / center
-
-        if distanceFromCenter < 0.4 {
-            return .dictusGradientStart
-        }
-
-        let opacity = Double(1.0 - distanceFromCenter) * 0.9 + 0.15
-        let barColor: Color = colorScheme == .dark ? .white : .gray
-        return barColor.opacity(opacity)
     }
 }

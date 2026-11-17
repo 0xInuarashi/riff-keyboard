@@ -40,6 +40,15 @@ struct DictusLiveActivity: Widget {
         }
     }
 
+    @ViewBuilder
+    private func activityMark(context: ActivityViewContext<DictusLiveActivityAttributes>, height: CGFloat) -> some View {
+        if context.state.phase == .recording {
+            MiniLogoBars(levels: normalizedLevels(context.state.waveformLevels, count: 3), animated: true)
+        } else {
+            DictusLogo(height: height, color: .white)
+        }
+    }
+
     // MARK: - Voice notes (#620)
 
     /// The voice note ring, when it owns the island for this state. Nil means the
@@ -67,13 +76,13 @@ struct DictusLiveActivity: Widget {
     private func compactLeading(context: ActivityViewContext<DictusLiveActivityAttributes>) -> some View {
         if voiceNotes(context) != nil {
             // The Dictus logo, whatever the notes are doing (#620 decision 11).
-            MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
+            DictusLogo(height: 14, color: .white)
                 .frame(width: 20, height: 14)
         } else {
         switch context.state.phase {
         case .standby:
             // Static 3-bar logo at mini size
-            MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
+            DictusLogo(height: 14, color: .white)
                 .frame(width: 20, height: 14)
         case .recording:
             // Animated bars driven by waveform data
@@ -93,11 +102,11 @@ struct DictusLiveActivity: Widget {
                 .frame(width: 20, height: 14)
         case .ready:
             Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(Color(hex: 0x22C55E))
+                .foregroundColor(Color(hex: 0xE0E0E0))
                 .font(.system(size: 14))
         case .failed:
             Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(Color(hex: 0xEF4444))
+                .foregroundColor(Color(hex: 0xB5B5B5))
                 .font(.system(size: 14))
         }
         }
@@ -125,7 +134,7 @@ struct DictusLiveActivity: Widget {
         case .recording:
             Text("Rec")
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color(hex: 0xEF4444))
+                .foregroundColor(Color(hex: 0xB5B5B5))
         case .transcribing:
             // Small spinner-like indicator via SF Symbol
             Image(systemName: "ellipsis")
@@ -137,15 +146,15 @@ struct DictusLiveActivity: Widget {
             // distinction on its own (#267). The lighter accent blue keeps it
             // apart from transcribing without leaving the brand's blues (#789).
             Image(systemName: "sparkles")
-                .foregroundColor(Color(hex: 0x6BA3FF))
+                .foregroundColor(Color(hex: 0xC4C4C4))
                 .font(.system(size: 14))
         case .ready:
             Text("Done")
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color(hex: 0x22C55E))
+                .foregroundColor(Color(hex: 0xE0E0E0))
         case .failed:
             Image(systemName: "xmark")
-                .foregroundColor(Color(hex: 0xEF4444))
+                .foregroundColor(Color(hex: 0xB5B5B5))
                 .font(.system(size: 14))
         }
         }
@@ -166,7 +175,7 @@ struct DictusLiveActivity: Widget {
                 .font(.system(size: 12))
         case .standby:
             // Full 3-bar logo even in minimal — single bar was invisible
-            MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
+            DictusLogo(height: 12, color: .white)
                 .frame(width: 14, height: 12)
         case .recording:
             let levels = normalizedLevels(context.state.waveformLevels, count: 3)
@@ -174,7 +183,7 @@ struct DictusLiveActivity: Widget {
                 .frame(width: 14, height: 12)
         case .ready:
             Image(systemName: "checkmark")
-                .foregroundColor(Color(hex: 0x22C55E))
+                .foregroundColor(Color(hex: 0xE0E0E0))
                 .font(.system(size: 12, weight: .bold))
         default:
             Image(systemName: "waveform")
@@ -191,7 +200,7 @@ struct DictusLiveActivity: Widget {
         if voiceNotes(context) != nil {
             // Logo on the left, on the alert and on a long-press alike (decision 10).
             HStack(spacing: 8) {
-                MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
+                DictusLogo(height: 18, color: .white)
                     .frame(width: 24, height: 18)
                 Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 14, weight: .semibold))
@@ -201,14 +210,7 @@ struct DictusLiveActivity: Widget {
         } else {
         HStack(spacing: 8) {
             // Logo bars
-            MiniLogoBars(
-                levels: context.state.phase == .recording
-                    ? normalizedLevels(context.state.waveformLevels, count: 3)
-                    : [0.43, 1.0, 0.64],
-                animated: context.state.phase == .recording
-                    || context.state.phase == .transcribing
-                    || context.state.phase == .processing
-            )
+            activityMark(context: context, height: 18)
             .frame(width: 24, height: 18)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -229,23 +231,23 @@ struct DictusLiveActivity: Widget {
                 case .recording:
                     Text("Recording...")
                         .font(.system(size: 12))
-                        .foregroundColor(Color(hex: 0xEF4444))
+                        .foregroundColor(Color(hex: 0xB5B5B5))
                 case .transcribing:
                     Text("Transcribing...")
                         .font(.system(size: 12))
-                        .foregroundColor(Color(hex: 0x3D7EFF))
+                        .foregroundColor(Color(hex: 0xF5F5F5))
                 case .processing:
                     Text("Processing...")
                         .font(.system(size: 12))
-                        .foregroundColor(Color(hex: 0x6BA3FF))
+                        .foregroundColor(Color(hex: 0xC4C4C4))
                 case .ready:
                     Text("Transcription ready")
                         .font(.system(size: 12))
-                        .foregroundColor(Color(hex: 0x22C55E))
+                        .foregroundColor(Color(hex: 0xE0E0E0))
                 case .failed:
                     Text("Error")
                         .font(.system(size: 12))
-                        .foregroundColor(Color(hex: 0xEF4444))
+                        .foregroundColor(Color(hex: 0xB5B5B5))
                 }
                 }
                 .lineLimit(1)
@@ -284,9 +286,9 @@ struct DictusLiveActivity: Widget {
                 Link(destination: URL(string: "dictus://dictate")!) {
                     Image(systemName: "mic.fill")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(width: 32, height: 32)
-                        .background(Color(hex: 0x3D7EFF))
+                        .background(Color(hex: 0xF5F5F5))
                         .clipShape(Circle())
                 }
             case .recording:
@@ -296,9 +298,9 @@ struct DictusLiveActivity: Widget {
                 Link(destination: URL(string: "dictus://stop")!) {
                     Image(systemName: "stop.fill")
                         .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(width: 32, height: 32)
-                        .background(Color(hex: 0xEF4444))
+                        .background(Color(hex: 0xB5B5B5))
                         .clipShape(Circle())
                 }
 
@@ -314,7 +316,7 @@ struct DictusLiveActivity: Widget {
                     .tint(.white)
             case .processing:
                 ProgressView()
-                    .tint(Color(hex: 0x6BA3FF))
+                    .tint(Color(hex: 0xC4C4C4))
             case .ready, .failed:
                 EmptyView()
             }
@@ -359,12 +361,7 @@ struct DictusLiveActivity: Widget {
         } else {
         HStack(spacing: 12) {
             // Logo
-            MiniLogoBars(
-                levels: context.state.phase == .recording
-                    ? normalizedLevels(context.state.waveformLevels, count: 3)
-                    : [0.43, 1.0, 0.64],
-                animated: context.state.phase == .recording
-            )
+            activityMark(context: context, height: 20)
             .frame(width: 28, height: 20)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -381,7 +378,7 @@ struct DictusLiveActivity: Widget {
                     if let startDate = context.state.recordingStartDate {
                         HStack(spacing: 4) {
                             Circle()
-                                .fill(Color(hex: 0xEF4444))
+                                .fill(Color(hex: 0xB5B5B5))
                                 .frame(width: 6, height: 6)
                             Text(startDate, style: .timer)
                                 .font(.system(size: 13, design: .monospaced))
@@ -393,13 +390,13 @@ struct DictusLiveActivity: Widget {
                     // Same one-line rule as the expanded island (#664).
                     Text("Transcribing...")
                         .font(.system(size: 13))
-                        .foregroundColor(Color(hex: 0x3D7EFF))
+                        .foregroundColor(Color(hex: 0xF5F5F5))
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
                 case .processing:
                     Text("Processing...")
                         .font(.system(size: 13))
-                        .foregroundColor(Color(hex: 0x6BA3FF))
+                        .foregroundColor(Color(hex: 0xC4C4C4))
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
                 case .ready:
@@ -408,12 +405,12 @@ struct DictusLiveActivity: Widget {
                     // The preview is the user's own words, so it is shown verbatim.
                     (context.state.transcriptionPreview.map { Text(verbatim: $0) } ?? Text("Transcription ready"))
                         .font(.system(size: 13))
-                        .foregroundColor(Color(hex: 0x22C55E))
+                        .foregroundColor(Color(hex: 0xE0E0E0))
                         .lineLimit(1)
                 case .failed:
                     Text("Error")
                         .font(.system(size: 13))
-                        .foregroundColor(Color(hex: 0xEF4444))
+                        .foregroundColor(Color(hex: 0xB5B5B5))
                 }
             }
 
@@ -437,9 +434,9 @@ struct DictusLiveActivity: Widget {
                     Link(destination: URL(string: "dictus://dictate")!) {
                         Image(systemName: "mic.fill")
                             .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .frame(width: 36, height: 36)
-                            .background(Color(hex: 0x3D7EFF))
+                            .background(Color(hex: 0xF5F5F5))
                             .clipShape(Circle())
                     }
                 }
@@ -449,9 +446,9 @@ struct DictusLiveActivity: Widget {
                 Link(destination: URL(string: "dictus://stop")!) {
                     Image(systemName: "stop.fill")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(width: 36, height: 36)
-                        .background(Color(hex: 0xEF4444))
+                        .background(Color(hex: 0xB5B5B5))
                         .clipShape(Circle())
                 }
             default:
@@ -459,7 +456,7 @@ struct DictusLiveActivity: Widget {
             }
         }
         .padding(16)
-        .background(Color(hex: 0x0A1628))
+        .background(Color(hex: 0x0C0C0C))
         }
     }
 
@@ -506,8 +503,8 @@ struct DictusLiveActivity: Widget {
 /// Colours of the ring, from the brand kit.
 private enum RingColor {
     static let pending = Color.white.opacity(0.35)
-    static let ready = Color(hex: 0x22C55E)
-    static let failed = Color(hex: 0xEF4444)
+    static let ready = Color(hex: 0xE0E0E0)
+    static let failed = Color(hex: 0xB5B5B5)
 
     static func of(_ segment: VoiceNoteSegment) -> Color {
         switch segment {
@@ -658,7 +655,7 @@ private struct VoiceNoteLockScreen: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
+            DictusLogo(height: 20, color: .white)
                 .frame(width: 28, height: 20)
             VStack(alignment: .leading, spacing: 2) {
                 Text(verbatim: "Riff Keyboard")
@@ -676,64 +673,31 @@ private struct VoiceNoteLockScreen: View {
             VoiceNoteRing(note: note, diameter: 40, lineWidth: 4.5, countSize: 16)
         }
         .padding(16)
-        .background(Color(hex: 0x0A1628))
+        .background(Color(hex: 0x0C0C0C))
     }
 }
 
 // MARK: - Mini Logo Bars
 
-/// Compact 3-bar logo for Dynamic Island display.
-/// Matches brand proportions: left=43%, center=100% (gradient), right=64%.
-///
-/// WHY not reusing DictusLogo from DictusCore:
-/// DictusLogo reads @Environment(\.colorScheme) to gray its side bars in light
-/// mode, while the Live Activity always sits on a dark surface. This view also
-/// animates its bars with audio levels and boosts side-bar opacity in tiny frames,
-/// which the static logo has no reason to do.
-///
-/// WHY the widths come from DictusLogoGeometry (#636):
-/// it is the app icon's own ratio table, shared with DictusLogo, so the bars here
-/// have the icon's thickness and spacing. The icon's bars and gaps add up to the
-/// tallest bar's height (3 × 9 + 2 × 7.5 = 42), so the frame width plays the role
-/// of the "height" those ratios are relative to.
+/// Compact waveform for the Dynamic Island.
 struct MiniLogoBars: View {
     let levels: [Float]
     let animated: Bool
 
     var body: some View {
-        GeometryReader { geo in
-            // Floor at 2.5 pt so a bar never thins out to a hairline; when the floor
-            // kicks in, the spacing below absorbs the difference instead.
-            let barWidth = max(2.5, DictusLogoGeometry.barWidth(forHeight: geo.size.width))
-            // Equals DictusLogoGeometry.gap(forHeight:) whenever the floor is not hit.
-            let spacing = max(0, (geo.size.width - barWidth * 3) / 2)
-            // Boost side bar opacity in small frames so bars stay visible
-            let isSmall = geo.size.width < 16
-
-            HStack(spacing: spacing) {
+        GeometryReader { geometry in
+            HStack(spacing: min(geometry.size.width * 0.12, 3)) {
                 ForEach(0..<min(levels.count, 3), id: \.self) { index in
-                    let height = CGFloat(levels[index]) * geo.size.height
-                    if index == 1 {
-                        // Center bar: brand gradient
-                        RoundedRectangle(cornerRadius: barWidth / 2)
-                            .fill(LinearGradient(
-                                colors: [Color(hex: 0x6BA3FF), Color(hex: 0x2563EB)],
-                                startPoint: .top, endPoint: .bottom
-                            ))
-                            .frame(width: barWidth, height: max(2, height))
-                    } else {
-                        // Side bars: white with brand opacity (boosted when small)
-                        let opacity: Double = index == 0
-                            ? (isSmall ? 0.60 : 0.45)
-                            : (isSmall ? 0.80 : 0.65)
-                        RoundedRectangle(cornerRadius: barWidth / 2)
-                            .fill(Color.white.opacity(opacity))
-                            .frame(width: barWidth, height: max(2, height))
-                    }
+                    Capsule()
+                        .fill(DictusWaveformStyle.barColor(at: index, count: 3, color: .white))
+                        .frame(
+                            width: min(geometry.size.width * 0.15, 3),
+                            height: max(1.5, CGFloat(levels[index]) * geometry.size.height)
+                        )
                 }
             }
-            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-            .animation(animated ? .easeInOut(duration: 0.3) : nil, value: levels)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .animation(animated ? .easeOut(duration: 0.3) : nil, value: levels)
         }
     }
 }
@@ -746,7 +710,7 @@ struct WaveformBars: View {
 
     var body: some View {
         GeometryReader { geo in
-            let barWidth: CGFloat = 6
+            let barWidth: CGFloat = 3
             let spacing: CGFloat = 4  // Fixed tight spacing
 
             HStack(spacing: spacing) {
@@ -754,32 +718,12 @@ struct WaveformBars: View {
                     let height = max(4, CGFloat(levels[index]) * geo.size.height)
 
                     RoundedRectangle(cornerRadius: barWidth / 2)
-                        .fill(LinearGradient(
-                            colors: [Color(hex: 0x6BA3FF), Color(hex: 0x3D7EFF)],
-                            startPoint: .top, endPoint: .bottom
-                        ))
+                        .fill(DictusWaveformStyle.barColor(at: index, count: 5, color: .white))
                         .frame(width: barWidth, height: height)
                 }
             }
             .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
             .animation(.easeInOut(duration: 0.3), value: levels)
         }
-    }
-}
-
-// MARK: - Color Extension (Widget-local)
-
-/// WHY duplicate Color(hex:) here instead of importing from DictusCore:
-/// Widget extensions have a separate compilation context. While DictusCore
-/// is linked, keeping this tiny extension local avoids any import ordering
-/// issues with SwiftUI in widget builds.
-private extension Color {
-    init(hex: UInt, opacity: Double = 1.0) {
-        self.init(
-            red: Double((hex >> 16) & 0xFF) / 255.0,
-            green: Double((hex >> 8) & 0xFF) / 255.0,
-            blue: Double(hex & 0xFF) / 255.0,
-            opacity: opacity
-        )
     }
 }

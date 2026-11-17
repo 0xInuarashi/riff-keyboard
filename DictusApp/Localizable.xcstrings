@@ -657,25 +657,25 @@
         }
       }
     },
-    "%lld days of Dictus Pro, on us" : {
+    "%lld days of Riff Pro, on us" : {
       "comment" : "Trial announcement title (#593). The number is the trial length in days, currently 14.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Tage Dictus Pro, geschenkt"
+            "value" : "%lld Tage Riff Pro, geschenkt"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld días de Dictus Pro de regalo"
+            "value" : "%lld días de Riff Pro de regalo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld jours de Dictus Pro offerts"
+            "value" : "%lld jours de Riff Pro offerts"
           }
         }
       }
@@ -1033,25 +1033,25 @@
         }
       }
     },
-    "A model file arrived damaged. Dictus will download it again." : {
+    "A model file arrived damaged. Riff will download it again." : {
       "comment" : "Model download error when an assembled file fails its size or SHA-256 check (issue #449).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine Modelldatei ist beschädigt angekommen. Dictus lädt sie erneut."
+            "value" : "Eine Modelldatei ist beschädigt angekommen. Riff lädt sie erneut."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un archivo del modelo llegó dañado. Dictus lo volverá a descargar."
+            "value" : "Un archivo del modelo llegó dañado. Riff lo volverá a descargar."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un fichier du modèle est arrivé endommagé. Dictus va le télécharger à nouveau."
+            "value" : "Un fichier du modèle est arrivé endommagé. Riff va le télécharger à nouveau."
           }
         }
       }
@@ -1148,48 +1148,48 @@
         }
       }
     },
-    "Add opens a new term with this word as what Dictus writes instead: you type the correct spelling. Ignore hides the word for good." : {
+    "Add opens a new term with this word as what Riff writes instead: you type the correct spelling. Ignore hides the word for good." : {
       "comment" : "Footer of the vocabulary suggestions list, explaining its two buttons (#512).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„Hinzufügen“ öffnet einen neuen Begriff mit diesem Wort als das, was Dictus stattdessen schreibt: Du gibst die richtige Schreibweise ein. „Ignorieren“ blendet das Wort dauerhaft aus."
+            "value" : "„Hinzufügen“ öffnet einen neuen Begriff mit diesem Wort als das, was Riff stattdessen schreibt: Du gibst die richtige Schreibweise ein. „Ignorieren“ blendet das Wort dauerhaft aus."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“Añadir” abre un término nuevo con esta palabra como lo que Dictus escribe en su lugar: tú escribes la ortografía correcta. “Ignorar” oculta la palabra para siempre."
+            "value" : "“Añadir” abre un término nuevo con esta palabra como lo que Riff escribe en su lugar: tú escribes la ortografía correcta. “Ignorar” oculta la palabra para siempre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter ouvre un nouveau terme avec ce mot comme ce que Dictus écrit à la place : vous tapez la bonne orthographe. Ignorer masque le mot définitivement."
+            "value" : "Ajouter ouvre un nouveau terme avec ce mot comme ce que Riff écrit à la place : vous tapez la bonne orthographe. Ignorer masque le mot définitivement."
           }
         }
       }
     },
-    "Add opens a new term with your spelling and what Dictus wrote instead, both filled in. Ignore hides the suggestion for good." : {
+    "Add opens a new term with your spelling and what Riff wrote instead, both filled in. Ignore hides the suggestion for good." : {
       "comment" : "Footer of the vocabulary suggestions anchored on learned words, explaining its two buttons (#512).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„Hinzufügen“ öffnet einen neuen Begriff, bereits ausgefüllt mit deiner Schreibweise und dem, was Dictus stattdessen geschrieben hat. „Ignorieren“ blendet den Vorschlag dauerhaft aus."
+            "value" : "„Hinzufügen“ öffnet einen neuen Begriff, bereits ausgefüllt mit deiner Schreibweise und dem, was Riff stattdessen geschrieben hat. „Ignorieren“ blendet den Vorschlag dauerhaft aus."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“Añadir” abre un término nuevo con tu ortografía y lo que Dictus escribió en su lugar, ya rellenados. “Ignorar” oculta la sugerencia para siempre."
+            "value" : "“Añadir” abre un término nuevo con tu ortografía y lo que Riff escribió en su lugar, ya rellenados. “Ignorar” oculta la sugerencia para siempre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter ouvre un nouveau terme avec votre orthographe et ce que Dictus a écrit à la place, déjà remplis. Ignorer masque la suggestion définitivement."
+            "value" : "Ajouter ouvre un nouveau terme avec votre orthographe et ce que Riff a écrit à la place, déjà remplis. Ignorer masque la suggestion définitivement."
           }
         }
       }
@@ -1720,25 +1720,25 @@
         }
       }
     },
-    "Apple then downloads its model, sometimes for a long time. Dictus checks again when you come back." : {
+    "Apple then downloads its model, sometimes for a long time. Riff checks again when you come back." : {
       "comment" : "Onboarding Apple Intelligence step (#683). Footnote: no duration is promised, and the app re-checks on return.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple lädt dann sein Modell, manchmal recht lange. Dictus prüft erneut, wenn du zurückkommst."
+            "value" : "Apple lädt dann sein Modell, manchmal recht lange. Riff prüft erneut, wenn du zurückkommst."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Después, Apple descarga su modelo, a veces durante bastante tiempo. Dictus vuelve a comprobarlo cuando regresas."
+            "value" : "Después, Apple descarga su modelo, a veces durante bastante tiempo. Riff vuelve a comprobarlo cuando regresas."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple télécharge ensuite son modèle, parfois longtemps. Dictus revérifie à votre retour."
+            "value" : "Apple télécharge ensuite son modèle, parfois longtemps. Riff revérifie à votre retour."
           }
         }
       }
@@ -1766,31 +1766,31 @@
         }
       }
     },
-    "Available with Dictus Pro" : {
+    "Available with Riff Pro" : {
       "comment" : "Line under the Home mic's Smart Mode dial when the finger is on a mode that needs a subscription.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verfügbar mit Dictus Pro"
+            "value" : "Verfügbar mit Riff Pro"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Available with Dictus Pro"
+            "value" : "Available with Riff Pro"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Disponible con Dictus Pro"
+            "value" : "Disponible con Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Disponible avec Dictus Pro"
+            "value" : "Disponible avec Riff Pro"
           }
         }
       }
@@ -2351,48 +2351,48 @@
         }
       }
     },
-    "Because of its chip, this iPad cannot dictate from the keyboard. Dictation inside the Dictus app works." : {
+    "Because of its chip, this iPad cannot dictate from the keyboard. Dictation inside the Riff app works." : {
       "comment" : "Onboarding notice on the keyboard setup page, shown only on an iPad whose chip predates the A14 (#635).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wegen seines Chips kann dieses iPad nicht über die Tastatur diktieren. Das Diktat in der Dictus-App funktioniert."
+            "value" : "Wegen seines Chips kann dieses iPad nicht über die Tastatur diktieren. Das Diktat in der Riff-App funktioniert."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Por su chip, este iPad no puede dictar desde el teclado. El dictado dentro de la app Dictus funciona."
+            "value" : "Por su chip, este iPad no puede dictar desde el teclado. El dictado dentro de la app Riff funciona."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À cause de sa puce, cet iPad ne peut pas dicter depuis le clavier. La dictée dans l’app Dictus fonctionne."
+            "value" : "À cause de sa puce, cet iPad ne peut pas dicter depuis le clavier. La dictée dans l’app Riff fonctionne."
           }
         }
       }
     },
-    "Because of its chip, this iPhone cannot dictate from the keyboard. Dictation inside the Dictus app works." : {
+    "Because of its chip, this iPhone cannot dictate from the keyboard. Dictation inside the Riff app works." : {
       "comment" : "Onboarding notice on the keyboard setup page, shown only on an iPhone whose chip predates the A14 (#635).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wegen seines Chips kann dieses iPhone nicht über die Tastatur diktieren. Das Diktat in der Dictus-App funktioniert."
+            "value" : "Wegen seines Chips kann dieses iPhone nicht über die Tastatur diktieren. Das Diktat in der Riff-App funktioniert."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Por su chip, este iPhone no puede dictar desde el teclado. El dictado dentro de la app Dictus funciona."
+            "value" : "Por su chip, este iPhone no puede dictar desde el teclado. El dictado dentro de la app Riff funciona."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À cause de sa puce, cet iPhone ne peut pas dicter depuis le clavier. La dictée dans l’app Dictus fonctionne."
+            "value" : "À cause de sa puce, cet iPhone ne peut pas dicter depuis le clavier. La dictée dans l’app Riff fonctionne."
           }
         }
       }
@@ -2419,48 +2419,48 @@
         }
       }
     },
-    "Between dictations, Dictus stays ready. To stop it, hold the island, then tap the power button." : {
+    "Between dictations, Riff stays ready. To stop it, hold the island, then tap the power button." : {
       "comment" : "Onboarding, how to stop Dictus step, iPhone with a Dynamic Island: the line under the title. 'The island' is the Dynamic Island (#681, #858).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zwischen zwei Diktaten bleibt Dictus bereit. Zum Beenden halte die Insel gedrückt und tippe dann auf die Ein-/Aus-Taste."
+            "value" : "Zwischen zwei Diktaten bleibt Riff bereit. Zum Beenden halte die Insel gedrückt und tippe dann auf die Ein-/Aus-Taste."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entre dictados, Dictus sigue listo. Para detenerlo, mantén pulsada la isla y toca el botón de apagado."
+            "value" : "Entre dictados, Riff sigue listo. Para detenerlo, mantén pulsada la isla y toca el botón de apagado."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entre deux dictées, Dictus reste prêt. Pour l’arrêter, appui long sur l’île, puis le bouton d’arrêt."
+            "value" : "Entre deux dictées, Riff reste prêt. Pour l’arrêter, appui long sur l’île, puis le bouton d’arrêt."
           }
         }
       }
     },
-    "Between dictations, Dictus stays ready. To stop it, tap the power button on the Lock Screen." : {
+    "Between dictations, Riff stays ready. To stop it, tap the power button on the Lock Screen." : {
       "comment" : "Onboarding, how to stop Dictus step, iPhone without a Dynamic Island: the line under the title (#681).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zwischen zwei Diktaten bleibt Dictus bereit. Um es zu beenden, tippe auf dem Sperrbildschirm auf die Ein/Aus-Taste."
+            "value" : "Zwischen zwei Diktaten bleibt Riff bereit. Um es zu beenden, tippe auf dem Sperrbildschirm auf die Ein/Aus-Taste."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entre dictados, Dictus sigue listo. Para detenerlo, toca el botón de apagado en la pantalla bloqueada."
+            "value" : "Entre dictados, Riff sigue listo. Para detenerlo, toca el botón de apagado en la pantalla bloqueada."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entre deux dictées, Dictus reste prêt. Pour l’arrêter, touchez le bouton d’arrêt sur l’écran verrouillé."
+            "value" : "Entre deux dictées, Riff reste prêt. Pour l’arrêter, touchez le bouton d’arrêt sur l’écran verrouillé."
           }
         }
       }
@@ -2870,25 +2870,25 @@
         }
       }
     },
-    "Continue with Dictus Pro" : {
+    "Continue with Riff Pro" : {
       "comment" : "Paywall CTA (#913).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weiter mit Dictus Pro"
+            "value" : "Weiter mit Riff Pro"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuar con Dictus Pro"
+            "value" : "Continuar con Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuer avec Dictus Pro"
+            "value" : "Continuer avec Riff Pro"
           }
         }
       }
@@ -2937,48 +2937,48 @@
         }
       }
     },
-    "Correct your words in the Dictus keyboard: it learns them. Dictus suggests them for your vocabulary, on your iPhone, and adds nothing without you. After that, your dictations write them your way." : {
+    "Correct your words in the Riff keyboard: it learns them. Riff suggests them for your vocabulary, on your iPhone, and adds nothing without you. After that, your dictations write them your way." : {
       "comment" : "Onboarding vocabulary scene: the line under the title, also shown in What's New and the \"See the demo\" sheet. Explains the loop: corrections typed in the keyboard are learned, suggested as vocabulary terms (never added automatically), then applied to dictations (#680, #829).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Korrigiere deine Wörter in der Dictus-Tastatur: Sie lernt sie. Dictus schlägt sie für dein Vokabular vor, auf deinem iPhone, und fügt nichts ohne dich hinzu. Danach schreiben deine Diktate sie so, wie du sie schreibst."
+            "value" : "Korrigiere deine Wörter in der Riff-Tastatur: Sie lernt sie. Riff schlägt sie für dein Vokabular vor, auf deinem iPhone, und fügt nichts ohne dich hinzu. Danach schreiben deine Diktate sie so, wie du sie schreibst."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Corrige tus palabras en el teclado Dictus: las aprende. Dictus te las sugiere para tu vocabulario, en tu iPhone, y no añade nada sin ti. Después, tus dictados las escriben a tu manera."
+            "value" : "Corrige tus palabras en el teclado Riff: las aprende. Riff te las sugiere para tu vocabulario, en tu iPhone, y no añade nada sin ti. Después, tus dictados las escriben a tu manera."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Corrigez vos mots dans le clavier Dictus : il les apprend. Dictus vous les propose pour votre vocabulaire, sur votre iPhone, et n’ajoute rien sans vous. Ensuite, vos dictées les écrivent à votre façon."
+            "value" : "Corrigez vos mots dans le clavier Riff : il les apprend. Riff vous les propose pour votre vocabulaire, sur votre iPhone, et n’ajoute rien sans vous. Ensuite, vos dictées les écrivent à votre façon."
           }
         }
       }
     },
-    "Correct your words in the Dictus keyboard: it learns them. Tap Analyze my transcriptions: Dictus compares them with your dictations and suggests terms to accept, edit or ignore. Nothing is added without you, and everything stays on your iPhone. Your terms then correct your dictations automatically." : {
+    "Correct your words in the Riff keyboard: it learns them. Tap Analyze my transcriptions: Riff compares them with your dictations and suggests terms to accept, edit or ignore. Nothing is added without you, and everything stays on your iPhone. Your terms then correct your dictations automatically." : {
       "comment" : "Vocabulary screen: the paragraph of the \"How it works\" card. 'Analyze my transcriptions' is the button further down the same screen (#829).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Korrigiere deine Wörter in der Dictus-Tastatur: Sie lernt sie. Tippe auf „Meine Transkriptionen analysieren“: Dictus vergleicht sie mit deinen Diktaten und schlägt Begriffe vor, die du übernehmen, bearbeiten oder ignorieren kannst. Ohne dich wird nichts hinzugefügt, und alles bleibt auf deinem iPhone. Deine Begriffe korrigieren danach deine Diktate automatisch."
+            "value" : "Korrigiere deine Wörter in der Riff-Tastatur: Sie lernt sie. Tippe auf „Meine Transkriptionen analysieren“: Riff vergleicht sie mit deinen Diktaten und schlägt Begriffe vor, die du übernehmen, bearbeiten oder ignorieren kannst. Ohne dich wird nichts hinzugefügt, und alles bleibt auf deinem iPhone. Deine Begriffe korrigieren danach deine Diktate automatisch."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Corrige tus palabras en el teclado Dictus: las aprende. Toca “Analizar mis transcripciones”: Dictus las compara con tus dictados y te sugiere términos para aceptar, editar o ignorar. No se añade nada sin ti, y todo se queda en tu iPhone. Después, tus términos corrigen tus dictados automáticamente."
+            "value" : "Corrige tus palabras en el teclado Riff: las aprende. Toca “Analizar mis transcripciones”: Riff las compara con tus dictados y te sugiere términos para aceptar, editar o ignorar. No se añade nada sin ti, y todo se queda en tu iPhone. Después, tus términos corrigen tus dictados automáticamente."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Corrigez vos mots dans le clavier Dictus : il les apprend. Touchez Analyser mes transcriptions : Dictus les compare à vos dictées et vous propose des termes à accepter, modifier ou ignorer. Rien n’est ajouté sans vous, et tout reste sur votre iPhone. Vos termes corrigent ensuite vos dictées automatiquement."
+            "value" : "Corrigez vos mots dans le clavier Riff : il les apprend. Touchez Analyser mes transcriptions : Riff les compare à vos dictées et vous propose des termes à accepter, modifier ou ignorer. Rien n’est ajouté sans vous, et tout reste sur votre iPhone. Vos termes corrigent ensuite vos dictées automatiquement."
           }
         }
       }
@@ -3427,94 +3427,94 @@
         }
       }
     },
-    "Dictus could not reach its storage. Restart the app and try again." : {
+    "Riff could not reach its storage. Restart the app and try again." : {
       "comment" : "Shown when the App Group container is unavailable (issue #418).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus konnte nicht auf seinen Speicher zugreifen. Starte die App neu und versuch es noch mal."
+            "value" : "Riff konnte nicht auf seinen Speicher zugreifen. Starte die App neu und versuch es noch mal."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus no pudo acceder a su almacenamiento. Reinicia la app e inténtalo de nuevo."
+            "value" : "Riff no pudo acceder a su almacenamiento. Reinicia la app e inténtalo de nuevo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus n’a pas pu accéder à son stockage. Relancez l’app et réessayez."
+            "value" : "Riff n’a pas pu accéder à son stockage. Relancez l’app et réessayez."
           }
         }
       }
     },
-    "Dictus is open source: anyone can read its code on GitHub." : {
+    "Riff is open source: anyone can read its code on GitHub." : {
       "comment" : "Full Access explainer sheet, third point, detail (#704).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus ist Open Source: Jeder kann den Code auf GitHub lesen."
+            "value" : "Riff ist Open Source: Jeder kann den Code auf GitHub lesen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus es de código abierto: cualquiera puede leer su código en GitHub."
+            "value" : "Riff es de código abierto: cualquiera puede leer su código en GitHub."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le code de Dictus est open source : n’importe qui peut le lire sur GitHub."
+            "value" : "Le code de Riff est open source : n’importe qui peut le lire sur GitHub."
           }
         }
       }
     },
-    "Dictus is waiting in the keyboard of every app. Hold the globe, and speak." : {
+    "Riff is waiting in the keyboard of every app. Hold the globe, and speak." : {
       "comment" : "Onboarding completion message (#675).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus wartet in der Tastatur jeder App. Halte die Weltkugel gedrückt und sprich."
+            "value" : "Riff wartet in der Tastatur jeder App. Halte die Weltkugel gedrückt und sprich."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus te espera en el teclado de cada app. Mantén pulsado el globo y habla."
+            "value" : "Riff te espera en el teclado de cada app. Mantén pulsado el globo y habla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus vous attend dans le clavier de chaque app. Un appui long sur le globe, et parlez."
+            "value" : "Riff vous attend dans le clavier de chaque app. Un appui long sur le globe, et parlez."
           }
         }
       }
     },
-    "Dictus is waiting in the keyboard of every app. To dictate, open the Dictus app." : {
+    "Riff is waiting in the keyboard of every app. To dictate, open the Riff app." : {
       "comment" : "Onboarding completion message on a device whose keyboard cannot dictate (pre-A14 chip, #635, #675).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus wartet in der Tastatur jeder App. Öffne zum Diktieren die Dictus-App."
+            "value" : "Riff wartet in der Tastatur jeder App. Öffne zum Diktieren die Riff-App."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus te espera en el teclado de cada app. Para dictar, abre la app Dictus."
+            "value" : "Riff te espera en el teclado de cada app. Para dictar, abre la app Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus vous attend dans le clavier de chaque app. Pour dicter, ouvrez l’app Dictus."
+            "value" : "Riff vous attend dans le clavier de chaque app. Pour dicter, ouvrez l’app Riff."
           }
         }
       }
@@ -3575,70 +3575,70 @@
         }
       }
     },
-    "Dictus Pro Active" : {
+    "Riff Pro Active" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro aktiv"
+            "value" : "Riff Pro aktiv"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro activo"
+            "value" : "Riff Pro activo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro actif"
+            "value" : "Riff Pro actif"
           }
         }
       }
     },
-    "Dictus Pro is here" : {
+    "Riff Pro is here" : {
       "comment" : "Kicker above the trial announcement for users who installed Dictus before Pro existed (#593).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro ist da"
+            "value" : "Riff Pro ist da"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro ya está aquí"
+            "value" : "Riff Pro ya está aquí"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro est arrivé"
+            "value" : "Riff Pro est arrivé"
           }
         }
       }
     },
-    "Dictus has no keyboard in this language yet. Choose the language you type in." : {
+    "Riff has no keyboard in this language yet. Choose the language you type in." : {
       "comment" : "Onboarding language screen, shown when the spoken language has no Dictus keyboard (e.g. Chinese), under the keyboard language picker (#649).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus hat noch keine Tastatur in dieser Sprache. Wähle die Sprache, in der du schreibst."
+            "value" : "Riff hat noch keine Tastatur in dieser Sprache. Wähle die Sprache, in der du schreibst."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus aún no tiene teclado en este idioma. Elige el idioma en el que escribes."
+            "value" : "Riff aún no tiene teclado en este idioma. Elige el idioma en el que escribes."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus n’a pas encore de clavier dans cette langue. Choisissez la langue dans laquelle vous écrivez."
+            "value" : "Riff n’a pas encore de clavier dans cette langue. Choisissez la langue dans laquelle vous écrivez."
           }
         }
       }
@@ -3688,24 +3688,24 @@
         }
       }
     },
-    "Dictus may restart automatically — this is normal" : {
+    "Riff may restart automatically — this is normal" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus kann sich automatisch neu starten, das ist normal"
+            "value" : "Riff kann sich automatisch neu starten, das ist normal"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus puede reiniciarse automáticamente, es normal"
+            "value" : "Riff puede reiniciarse automáticamente, es normal"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus peut se relancer automatiquement — c’est normal"
+            "value" : "Riff peut se relancer automatiquement — c’est normal"
           }
         }
       }
@@ -3733,139 +3733,139 @@
         }
       }
     },
-    "Dictus needs the microphone to transcribe your voice. Your recordings stay on your device." : {
+    "Riff needs the microphone to transcribe your voice. Your recordings stay on your device." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus braucht das Mikrofon, um deine Stimme zu transkribieren. Deine Aufnahmen bleiben auf deinem Gerät."
+            "value" : "Riff braucht das Mikrofon, um deine Stimme zu transkribieren. Deine Aufnahmen bleiben auf deinem Gerät."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus necesita el micrófono para transcribir tu voz. Tus grabaciones se quedan en tu dispositivo."
+            "value" : "Riff necesita el micrófono para transcribir tu voz. Tus grabaciones se quedan en tu dispositivo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus a besoin du microphone pour transcrire votre voix. Vos enregistrements restent sur votre appareil."
+            "value" : "Riff a besoin du microphone pour transcrire votre voix. Vos enregistrements restent sur votre appareil."
           }
         }
       }
     },
-    "Dictus Pro Lifetime" : {
+    "Riff Pro Lifetime" : {
       "comment" : "Dictus Pro hub: the plan a lifetime owner holds (#216). No date, nothing renews.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro Lebenslang"
+            "value" : "Riff Pro Lebenslang"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro de por vida"
+            "value" : "Riff Pro de por vida"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro à vie"
+            "value" : "Riff Pro à vie"
           }
         }
       }
     },
-    "Dictus Pro Monthly" : {
+    "Riff Pro Monthly" : {
       "comment" : "Dictus Pro hub: the plan a monthly subscriber holds (#216).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro Monatlich"
+            "value" : "Riff Pro Monatlich"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro mensual"
+            "value" : "Riff Pro mensual"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro mensuel"
+            "value" : "Riff Pro mensuel"
           }
         }
       }
     },
-    "Dictus Pro Yearly" : {
+    "Riff Pro Yearly" : {
       "comment" : "Dictus Pro hub: the plan a yearly subscriber holds (#216).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro Jährlich"
+            "value" : "Riff Pro Jährlich"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro anual"
+            "value" : "Riff Pro anual"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro annuel"
+            "value" : "Riff Pro annuel"
           }
         }
       }
     },
-    "Dictus sets up the keyboard and the voice model for the language you speak." : {
+    "Riff sets up the keyboard and the voice model for the language you speak." : {
       "comment" : "Onboarding language screen, explanation under the title (#649).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus richtet die Tastatur und das Sprachmodell für die Sprache ein, die du sprichst."
+            "value" : "Riff richtet die Tastatur und das Sprachmodell für die Sprache ein, die du sprichst."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus configura el teclado y el modelo de voz para el idioma que hablas."
+            "value" : "Riff configura el teclado y el modelo de voz para el idioma que hablas."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus configure le clavier et le modèle vocal pour la langue que vous parlez."
+            "value" : "Riff configure le clavier et le modèle vocal pour la langue que vous parlez."
           }
         }
       }
     },
-    "Dictus uses it to reach the Dictus app." : {
+    "Riff uses it to reach the Riff app." : {
       "comment" : "Full Access explainer sheet, first point, bold lead (#704).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus braucht ihn, um die Dictus-App zu erreichen."
+            "value" : "Riff braucht ihn, um die Riff-App zu erreichen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus lo usa para comunicarse con la app Dictus."
+            "value" : "Riff lo usa para comunicarse con la app Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus s’en sert pour joindre l’app Dictus."
+            "value" : "Riff s’en sert pour joindre l’app Riff."
           }
         }
       }
@@ -3917,48 +3917,48 @@
         }
       }
     },
-    "Every Pro feature, current and future, except those on Dictus servers." : {
+    "Every Pro feature, current and future, except those on Riff servers." : {
       "comment" : "Paywall: short scope of the lifetime purchase, shown while it is selected (#913). The full sentence opens on tap.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Pro-Funktionen, jetzt und künftig, außer denen auf Dictus-Servern."
+            "value" : "Alle Pro-Funktionen, jetzt und künftig, außer denen auf Riff-Servern."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Todas las funciones Pro, actuales y futuras, salvo las de los servidores de Dictus."
+            "value" : "Todas las funciones Pro, actuales y futuras, salvo las de los servidores de Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toutes les fonctions Pro, actuelles et futures, sauf celles des serveurs Dictus."
+            "value" : "Toutes les fonctions Pro, actuelles et futures, sauf celles des serveurs Riff."
           }
         }
       }
     },
-    "From now on, when Dictus writes “%@”, it writes “%@” instead." : {
+    "From now on, when Riff writes “%@”, it writes “%@” instead." : {
       "comment" : "Vocabulary suggestion review sheet: the effect of the variant about to be added. First argument: what Dictus wrote; second: the term (#512 step 2).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn Dictus ab jetzt „%@“ schreibt, schreibt es stattdessen „%@“."
+            "value" : "Wenn Riff ab jetzt „%@“ schreibt, schreibt es stattdessen „%@“."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A partir de ahora, cuando Dictus escriba “%@”, escribirá “%@” en su lugar."
+            "value" : "A partir de ahora, cuando Riff escriba “%@”, escribirá “%@” en su lugar."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Désormais, quand Dictus écrit « %1$@ », il écrit « %2$@ » à la place."
+            "value" : "Désormais, quand Riff écrit « %1$@ », il écrit « %2$@ » à la place."
           }
         }
       }
@@ -4124,25 +4124,25 @@
         }
       }
     },
-    "Hold the mic, slide to a mode, let go. Dictus writes in that mode." : {
+    "Hold the mic, slide to a mode, let go. Riff writes in that mode." : {
       "comment" : "Onboarding Smart Modes scene: the line under the title, describing the long-press gesture on the keyboard's mic (#679).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Halte das Mikrofon gedrückt, wische zu einem Modus, lass los. Dictus schreibt in diesem Modus."
+            "value" : "Halte das Mikrofon gedrückt, wische zu einem Modus, lass los. Riff schreibt in diesem Modus."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mantén pulsado el micrófono, desliza hasta un modo y suelta. Dictus escribe en ese modo."
+            "value" : "Mantén pulsado el micrófono, desliza hasta un modo y suelta. Riff escribe en ese modo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gardez le doigt sur le micro, glissez jusqu’au mode, relâchez. Dictus écrit dans ce mode."
+            "value" : "Gardez le doigt sur le micro, glissez jusqu’au mode, relâchez. Riff écrit dans ce mode."
           }
         }
       }
@@ -4545,25 +4545,25 @@
         }
       }
     },
-    "No suggestions for now. A suggestion appears here when Dictus writes one of your terms differently in at least two dictations, writes differently a word you typed on the keyboard, or when an unknown word comes back in at least two dictations." : {
+    "No suggestions for now. A suggestion appears here when Riff writes one of your terms differently in at least two dictations, writes differently a word you typed on the keyboard, or when an unknown word comes back in at least two dictations." : {
       "comment" : "Empty state of the vocabulary suggestions sheet (#512).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch keine Vorschläge. Ein Vorschlag erscheint hier, wenn Dictus einen deiner Begriffe in mindestens zwei Diktaten anders schreibt, ein Wort anders schreibt, das du auf der Tastatur getippt hast, oder wenn ein unbekanntes Wort in mindestens zwei Diktaten wiederkommt."
+            "value" : "Noch keine Vorschläge. Ein Vorschlag erscheint hier, wenn Riff einen deiner Begriffe in mindestens zwei Diktaten anders schreibt, ein Wort anders schreibt, das du auf der Tastatur getippt hast, oder wenn ein unbekanntes Wort in mindestens zwei Diktaten wiederkommt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aún no hay sugerencias. Aparece una aquí cuando Dictus escribe de otra forma uno de tus términos en al menos dos dictados, escribe de otra forma una palabra que escribiste en el teclado, o cuando una palabra desconocida vuelve a aparecer en al menos dos dictados."
+            "value" : "Aún no hay sugerencias. Aparece una aquí cuando Riff escribe de otra forma uno de tus términos en al menos dos dictados, escribe de otra forma una palabra que escribiste en el teclado, o cuando una palabra desconocida vuelve a aparecer en al menos dos dictados."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucune suggestion pour l’instant. Une suggestion apparaît ici quand Dictus écrit autrement l’un de vos termes dans au moins deux dictées, écrit autrement un mot que vous avez tapé au clavier, ou quand un mot inconnu revient dans au moins deux dictées."
+            "value" : "Aucune suggestion pour l’instant. Une suggestion apparaît ici quand Riff écrit autrement l’un de vos termes dans au moins deux dictées, écrit autrement un mot que vous avez tapé au clavier, ou quand un mot inconnu revient dans au moins deux dictées."
           }
         }
       }
@@ -4706,24 +4706,24 @@
         }
       }
     },
-    "Polish isn't available in this build of Dictus." : {
+    "Polish isn't available in this build of Riff." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Transkript-Verfeinerung ist in diesem Build von Dictus nicht verfügbar."
+            "value" : "Die Transkript-Verfeinerung ist in diesem Build von Riff nicht verfügbar."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pulir la transcripción no está disponible en esta versión de Dictus."
+            "value" : "Pulir la transcripción no está disponible en esta versión de Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Polir la transcription n’est pas disponible dans cette version de Dictus."
+            "value" : "Polir la transcription n’est pas disponible dans cette version de Riff."
           }
         }
       }
@@ -4802,31 +4802,31 @@
         }
       }
     },
-    "Release to see Dictus Pro" : {
+    "Release to see Riff Pro" : {
       "comment" : "Line under the Home mic's Smart Mode dial when the finger is on the Dictus Pro sector.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Loslassen, um Dictus Pro zu sehen"
+            "value" : "Loslassen, um Riff Pro zu sehen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Release to see Dictus Pro"
+            "value" : "Release to see Riff Pro"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suelta para ver Dictus Pro"
+            "value" : "Suelta para ver Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Relâchez pour découvrir Dictus Pro"
+            "value" : "Relâchez pour découvrir Riff Pro"
           }
         }
       }
@@ -4923,25 +4923,25 @@
         }
       }
     },
-    "Share a voice note to Dictus from any app. The text is waiting for you in the keyboard." : {
+    "Share a voice note to Riff from any app. The text is waiting for you in the keyboard." : {
       "comment" : "Onboarding voice notes scene: the line under the title (#680).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teile eine Sprachnachricht aus jeder App mit Dictus. Der Text wartet in der Tastatur auf dich."
+            "value" : "Teile eine Sprachnachricht aus jeder App mit Riff. Der Text wartet in der Tastatur auf dich."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comparte un mensaje de voz con Dictus desde cualquier app. El texto te espera en el teclado."
+            "value" : "Comparte un mensaje de voz con Riff desde cualquier app. El texto te espera en el teclado."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Partagez un mémo vocal à Dictus depuis n’importe quelle app. Le texte vous attend dans le clavier."
+            "value" : "Partagez un mémo vocal à Riff depuis n’importe quelle app. Le texte vous attend dans le clavier."
           }
         }
       }
@@ -5251,48 +5251,48 @@
         }
       }
     },
-    "The inactivity timeout is how long Dictus stays ready after your last dictation. A shorter one saves battery and ends the Dynamic Island sooner. A longer one starts your next keyboard dictation faster. Unlimited lasts until iOS ends it." : {
+    "The inactivity timeout is how long Riff stays ready after your last dictation. A shorter one saves battery and ends the Dynamic Island sooner. A longer one starts your next keyboard dictation faster. Unlimited lasts until iOS ends it." : {
       "comment" : "Settings footer under the inactivity timeout picker (#380).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Inaktivitätszeit legt fest, wie lange Dictus nach deinem letzten Diktat bereit bleibt. Kürzer spart Akku und beendet die Dynamic Island früher. Länger startet dein nächstes Diktat über die Tastatur schneller. „Unbegrenzt“ gilt, bis iOS Dictus beendet."
+            "value" : "Die Inaktivitätszeit legt fest, wie lange Riff nach deinem letzten Diktat bereit bleibt. Kürzer spart Akku und beendet die Dynamic Island früher. Länger startet dein nächstes Diktat über die Tastatur schneller. „Unbegrenzt“ gilt, bis iOS Riff beendet."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El tiempo de inactividad es cuánto tiempo Dictus sigue listo tras tu último dictado. Uno más corto ahorra batería y cierra la Dynamic Island antes. Uno más largo inicia más rápido tu próximo dictado con el teclado. Ilimitado dura hasta que iOS lo cierre."
+            "value" : "El tiempo de inactividad es cuánto tiempo Riff sigue listo tras tu último dictado. Uno más corto ahorra batería y cierra la Dynamic Island antes. Uno más largo inicia más rápido tu próximo dictado con el teclado. Ilimitado dura hasta que iOS lo cierre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le délai d’inactivité est la durée pendant laquelle Dictus reste prêt après votre dernière dictée. Plus court, il économise la batterie et la Dynamic Island disparaît plus tôt. Plus long, votre prochaine dictée au clavier démarre plus vite. Illimité dure jusqu’à ce qu’iOS y mette fin."
+            "value" : "Le délai d’inactivité est la durée pendant laquelle Riff reste prêt après votre dernière dictée. Plus court, il économise la batterie et la Dynamic Island disparaît plus tôt. Plus long, votre prochaine dictée au clavier démarre plus vite. Illimité dure jusqu’à ce qu’iOS y mette fin."
           }
         }
       }
     },
-    "The rest, Dictus does not use." : {
+    "The rest, Riff does not use." : {
       "comment" : "Full Access explainer sheet, second point, bold lead (#704).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Den Rest nutzt Dictus nicht."
+            "value" : "Den Rest nutzt Riff nicht."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El resto, Dictus no lo usa."
+            "value" : "El resto, Riff no lo usa."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le reste, Dictus ne s’en sert pas."
+            "value" : "Le reste, Riff ne s’en sert pas."
           }
         }
       }
@@ -5412,25 +5412,25 @@
         }
       }
     },
-    "To stop Dictus" : {
+    "To stop Riff" : {
       "comment" : "Onboarding, how to stop Dictus step: title (#681).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus beenden"
+            "value" : "Riff beenden"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para detener Dictus"
+            "value" : "Para detener Riff"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pour arrêter Dictus"
+            "value" : "Pour arrêter Riff"
           }
         }
       }
@@ -5625,48 +5625,48 @@
         }
       }
     },
-    "Words from your History that Dictus may be getting wrong." : {
+    "Words from your History that Riff may be getting wrong." : {
       "comment" : "Footer under the Suggestions from History button on the Vocabulary screen (#512).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter aus deinem Verlauf, die Dictus vielleicht falsch schreibt."
+            "value" : "Wörter aus deinem Verlauf, die Riff vielleicht falsch schreibt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palabras de tu historial que Dictus quizá escribe mal."
+            "value" : "Palabras de tu historial que Riff quizá escribe mal."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Des mots de votre historique que Dictus écrit peut-être mal."
+            "value" : "Des mots de votre historique que Riff écrit peut-être mal."
           }
         }
       }
     },
-    "Words you typed that Dictus writes differently" : {
+    "Words you typed that Riff writes differently" : {
       "comment" : "Header of the vocabulary suggestions anchored on words the keyboard learned from the user's typing (#512).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter, die du tippst und die Dictus anders schreibt"
+            "value" : "Wörter, die du tippst und die Riff anders schreibt"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palabras que escribes y que Dictus escribe de otra forma"
+            "value" : "Palabras que escribes y que Riff escribe de otra forma"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Des mots que vous tapez et que Dictus écrit autrement"
+            "value" : "Des mots que vous tapez et que Riff écrit autrement"
           }
         }
       }
@@ -5723,13 +5723,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Schreibweisen, von Dictus anders geschrieben"
+            "value" : "Deine Schreibweisen, von Riff anders geschrieben"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tus palabras, escritas de otra forma por Dictus"
+            "value" : "Tus palabras, escritas de otra forma por Riff"
           }
         },
         "fr" : {
@@ -6285,19 +6285,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles in Dictus Pro ist ab heute kostenlos freigeschaltet."
+            "value" : "Alles in Riff Pro ist ab heute kostenlos freigeschaltet."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Todo Dictus Pro está desbloqueado gratis desde hoy."
+            "value" : "Todo Riff Pro está desbloqueado gratis desde hoy."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tout Dictus Pro est débloqué gratuitement, dès aujourd’hui."
+            "value" : "Tout Riff Pro est débloqué gratuitement, dès aujourd’hui."
           }
         }
       }
@@ -6880,25 +6880,25 @@
         }
       }
     },
-    "History is part of Dictus Pro" : {
+    "History is part of Riff Pro" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Verlauf ist Teil von Dictus Pro"
+            "value" : "Der Verlauf ist Teil von Riff Pro"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El historial forma parte de Dictus Pro"
+            "value" : "El historial forma parte de Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’historique fait partie de Dictus Pro"
+            "value" : "L’historique fait partie de Riff Pro"
           }
         }
       }
@@ -6926,13 +6926,13 @@
         }
       }
     },
-    "Hold \\(Image(systemName: \"globe\")) and select Dictus" : {
+    "Hold \\(Image(systemName: \"globe\")) and select Riff Keyboard" : {
       "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maintenez \\(Image(systemName: \"globe\")) et sélectionnez Dictus"
+            "value" : "Maintenez \\(Image(systemName: \"globe\")) et sélectionnez Riff"
           }
         }
       }
@@ -6982,25 +6982,25 @@
         }
       }
     },
-    "How does Dictus write it instead?" : {
+    "How does Riff write it instead?" : {
       "comment" : "Placeholder of the vocabulary variants field.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie schreibt Dictus es stattdessen?"
+            "value" : "Wie schreibt Riff es stattdessen?"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Cómo lo escribe Dictus en su lugar?"
+            "value" : "¿Cómo lo escribe Riff en su lugar?"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comment Dictus l’écrit-il à la place ?"
+            "value" : "Comment Riff l’écrit-il à la place ?"
           }
         }
       }
@@ -7304,48 +7304,48 @@
         }
       }
     },
-    "Keep Dictus Pro" : {
+    "Keep Riff Pro" : {
       "comment" : "End-of-trial recap button that leads to the plans (#593).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro behalten"
+            "value" : "Riff Pro behalten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mantener Dictus Pro"
+            "value" : "Mantener Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Garder Dictus Pro"
+            "value" : "Garder Riff Pro"
           }
         }
       }
     },
-    "Keep your Smart Modes, History and Vocabulary with Dictus Pro. Everything you saved is still here." : {
+    "Keep your Smart Modes, History and Vocabulary with Riff Pro. Everything you saved is still here." : {
       "comment" : "End-of-trial paywall subtitle (#593). Nothing is deleted at the end of the trial.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Behalte deine Smart Modes, deinen Verlauf und dein Vokabular mit Dictus Pro. Alles, was du gespeichert hast, ist noch da."
+            "value" : "Behalte deine Smart Modes, deinen Verlauf und dein Vokabular mit Riff Pro. Alles, was du gespeichert hast, ist noch da."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conserva tus Smart Modes, tu historial y tu vocabulario con Dictus Pro. Todo lo que guardaste sigue aquí."
+            "value" : "Conserva tus Smart Modes, tu historial y tu vocabulario con Riff Pro. Todo lo que guardaste sigue aquí."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gardez vos modes intelligents, votre historique et votre vocabulaire avec Dictus Pro. Tout ce que vous avez enregistré est toujours là."
+            "value" : "Gardez vos modes intelligents, votre historique et votre vocabulaire avec Riff Pro. Tout ce que vous avez enregistré est toujours là."
           }
         }
       }
@@ -7791,25 +7791,25 @@
         }
       }
     },
-    "Long-press a voice message in WhatsApp, Telegram, Signal or Messages, tap Share, then Dictus. Audio files from Voice Memos, Files or Mail work the same way." : {
+    "Long-press a voice message in WhatsApp, Telegram, Signal or Messages, tap Share, then Riff Keyboard. Audio files from Voice Memos, Files or Mail work the same way." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Drücke in WhatsApp, Telegram, Signal oder Nachrichten lange auf eine Sprachnachricht, tippe auf „Teilen“ und dann auf Dictus. Audiodateien aus Sprachmemos, Dateien oder Mail funktionieren genauso."
+            "value" : "Drücke in WhatsApp, Telegram, Signal oder Nachrichten lange auf eine Sprachnachricht, tippe auf „Teilen“ und dann auf Riff. Audiodateien aus Sprachmemos, Dateien oder Mail funktionieren genauso."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En WhatsApp, Telegram, Signal o Mensajes, mantén pulsado un mensaje de voz, toca Compartir y luego Dictus. Los archivos de audio de Notas de Voz, Archivos o Mail funcionan igual."
+            "value" : "En WhatsApp, Telegram, Signal o Mensajes, mantén pulsado un mensaje de voz, toca Compartir y luego Riff. Los archivos de audio de Notas de Voz, Archivos o Mail funcionan igual."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dans WhatsApp, Telegram, Signal ou Messages, appuyez longuement sur un message vocal, touchez Partager, puis Dictus. Les fichiers audio de Dictaphone, Fichiers ou Mail fonctionnent de la même façon."
+            "value" : "Dans WhatsApp, Telegram, Signal ou Messages, appuyez longuement sur un message vocal, touchez Partager, puis Riff. Les fichiers audio de Dictaphone, Fichiers ou Mail fonctionnent de la même façon."
           }
         }
       }
@@ -8227,25 +8227,25 @@
         }
       }
     },
-    "No model downloaded. Open Dictus to download a model." : {
+    "No model downloaded. Open Riff to download a model." : {
       "comment" : "Error shown when dictation is triggered before any model has been downloaded (issue #249).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Modell geladen. Öffne Dictus, um ein Modell zu laden."
+            "value" : "Kein Modell geladen. Öffne Riff, um ein Modell zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No hay ningún modelo descargado. Abre Dictus para descargar uno."
+            "value" : "No hay ningún modelo descargado. Abre Riff para descargar uno."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun modèle téléchargé. Ouvrez Dictus pour télécharger un modèle."
+            "value" : "Aucun modèle téléchargé. Ouvrez Riff pour télécharger un modèle."
           }
         }
       }
@@ -8320,25 +8320,25 @@
         }
       }
     },
-    "No terms yet. Add the words Dictus gets wrong." : {
+    "No terms yet. Add the words Riff gets wrong." : {
       "comment" : "Shown when the vocabulary is empty.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch keine Begriffe. Füge die Wörter hinzu, die Dictus falsch schreibt."
+            "value" : "Noch keine Begriffe. Füge die Wörter hinzu, die Riff falsch schreibt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aún no hay términos. Añade las palabras que Dictus escribe mal."
+            "value" : "Aún no hay términos. Añade las palabras que Riff escribe mal."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun terme pour l’instant. Ajoutez les mots que Dictus écrit mal."
+            "value" : "Aucun terme pour l’instant. Ajoutez les mots que Riff écrit mal."
           }
         }
       }
@@ -8684,25 +8684,25 @@
         }
       }
     },
-    "On the metro or on a plane, Dictus still writes. Everything happens on your iPhone." : {
+    "On the metro or on a plane, Riff still writes. Everything happens on your iPhone." : {
       "comment" : "Onboarding intro carousel, subtitle of the second page: transcription runs on the device, with no network (#676).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In der U-Bahn oder im Flugzeug schreibt Dictus trotzdem. Alles passiert auf deinem iPhone."
+            "value" : "In der U-Bahn oder im Flugzeug schreibt Riff trotzdem. Alles passiert auf deinem iPhone."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En el metro o en el avión, Dictus sigue escribiendo. Todo ocurre en tu iPhone."
+            "value" : "En el metro o en el avión, Riff sigue escribiendo. Todo ocurre en tu iPhone."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dans le métro ou en avion, Dictus écrit quand même. Tout se passe sur votre iPhone."
+            "value" : "Dans le métro ou en avion, Riff écrit quand même. Tout se passe sur votre iPhone."
           }
         }
       }
@@ -8775,25 +8775,25 @@
         }
       }
     },
-    "Open Settings lands on Dictus's page: go back to the main Settings screen first. Shortcut: search “Apple Intelligence” in Settings." : {
+    "Open Settings lands on Riff's page: go back to the main Settings screen first. Shortcut: search “Apple Intelligence” in Settings." : {
       "comment" : "Onboarding Apple Intelligence step (#683). Under the drawn Settings page: the button opens Dictus's own settings page, and the Settings search finds the Siri page.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„Einstellungen öffnen“ führt zur Seite von Dictus: Geh zuerst zurück zur Hauptseite der Einstellungen. Abkürzung: Suche in den Einstellungen nach „Apple Intelligence“."
+            "value" : "„Einstellungen öffnen“ führt zur Seite von Riff: Geh zuerst zurück zur Hauptseite der Einstellungen. Abkürzung: Suche in den Einstellungen nach „Apple Intelligence“."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“Abrir Ajustes” lleva a la página de Dictus: primero vuelve a la pantalla principal de Ajustes. Atajo: busca “Apple Intelligence” en Ajustes."
+            "value" : "“Abrir Ajustes” lleva a la página de Riff: primero vuelve a la pantalla principal de Ajustes. Atajo: busca “Apple Intelligence” en Ajustes."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« Ouvrir les Réglages » arrive sur la page de Dictus : revenez d’abord à l’accueil de Réglages. Raccourci : cherchez « Apple Intelligence » dans Réglages."
+            "value" : "« Ouvrir les Réglages » arrive sur la page de Riff : revenez d’abord à l’accueil de Réglages. Raccourci : cherchez « Apple Intelligence » dans Réglages."
           }
         }
       }
@@ -9069,25 +9069,25 @@
         }
       }
     },
-    "Part of Dictus Pro. Opens the subscription screen." : {
+    "Part of Riff Pro. Opens the subscription screen." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teil von Dictus Pro. Öffnet die Abo-Seite."
+            "value" : "Teil von Riff Pro. Öffnet die Abo-Seite."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Forma parte de Dictus Pro. Abre la pantalla de suscripción."
+            "value" : "Forma parte de Riff Pro. Abre la pantalla de suscripción."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fait partie de Dictus Pro. Ouvre l’écran d’abonnement."
+            "value" : "Fait partie de Riff Pro. Ouvre l’écran d’abonnement."
           }
         }
       }
@@ -10077,25 +10077,25 @@
         }
       }
     },
-    "Separated by commas. Dictus replaces each of them with your spelling." : {
+    "Separated by commas. Riff replaces each of them with your spelling." : {
       "comment" : "Footer under the vocabulary variants field once it is filled.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Durch Kommas getrennt. Dictus ersetzt jede durch deine Schreibweise."
+            "value" : "Durch Kommas getrennt. Riff ersetzt jede durch deine Schreibweise."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Separadas por comas. Dictus reemplaza cada una por tu ortografía."
+            "value" : "Separadas por comas. Riff reemplaza cada una por tu ortografía."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Séparées par des virgules. Dictus remplace chacune par votre orthographe."
+            "value" : "Séparées par des virgules. Riff remplace chacune par votre orthographe."
           }
         }
       }
@@ -10799,25 +10799,25 @@
         }
       }
     },
-    "Summaries are part of Dictus Pro. Your transcript stays available." : {
+    "Summaries are part of Riff Pro. Your transcript stays available." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zusammenfassungen sind Teil von Dictus Pro. Dein Transkript bleibt verfügbar."
+            "value" : "Zusammenfassungen sind Teil von Riff Pro. Dein Transkript bleibt verfügbar."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los resúmenes forman parte de Dictus Pro. Tu transcripción sigue disponible."
+            "value" : "Los resúmenes forman parte de Riff Pro. Tu transcripción sigue disponible."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les résumés font partie de Dictus Pro. Votre transcription reste disponible."
+            "value" : "Les résumés font partie de Riff Pro. Votre transcription reste disponible."
           }
         }
       }
@@ -11179,25 +11179,25 @@
         }
       }
     },
-    "Teach Dictus your technical terms" : {
+    "Teach Riff your technical terms" : {
       "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bring Dictus deine Fachbegriffe bei"
+            "value" : "Bring Riff deine Fachbegriffe bei"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enseña a Dictus tus términos técnicos"
+            "value" : "Enseña a Riff tus términos técnicos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apprenez à Dictus vos termes techniques"
+            "value" : "Apprenez à Riff vos termes techniques"
           }
         }
       }
@@ -11451,24 +11451,24 @@
         }
       }
     },
-    "The lifetime purchase covers every current and future Pro feature that runs on your device or on a server you provide. Any feature relying on Dictus infrastructure is a separate offering." : {
+    "The lifetime purchase covers every current and future Pro feature that runs on your device or on a server you provide. Any feature relying on Riff infrastructure is a separate offering." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Lebenslang-Kauf umfasst alle aktuellen und zukünftigen Pro-Funktionen, die auf deinem Gerät oder auf einem von dir bereitgestellten Server laufen. Funktionen, die auf die Infrastruktur von Dictus angewiesen sind, sind ein separates Angebot."
+            "value" : "Der Lebenslang-Kauf umfasst alle aktuellen und zukünftigen Pro-Funktionen, die auf deinem Gerät oder auf einem von dir bereitgestellten Server laufen. Funktionen, die auf die Infrastruktur von Riff angewiesen sind, sind ein separates Angebot."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La compra de por vida incluye todas las funciones Pro actuales y futuras que se ejecutan en tu dispositivo o en un servidor que tú proporciones. Cualquier función que dependa de la infraestructura de Dictus es una oferta aparte."
+            "value" : "La compra de por vida incluye todas las funciones Pro actuales y futuras que se ejecutan en tu dispositivo o en un servidor que tú proporciones. Cualquier función que dependa de la infraestructura de Riff es una oferta aparte."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’achat à vie couvre toutes les fonctionnalités Pro, actuelles et futures, qui s’exécutent sur votre appareil ou sur un serveur que vous fournissez. Toute fonctionnalité reposant sur l’infrastructure Dictus relève d’une offre distincte."
+            "value" : "L’achat à vie couvre toutes les fonctionnalités Pro, actuelles et futures, qui s’exécutent sur votre appareil ou sur un serveur que vous fournissez. Toute fonctionnalité reposant sur l’infrastructure Riff relève d’une offre distincte."
           }
         }
       }
@@ -11519,48 +11519,48 @@
         }
       }
     },
-    "The microphone stopped responding. Close Dictus and open it again." : {
+    "The microphone stopped responding. Close Riff and open it again." : {
       "comment" : "Shown when the audio engine reports running but captures no samples, and a forced restart does not recover it (issue #313).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Mikrofon reagiert nicht mehr. Schließe Dictus und öffne es erneut."
+            "value" : "Das Mikrofon reagiert nicht mehr. Schließe Riff und öffne es erneut."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El micrófono ha dejado de responder. Cierra Dictus y vuelve a abrirlo."
+            "value" : "El micrófono ha dejado de responder. Cierra Riff y vuelve a abrirlo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le micro ne répond plus. Fermez Dictus puis rouvrez-le."
+            "value" : "Le micro ne répond plus. Fermez Riff puis rouvrez-le."
           }
         }
       }
     },
-    "The model (%@) is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Dictus, except to turn on the keyboard in Settings." : {
+    "The model (%@) is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Riff, except to turn on the keyboard in Settings." : {
       "comment" : "Onboarding popup message (#675). The argument is the model's size (~483 MB). The next step sends the user to Settings, hence the exception.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Modell (%@) wird jetzt geladen. Der Download läuft weiter, wenn du die App verlässt, aber iOS bremst ihn stark aus. Damit es schneller bereit ist, bleib in Dictus, außer um die Tastatur in den Einstellungen zu aktivieren."
+            "value" : "Das Modell (%@) wird jetzt geladen. Der Download läuft weiter, wenn du die App verlässt, aber iOS bremst ihn stark aus. Damit es schneller bereit ist, bleib in Riff, außer um die Tastatur in den Einstellungen zu aktivieren."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El modelo (%@) se está descargando. La descarga continúa si sales de la app, pero iOS la ralentiza mucho. Para tenerlo listo antes, quédate en Dictus, salvo para activar el teclado en Ajustes."
+            "value" : "El modelo (%@) se está descargando. La descarga continúa si sales de la app, pero iOS la ralentiza mucho. Para tenerlo listo antes, quédate en Riff, salvo para activar el teclado en Ajustes."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le modèle (%@) se télécharge maintenant. Il continue si vous quittez l’app, mais iOS le ralentit fortement. Pour qu’il soit prêt plus vite, restez dans Dictus, sauf pour activer le clavier dans Réglages."
+            "value" : "Le modèle (%@) se télécharge maintenant. Il continue si vous quittez l’app, mais iOS le ralentit fortement. Pour qu’il soit prêt plus vite, restez dans Riff, sauf pour activer le clavier dans Réglages."
           }
         }
       }
@@ -11588,25 +11588,25 @@
         }
       }
     },
-    "The model is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Dictus, except to turn on the keyboard in Settings." : {
+    "The model is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Riff, except to turn on the keyboard in Settings." : {
       "comment" : "Onboarding popup message when the model's size is unknown (#675).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Modell wird jetzt geladen. Der Download läuft weiter, wenn du die App verlässt, aber iOS bremst ihn stark aus. Damit es schneller bereit ist, bleib in Dictus, außer um die Tastatur in den Einstellungen zu aktivieren."
+            "value" : "Das Modell wird jetzt geladen. Der Download läuft weiter, wenn du die App verlässt, aber iOS bremst ihn stark aus. Damit es schneller bereit ist, bleib in Riff, außer um die Tastatur in den Einstellungen zu aktivieren."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El modelo se está descargando. La descarga continúa si sales de la app, pero iOS la ralentiza mucho. Para tenerlo listo antes, quédate en Dictus, salvo para activar el teclado en Ajustes."
+            "value" : "El modelo se está descargando. La descarga continúa si sales de la app, pero iOS la ralentiza mucho. Para tenerlo listo antes, quédate en Riff, salvo para activar el teclado en Ajustes."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le modèle se télécharge maintenant. Il continue si vous quittez l’app, mais iOS le ralentit fortement. Pour qu’il soit prêt plus vite, restez dans Dictus, sauf pour activer le clavier dans Réglages."
+            "value" : "Le modèle se télécharge maintenant. Il continue si vous quittez l’app, mais iOS le ralentit fortement. Pour qu’il soit prêt plus vite, restez dans Riff, sauf pour activer le clavier dans Réglages."
           }
         }
       }
@@ -11702,25 +11702,25 @@
         }
       }
     },
-    "The spelling Dictus should write." : {
+    "The spelling Riff should write." : {
       "comment" : "Footer under the vocabulary canonical-spelling field.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Schreibweise, die Dictus verwenden soll."
+            "value" : "Die Schreibweise, die Riff verwenden soll."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La ortografía que Dictus debe escribir."
+            "value" : "La ortografía que Riff debe escribir."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’orthographe que Dictus doit écrire."
+            "value" : "L’orthographe que Riff doit écrire."
           }
         }
       }
@@ -11773,25 +11773,25 @@
         }
       }
     },
-    "The transcription engine is not ready. Open Dictus and try again." : {
+    "The transcription engine is not ready. Open Riff and try again." : {
       "comment" : "Shown when a dictation reaches transcription with no engine initialized (issue #313).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Transkriptions-Engine ist nicht bereit. Öffne Dictus und versuch es noch einmal."
+            "value" : "Die Transkriptions-Engine ist nicht bereit. Öffne Riff und versuch es noch einmal."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El motor de transcripción no está listo. Abre Dictus e inténtalo de nuevo."
+            "value" : "El motor de transcripción no está listo. Abre Riff e inténtalo de nuevo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le moteur de transcription n’est pas prêt. Ouvrez Dictus et réessayez."
+            "value" : "Le moteur de transcription n’est pas prêt. Ouvrez Riff et réessayez."
           }
         }
       }
@@ -11843,25 +11843,25 @@
         }
       }
     },
-    "The transcription model could not be loaded. Open Dictus and try again." : {
+    "The transcription model could not be loaded. Open Riff and try again." : {
       "comment" : "Error shown when the local Whisper model files are present but fail to load (issue #249).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Transkriptionsmodell konnte nicht geladen werden. Öffne Dictus und versuch es noch einmal."
+            "value" : "Das Transkriptionsmodell konnte nicht geladen werden. Öffne Riff und versuch es noch einmal."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo cargar el modelo de transcripción. Abre Dictus e inténtalo de nuevo."
+            "value" : "No se pudo cargar el modelo de transcripción. Abre Riff e inténtalo de nuevo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le modèle de transcription n’a pas pu être chargé. Ouvrez Dictus et réessayez."
+            "value" : "Le modèle de transcription n’a pas pu être chargé. Ouvrez Riff et réessayez."
           }
         }
       }
@@ -11936,72 +11936,72 @@
         }
       }
     },
-    "This file is not an audio format Dictus can read." : {
+    "This file is not an audio format Riff can read." : {
       "comment" : "Voice note failure: the shared file is not a recognised audio container (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Datei ist kein Audioformat, das Dictus lesen kann."
+            "value" : "Diese Datei ist kein Audioformat, das Riff lesen kann."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este archivo no tiene un formato de audio que Dictus pueda leer."
+            "value" : "Este archivo no tiene un formato de audio que Riff pueda leer."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce fichier n’est pas un format audio que Dictus sait lire."
+            "value" : "Ce fichier n’est pas un format audio que Riff sait lire."
           }
         }
       }
     },
-    "This model is not installed. Open Dictus and download it in the Models tab." : {
+    "This model is not installed. Open Riff and download it in the Models tab." : {
       "comment" : "Error shown when dictation is triggered while the selected Whisper model is missing from the local model repository (issue #249).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieses Modell ist nicht installiert. Öffne Dictus und lade es im Tab „Modelle“."
+            "value" : "Dieses Modell ist nicht installiert. Öffne Riff und lade es im Tab „Modelle“."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este modelo no está instalado. Abre Dictus y descárgalo en la pestaña Modelos."
+            "value" : "Este modelo no está instalado. Abre Riff y descárgalo en la pestaña Modelos."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce modèle n’est pas installé. Ouvrez Dictus et téléchargez-le dans l’onglet Modèles."
+            "value" : "Ce modèle n’est pas installé. Ouvrez Riff et téléchargez-le dans l’onglet Modèles."
           }
         }
       }
     },
-    "This model needs a newer version of iOS. Open Dictus and choose another model." : {
+    "This model needs a newer version of iOS. Open Riff and choose another model." : {
       "comment" : "Shown when the selected model requires an iOS version this device does not run (issue #313).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieses Modell braucht eine neuere iOS-Version. Öffne Dictus und wähle ein anderes Modell."
+            "value" : "Dieses Modell braucht eine neuere iOS-Version. Öffne Riff und wähle ein anderes Modell."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este modelo necesita una versión más reciente de iOS. Abre Dictus y elige otro modelo."
+            "value" : "Este modelo necesita una versión más reciente de iOS. Abre Riff y elige otro modelo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce modèle nécessite une version plus récente d’iOS. Ouvrez Dictus et choisissez un autre modèle."
+            "value" : "Ce modèle nécessite une version plus récente d’iOS. Ouvrez Riff et choisissez un autre modèle."
           }
         }
       }
@@ -12029,26 +12029,26 @@
         }
       }
     },
-    "This voice note is longer than 10 minutes, the longest Dictus transcribes." : {
+    "This voice note is longer than 10 minutes, the longest Riff transcribes." : {
       "comment" : "Voice note failure: over the 10-minute cap (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Sprachnachricht ist länger als 10 Minuten, die maximale Länge, die Dictus transkribiert."
+            "value" : "Diese Sprachnachricht ist länger als 10 Minuten, die maximale Länge, die Riff transkribiert."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este mensaje de voz dura más de 10 minutos, el máximo que Dictus transcribe."
+            "value" : "Este mensaje de voz dura más de 10 minutos, el máximo que Riff transcribe."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce message vocal dépasse 10 minutes, la durée maximale que Dictus transcrit."
+            "value" : "Ce message vocal dépasse 10 minutes, la durée maximale que Riff transcrit."
           }
         }
       }
@@ -12106,7 +12106,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Damit Dictus dich beim Diktieren hören kann. Der Ton wird auf deinem iPhone transkribiert und verlässt es nie."
+            "value" : "Damit Riff dich beim Diktieren hören kann. Der Ton wird auf deinem iPhone transkribiert und verlässt es nie."
           }
         },
         "es" : {
@@ -12123,25 +12123,25 @@
         }
       }
     },
-    "To keep Smart Modes, History and Vocabulary afterwards, you will need a Dictus Pro subscription." : {
+    "To keep Smart Modes, History and Vocabulary afterwards, you will need a Riff Pro subscription." : {
       "comment" : "Trial announcement disclosure (#593): what it takes to keep Pro after the trial. Deliberately names no price.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um die Smart Modes, den Verlauf und das Vokabular danach zu behalten, brauchst du ein Dictus Pro-Abo."
+            "value" : "Um die Smart Modes, den Verlauf und das Vokabular danach zu behalten, brauchst du ein Riff Pro-Abo."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para conservar después los Smart Modes, el historial y el vocabulario, necesitarás una suscripción a Dictus Pro."
+            "value" : "Para conservar después los Smart Modes, el historial y el vocabulario, necesitarás una suscripción a Riff Pro."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pour garder ensuite les modes intelligents, l’historique et le vocabulaire, il faudra un abonnement Dictus Pro."
+            "value" : "Pour garder ensuite les modes intelligents, l’historique et le vocabulaire, il faudra un abonnement Riff Pro."
           }
         }
       }
@@ -12192,25 +12192,25 @@
         }
       }
     },
-    "Transcribing voice notes is part of Dictus Pro. Waiting notes start again when Pro is active, and you can delete them at any time." : {
+    "Transcribing voice notes is part of Riff Pro. Waiting notes start again when Pro is active, and you can delete them at any time." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Transkribieren von Sprachnachrichten ist Teil von Dictus Pro. Wartende Nachrichten werden fortgesetzt, sobald Pro aktiv ist, und du kannst sie jederzeit löschen."
+            "value" : "Das Transkribieren von Sprachnachrichten ist Teil von Riff Pro. Wartende Nachrichten werden fortgesetzt, sobald Pro aktiv ist, und du kannst sie jederzeit löschen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La transcripción de mensajes de voz forma parte de Dictus Pro. Los mensajes en espera se reanudan cuando Pro esté activo, y puedes eliminarlos en cualquier momento."
+            "value" : "La transcripción de mensajes de voz forma parte de Riff Pro. Los mensajes en espera se reanudan cuando Pro esté activo, y puedes eliminarlos en cualquier momento."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La transcription des messages vocaux fait partie de Dictus Pro. Les messages en attente reprennent quand Pro est actif, et vous pouvez les supprimer à tout moment."
+            "value" : "La transcription des messages vocaux fait partie de Riff Pro. Les messages en attente reprennent quand Pro est actif, et vous pouvez les supprimer à tout moment."
           }
         }
       }
@@ -12683,24 +12683,24 @@
         }
       }
     },
-    "Unlock Dictus Pro" : {
+    "Unlock Riff Pro" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro freischalten"
+            "value" : "Riff Pro freischalten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desbloquea Dictus Pro"
+            "value" : "Desbloquea Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Débloquez Dictus Pro"
+            "value" : "Débloquez Riff Pro"
           }
         }
       }
@@ -12986,25 +12986,25 @@
         }
       }
     },
-    "Voice notes are off: a voice message shared to Dictus is not transcribed. Your settings are kept." : {
+    "Voice notes are off: a voice message shared to Riff is not transcribed. Your settings are kept." : {
       "comment" : "Footer under the Voice notes switch at the top of the voice note settings, shown while it is off (#216).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprachnachrichten sind deaktiviert: Eine an Dictus geteilte Sprachnachricht wird nicht transkribiert. Deine Einstellungen bleiben erhalten."
+            "value" : "Sprachnachrichten sind deaktiviert: Eine an Riff geteilte Sprachnachricht wird nicht transkribiert. Deine Einstellungen bleiben erhalten."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los mensajes de voz están desactivados: un mensaje de voz compartido con Dictus no se transcribe. Tus ajustes se conservan."
+            "value" : "Los mensajes de voz están desactivados: un mensaje de voz compartido con Riff no se transcribe. Tus ajustes se conservan."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les messages vocaux sont désactivés : un message vocal partagé vers Dictus n’est pas transcrit. Vos réglages sont conservés."
+            "value" : "Les messages vocaux sont désactivés : un message vocal partagé vers Riff n’est pas transcrit. Vos réglages sont conservés."
           }
         }
       }
@@ -13157,93 +13157,93 @@
         }
       }
     },
-    "Welcome to Dictus Pro" : {
+    "Welcome to Riff Pro" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Willkommen bei Dictus Pro"
+            "value" : "Willkommen bei Riff Pro"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Te damos la bienvenida a Dictus Pro"
+            "value" : "Te damos la bienvenida a Riff Pro"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bienvenue dans Dictus Pro"
+            "value" : "Bienvenue dans Riff Pro"
           }
         }
       }
     },
-    "What Dictus writes instead" : {
+    "What Riff writes instead" : {
       "comment" : "Section header above the variants field.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Was Dictus stattdessen schreibt"
+            "value" : "Was Riff stattdessen schreibt"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lo que Dictus escribe en su lugar"
+            "value" : "Lo que Riff escribe en su lugar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce que Dictus écrit à la place"
+            "value" : "Ce que Riff écrit à la place"
           }
         }
       }
     },
-    "When Dictus writes one of these variants, it is replaced by your spelling." : {
+    "When Riff writes one of these variants, it is replaced by your spelling." : {
       "comment" : "Footer of the vocabulary list. Says only what a replacement does: #536 removed the term list that was the other half.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn Dictus eine dieser Varianten schreibt, wird sie durch deine Schreibweise ersetzt."
+            "value" : "Wenn Riff eine dieser Varianten schreibt, wird sie durch deine Schreibweise ersetzt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuando Dictus escribe una de estas variantes, se reemplaza por tu ortografía."
+            "value" : "Cuando Riff escribe una de estas variantes, se reemplaza por tu ortografía."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quand Dictus écrit l’une de ces variantes, elle est remplacée par votre orthographe."
+            "value" : "Quand Riff écrit l’une de ces variantes, elle est remplacée par votre orthographe."
           }
         }
       }
     },
-    "When it ends, Dictus goes back to the free version by itself. Your history and your vocabulary are kept." : {
+    "When it ends, Riff goes back to the free version by itself. Your history and your vocabulary are kept." : {
       "comment" : "Trial announcement disclosure (#593): what happens at the end of the trial.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Am Ende wechselt Dictus von selbst zur kostenlosen Version zurück. Dein Verlauf und dein Vokabular bleiben erhalten."
+            "value" : "Am Ende wechselt Riff von selbst zur kostenlosen Version zurück. Dein Verlauf und dein Vokabular bleiben erhalten."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al terminar, Dictus vuelve solo a la versión gratuita. Tu historial y tu vocabulario se conservan."
+            "value" : "Al terminar, Riff vuelve solo a la versión gratuita. Tu historial y tu vocabulario se conservan."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À la fin, Dictus repasse tout seul en version gratuite. Votre historique et votre vocabulaire sont conservés."
+            "value" : "À la fin, Riff repasse tout seul en version gratuite. Votre historique et votre vocabulaire sont conservés."
           }
         }
       }
@@ -13653,25 +13653,25 @@
         }
       }
     },
-    "Your Dictus Pro trial has ended" : {
+    "Your Riff Pro trial has ended" : {
       "comment" : "End-of-trial paywall title, shown once when the free Dictus Pro trial is over (#593).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Dictus Pro-Testzeitraum ist beendet"
+            "value" : "Dein Riff Pro-Testzeitraum ist beendet"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tu prueba de Dictus Pro ha terminado"
+            "value" : "Tu prueba de Riff Pro ha terminado"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Votre essai de Dictus Pro est terminé"
+            "value" : "Votre essai de Riff Pro est terminé"
           }
         }
       }
@@ -14068,30 +14068,30 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wir würden diesen Schritt gern überspringen, aber iOS verlangt, Dictus zu öffnen, um das Mikrofon zu aktivieren."
+            "value" : "Wir würden diesen Schritt gern überspringen, aber iOS verlangt, Riff zu öffnen, um das Mikrofon zu aktivieren."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We’d love to skip this step, but iOS requires opening Dictus to activate the microphone."
+            "value" : "We’d love to skip this step, but iOS requires opening Riff to activate the microphone."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nos encantaría saltarnos este paso, pero iOS exige abrir Dictus para activar el micrófono."
+            "value" : "Nos encantaría saltarnos este paso, pero iOS exige abrir Riff para activar el micrófono."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On aimerait éviter cette étape, mais iOS exige d’ouvrir Dictus pour activer le micro."
+            "value" : "On aimerait éviter cette étape, mais iOS exige d’ouvrir Riff pour activer le micro."
           }
         }
       }
     },
-    "switch to the Dictus keyboard" : {
+    "switch to the Riff keyboard" : {
       "comment" : "A phrase that",
       "extractionState" : "stale",
       "isCommentAutoGenerated" : true,
@@ -14099,24 +14099,70 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "wechsle zur Dictus-Tastatur"
+            "value" : "wechsle zur Riff-Tastatur"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "cambia al teclado Dictus"
+            "value" : "cambia al teclado Riff"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "passez au clavier Dictus"
+            "value" : "passez au clavier Riff"
           }
         }
       }
     },
-    "😊" : {}
+    "😊" : {},
+    "Features" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funktionen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités"
+          }
+        }
+      }
+    },
+    "Voice notes are switched off. Turn them back on in Riff Settings." : {
+      "comment" : "Share extension: a Pro user switched voice notes off in the Dictus Pro hub (#216).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprachnachrichten sind deaktiviert. Du kannst sie in den Riff-Einstellungen wieder aktivieren."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las notas de voz están desactivadas. Vuelve a activarlas en los ajustes de Riff."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les notes vocales sont désactivées. Réactivez-les dans les réglages de Riff."
+          }
+        }
+      }
+    }
   },
   "version" : "1.1"
 }

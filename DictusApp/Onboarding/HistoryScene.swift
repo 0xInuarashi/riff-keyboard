@@ -14,7 +14,7 @@ struct HistoryScenePage: View {
 
     var body: some View {
         OnboardingScenePage(
-            eyebrow: Text("Also in Pro",
+            eyebrow: PremiumFlags.proIncluded ? nil : Text("Also in Pro",
                           comment: "Onboarding: small label above the title of the voice notes, vocabulary and history scenes, which come after the Smart Modes and show the other Dictus Pro features (#680)."),
             title: HistorySceneCard.title,
             line: HistorySceneCard.line,

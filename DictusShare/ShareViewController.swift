@@ -172,17 +172,17 @@ final class ShareModel: ObservableObject {
             break
         case .refuseNeedsPro:
             log("rejected", "reason=notEntitled detected=none type=none")
-            state = .refused(String(localized: "Transcribing voice notes is part of Dictus Pro. Open Dictus to find out more.",
+            state = .refused(String(localized: "Transcribing voice notes is part of Riff Pro. Open Riff to find out more.",
                                     comment: "Share extension: the user has no Pro entitlement and the paywall is visible (#620)."))
             return
         case .refuseSwitchedOff:
             log("rejected", "reason=switchedOff detected=none type=none")
-            state = .refused(String(localized: "Voice notes are switched off. Turn them back on in Dictus, under Dictus Pro.",
+            state = .refused(String(localized: "Voice notes are switched off. Turn them back on in Riff Settings.",
                                     comment: "Share extension: a Pro user switched voice notes off in the Dictus Pro hub (#216)."))
             return
         case .refuseUnavailable:
             log("rejected", "reason=unavailable detected=none type=none")
-            state = .refused(String(localized: "Transcribing voice notes is not available in this version of Dictus.",
+            state = .refused(String(localized: "Transcribing voice notes is not available in this version of Riff.",
                                     comment: "Share extension: no entitlement, and the paywall is hidden so no subscription may be named (#620, #236)."))
             return
         }
@@ -245,17 +245,17 @@ final class ShareModel: ObservableObject {
             case .unreadable:
                 return ShareModel.couldNotReceive
             case .notAudio:
-                return String(localized: "This file is not an audio format Dictus can read.",
+                return String(localized: "This file is not an audio format Riff can read.",
                               comment: "Share extension: the shared file is not a recognised audio container (#620).")
             case .tooLong:
-                return String(localized: "This voice note is longer than 10 minutes, the longest Dictus transcribes.",
+                return String(localized: "This voice note is longer than 10 minutes, the longest Riff transcribes.",
                               comment: "Share extension: over the 10-minute cap (#620).")
             }
         }
     }
 
     nonisolated private static var couldNotReceive: String {
-        String(localized: "Dictus could not receive this file.",
+        String(localized: "Riff could not receive this file.",
                comment: "Share extension: the file could not be read or copied (#620).")
     }
 

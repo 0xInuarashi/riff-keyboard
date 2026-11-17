@@ -672,7 +672,7 @@ class DictationCoordinator: ObservableObject {
             PersistentLog.log(.dictationFailed(error: "No model downloaded"))
             // Localised since #249 — this sibling of the model-availability failure
             // reached the keyboard banner in English regardless of device language.
-            handleError(String(localized: "No model downloaded. Open Dictus to download a model."))
+            handleError(String(localized: "No model downloaded. Open Riff to download a model."))
             return
         }
 

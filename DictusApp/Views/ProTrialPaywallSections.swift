@@ -121,7 +121,7 @@ struct MonthlyPlanOfferSheet: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.dictusAccent)
-                    .foregroundColor(.white)
+                    .foregroundColor(.dictusOnAccent)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .buttonStyle(GlassPressStyle())

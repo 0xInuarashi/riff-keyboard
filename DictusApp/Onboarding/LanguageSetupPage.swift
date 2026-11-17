@@ -139,7 +139,7 @@ struct LanguageSetupPage: View {
                         }
                     }
                 }
-                Text("Dictus has no keyboard in this language yet. Choose the language you type in.")
+                Text("Riff has no keyboard in this language yet. Choose the language you type in.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     // Without this the caption can collapse to one truncated line (seen
@@ -376,10 +376,10 @@ private struct LayoutPreview: View {
     private static let trayFill = Color.dictusSurface
 
     /// The keys: a light grey on the white tray, a lifted navy on the dark one.
-    private static let keyFill = Color(light: Color(hex: 0xF2F2F7), dark: Color(hex: 0x0A1628))
+    private static let keyFill = Color(light: Color(hex: 0xF2F2F2), dark: Color(hex: 0x0C0C0C))
 
     /// The function keys, a step darker than the letters.
-    private static let functionKeyFill = Color(light: Color(hex: 0xDCDCE2), dark: Color(hex: 0x1F2A3E))
+    private static let functionKeyFill = Color(light: Color(hex: 0xDCDCDC), dark: Color(hex: 0x292929))
 }
 
 // MARK: - Letter rows

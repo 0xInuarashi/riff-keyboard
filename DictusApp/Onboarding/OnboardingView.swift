@@ -414,9 +414,9 @@ struct OnboardingView: View {
     /// The popup's message, with the real size of the model being downloaded.
     private var keepOpenWarningMessage: Text {
         if let identifier = keepOpenWarningModel, let size = ModelInfo.forIdentifier(identifier)?.sizeLabel {
-            return Text("The model (\(size)) is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Dictus, except to turn on the keyboard in Settings.")
+            return Text("The model (\(size)) is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Riff, except to turn on the keyboard in Settings.")
         }
-        return Text("The model is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Dictus, except to turn on the keyboard in Settings.")
+        return Text("The model is downloading now. It continues if you leave the app, but iOS slows it down a lot. To have it ready sooner, stay in Riff, except to turn on the keyboard in Settings.")
     }
 
     /// Leaves the first dictation, whether it succeeded or was skipped, for the next step:

@@ -12,7 +12,7 @@ Voir PRD.md pour les specs complètes et DEVELOPMENT.md pour le guide de dévelo
 - FluidAudio (Parakeet STT) via SPM — DictusApp only
 - App Group: group.solutions.pivi.dictus
 - Minimum iOS: 17.0
-- Design: iOS 26 Liquid Glass
+- Design: Riff monochrome theme, using native system controls
 
 ## Targets Xcode
 
@@ -43,31 +43,11 @@ Voir PRD.md pour les specs complètes et DEVELOPMENT.md pour le guide de dévelo
 
 ## Brand & Design
 
-Le brand kit complet est dans `assets/brand/dictus-brand-kit.html`.
-Il contient les SVG du logo, tous les codes couleur et les gradients.
-
-Quand tu as besoin de générer des assets visuels :
-
-1. Lire le HTML pour extraire les valeurs exactes
-2. Générer les fichiers SVG dans `assets/brand/`
-3. Générer les PNG iOS dans `Dictus/Assets.xcassets/AppIcon.appiconset/`
-
-### Couleurs principales (résumé rapide)
-
-- Background : #0A1628
-- Accent : #3D7EFF
-- Accent highlight : #6BA3FF
-- Surface : #161C2C
-- Recording : #EF4444
-- Success : #22C55E
-
-### Logo
-
-3 barres verticales asymétriques (hauteurs : 18pt / 42pt / 27pt)
-Barre centrale = dégradé #6BA3FF → #2563EB
-Barres latérales = blanc à 45% et 65% d'opacité
-Fond icône = dégradé #0D2040 → #071020 à 135°
-Largeur des barres = 9/42 de la plus haute, écart = 7,5/42, bouts en capsule (rayon = largeur / 2, jamais une valeur fixe en points). Source : `assets/brand/appicon-dark.svg`, code : `DictusLogoGeometry` (#636)
+Riff uses charcoal and white, fine borders and narrow animated audio bars.
+The shared palette, typography and mark live in `DictusCore/Sources/DictusCore/Design/`.
+Keep the logo path aligned with the SVG variants in `assets/brand/`.
+Run `swift scripts/generate-app-icon.swift` from the repo root to update the app icon PNGs.
+The Dictus brand kit remains in the repository as a reference for the original project.
 
 ## Agent skills
 

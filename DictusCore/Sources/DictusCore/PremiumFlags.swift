@@ -1,34 +1,13 @@
 // DictusCore/Sources/DictusCore/PremiumFlags.swift
 import Foundation
 
-/// Compile-time visibility flags for premium UI (issue #236).
-///
-/// WHY a compile-time constant instead of remote config:
-/// when it was introduced no Pro feature existed (#79) and App Store Connect setup
-/// was pending (#215), so the paywall would have rendered with empty prices. A
-/// single `static let` was enough to hide every entry point (Home banner, Settings Pro section, locked rows, the
-/// keyboard panel's Pro pill) while keeping all subscription code compiled and
-/// intact. A build's readiness to sell is a property of the build, not a runtime
-/// toggle.
-///
-/// WHY it lives in DictusCore rather than beside `SubscriptionManager`:
-/// entry points exist in both DictusApp and DictusKeyboard. It started as an
-/// `internal` constant in the app target, which the keyboard extension cannot
-/// see — so the panel added in #241 shipped a Pro pill that ignored the flag
-/// entirely. One flag gating two targets belongs in the shared framework.
-///
-/// Re-enabled for 2.0.0 (#279): Smart Modes (#79) is the first real Pro feature and
-/// the App Store Connect setup (#215) is done. Flipping it back to `false` hides
-/// the surfaces that read it (the four above, the paywall's offers, the trial's
-/// screens) and stops new trials, without touching subscription code; a paid
-/// entitlement is read the same way either side of the flag.
-///
-/// WHY an enum with no cases: a caseless enum can never be instantiated,
-/// making it a pure namespace for static constants (common Swift pattern).
+/// Shared release settings for the app and keyboard.
 public enum PremiumFlags {
-    /// Controls whether users can see and reach the paywall.
-    /// `false` = the app looks like there is no subscription at all.
-    public static let paywallVisible = true
+    /// Set to false for a release that uses StoreKit purchases and trials.
+    public static let proIncluded = true
+
+    /// Free releases grant the same features without presenting offers or starting trials.
+    public static var paywallVisible: Bool { !proIncluded }
 
     /// Last day of the lifetime founder window, or `nil` while it is not
     /// scheduled (#350).

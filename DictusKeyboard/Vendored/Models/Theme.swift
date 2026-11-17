@@ -134,7 +134,7 @@ private struct ThemeFactory {
             altKeyTextColor: colors.altKeyText,
 
             // Metrics
-            keyCornerRadius: metrics.keyCornerRadius,
+            keyCornerRadius: min(metrics.keyCornerRadius, 7),
             popupCornerRadius: 12.0,
             keyVerticalMargin: metrics.keyVerticalMargin,
             keyHorizontalMargin: metrics.keyHorizontalMargin,
@@ -350,94 +350,30 @@ private struct ThemeFactory {
     }
 
     private static func makeColors(for style: ThemeStyle, device: DeviceContext) -> Colors {
-        let blueLegacy = UIColor(r: 31, g: 126, b: 249)
+        let dark = style.isDark
+        let ink: UIColor = dark ? .white : .black
+        let mutedInk = UIColor(white: dark ? 0.7 : 0.34, alpha: 1)
+        let edge = UIColor(white: dark ? 0.33 : 0.77, alpha: 1)
 
-        if style.isDark {
-            let keyShadow = style.isLegacy
-                ? UIColor(r: 103, g: 106, b: 110, a: 0.5)
-                : .clear
-
-            let regularKey = style.isLegacy
-                ? UIColor.lightGray.withAlphaComponent(0.4)
-                : UIColor(r: 61, g: 61, b: 61)
-
-            let specialKey = style.isLegacy
-                ? UIColor.gray.withAlphaComponent(0.3)
-                : regularKey
-
-            let popup = style.isLegacy
-                ? UIColor(r: 109, g: 109, b: 109)
-                : UIColor(r: 83, g: 83, b: 83)
-
-            let activeKeyColor = style.isLegacy
-                ? blueLegacy
-                : UIColor(r: 38, g: 38, b: 38)
-
-            let longPressActive = style.isLegacy
-                ? blueLegacy
-                : UIColor(r: 0, g: 145, b: 255)
-
-            return Colors(
-                regularKey: regularKey,
-                specialKey: specialKey,
-                popup: popup,
-                background: .clear,
-                text: .white,
-                inactiveText: .lightGray,
-                border: .clear,
-                specialKeyBorder: .clear,
-                keyShadow: keyShadow,
-                shiftActive: specialKey,
-                shiftTint: .white,
-                popupBorder: .clear,
-                active: activeKeyColor,
-                activeText: .white,
-                longPressActive: longPressActive,
-                altKeyText: device.isLargeIPad ? UIColor.white : UIColor.lightGray,
-                bannerSeparator: UIColor(r: 56, g: 56, b: 57),
-                bannerText: UIColor(r: 233, g: 233, b: 233)
-            )
-        } else {
-            let keyShadow = style.isLegacy
-                ? UIColor(r: 136, g: 138, b: 141)
-                : .clear
-
-            let specialKeyColor = style.isLegacy
-                ? UIColor(r: 171, g: 177, b: 186)
-                : .white
-
-            let popupBorder = style.isLegacy
-                ? UIColor(hue: 0.595, saturation: 0.04, brightness: 0.65, alpha: 1.0)
-                : .clear
-
-            let activeKeyColor = style.isLegacy
-                ? blueLegacy
-                : UIColor(r: 231, g: 232, b: 236)
-
-            let longPressActive = style.isLegacy
-                ? blueLegacy
-                : UIColor(r: 0, g: 136, b: 255)
-
-            return Colors(
-                regularKey: .white,
-                specialKey: specialKeyColor,
-                popup: .white,
-                background: UIColor(r: 209, g: 212, b: 217, a: 0.0),
-                text: .black,
-                inactiveText: UIColor(white: 0.0, alpha: 0.3),
-                border: .clear,
-                specialKeyBorder: .clear,
-                keyShadow: keyShadow,
-                shiftActive: .white,
-                shiftTint: .black,
-                popupBorder: popupBorder,
-                active: activeKeyColor,
-                activeText: .white,
-                longPressActive: longPressActive,
-                altKeyText: device.isLargeIPad ? UIColor.black : UIColor(white: 0.0, alpha: 0.3),
-                bannerSeparator: UIColor(r: 188, g: 191, b: 195),
-                bannerText: UIColor(r: 21, g: 21, b: 21)
-            )
-        }
+        return Colors(
+            regularKey: UIColor(white: dark ? 0.16 : 0.98, alpha: 1),
+            specialKey: UIColor(white: dark ? 0.09 : 0.88, alpha: 1),
+            popup: UIColor(white: dark ? 0.22 : 1, alpha: 1),
+            background: .clear,
+            text: ink,
+            inactiveText: mutedInk,
+            border: edge,
+            specialKeyBorder: edge,
+            keyShadow: .clear,
+            shiftActive: ink,
+            shiftTint: dark ? .black : .white,
+            popupBorder: edge,
+            active: UIColor(white: dark ? 0.29 : 0.81, alpha: 1),
+            activeText: dark ? .black : .white,
+            longPressActive: ink,
+            altKeyText: device.isLargeIPad ? ink : mutedInk,
+            bannerSeparator: edge,
+            bannerText: ink
+        )
     }
 }

@@ -36,7 +36,7 @@ struct ShareStatusView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.dictusAccent)
-                        .foregroundColor(.white)
+                        .foregroundColor(.dictusOnAccent)
                         .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
             }
@@ -67,17 +67,17 @@ struct ShareStatusView: View {
     private var title: String {
         switch model.state {
         case .sending:
-            return String(localized: "Sending to Dictus…", comment: "Share extension: copying the voice note (#620).")
+            return String(localized: "Sending to Riff…", comment: "Share extension: copying the voice note (#620).")
         case .transcribing(let count, _):
             return count > 1
                 ? String(localized: "Transcribing your voice notes", comment: "Share extension, warm path, several notes (#620).")
                 : String(localized: "Transcribing your voice note", comment: "Share extension, warm path (#620).")
         case .waitingForApp(let count):
             return count > 1
-                ? String(localized: "Open Dictus, your voice notes are waiting", comment: "Share extension, cold path, several notes (#620).")
-                : String(localized: "Open Dictus, your voice note is waiting", comment: "Share extension, cold path: the app is not running and cannot be opened from here (#620).")
+                ? String(localized: "Open Riff, your voice notes are waiting", comment: "Share extension, cold path, several notes (#620).")
+                : String(localized: "Open Riff, your voice note is waiting", comment: "Share extension, cold path: the app is not running and cannot be opened from here (#620).")
         case .refused:
-            return String(localized: "Dictus cannot transcribe this", comment: "Share extension: the note was refused; the reason follows (#620).")
+            return String(localized: "Riff cannot transcribe this", comment: "Share extension: the note was refused; the reason follows (#620).")
         }
     }
 
@@ -89,7 +89,7 @@ struct ShareStatusView: View {
             return withActivity
                 ? String(localized: "Follow it in the Dynamic Island or on the Lock Screen, and tap it when it is done.",
                          comment: "Share extension, warm path with a Live Activity (#620).")
-                : String(localized: "Open Dictus when you want to read it.",
+                : String(localized: "Open Riff when you want to read it.",
                          comment: "Share extension, warm path without a Live Activity (#620).")
         case .waitingForApp:
             return String(localized: "The transcription starts as soon as you open the app.",

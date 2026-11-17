@@ -2,8 +2,7 @@
 // Tests for Pro feature gating resolution (ProFeature, FeatureGate,
 // ProStatusManager) -- issue #55.
 //
-// Pro status is driven entirely by the StoreKit-backed proActive flag in
-// App Group UserDefaults: no flag means free tier.
+// Feature access follows the release setting and the StoreKit-backed App Group state.
 //
 // These tests mutate the real App Group suite, so setUp/tearDown remove
 // every Pro-related key to avoid polluting other tests or later runs.
@@ -70,14 +69,13 @@ final class ProGatingTests: XCTestCase {
 
     // MARK: - FeatureGate
 
-    func testFreeTierByDefault() {
-        // No proActive flag, no purchase: everything locked.
+    func testReleaseAccessWithoutPurchase() {
         for feature in ProFeature.allCases {
             defaults.set(true, forKey: feature.settingsKey)
         }
-        XCTAssertFalse(FeatureGate.isProActive)
+        XCTAssertEqual(FeatureGate.isProActive, PremiumFlags.proIncluded)
         for feature in ProFeature.allCases {
-            XCTAssertFalse(FeatureGate.isAvailable(feature), "\(feature) should be locked on free tier")
+            XCTAssertEqual(FeatureGate.isAvailable(feature), PremiumFlags.proIncluded)
         }
     }
 
@@ -119,8 +117,10 @@ final class ProGatingTests: XCTestCase {
     // MARK: - ProStatusManager
 
     @MainActor
-    func testInitDefaultsToFreeTier() {
-        XCTAssertFalse(ProStatusManager().isProActive)
+    func testInitAppliesReleaseAccessWithoutPurchase() {
+        let manager = ProStatusManager()
+        XCTAssertEqual(manager.isProActive, PremiumFlags.proIncluded)
+        XCTAssertFalse(manager.isPaid)
     }
 
     @MainActor
@@ -219,11 +219,11 @@ final class ProGatingTests: XCTestCase {
 
         manager.setProActive(false)
         XCTAssertFalse(defaults.bool(forKey: SharedKeys.proActive))
-        XCTAssertFalse(manager.isProActive)
+        XCTAssertEqual(manager.isProActive, PremiumFlags.proIncluded)
     }
 
     func testStaticReadMirrorsProActiveKey() {
-        XCTAssertFalse(ProStatusManager.isProActiveStatic)
+        XCTAssertEqual(ProStatusManager.isProActiveStatic, PremiumFlags.proIncluded)
         defaults.set(true, forKey: SharedKeys.proActive)
         XCTAssertTrue(ProStatusManager.isProActiveStatic)
     }

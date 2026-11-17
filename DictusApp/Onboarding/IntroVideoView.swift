@@ -63,6 +63,7 @@ struct IntroVideoView: View {
                 .id(url)
             }
         }
+        .saturation(0)
         .aspectRatio(Self.aspectRatio, contentMode: .fit)
         .onChange(of: colorScheme) {
             // The new file's player starts hidden; show the new still until it has a frame.

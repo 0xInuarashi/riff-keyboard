@@ -33,7 +33,7 @@ final class PremiumFlagsDebugOverrideTests: XCTestCase {
 
     func testTheOverrideIsOffUntilSomebodyTurnsItOn() {
         XCTAssertFalse(PremiumFlags.debugProEntitlementForced)
-        XCTAssertFalse(FeatureGate.isProActive)
+        XCTAssertEqual(FeatureGate.isProActive, PremiumFlags.proIncluded)
     }
 
     /// One source of truth: the flag is read in `ProStatusManager.isProActiveStatic`, so
@@ -75,8 +75,8 @@ final class PremiumFlagsDebugOverrideTests: XCTestCase {
         PremiumFlags.debugProEntitlementForced = true
         PremiumFlags.debugProEntitlementForced = false
 
-        XCTAssertFalse(FeatureGate.isProActive)
-        XCTAssertEqual(SmartModeEntitlement.current, .notSubscribed)
+        XCTAssertEqual(FeatureGate.isProActive, PremiumFlags.proIncluded)
+        XCTAssertEqual(SmartModeEntitlement.current, PremiumFlags.proIncluded ? .entitled : .notSubscribed)
     }
 
     /// The published half has to agree with the static one (#460 review).
@@ -105,7 +105,9 @@ final class PremiumFlagsDebugOverrideTests: XCTestCase {
     /// would outlive the switch and be indistinguishable from a genuine subscription.
     @MainActor
     func testRefreshingPublishesTheOverrideWithoutStoringIt() {
-        let manager = ProStatusManager()
+        var environment = ProTrialEnvironment.live
+        environment.proIncluded = false
+        let manager = ProStatusManager(environment: environment)
         XCTAssertFalse(manager.isProActive)
 
         PremiumFlags.debugProEntitlementForced = true

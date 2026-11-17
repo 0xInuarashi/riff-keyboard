@@ -14,7 +14,7 @@ struct VoiceNotesScenePage: View {
 
     var body: some View {
         OnboardingScenePage(
-            eyebrow: Text("Also in Pro",
+            eyebrow: PremiumFlags.proIncluded ? nil : Text("Also in Pro",
                           comment: "Onboarding: small label above the title of the voice notes, vocabulary and history scenes, which come after the Smart Modes and show the other Dictus Pro features (#680)."),
             title: VoiceNotesSceneCard.title,
             line: VoiceNotesSceneCard.line,
@@ -39,7 +39,7 @@ struct VoiceNotesSceneCard: View {
 
     /// The line under the title, shared the same way.
     static var line: Text {
-        Text("Share a voice note to Dictus from any app. The text is waiting for you in the keyboard.",
+        Text("Share a voice note to Riff from any app. The text is waiting for you in the keyboard.",
              comment: "Onboarding voice notes scene: the line under the title (#680).")
     }
 
@@ -301,7 +301,7 @@ private struct VoiceNotesConversation: View {
     /// The conversation: white on light, black on dark, as Messages is.
     static let background = Color(light: .white, dark: .black)
     /// A received bubble's grey.
-    private static let receivedBubble = Color(light: Color(hex: 0xE9E9EB), dark: Color(hex: 0x26262A))
+    private static let receivedBubble = Color(light: Color(hex: 0xE9E9E9), dark: Color(hex: 0x262626))
 }
 
 /// The input bar: +, then the empty field the finger taps to bring up the keyboard.
@@ -336,8 +336,8 @@ private struct VoiceNotesInputBar: View {
         .padding(.vertical, 11)
     }
 
-    private static let field = Color(light: .white, dark: Color(hex: 0x181F2B))
-    private static let fieldBorder = Color(light: Color(hex: 0xE5E5EA), dark: Color(hex: 0x232B3B))
+    private static let field = Color(light: .white, dark: Color(hex: 0x1B1B1B))
+    private static let fieldBorder = Color(light: Color(hex: 0xE5E5E5), dark: Color(hex: 0x2C2C2C))
 }
 
 /// The voice message's context menu: *Reply* and *Share*, above the lifted message.
@@ -403,13 +403,13 @@ private enum ShareApp: CaseIterable, Hashable {
         case .dictus:
             DictusIconTile(logoHeight: side * 42 / 80)
         case .messages:
-            tile("message.fill", fill: Color(hex: 0x34C759), side: side)
+            tile("message.fill", fill: Color(hex: 0x555555), side: side)
         case .mail:
-            tile("envelope.fill", fill: Color(hex: 0x1E88FF), side: side)
+            tile("envelope.fill", fill: Color(hex: 0x434343), side: side)
         case .notes:
-            tile("note.text", fill: Color(hex: 0xFFC83D), side: side)
+            tile("note.text", fill: Color(hex: 0x5C5C5C), side: side)
         case .reminders:
-            tile("checklist", fill: Color(hex: 0xFF9500), side: side)
+            tile("checklist", fill: Color(hex: 0x333333), side: side)
         }
     }
 
@@ -604,7 +604,7 @@ private struct VoiceNotesAppsList: View {
                 Image(systemName: isFavourite ? "minus.circle.fill" : "plus.circle.fill")
                     .font(.system(size: 22))
                     .symbolRenderingMode(.palette)
-                    .foregroundStyle(.white, isFavourite ? Color(hex: 0xFF3B30) : Color(hex: 0x34C759))
+                    .foregroundStyle(.white, isFavourite ? Color(hex: 0x7D7D7D) : Color(hex: 0x555555))
                     .modifier(AddDictusTarget(isTarget: !isFavourite && app == .dictus))
                     .transition(.scale.combined(with: .opacity))
             }
@@ -623,7 +623,7 @@ private struct VoiceNotesAppsList: View {
     }
 
     /// iOS's tint for its own buttons, which a share sheet keeps whatever the app's accent.
-    private static let systemBlue = Color(light: Color(hex: 0x007AFF), dark: Color(hex: 0x0A84FF))
+    private static let systemBlue = Color(light: Color(hex: 0x343434), dark: Color(hex: 0xD7D7D7))
 }
 
 /// Marks Dictus's green + as the tap target, and nothing else.
@@ -769,7 +769,7 @@ private struct VoiceNotesReader: View {
 
             Text(verbatim: KeyboardStrings.text("Insert"))
                 .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(.dictusOnAccent)
                 .frame(maxWidth: .infinity)
                 .frame(height: 44)
                 .background(Capsule().fill(Color.dictusAccent))

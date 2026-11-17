@@ -126,9 +126,9 @@ enum SpeechModelError: DiagnosableError {
     var errorDescription: String? {
         switch self {
         case .modelNotInstalled:
-            return String(localized: "This model is not installed. Open Dictus and download it in the Models tab.")
+            return String(localized: "This model is not installed. Open Riff and download it in the Models tab.")
         case .engineLoadFailed:
-            return String(localized: "The transcription model could not be loaded. Open Dictus and try again.")
+            return String(localized: "The transcription model could not be loaded. Open Riff and try again.")
         case .loadAbandoned:
             // A NOTICE, not a fault (#313). Nothing is broken: a load the app stopped
             // waiting for is the expected outcome of a deadline expiring or of the user

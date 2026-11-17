@@ -44,13 +44,13 @@ enum VoiceNoteCopy {
     static func failure(_ failure: VoiceNoteFailure) -> String {
         switch failure {
         case .unsupportedFormat:
-            return String(localized: "This file is not an audio format Dictus can read.",
+            return String(localized: "This file is not an audio format Riff can read.",
                           comment: "Voice note failure: the shared file is not a recognised audio container (#620).")
         case .unreadable:
             return String(localized: "This audio file could not be read.",
                           comment: "Voice note failure: recognised container, unreadable content (#620).")
         case .tooLong:
-            return String(localized: "This voice note is longer than 10 minutes, the longest Dictus transcribes.",
+            return String(localized: "This voice note is longer than 10 minutes, the longest Riff transcribes.",
                           comment: "Voice note failure: over the 10-minute cap (#620).")
         case .noSpeech:
             return String(localized: "No words were detected in this voice note.",

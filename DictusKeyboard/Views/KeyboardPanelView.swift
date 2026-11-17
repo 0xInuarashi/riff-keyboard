@@ -163,7 +163,7 @@ struct KeyboardPanelView: View {
                 .lineLimit(1)
                 // The three pills plus a language name have to fit a 320 pt row.
                 .minimumScaleFactor(0.75)
-                .foregroundColor(isSelected ? .white : .secondary)
+                .foregroundColor(isSelected ? .dictusOnAccent : .secondary)
                 .padding(.horizontal, 8)
                 .frame(height: 28)
                 .background(

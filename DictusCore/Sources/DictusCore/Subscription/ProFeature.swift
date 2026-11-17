@@ -41,7 +41,7 @@ public enum ProFeature: String, CaseIterable {
         switch self {
         case .smartMode: return "Reformulate your text with on-device AI"
         case .history: return "Find any past dictation in seconds"
-        case .vocabulary: return "Teach Dictus your technical terms"
+        case .vocabulary: return "Teach Riff your technical terms"
         case .voiceNotes: return "Transcribe the voice messages you receive"
         }
     }
@@ -126,7 +126,7 @@ public struct FeatureGate {
     /// Seeded to `true` at first launch by `ProStatusManager.seedFeatureTogglesIfNeeded`,
     /// so "never touched the toggle" reads as on rather than off.
     public static func isEnabled(_ feature: ProFeature) -> Bool {
-        AppGroup.defaults.bool(forKey: feature.settingsKey)
+        AppGroup.defaults.object(forKey: feature.settingsKey) as? Bool ?? true
     }
 
     /// Check if Pro subscription is active (beta OR paid).
@@ -147,7 +147,6 @@ public struct FeatureGate {
     /// In Phase 30, no Pro UI exists on the keyboard yet, so this is a skeleton
     /// that Phase 33 will consume when the Smart Mode button is added.
     public static func isKeyboardFeatureAvailable(_ feature: ProFeature) -> Bool {
-        guard isProActive else { return false }
-        return AppGroup.defaults.bool(forKey: feature.settingsKey)
+        isAvailable(feature)
     }
 }

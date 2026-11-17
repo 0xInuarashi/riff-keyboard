@@ -70,7 +70,7 @@ struct VocabularyPairReviewView: View {
                         .foregroundColor(.secondary)
                 }
                 Label {
-                    TextField("How does Dictus write it instead?", text: $variant)
+                    TextField("How does Riff write it instead?", text: $variant)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .fontWeight(.semibold)
@@ -80,7 +80,7 @@ struct VocabularyPairReviewView: View {
                         .foregroundColor(.green)
                 }
             } header: {
-                Text("What Dictus writes instead")
+                Text("What Riff writes instead")
             } footer: {
                 footer
             }
@@ -124,7 +124,7 @@ struct VocabularyPairReviewView: View {
                 .foregroundColor(.red)
         } else if let entry = acceptance?.entry {
             if entry.isEnabled {
-                Text("From now on, when Dictus writes “\(variantText)”, it writes “\(entry.term)” instead.")
+                Text("From now on, when Riff writes “\(variantText)”, it writes “\(entry.term)” instead.")
             } else {
                 Text("Already in your vocabulary, switched off. The variant is added but applies only once you switch the term back on.")
                     .foregroundColor(.orange)

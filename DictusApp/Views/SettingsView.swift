@@ -157,27 +157,9 @@ struct SettingsView: View {
     /// Drives the Dictus Pro hub's cover, opened by the one Dictus Pro row (#216).
     @State private var showPaywall = false
 
-    /// Whether the Dictus Pro row renders at all (#236, #577, #216).
-    ///
-    /// `paywallVisible` decides what may be **sold**; this decides whether a user
-    /// can **manage** what they already have. The two coincide in Release and part
-    /// company in Debug, because `PremiumFlags.debugProEntitlementForced` (#460)
-    /// grants the entitlement without opening the paywall.
-    ///
-    /// WHY that split has to exist: `SmartModeListView` is the only screen in the
-    /// app that pins or reorders a Smart Mode, and since #216 it hangs off the hub
-    /// this row opens. With the fan capped at `SmartModeCatalogue.maximumPinnedModes`
-    /// and a seed that predates half the catalogue, a forced entitlement without this
-    /// exception grants a fan nobody can arrange — which is #460 blocking the work it
-    /// exists to protect, one screen further in. Under the force the hub sells
-    /// nothing (`ProHubBottomBlock.entitledWithoutPurchase`), so opening the row does
-    /// not put anything on sale while the paywall is hidden.
-    ///
-    /// WHY it is not just `proStatus.isProActive`: that would make the row appear
-    /// in Release for any future subscriber whose purchase predates the paywall
-    /// flip, which is the state #236 exists to forbid. The exception is compiled out
-    /// entirely, so Release has exactly one gate.
+    /// Settings is also the entry point for managing features included with Riff.
     private var proManagementVisible: Bool {
+        if PremiumFlags.proIncluded { return true }
         #if DEBUG
         // Read the revision so flipping the switch redraws this gate, the same
         // reason the binding below reads it.
@@ -238,9 +220,9 @@ struct SettingsView: View {
                         showPaywall = true
                     } label: {
                         HStack {
-                            Image(systemName: "crown.fill")
+                            Image(systemName: PremiumFlags.proIncluded ? "slider.horizontal.3" : "crown.fill")
                                 .foregroundColor(.dictusAccent)
-                            Text("Riff Keyboard Pro")
+                            Text(PremiumFlags.proIncluded ? LocalizedStringKey("Features") : "Riff Keyboard Pro")
                                 .foregroundColor(.primary)
                             Spacer()
                             // The trial's badge before the checkmark (#593): a checkmark
@@ -248,7 +230,7 @@ struct SettingsView: View {
                             // owed the date it stops.
                             if let daysLeft = proStatus.trialBadgeDaysLeft {
                                 ProTrialBadge(daysLeft: daysLeft)
-                            } else if proStatus.isProActive {
+                            } else if PremiumFlags.paywallVisible && proStatus.isProActive {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.dictusSuccess)
                                     .accessibilityLabel("Pro active")
@@ -432,7 +414,7 @@ struct SettingsView: View {
                 }
                 // No exact timing promised: iOS can end a background app earlier, and
                 // Unlimited means exactly that, not "forever".
-                Text("The inactivity timeout is how long Dictus stays ready after your last dictation. A shorter one saves battery and ends the Dynamic Island sooner. A longer one starts your next keyboard dictation faster. Unlimited lasts until iOS ends it.")
+                Text("The inactivity timeout is how long Riff stays ready after your last dictation. A shorter one saves battery and ends the Dynamic Island sooner. A longer one starts your next keyboard dictation faster. Unlimited lasts until iOS ends it.")
             }
 
             #if DEBUG
@@ -714,7 +696,7 @@ struct SettingsView: View {
         case .osTooOld:
             return "Polish requires iOS 26 or later."
         case .sdkMissing:
-            return "Polish isn't available in this build of Dictus."
+            return "Polish isn't available in this build of Riff."
         case .other(let reason):
             return "Apple Intelligence is unavailable (\(reason))."
         }

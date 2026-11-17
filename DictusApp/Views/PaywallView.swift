@@ -162,6 +162,7 @@ struct PaywallView: View {
             featureScreen(feature)
         }
         .task {
+            guard !PremiumFlags.proIncluded else { return }
             // Retry the product fetch if the launch-time load came back empty,
             // so a transient failure doesn't leave the CTA stuck on "...".
             if subscriptionManager.products.isEmpty {
@@ -248,7 +249,8 @@ struct PaywallView: View {
     /// What sits under the cards. Read from the published caches, so a purchase, a
     /// renewal scan or the trial ending redraws it.
     private var hubBlock: ProHubBottomBlock {
-        ProHub.bottomBlock(
+        if PremiumFlags.proIncluded { return .entitledWithoutPurchase }
+        return ProHub.bottomBlock(
             paywallVisible: PremiumFlags.paywallVisible,
             isPaid: proStatus.isPaid,
             isEntitled: proStatus.isProActive,
@@ -472,7 +474,13 @@ struct PaywallView: View {
         VStack(spacing: 14) {
             // Same geometry as the paywall's hero (#913), so opening the offers from
             // the trial hub moves neither the logo nor « Dictus Pro ».
-            ProHubHero(compact: isCompact)
+            if PremiumFlags.proIncluded {
+                Text("Features")
+                    .font(.dictusHeading)
+                    .padding(.vertical, 20)
+            } else {
+                ProHubHero(compact: isCompact)
+            }
 
             VStack(spacing: 10) {
                 ForEach(ProFeature.allCases, id: \.self) { feature in
@@ -493,7 +501,7 @@ struct PaywallView: View {
                 // place of the plans it used to list (#913).
                 TrialRunningNotice(endsAt: endsAt, daysLeft: daysLeft)
                 continueToOffersButton
-            } else {
+            } else if !PremiumFlags.proIncluded {
                 membershipCard
             }
 
@@ -509,12 +517,12 @@ struct PaywallView: View {
         Button {
             showsOffers = true
         } label: {
-            Text("Continue with Dictus Pro")
+            Text("Continue with Riff Pro")
                 .font(.dictusSubheading)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.dictusAccent)
-                .foregroundColor(.white)
+                .foregroundColor(.dictusOnAccent)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .buttonStyle(GlassPressStyle())
@@ -723,7 +731,7 @@ struct PaywallView: View {
             showsLifetimeTerms = true
         } label: {
             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text("Every Pro feature, current and future, except those on Dictus servers.")
+                Text("Every Pro feature, current and future, except those on Riff servers.")
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 Image(systemName: "info.circle")
@@ -739,7 +747,7 @@ struct PaywallView: View {
         .alert("Lifetime", isPresented: $showsLifetimeTerms) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("The lifetime purchase covers every current and future Pro feature that runs on your device or on a server you provide. Any feature relying on Dictus infrastructure is a separate offering.")
+            Text("The lifetime purchase covers every current and future Pro feature that runs on your device or on a server you provide. Any feature relying on Riff infrastructure is a separate offering.")
         }
     }
 
@@ -878,7 +886,7 @@ struct PaywallView: View {
             .frame(maxWidth: .infinity, minHeight: space(52, compact: 48))
             // The brand blue in light and dark mode alike (#913).
             .background(Color.dictusAccent)
-            .foregroundColor(.white)
+            .foregroundColor(.dictusOnAccent)
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
         .buttonStyle(GlassPressStyle())
@@ -898,7 +906,7 @@ struct PaywallView: View {
         if let product = selectedProduct, let trial = freeTrialLabel(for: product) {
             return trial
         }
-        return framing == .trialEnded ? Text("Keep Dictus Pro") : Text("Continue with Dictus Pro")
+        return framing == .trialEnded ? Text("Keep Riff Pro") : Text("Continue with Riff Pro")
     }
 
     /// The billed price and its terms, under the CTA (guideline 3.1.2): « 39,99 €/an,

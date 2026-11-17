@@ -43,7 +43,7 @@ enum ModelPreparationMetrics {
     static let spinPeriod: TimeInterval = 1.2
 
     /// The grey track under the arc: the mock-up's `surface-2`.
-    static let track = Color(light: Color(hex: 0xE5E5EA), dark: Color(hex: 0x232B3B))
+    static let track = Color(light: Color(hex: 0xE5E5E5), dark: Color(hex: 0x2C2C2C))
 }
 
 // MARK: - Ring

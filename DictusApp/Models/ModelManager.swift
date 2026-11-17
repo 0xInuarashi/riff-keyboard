@@ -1633,7 +1633,7 @@ enum ModelManagerError: Error, DiagnosableError {
             return String(localized: "Keep at least one model. Download another one before deleting this one.",
                           comment: "Shown when the user tries to delete their only downloaded model (issue #418).")
         case .noContainer:
-            return String(localized: "Dictus could not reach its storage. Restart the app and try again.",
+            return String(localized: "Riff could not reach its storage. Restart the app and try again.",
                           comment: "Shown when the App Group container is unavailable (issue #418).")
         case .parakeetUnavailable:
             return String(localized: "This model needs a newer version of iOS. Choose another model.",

@@ -1,6 +1,6 @@
 #if os(iOS)
 // DictusCore/Sources/DictusCore/Design/BrandWaveform.swift
-// Multi-bar waveform with brand-inspired colors (blue gradient center, white opacity sides).
+// Live microphone and processing waveform.
 import SwiftUI
 import QuartzCore
 
@@ -223,18 +223,16 @@ final class BrandWaveformDriver: ObservableObject {
     }
 }
 
-/// Multi-bar audio waveform styled with Dictus brand colors.
-///
-/// WHY multi-bar instead of 3-bar logo:
-/// 3 bars felt static and logo-like, not like a real audio visualizer.
-/// This uses 30 bars for fluid audio feedback, but keeps brand identity through
-/// the color scheme: center bars use the blue gradient, outer bars use white at
-/// decreasing opacity -- echoing the logo's asymmetric bar styling.
-///
-/// WHY GeometryReader for bar width:
-/// Bar width adapts automatically to fit available space in each context.
-/// The waveform fills the space whether it appears in the recording overlay
-/// (full keyboard width), the HomeView card (narrower), or RecordingView (full screen).
+/// The waveform fades toward its edges on each recording surface.
+public enum DictusWaveformStyle {
+    public static func barColor(at index: Int, count: Int, color: Color = .dictusAccent) -> Color {
+        let center = Double(count - 1) / 2
+        let distance = abs(Double(index) - center) / max(center, 1)
+        return color.opacity(1 - distance * 0.62)
+    }
+}
+
+/// A narrow, tapered waveform driven by microphone levels or processing progress.
 public struct BrandWaveform: View {
     /// Array of energy levels (0.0-1.0) for each bar. Count determines bar count.
     public let energyLevels: [Float]
@@ -265,13 +263,10 @@ public struct BrandWaveform: View {
         self.isActive = isActive
     }
 
-    @Environment(\.colorScheme) private var colorScheme
     @StateObject private var driver = BrandWaveformDriver()
 
     /// Number of bars to display.
     private let barCount = 30
-
-    private let barSpacing: CGFloat = 2
 
     public var body: some View {
         waveformContent
@@ -308,22 +303,12 @@ public struct BrandWaveform: View {
             }
     }
 
-    /// Canvas-based rendering for 60fps waveform.
-    ///
-    /// WHY Canvas instead of ForEach + RoundedRectangle:
-    /// ForEach creates 30 separate SwiftUI views, each with its own layout pass.
-    /// Canvas renders all 30 bars in a single GPU draw call, which is significantly
-    /// more efficient and eliminates frame drops during rapid energy level updates.
-    ///
-    /// WHY zero minHeight in non-processing mode:
-    /// The old minHeight of 4pt caused visible micro-movements at zero energy,
-    /// making the waveform appear "alive" even when silent. Setting minHeight = 0
-    /// means bars completely disappear at zero energy -- perfectly still.
+    // Render all bars in a single Canvas while the display link updates their levels.
     private var waveformContent: some View {
         Canvas { context, size in
             _ = driver.renderTick
-            let totalSpacing = barSpacing * CGFloat(barCount - 1)
-            let barWidth = max((size.width - totalSpacing) / CGFloat(barCount), 2)
+            let step = size.width / CGFloat(barCount)
+            let barWidth = min(step * 0.46, 3)
 
             for index in 0..<barCount {
                 let energy: Float
@@ -339,61 +324,31 @@ public struct BrandWaveform: View {
                     energy = index < driver.displayLevels.count ? driver.displayLevels[index] : 0
                 }
 
-                // Minimum bar height so the waveform baseline is always visible,
-                // even in complete silence. 2pt = thin line, enough to see the
-                // colored bar pattern (blue center, gray edges) without looking "active".
-                // The self-driven animations sit on the taller floor: the travelling
-                // peak leaves most of its bars at a 0.05 baseline, so without it the
-                // row all but disappears between crossings.
-                let minHeight: CGFloat = driver.animation.isSelfDriven ? 4 : 2
-                let height = max(minHeight + CGFloat(energy) * (maxHeight - minHeight), minHeight)
+                let minHeight: CGFloat = driver.animation.isSelfDriven ? 3 : 1.5
+                let height = minHeight + CGFloat(energy) * (maxHeight - minHeight)
 
-                let x = CGFloat(index) * (barWidth + barSpacing)
+                let x = CGFloat(index) * step + (step - barWidth) / 2
                 let y = (size.height - height) / 2
                 let rect = CGRect(x: x, y: y, width: barWidth, height: max(height, 0))
                 let path = Path(roundedRect: rect, cornerRadius: barWidth / 2)
 
-                context.fill(path, with: .color(resolvedBarColor(at: index)))
+                context.fill(path, with: .color(DictusWaveformStyle.barColor(at: index, count: barCount)))
             }
         }
         .frame(height: maxHeight)
-    }
-
-    /// Brand-inspired color resolved to a plain Color for Canvas rendering.
-    ///
-    /// WHY plain Color instead of ShapeStyle/LinearGradient:
-    /// Canvas's `context.fill(path, with:)` accepts `Shading` not `ShapeStyle`.
-    /// Per-path gradients aren't practical in Canvas. Instead, center bars use the
-    /// brand blue midpoint color (dictusGradientStart) which is visually close to
-    /// the old top-to-bottom gradient. A minor simplification for major perf gain.
-    private func resolvedBarColor(at index: Int) -> Color {
-        // Distance from center (0.0 = center, 1.0 = edge)
-        let center = Float(barCount - 1) / 2.0
-        let distanceFromCenter = abs(Float(index) - center) / center
-
-        // Center bars: brand blue, edge bars: white/gray with decreasing opacity
-        if distanceFromCenter < 0.4 {
-            // Inner 40%: solid brand blue (midpoint of old gradient)
-            return .dictusGradientStart
-        } else {
-            // Outer 60%: adaptive color with opacity decreasing toward edges
-            let opacity = Double(1.0 - distanceFromCenter) * 0.9 + 0.15
-            let barColor: Color = colorScheme == .dark ? .white : .gray
-            return barColor.opacity(opacity)
-        }
     }
 }
 
 #Preview("Idle") {
     ZStack {
-        Color(hex: 0x0A1628).ignoresSafeArea()
+        Color.dictusBackground.ignoresSafeArea()
         BrandWaveform(energyLevels: Array(repeating: Float(0), count: 30))
     }
 }
 
 #Preview("Active") {
     ZStack {
-        Color(hex: 0x0A1628).ignoresSafeArea()
+        Color.dictusBackground.ignoresSafeArea()
         BrandWaveform(energyLevels: (0..<30).map { _ in
             Float.random(in: 0.2...0.8)
         })
@@ -402,7 +357,7 @@ public struct BrandWaveform: View {
 
 #Preview("Processing") {
     ZStack {
-        Color(hex: 0x0A1628).ignoresSafeArea()
+        Color.dictusBackground.ignoresSafeArea()
         BrandWaveform(maxHeight: 120, animation: .sweep)
             .opacity(0.3)
             .padding(.horizontal)

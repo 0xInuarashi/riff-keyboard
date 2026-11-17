@@ -85,7 +85,7 @@ struct TranscriptionDetailView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(showCopiedFeedback ? Color.dictusSuccess : Color.dictusAccent)
-                .foregroundColor(.white)
+                .foregroundColor(.dictusOnAccent)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .buttonStyle(GlassPressStyle())

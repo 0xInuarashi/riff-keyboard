@@ -220,7 +220,9 @@ struct VoiceNoteCardView: View {
                 .foregroundColor(.secondary)
         } else if !VoiceNoteAvailability.isEntitled {
             // Pro has ended (#593): the transcript stays, nothing new is generated.
-            Text("Summaries are part of Dictus Pro. Your transcript stays available.")
+            Text(FeatureGate.isProActive
+                 ? LocalizedStringKey("Voice notes are switched off. Turn them back on in Riff Settings.")
+                 : "Summaries are part of Riff Pro. Your transcript stays available.")
                 .font(.dictusCaption)
                 .foregroundColor(.secondary)
         } else {
@@ -268,7 +270,9 @@ struct VoiceNoteCardView: View {
                     .tint(.dictusAccent)
             }
             if !VoiceNoteAvailability.isEntitled {
-                Text("Transcribing voice notes is part of Dictus Pro. Waiting notes start again when Pro is active, and you can delete them at any time.")
+                Text(FeatureGate.isProActive
+                     ? LocalizedStringKey("Voice notes are switched off. Turn them back on in Riff Settings.")
+                     : "Transcribing voice notes is part of Riff Pro. Waiting notes start again when Pro is active, and you can delete them at any time.")
                     .font(.dictusCaption)
                     .foregroundColor(.secondary)
                 Button(role: .destructive) {

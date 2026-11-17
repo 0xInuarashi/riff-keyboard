@@ -255,7 +255,7 @@ struct GlobeKeyTutorialPage: View {
                 .strokeBorder(Color.dictusSuccess, lineWidth: 2)
             Image(systemName: "checkmark.circle.fill")
                 .font(.title2)
-                .foregroundStyle(.white, Color.dictusSuccess)
+                .foregroundStyle(Color.dictusOnAccent, Color.dictusSuccess)
                 .padding(10)
                 .scaleEffect(showSuccessCue ? 1 : 0.4)
         }
@@ -361,11 +361,11 @@ private struct FirstDictationBanner: View {
             Image(systemName: content.trailingSymbol)
                 .font(.body.weight(.medium))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.dictusOnAccent)
         .padding(.horizontal, 18)
         .padding(.vertical, 12)
         .background(Capsule().fill(Color.dictusAccent))
-        .shadow(color: .dictusAccent.opacity(0.3), radius: 12, y: 4)
+        .shadow(color: .dictusAccent.opacity(0.14), radius: 6, y: 2)
         // A new banner per state, so the page's stage animation cross-fades them.
         .id(content.leadingSymbol)
         .transition(.opacity)
@@ -625,7 +625,7 @@ private struct KeyboardSwitchAnimation: View {
             Spacer()
             Image(systemName: "mic.fill")
                 .font(.system(size: 16))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.dictusOnAccent)
                 .frame(width: 64, height: 32)
                 .background(Capsule().fill(Color.dictusAccent))
         }
@@ -686,7 +686,7 @@ private struct KeyboardSwitchAnimation: View {
     }
 
     /// The menu: a white card on light, the app's surface on dark.
-    private static let menuFill = Color(light: .white, dark: Color(hex: 0x2A3244))
+    private static let menuFill = Color(light: .white, dark: Color(hex: 0x303030))
 }
 
 // MARK: - KeyboardDetectingTextField

@@ -294,7 +294,7 @@ struct ModelCardView: View {
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
                     .background(Color.dictusAccent)
-                    .foregroundColor(.white)
+                    .foregroundColor(.dictusOnAccent)
                     .cornerRadius(4)
 
                 if modelManager.isRecommended(model.identifier) {

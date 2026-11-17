@@ -267,7 +267,7 @@ struct VoiceNoteReaderView: View {
                 .font(.system(size: 17, weight: .semibold))
                 .foregroundColor(foregroundColor)
 
-            Text("Share a voice message to Dictus from a messaging app, and its transcript will show up here.",
+            Text("Share a voice message to Riff from a messaging app, and its transcript will show up here.",
                  comment: "Keyboard voice note reader's empty state: how a voice note gets here (#639).")
                 .font(.system(size: 14))
                 .foregroundStyle(.secondary)
@@ -372,7 +372,7 @@ struct VoiceNoteReaderView: View {
                 } label: {
                     Text("Insert", comment: "Primary button of the keyboard's voice note reader: writes the transcript into the text field (#637).")
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.dictusOnAccent)
                         .frame(maxWidth: .infinity)
                         .frame(height: 44)
                         .background(Capsule().fill(Color.dictusAccent))

@@ -35,7 +35,7 @@ struct StopStandbyPage: View {
         // variant ran under the button by about half its phone on a 667 pt screen
         // (iPhone SE). Like the scene pages (#680), the card now shrinks to the height left
         // under the title, and the page scrolls only below a readable size.
-        OnboardingPage(title: Text("To stop Dictus", comment: "Onboarding, how to stop Dictus step: title (#681)."),
+        OnboardingPage(title: Text("To stop Riff", comment: "Onboarding, how to stop Dictus step: title (#681)."),
                        subtitle: line,
                        fittedContentMinimumHeight: Self.minimumCardHeight) {
             OnboardingFitToHeight {
@@ -57,10 +57,10 @@ struct StopStandbyPage: View {
     private var line: Text {
         switch variant {
         case .island:
-            return Text("Between dictations, Dictus stays ready. To stop it, hold the island, then tap the power button.",
+            return Text("Between dictations, Riff stays ready. To stop it, hold the island, then tap the power button.",
                         comment: "Onboarding, how to stop Dictus step, iPhone with a Dynamic Island: the line under the title. 'The island' is the Dynamic Island (#681, #858).")
         case .lockScreen:
-            return Text("Between dictations, Dictus stays ready. To stop it, tap the power button on the Lock Screen.",
+            return Text("Between dictations, Riff stays ready. To stop it, tap the power button on the Lock Screen.",
                         comment: "Onboarding, how to stop Dictus step, iPhone without a Dynamic Island: the line under the title (#681).")
         }
     }
@@ -359,8 +359,8 @@ private struct StopStandbyIslandScreen: View {
     }
 
     /// A pale blue Home Screen on light, a navy one on dark, as the mock-ups draw it.
-    private static let wallpaperTop = Color(light: Color(hex: 0xA3BBE7), dark: Color(hex: 0x1F2C4D))
-    private static let wallpaperBottom = Color(light: Color(hex: 0xC9D6EF), dark: Color(hex: 0x2B3B60))
+    private static let wallpaperTop = Color(light: Color(hex: 0xA7A7A7), dark: Color(hex: 0x222222))
+    private static let wallpaperBottom = Color(light: Color(hex: 0xE0E0E0), dark: Color(hex: 0x393939))
 }
 
 /// The status bar either side of the island: the time, then signal, Wi-Fi and battery.
@@ -489,14 +489,14 @@ private struct StopStandbyLockScreen: View {
         // light mode too (`lockScreenView` fills it with #0A1628 whatever the appearance).
         .background(
             RoundedRectangle(cornerRadius: Metrics.bannerCornerRadius, style: .continuous)
-                .fill(Color(hex: 0x0A1628))
+                .fill(Color(hex: 0x0C0C0C))
         )
     }
 
     /// A blue wallpaper, the same in light and dark: the Lock Screen is the user's, not
     /// the app's, and the mock-up draws one.
-    private static let wallpaperTop = Color(hex: 0x213C8C)
-    private static let wallpaperBottom = Color(hex: 0x3E80FF)
+    private static let wallpaperTop = Color(hex: 0x222222)
+    private static let wallpaperBottom = Color(hex: 0x555555)
 }
 
 // MARK: - Live Activity pieces
@@ -534,7 +534,7 @@ private struct SceneMicButton: View {
     var body: some View {
         Image(systemName: "mic.fill")
             .font(.system(size: 14, weight: .semibold))
-            .foregroundColor(.white)
+            .foregroundColor(.dictusOnAccent)
             .frame(width: diameter, height: diameter)
             .background(Circle().fill(Color.dictusAccent))
     }

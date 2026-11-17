@@ -41,7 +41,7 @@ struct ProBannerView: View {
             case .upgrade:
                 banner(
                     icon: "crown.fill",
-                    title: Text("Unlock Dictus Pro"),
+                    title: Text("Unlock Riff Pro"),
                     subtitle: Text("AI reformulation, history & more")
                 )
             case .trialEnding(let daysLeft):

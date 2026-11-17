@@ -41,7 +41,7 @@ struct SmartModesSceneCard: View {
 
     /// The line under the title, shared the same way.
     static var line: Text {
-        Text("Hold the mic, slide to a mode, let go. Dictus writes in that mode.",
+        Text("Hold the mic, slide to a mode, let go. Riff writes in that mode.",
              comment: "Onboarding Smart Modes scene: the line under the title, describing the long-press gesture on the keyboard's mic (#679).")
     }
 
@@ -251,7 +251,7 @@ struct SmartModesScene: View {
 
     /// iOS's keyboard backdrop behind the Dictus keyboard, as mock-up 05 draws it: the
     /// system's light grey, the app's dark navy.
-    static let backdrop = Color(light: Color(hex: 0xD2D5DB), dark: Color(hex: 0x1B1F2A))
+    static let backdrop = Color(light: Color(hex: 0xD5D5D5), dark: Color(hex: 0x202020))
 }
 
 // MARK: - Metrics
@@ -369,8 +369,8 @@ private struct SceneMessagesHost: View {
 
     /// The conversation: white on light, black on dark, as Messages is.
     static let background = Color(light: .white, dark: .black)
-    private static let field = Color(light: .white, dark: Color(hex: 0x181F2B))
-    private static let fieldBorder = Color(light: Color(hex: 0xE5E5EA), dark: Color(hex: 0x232B3B))
+    private static let field = Color(light: .white, dark: Color(hex: 0x1B1B1B))
+    private static let fieldBorder = Color(light: Color(hex: 0xE5E5E5), dark: Color(hex: 0x2C2C2C))
 }
 
 // MARK: - Toolbar

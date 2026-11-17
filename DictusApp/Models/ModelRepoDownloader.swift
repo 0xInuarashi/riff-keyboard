@@ -222,7 +222,7 @@ final class ModelRepoDownloader {
             case .missingRequiredFile:
                 return String(localized: "The model download is incomplete. Please try again.")
             case .integrityFailed:
-                return String(localized: "A model file arrived damaged. Dictus will download it again.")
+                return String(localized: "A model file arrived damaged. Riff will download it again.")
             case .rangeRefused:
                 return String(localized: "The download could not resume. Please try again.")
             }

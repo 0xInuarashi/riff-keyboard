@@ -297,7 +297,7 @@ struct HomeSmartModeRing: View {
     private func segmentSurface(_ shape: SegmentShape, isLit: Bool) -> some View {
         if isLit {
             shape.fill(Color.dictusAccent)
-                .shadow(color: .dictusAccent.opacity(0.35), radius: 14)
+                .shadow(color: .dictusAccent.opacity(0.18), radius: 7)
         } else {
             glass(shape)
         }
@@ -356,7 +356,7 @@ struct HomeSmartModeRing: View {
     }
 
     private func labelStyle(isLit: Bool) -> AnyShapeStyle {
-        if isLit { return AnyShapeStyle(Color.white) }
+        if isLit { return AnyShapeStyle(Color.dictusOnAccent) }
         return AnyShapeStyle(Color.primary.opacity(Style.labelOpacity))
     }
 }
@@ -417,10 +417,10 @@ struct HomeSmartModeRingHint: View {
             return String(localized: "No modes pinned. The keyboard will offer only Normal.")
         case .unavailable(let reason):
             return reason.map(HomeSmartModeCopy.reasonText)
-                ?? String(localized: "Available with Dictus Pro",
+                ?? String(localized: "Available with Riff Pro",
                           comment: "Line under the Home mic's Smart Mode dial when the finger is on a mode that needs a subscription.")
         case .release(.pro, _):
-            return String(localized: "Release to see Dictus Pro",
+            return String(localized: "Release to see Riff Pro",
                           comment: "Line under the Home mic's Smart Mode dial when the finger is on the Dictus Pro sector.")
         case .release(let entry, _):
             return String(localized: "Release to dictate: \(HomeSmartModeCopy.spokenName(of: entry.smartMode))",

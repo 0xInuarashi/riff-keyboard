@@ -97,7 +97,7 @@ struct PaywallPlanRow: View {
                     if let badge {
                         Text(verbatim: badge)
                             .font(.dmSans(.bold, size: 12, relativeTo: .caption))
-                            .foregroundColor(.white)
+                            .foregroundColor(.dictusOnAccent)
                             .padding(.horizontal, 7)
                             .padding(.vertical, 2)
                             .background(Color.dictusAccent, in: Capsule())
@@ -236,14 +236,14 @@ struct PurchaseSuccessView: View {
 
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 72))
-                .foregroundStyle(.white, Color.dictusSuccess)
+                .foregroundStyle(Color.dictusOnAccent, Color.dictusSuccess)
                 .shadow(color: Color.dictusSuccess.opacity(0.6), radius: 12)
                 .shadow(color: Color.dictusSuccess.opacity(0.3), radius: 28)
                 .scaleEffect(successEntrance ? 1 : 0.4)
                 .opacity(successEntrance ? 1 : 0)
                 .animation(.spring(response: 0.45, dampingFraction: 0.6), value: successEntrance)
 
-            Text("Welcome to Dictus Pro")
+            Text("Welcome to Riff Pro")
                 .font(.system(.title, design: .rounded, weight: .bold))
                 .foregroundStyle(
                     LinearGradient(
@@ -277,7 +277,7 @@ struct PurchaseSuccessView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.dictusAccent)
-                    .foregroundColor(.white)
+                    .foregroundColor(.dictusOnAccent)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .buttonStyle(GlassPressStyle())

@@ -99,7 +99,7 @@ struct OnboardingProgressBar: View {
     }
 
     /// The segments still ahead: a light grey on light, a slate on dark.
-    private static let remaining = Color(light: Color(hex: 0xE2E2E8), dark: Color(hex: 0x232D40))
+    private static let remaining = Color(light: Color(hex: 0xE2E2E2), dark: Color(hex: 0x303030))
 }
 
 /// The row above every page: the back chevron where the step has one (#700) and the
@@ -461,12 +461,7 @@ struct OnboardingCenteredPage<Illustration: View, Bottom: View>: View {
 
 // MARK: - Buttons
 
-/// The large blue button at the bottom of every page (#675).
-///
-/// WHY LIQUID GLASS ON iOS 26 AND A GRADIENT BEFORE: the mock-ups draw a large blue glass
-/// capsule. `glassEffect` tinted with the accent is that capsule, with the system's own
-/// press response (`interactive()`); before iOS 26 the same capsule is filled with the
-/// accent gradient and pressed with `GlassPressStyle`, the app's stand-in for that response.
+/// The primary action at the bottom of each onboarding page.
 struct OnboardingPrimaryButton: View {
     let title: Text
     var isEnabled = true
@@ -482,39 +477,17 @@ struct OnboardingPrimaryButton: View {
         Button(action: action) {
             title
                 .font(.title3.weight(.semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.dictusOnAccent)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .frame(maxWidth: .infinity)
                 .frame(height: OnboardingMetrics.buttonHeight)
-                .modifier(PrimaryCapsuleBackground())
+                .background(Color.dictusAccent, in: Capsule())
                 .contentShape(Capsule())
         }
         .buttonStyle(GlassPressStyle(pressedScale: 0.97))
         .disabled(!isEnabled)
         .opacity(isEnabled ? 1 : 0.5)
-    }
-}
-
-/// The blue capsule behind `OnboardingPrimaryButton`.
-private struct PrimaryCapsuleBackground: ViewModifier {
-    func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content
-                .glassEffect(.regular.tint(.dictusAccent).interactive(), in: Capsule())
-        } else {
-            content
-                .background(
-                    Capsule().fill(
-                        LinearGradient(
-                            colors: [Color(hex: 0x5C9BFF), .dictusAccent],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
-                )
-                .shadow(color: .dictusAccent.opacity(0.3), radius: 12, y: 4)
-        }
     }
 }
 
@@ -637,7 +610,7 @@ enum OnboardingPhoneMetrics {
     /// How far the phone runs past the card's cut edge, so the crop cuts through it.
     static let overrun: CGFloat = 24
     /// The phone's outline: a light grey on light, a slate on dark.
-    static let phoneFrame = Color(light: Color(hex: 0xD1D1D6), dark: Color(hex: 0x2A3346))
+    static let phoneFrame = Color(light: Color(hex: 0xD1D1D1), dark: Color(hex: 0x333333))
 
     /// The phone's screen: the outline's inner curve at the end the card shows, square at
     /// the cut. A scene clipped to it never sits under the frame (#679, #681).
@@ -795,7 +768,7 @@ struct OnboardingStepBadge: View {
     var body: some View {
         Text(verbatim: "\(number)")
             .font(.footnote.weight(.semibold))
-            .foregroundStyle(isLit ? Color.white : Color.secondary)
+            .foregroundStyle(isLit ? Color.dictusOnAccent : Color.secondary)
             .frame(width: 26, height: 26)
             .background(Circle().fill(isLit ? Color.dictusAccent : Color.primary.opacity(0.08)))
             .animation(.easeInOut(duration: 0.25), value: isLit)

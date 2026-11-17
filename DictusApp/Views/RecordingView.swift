@@ -383,7 +383,7 @@ struct RecordingView: View {
                         .fill(Color.dictusRecording)
                         .frame(width: 72, height: 72)
                     RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.white)
+                        .fill(Color.dictusOnAccent)
                         .frame(width: 26, height: 26)
                 }
             }

@@ -250,7 +250,7 @@ private extension OnboardingIntroScene {
         case .walking:
             return Text("In all your apps, from the keyboard.")
         case .metro:
-            return Text("On the metro or on a plane, Dictus still writes. Everything happens on your iPhone.")
+            return Text("On the metro or on a plane, Riff still writes. Everything happens on your iPhone.")
         case .keyboard:
             return Text("In Notes, Messages or Mail: tap the mic, speak, and the text appears.")
         }
@@ -285,5 +285,5 @@ private struct IntroPageDots: View {
 
     /// The other pages: a light grey on light, a slate on dark, as measured on the
     /// mock-ups.
-    private static let otherPage = Color(light: Color(hex: 0xD1D1D6), dark: Color(hex: 0x2F3849))
+    private static let otherPage = Color(light: Color(hex: 0xD1D1D1), dark: Color(hex: 0x383838))
 }

@@ -24,50 +24,50 @@
         }
       }
     },
-    "Dictus cannot transcribe this" : {
+    "Riff cannot transcribe this" : {
       "comment" : "Share extension: the note was refused; the reason follows (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus kann diese Datei nicht transkribieren"
+            "value" : "Riff kann diese Datei nicht transkribieren"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus no puede transcribir este archivo"
+            "value" : "Riff no puede transcribir este archivo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus ne peut pas transcrire ce fichier"
+            "value" : "Riff ne peut pas transcrire ce fichier"
           }
         }
       }
     },
-    "Dictus could not receive this file." : {
+    "Riff could not receive this file." : {
       "comment" : "Share extension: the file could not be read or copied (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus konnte diese Datei nicht empfangen."
+            "value" : "Riff konnte diese Datei nicht empfangen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus no pudo recibir este archivo."
+            "value" : "Riff no pudo recibir este archivo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus n’a pas pu recevoir ce fichier."
+            "value" : "Riff n’a pas pu recevoir ce fichier."
           }
         }
       }
@@ -107,98 +107,98 @@
         }
       }
     },
-    "Open Dictus when you want to read it." : {
+    "Open Riff when you want to read it." : {
       "comment" : "Share extension, warm path without a Live Activity (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Dictus, wenn du sie lesen möchtest."
+            "value" : "Öffne Riff, wenn du sie lesen möchtest."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abre Dictus cuando quieras leerla."
+            "value" : "Abre Riff cuando quieras leerla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrez Dictus quand vous voulez la lire."
+            "value" : "Ouvrez Riff quand vous voulez la lire."
           }
         }
       }
     },
-    "Open Dictus, your voice note is waiting" : {
+    "Open Riff, your voice note is waiting" : {
       "comment" : "Share extension, cold path: the app is not running and cannot be opened from here (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Dictus, deine Sprachnachricht wartet"
+            "value" : "Öffne Riff, deine Sprachnachricht wartet"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abre Dictus, tu mensaje de voz te espera"
+            "value" : "Abre Riff, tu mensaje de voz te espera"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrez Dictus, votre message vocal vous attend"
+            "value" : "Ouvrez Riff, votre message vocal vous attend"
           }
         }
       }
     },
-    "Open Dictus, your voice notes are waiting" : {
+    "Open Riff, your voice notes are waiting" : {
       "comment" : "Share extension, cold path, several notes (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Dictus, deine Sprachnachrichten warten"
+            "value" : "Öffne Riff, deine Sprachnachrichten warten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abre Dictus, tus mensajes de voz te esperan"
+            "value" : "Abre Riff, tus mensajes de voz te esperan"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrez Dictus, vos messages vocaux vous attendent"
+            "value" : "Ouvrez Riff, vos messages vocaux vous attendent"
           }
         }
       }
     },
-    "Sending to Dictus…" : {
+    "Sending to Riff…" : {
       "comment" : "Share extension: copying the voice note (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wird an Dictus gesendet…"
+            "value" : "Wird an Riff gesendet…"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enviando a Dictus…"
+            "value" : "Enviando a Riff…"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoi vers Dictus…"
+            "value" : "Envoi vers Riff…"
           }
         }
       }
@@ -227,98 +227,98 @@
         }
       }
     },
-    "This file is not an audio format Dictus can read." : {
+    "This file is not an audio format Riff can read." : {
       "comment" : "Share extension: the shared file is not a recognised audio container (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Datei ist kein Audioformat, das Dictus lesen kann."
+            "value" : "Diese Datei ist kein Audioformat, das Riff lesen kann."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este archivo no tiene un formato de audio que Dictus pueda leer."
+            "value" : "Este archivo no tiene un formato de audio que Riff pueda leer."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce fichier n’est pas un format audio que Dictus sait lire."
+            "value" : "Ce fichier n’est pas un format audio que Riff sait lire."
           }
         }
       }
     },
-    "This voice note is longer than 10 minutes, the longest Dictus transcribes." : {
+    "This voice note is longer than 10 minutes, the longest Riff transcribes." : {
       "comment" : "Share extension: over the 10-minute cap (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Sprachnachricht ist länger als 10 Minuten, die maximale Länge, die Dictus transkribiert."
+            "value" : "Diese Sprachnachricht ist länger als 10 Minuten, die maximale Länge, die Riff transkribiert."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este mensaje de voz dura más de 10 minutos, el máximo que Dictus transcribe."
+            "value" : "Este mensaje de voz dura más de 10 minutos, el máximo que Riff transcribe."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce message vocal dépasse 10 minutes, la durée maximale que Dictus transcrit."
+            "value" : "Ce message vocal dépasse 10 minutes, la durée maximale que Riff transcrit."
           }
         }
       }
     },
-    "Transcribing voice notes is not available in this version of Dictus." : {
+    "Transcribing voice notes is not available in this version of Riff." : {
       "comment" : "Share extension: no entitlement, and the paywall is hidden so no subscription may be named (#620, #236).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Transkribieren von Sprachnachrichten ist in dieser Version von Dictus nicht verfügbar."
+            "value" : "Das Transkribieren von Sprachnachrichten ist in dieser Version von Riff nicht verfügbar."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La transcripción de mensajes de voz no está disponible en esta versión de Dictus."
+            "value" : "La transcripción de mensajes de voz no está disponible en esta versión de Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La transcription des messages vocaux n’est pas disponible dans cette version de Dictus."
+            "value" : "La transcription des messages vocaux n’est pas disponible dans cette version de Riff."
           }
         }
       }
     },
-    "Transcribing voice notes is part of Dictus Pro. Open Dictus to find out more." : {
+    "Transcribing voice notes is part of Riff Pro. Open Riff to find out more." : {
       "comment" : "Share extension: the user has no Pro entitlement and the paywall is visible (#620).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Transkribieren von Sprachnachrichten ist Teil von Dictus Pro. Öffne Dictus, um mehr zu erfahren."
+            "value" : "Das Transkribieren von Sprachnachrichten ist Teil von Riff Pro. Öffne Riff, um mehr zu erfahren."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La transcripción de mensajes de voz forma parte de Dictus Pro. Abre Dictus para saber más."
+            "value" : "La transcripción de mensajes de voz forma parte de Riff Pro. Abre Riff para saber más."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La transcription des messages vocaux fait partie de Dictus Pro. Ouvrez Dictus pour en savoir plus."
+            "value" : "La transcription des messages vocaux fait partie de Riff Pro. Ouvrez Riff pour en savoir plus."
           }
         }
       }
@@ -371,26 +371,26 @@
         }
       }
     },
-    "Voice notes are switched off. Turn them back on in Dictus, under Dictus Pro." : {
+    "Voice notes are switched off. Turn them back on in Riff Settings." : {
       "comment" : "Share extension: a Pro user switched voice notes off in the Dictus Pro hub (#216).",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprachnachrichten sind ausgeschaltet. Aktiviere sie wieder in Dictus unter Dictus Pro."
+            "value" : "Sprachnachrichten sind deaktiviert. Du kannst sie in den Riff-Einstellungen wieder aktivieren."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los mensajes de voz están desactivados. Vuelve a activarlos en Dictus, en Dictus Pro."
+            "value" : "Las notas de voz están desactivadas. Vuelve a activarlas en los ajustes de Riff."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les messages vocaux sont désactivés. Réactivez-les dans Dictus, rubrique Dictus Pro."
+            "value" : "Les notes vocales sont désactivées. Réactivez-les dans les réglages de Riff."
           }
         }
       }

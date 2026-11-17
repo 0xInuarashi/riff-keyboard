@@ -321,11 +321,11 @@ struct KeyboardSetupPage: View {
 
             Text(device.deviceModelIdentifier.hasPrefix("iPad")
                  ? String(
-                    localized: "Because of its chip, this iPad cannot dictate from the keyboard. Dictation inside the Dictus app works.",
+                    localized: "Because of its chip, this iPad cannot dictate from the keyboard. Dictation inside the Riff app works.",
                     comment: "Onboarding notice on the keyboard setup page, shown only on an iPad whose chip predates the A14 (#635)."
                  )
                  : String(
-                    localized: "Because of its chip, this iPhone cannot dictate from the keyboard. Dictation inside the Dictus app works.",
+                    localized: "Because of its chip, this iPhone cannot dictate from the keyboard. Dictation inside the Riff app works.",
                     comment: "Onboarding notice on the keyboard setup page, shown only on an iPhone whose chip predates the A14 (#635)."
                  ))
                 .font(.footnote)
@@ -566,7 +566,7 @@ private struct DrawnSwitch: View {
 
     var body: some View {
         Capsule()
-            .fill(isOn ? Color(hex: 0x34C759) : Color.primary.opacity(0.12))
+            .fill(isOn ? Color(hex: 0x555555) : Color.primary.opacity(0.12))
             .frame(width: 51, height: 31)
             .overlay(alignment: isOn ? .trailing : .leading) {
                 Circle()

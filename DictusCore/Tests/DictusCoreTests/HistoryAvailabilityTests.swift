@@ -37,15 +37,13 @@ final class HistoryAvailabilityTests: XCTestCase {
         )
     }
 
-    func testTheEntryPointIsLockedTodayForEveryoneWhoIsNotEntitled() {
-        // Pins the shipping state rather than the policy: #279 flipped `paywallVisible`
-        // to true, so a user who is not entitled now sees the lock. If the flag is ever
-        // lowered again this test is what says the locked branch has gone dark.
-        XCTAssertTrue(PremiumFlags.paywallVisible)
+    func testReleaseConfigOpensHistoryOrShowsItsOffer() {
         XCTAssertEqual(
-            HistoryAvailability.entryPoint(isEntitled: false,
-                                           paywallVisible: PremiumFlags.paywallVisible),
-            .locked
+            HistoryAvailability.entryPoint(
+                isEntitled: PremiumFlags.proIncluded,
+                paywallVisible: PremiumFlags.paywallVisible
+            ),
+            PremiumFlags.proIncluded ? .open : .locked
         )
     }
 

@@ -407,6 +407,7 @@ struct DictusApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .tint(.dictusAccent)
                 .environmentObject(coordinator)
                 .environmentObject(proStatus)
                 .environmentObject(subscriptionManager)

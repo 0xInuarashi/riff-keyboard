@@ -34,7 +34,7 @@ struct SettingsChecklistPictureCard: View {
     static let size = CGSize(width: 360, height: 132)
 
     /// The card's fill: the app's dark, a shade deeper so it reads over the dark app too.
-    static let background = Color(hex: 0x0F1728)
+    static let background = Color(hex: 0x151515)
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -97,7 +97,7 @@ struct SettingsChecklistBadge: View {
                 .overlay(
                     Image(systemName: "checkmark")
                         .font(.system(size: diameter * 0.46, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.dictusOnAccent)
                         // The tick pops in: from half size to a slight overshoot, then
                         // settles. Driven by the frame clock, not a SwiftUI animation,
                         // because the frames sent to Picture in Picture are rendered one
@@ -108,7 +108,7 @@ struct SettingsChecklistBadge: View {
         case .current:
             Text(verbatim: "\(number)")
                 .font(.system(size: diameter * 0.5, weight: .bold))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.dictusOnAccent)
                 .frame(width: diameter, height: diameter)
                 .background(Circle().fill(Color.dictusAccent))
         case .pending:

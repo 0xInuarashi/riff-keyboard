@@ -1,5 +1,5 @@
 // DictusCore/Tests/DictusCoreTests/Polish/SmartModeProCopyTests.swift
-// No sentence naming Dictus Pro is reachable in the keyboard while the paywall is
+// No sentence naming Riff Pro is reachable in the keyboard while the paywall is
 // hidden (issue #460), checked against the source that has to keep it.
 //
 // WHY this suite reaches across targets: the rule is about `DictusKeyboard`, which has no
@@ -11,7 +11,7 @@
 // What it can and cannot do. `SmartModeSurfaceTests` proves the *policy* — with the flag
 // down, nothing sells Pro. This proves the two copy paths are wired to that policy and
 // cannot be called around it: the gate is a parameter with no default, so the compiler
-// asks every call site, and each Dictus Pro literal sits behind it. What neither can do is
+// asks every call site, and each Riff Pro literal sits behind it. What neither can do is
 // render a SwiftUI view; #460's acceptance asks for a test over the reason and status
 // message paths instead of a long press on a device, and this is that test.
 import XCTest
@@ -76,7 +76,7 @@ final class SmartModeProCopyTests: XCTestCase {
                                     + "for has probably changed")
     }
 
-    // MARK: - Every Dictus Pro sentence sits behind it
+    // MARK: - Every Riff Pro sentence sits behind it
 
     /// The acceptance criterion itself. Each sentence naming the product lives in a
     /// `case` of one of the two switches, and that case has to consult `sellsPro` before
@@ -86,15 +86,15 @@ final class SmartModeProCopyTests: XCTestCase {
         var checked = 0
         for name in Self.gatedFunctions {
             let body = try XCTUnwrap(body(ofFunction: name, in: source))
-            for branch in switchBranches(in: body) where branch.contains("Dictus Pro") {
+            for branch in switchBranches(in: body) where branch.contains("Riff Pro") {
                 checked += 1
                 XCTAssertTrue(branch.contains("sellsPro"),
-                              "\(name) names Dictus Pro in a branch that never consults the "
+                              "\(name) names Riff Pro in a branch that never consults the "
                               + "#460 gate:\n\(branch)")
             }
         }
         XCTAssertEqual(checked, 2,
-                       "Expected exactly the two Dictus Pro sentences #460 names — the fan's "
+                       "Expected exactly the two Riff Pro sentences #460 names — the fan's "
                        + "reason line and the skipped-dictation notice. Found \(checked).")
     }
 
@@ -104,14 +104,14 @@ final class SmartModeProCopyTests: XCTestCase {
         let source = try source(at: Self.fanSource)
         for name in Self.gatedFunctions {
             let body = try XCTUnwrap(body(ofFunction: name, in: source))
-            for branch in switchBranches(in: body) where branch.contains("Dictus Pro") {
+            for branch in switchBranches(in: body) where branch.contains("Riff Pro") {
                 let guardIndex = branch.range(of: "guard sellsPro else")?.lowerBound
-                let literalIndex = branch.range(of: "Dictus Pro")?.lowerBound
+                let literalIndex = branch.range(of: "Riff Pro")?.lowerBound
                 guard let guardIndex, let literalIndex else {
-                    return XCTFail("\(name)'s Dictus Pro branch has no `guard sellsPro else`")
+                    return XCTFail("\(name)'s Riff Pro branch has no `guard sellsPro else`")
                 }
                 XCTAssertLessThan(guardIndex, literalIndex,
-                                  "\(name) reaches the Dictus Pro sentence before checking "
+                                  "\(name) reaches the Riff Pro sentence before checking "
                                   + "the gate")
             }
         }

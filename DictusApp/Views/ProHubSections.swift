@@ -191,7 +191,7 @@ struct ProFeatureSwitchSection: View {
         case .history:
             return Text("History is off: new dictations are not saved. Those already saved are kept.")
         case .voiceNotes:
-            return Text("Voice notes are off: a voice message shared to Dictus is not transcribed. Your settings are kept.")
+            return Text("Voice notes are off: a voice message shared to Riff is not transcribed. Your settings are kept.")
         }
     }
 }
@@ -259,16 +259,16 @@ struct ProHubMembershipCard: View {
                 // subscription: the subscription is still billed, said plainly, with
                 // the way to stop it. No refund or proration promised: that is Apple's.
                 card(
-                    title: Text("Dictus Pro Lifetime"),
+                    title: Text("Riff Pro Lifetime"),
                     detail: alsoSubscribed == nil
                         ? Text("One-time purchase")
                         : Text("Your subscription is still billed. To stop it, cancel it in Manage subscription. Your lifetime purchase stays."),
                     managed: alsoSubscribed != nil
                 )
             case .paidPlanPending:
-                card(title: Text("Dictus Pro Active"), detail: nil, managed: false, loading: true)
+                card(title: Text("Riff Pro Active"), detail: nil, managed: false, loading: true)
             case .paidPlanUnknown:
-                card(title: Text("Dictus Pro Active"), detail: nil, managed: true)
+                card(title: Text("Riff Pro Active"), detail: nil, managed: true)
             case .entitledWithoutPurchase:
                 debugForcedNotice
             case .offers:
@@ -398,9 +398,9 @@ struct ProHubMembershipCard: View {
 
     private func planTitle(_ period: ProPlanPeriod) -> Text {
         switch period {
-        case .monthly: return Text("Dictus Pro Monthly")
-        case .yearly: return Text("Dictus Pro Yearly")
-        case .unlabelled: return Text("Dictus Pro Active")
+        case .monthly: return Text("Riff Pro Monthly")
+        case .yearly: return Text("Riff Pro Yearly")
+        case .unlabelled: return Text("Riff Pro Active")
         }
     }
 

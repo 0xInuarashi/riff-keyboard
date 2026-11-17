@@ -29,7 +29,7 @@ enum TranscriptionError: Error, DiagnosableError {
     var errorDescription: String? {
         switch self {
         case .notReady:
-            return String(localized: "The transcription engine is not ready. Open Dictus and try again.",
+            return String(localized: "The transcription engine is not ready. Open Riff and try again.",
                           comment: "Shown when a dictation reaches transcription with no engine initialized (issue #313).")
         case .emptyAudio, .noSpeechDetected:
             return DictationFailureMessage.noWordsDetected

@@ -105,7 +105,7 @@ public enum SmartModeUnavailableReason: Equatable, Sendable, Codable {
         case .other(let detail):
             return "Smart Modes are unavailable (\(detail))."
         case .notSubscribed:
-            return "Smart Modes are part of Dictus Pro."
+            return "Smart Modes are part of Riff Pro."
         case .switchedOff:
             return "Smart Modes are switched off in Dictus."
         }
