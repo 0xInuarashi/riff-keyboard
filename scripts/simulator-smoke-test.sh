@@ -567,7 +567,7 @@ gy=$(center "$y" "$h")
 axe batch --udid "$UDID" \
   --step "touch -x $gx -y $gy --down" --step "sleep 1.8" --step "touch -x $gx -y $gy --up" >/dev/null \
   || fail "could not long-press the globe key"
-tap label "Dictus, multilingue"
+tap label "Riff Keyboard, multilingue"
 
 wait_log '<KBD> .*fullAccess=true' 15 >/dev/null || fail "the Dictus keyboard never logged fullAccess=true"
 

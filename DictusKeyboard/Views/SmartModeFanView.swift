@@ -136,7 +136,7 @@ struct SmartModeFanView: View {
     ///   without claiming it is active.
     /// - **`PRO`** goes on every mode row of a non-subscriber's fan (#404). Verbatim
     ///   and not localised: it is the product's own abbreviation and reads the same in
-    ///   both languages, like "Dictus Pro" beside it.
+    ///   both languages, like "Riff Keyboard Pro" beside it.
     @ViewBuilder
     private func marker(for entry: SmartModeFanEntry) -> some View {
         switch state.tag(for: entry) {
@@ -225,7 +225,7 @@ struct SmartModeFanView: View {
                 .font(.system(size: 17, weight: .medium))
 
             Text(
-                "Dictus Pro",
+                "Riff Keyboard Pro",
                 comment: "The Smart Mode fan row that leaves the keyboard for the paywall. A product name, so identical in French today, and in the catalog so a future locale can change it."
             )
             .font(.system(size: 17, weight: isHighlighted ? .bold : .semibold))

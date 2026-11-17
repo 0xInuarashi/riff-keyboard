@@ -263,7 +263,7 @@ struct HomeView: View {
             DictusLogo(height: 60)
                 .padding(.top, 8)
             if proStatus.isProActive {
-                Text("Dictus Pro")
+                Text("Riff Keyboard Pro")
                     .font(.dictusHeading)
                     .foregroundStyle(
                         LinearGradient(
@@ -279,7 +279,7 @@ struct HomeView: View {
                     ProTrialBadge(daysLeft: daysLeft)
                 }
             } else {
-                Text("Dictus")
+                Text("Riff Keyboard")
                     .font(.dictusHeading)
                     .foregroundColor(.dictusAccent)
             }
@@ -636,7 +636,7 @@ struct HomeView: View {
     }
 
     private func accessibilityActionName(for entry: SmartModeFanEntry) -> String {
-        if case .pro = entry { return String(localized: "Dictus Pro") }
+        if case .pro = entry { return String(localized: "Riff Keyboard Pro") }
         return String(localized: "Use \(HomeSmartModeCopy.spokenName(of: entry.smartMode))",
                       comment: "VoiceOver action on the Home mic that arms this Smart Mode. The placeholder is the mode's name, or Normal.")
     }

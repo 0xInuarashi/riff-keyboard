@@ -110,7 +110,7 @@ struct LanguageSetupPage: View {
                 Picker("I speak", selection: spokenLanguageBinding) {
                     // The four languages Dictus has a keyboard for first: they are the
                     // ones most users pick, and the ones where everything works.
-                    Section("Dictus keyboards") {
+                    Section("Keyboard languages") {
                         ForEach(SupportedLanguage.allCases, id: \.rawValue) { language in
                             Text(Self.name(of: language.rawValue)).tag(language.rawValue)
                         }

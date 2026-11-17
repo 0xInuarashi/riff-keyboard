@@ -185,7 +185,7 @@ struct OnboardingView: View {
                 .id(step) // Force SwiftUI to treat each page as a unique view for transitions
             }
         }
-        .alert(Text("Keep Dictus open"), isPresented: keepOpenWarning) {
+        .alert(Text("Keep Riff Keyboard open"), isPresented: keepOpenWarning) {
             Button("Got it") {}
         } message: {
             keepOpenWarningMessage

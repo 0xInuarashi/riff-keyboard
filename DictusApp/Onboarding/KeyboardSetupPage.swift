@@ -58,7 +58,7 @@ struct KeyboardSetupPage: View {
     var body: some View {
         OnboardingPage(
             title: Text("Turn on the keyboard"),
-            subtitle: Text("In Settings, open Keyboards, then turn on Dictus and Full Access.")
+            subtitle: Text("In Settings, open Keyboards, then turn on Riff Keyboard and Full Access.")
         ) {
             VStack(alignment: .leading, spacing: 16) {
                 settingsIllustration
@@ -242,7 +242,7 @@ struct KeyboardSetupPage: View {
                 Text("The keyboard will be detected automatically")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
-                Text("Dictus may restart on its own. This is normal.")
+                Text("Riff Keyboard may restart on its own. This is normal.")
                     .font(.footnote)
                     .foregroundStyle(.tertiary)
             }
@@ -353,7 +353,7 @@ struct KeyboardSetupPage: View {
         }
         .allowsHitTesting(false)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("In Settings, open Keyboards, then turn on Dictus and Full Access."))
+        .accessibilityLabel(Text("In Settings, open Keyboards, then turn on Riff Keyboard and Full Access."))
     }
 
     /// The drawn phone's screen: Settings > Apps > Dictus.
@@ -368,12 +368,12 @@ struct KeyboardSetupPage: View {
             .foregroundStyle(Color.dictusAccent)
             .padding(.bottom, 12)
 
-            Text(verbatim: "Dictus")
+            Text(verbatim: "Riff Keyboard")
                 .font(.title.weight(.bold))
                 .foregroundStyle(.primary)
                 .padding(.bottom, 16)
 
-            OnboardingSectionLabel(text: Text("Allow Dictus to access"))
+            OnboardingSectionLabel(text: Text("Allow Riff Keyboard to access"))
                 .padding(.leading, 4)
                 .padding(.bottom, 6)
 
@@ -402,7 +402,7 @@ struct KeyboardSetupPage: View {
 
             settingsGroup {
                 VStack(spacing: 0) {
-                    switchRow(step: 2, label: Text(verbatim: "Dictus"), isOn: dictusToggleOn)
+                    switchRow(step: 2, label: Text(verbatim: "Riff Keyboard"), isOn: dictusToggleOn)
                     Divider()
                         .padding(.leading, 50)
                     switchRow(step: 3, label: Text("Allow full access"), isOn: fullAccessToggleOn)

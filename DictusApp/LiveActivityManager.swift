@@ -1238,7 +1238,7 @@ extension LiveActivityManager {
     /// same one the expanded island and the Lock Screen show (#620 decisions 10, 12).
     private var alertConfiguration: AlertConfiguration {
         let line = voiceNoteContent?.statusLine ?? String(localized: "Voice note transcribed")
-        return AlertConfiguration(title: "Dictus", body: LocalizedStringResource(stringLiteral: line), sound: .default)
+        return AlertConfiguration(title: "Riff Keyboard", body: LocalizedStringResource(stringLiteral: line), sound: .default)
     }
 
     /// Drop an alert deferred for an earlier batch (see `VoiceNoteIslandDriver.arrived`).

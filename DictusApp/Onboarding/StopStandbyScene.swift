@@ -327,7 +327,7 @@ private struct StopStandbyIslandScreen: View {
             SceneLogoBars()
                 .frame(width: 24, height: 18)
             VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: "Dictus")
+                Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white)
                 Text(verbatim: LiveActivityStrings.on)
@@ -464,7 +464,7 @@ private struct StopStandbyLockScreen: View {
             SceneLogoBars()
                 .frame(width: 28, height: 20)
             VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: "Dictus")
+                Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.white)
                 Text(verbatim: LiveActivityStrings.on)

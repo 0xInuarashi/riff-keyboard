@@ -231,25 +231,25 @@
         }
       }
     },
-    "Turn off Dictus standby mode" : {
+    "Turn off Riff Keyboard standby mode" : {
       "comment" : "Description of the Live Activity intent behind the power button (#664).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bereitschaftsmodus von Dictus deaktivieren"
+            "value" : "Bereitschaftsmodus von Riff Keyboard deaktivieren"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desactivar el modo de espera de Dictus"
+            "value" : "Desactivar el modo de espera de Riff Keyboard"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Désactiver le mode veille de Dictus"
+            "value" : "Désactiver le mode veille de Riff Keyboard"
           }
         }
       }

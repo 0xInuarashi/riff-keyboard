@@ -240,7 +240,7 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "crown.fill")
                                 .foregroundColor(.dictusAccent)
-                            Text("Dictus Pro")
+                            Text("Riff Keyboard Pro")
                                 .foregroundColor(.primary)
                             Spacer()
                             // The trial's badge before the checkmark (#593): a checkmark

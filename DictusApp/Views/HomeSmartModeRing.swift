@@ -451,7 +451,7 @@ enum HomeSmartModeCopy {
 
     /// A ring sector's name, the Dictus Pro row included.
     static func shortName(of entry: SmartModeFanEntry) -> String {
-        if case .pro = entry { return "Dictus Pro" }
+        if case .pro = entry { return "Riff Keyboard Pro" }
         return name(of: entry.smartMode)
     }
 

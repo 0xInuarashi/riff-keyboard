@@ -1,19 +1,19 @@
-/* Dictus settings shown by the iOS Settings app. */
-"Enable Dictus" = "Activer Dictus";
+/* Riff Keyboard settings shown by the iOS Settings app. */
+"Enable Riff Keyboard" = "Activer Riff Keyboard";
 
 "1. Tap Keyboards" = "1. Touchez Claviers";
 
-"2. Enable Dictus" = "2. Activez Dictus";
+"2. Enable Riff Keyboard" = "2. Activez Riff Keyboard";
 
 "3. Turn on Allow Full Access" = "3. Activez Autoriser l’accès complet";
 
 "Privacy" = "Confidentialité";
 
-"Dictus transcribes on your device. Full Access lets the keyboard exchange dictation requests and results with the app." = "Dictus transcrit sur votre appareil. L’accès complet permet au clavier d’échanger les demandes de dictée et les résultats avec l’app.";
+"Riff Keyboard transcribes on your device. Full Access lets the keyboard exchange dictation requests and results with the app." = "Riff Keyboard transcrit sur votre appareil. L’accès complet permet au clavier d’échanger les demandes de dictée et les résultats avec l’app.";
 
 "Can't find Keyboards?" = "Claviers introuvables ?";
 
-"Close Settings, then reopen the app settings for Dictus." = "Fermez les Réglages, puis rouvrez les réglages de Dictus.";
+"Close Settings, then reopen the app settings for Riff Keyboard." = "Fermez les Réglages, puis rouvrez les réglages de Riff Keyboard.";
 
 "Information" = "Informations";
 

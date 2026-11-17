@@ -85,7 +85,7 @@ final class ShareViewController: UIViewController {
     /// unsupported on the developer forums. MacWhisper and VivaDicta ship the same
     /// behaviour. The maintainer chose it on 2026-10-01 over a notification-permission
     /// prompt. If a review rejects it, deleting this method leaves the extension on the
-    /// "Open Dictus" screen, which works on its own.
+    /// "Open Riff Keyboard" screen, which works on its own.
     private func openDictus(on noteID: UUID?) async -> Bool {
         guard let url = VoiceNoteURL.url(for: noteID) else { return false }
 

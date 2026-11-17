@@ -193,7 +193,7 @@ struct DictusLiveActivity: Widget {
             HStack(spacing: 8) {
                 MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
                     .frame(width: 24, height: 18)
-                Text(verbatim: "Dictus")
+                Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white)
             }
@@ -212,7 +212,7 @@ struct DictusLiveActivity: Widget {
             .frame(width: 24, height: 18)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: "Dictus")
+                Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white)
 
@@ -368,7 +368,7 @@ struct DictusLiveActivity: Widget {
             .frame(width: 28, height: 20)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: "Dictus")
+                Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.white)
 
@@ -564,7 +564,7 @@ private struct VoiceNoteRing: View {
         // (`VoiceNoteCopy`), so they are printed verbatim here. The brand is the fallback
         // for the first seconds of a note, when there is no line yet; it is the same in
         // every language, so it is spoken verbatim.
-        .accessibilityLabel(note.statusLine.map { Text(verbatim: $0) } ?? note.receivedLine.map { Text(verbatim: $0) } ?? Text(verbatim: "Dictus"))
+        .accessibilityLabel(note.statusLine.map { Text(verbatim: $0) } ?? note.receivedLine.map { Text(verbatim: $0) } ?? Text(verbatim: "Riff Keyboard"))
     }
 }
 
@@ -619,7 +619,7 @@ private struct VoiceNoteReceivedGlyph: View {
                 .foregroundColor(.white)
         }
         .frame(width: diameter, height: diameter)
-        .accessibilityLabel(label.map { Text(verbatim: $0) } ?? Text(verbatim: "Dictus"))
+        .accessibilityLabel(label.map { Text(verbatim: $0) } ?? Text(verbatim: "Riff Keyboard"))
     }
 }
 
@@ -661,7 +661,7 @@ private struct VoiceNoteLockScreen: View {
             MiniLogoBars(levels: [0.43, 1.0, 0.64], animated: false)
                 .frame(width: 28, height: 20)
             VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: "Dictus")
+                Text(verbatim: "Riff Keyboard")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.white)
                 // Localised by DictusApp (`VoiceNoteCopy`), printed as is.

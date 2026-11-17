@@ -151,7 +151,7 @@ private struct DrawnFullAccessAlert: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("Allow Full Access for “Dictus” Keyboards?")
+                Text("Allow Full Access for “Riff Keyboard” Keyboards?")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.primary)
                 Text("Full access allows the developer of this keyboard to transmit anything you type, including things you have previously typed with this keyboard. This could include sensitive information such as your credit card number or street address.")

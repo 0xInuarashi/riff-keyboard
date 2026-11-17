@@ -106,7 +106,7 @@ private struct VoiceNotesChapterHeader: View {
             return [
                 Text("More"),
                 Text("Edit"),
-                Text("Add Dictus", comment: "Onboarding voice notes scene: third step of the one-time setup, tapping the green + beside Dictus in the share sheet's list of apps (#680).")
+                Text("Add Riff Keyboard", comment: "Onboarding voice notes scene: third step of the one-time setup, tapping the green + beside Dictus in the share sheet's list of apps (#680).")
             ]
         case .everyNote:
             // Dictus is already a favourite, so the second step is just its name. The
@@ -114,7 +114,7 @@ private struct VoiceNotesChapterHeader: View {
             // where the scene ends.
             return [
                 Text("Share"),
-                Text(verbatim: "Dictus"),
+                Text(verbatim: "Riff Keyboard"),
                 Text("Text in your keyboard", comment: "Onboarding voice notes scene: last step of the chips above the drawn iPhone, the transcript of the shared voice note waiting in the Dictus keyboard. Short (#680).")
             ]
         }
@@ -389,7 +389,7 @@ private enum ShareApp: CaseIterable, Hashable {
         // Apple's app names, the same in every language the app ships.
         case .messages: return Text(verbatim: "Messages")
         case .mail: return Text(verbatim: "Mail")
-        case .dictus: return Text(verbatim: "Dictus")
+        case .dictus: return Text(verbatim: "Riff Keyboard")
         case .notes: return Text(verbatim: "Notes")
         case .reminders:
             return Text("Reminders", comment: "Onboarding voice notes scene: Apple's Reminders app in the drawn share sheet. Its name as iOS shows it in each language (#680).")

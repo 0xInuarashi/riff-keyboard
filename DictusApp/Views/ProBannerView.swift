@@ -58,7 +58,7 @@ struct ProBannerView: View {
     }
 
     /// The subscriber's card: same family as Home's model status card (glass, no
-    /// gradient, no sales copy, no price), "Dictus Pro" and how many features are on.
+    /// gradient, no sales copy, no price), "Riff Keyboard Pro" and how many features are on.
     private func memberCard(activeFeatures: Int) -> some View {
         Button {
             open()
@@ -69,7 +69,7 @@ struct ProBannerView: View {
                     .foregroundColor(.dictusAccent)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Dictus Pro")
+                    Text("Riff Keyboard Pro")
                         .font(.dictusSubheading)
                         .foregroundColor(.primary)
                     activeFeaturesLine(activeFeatures)

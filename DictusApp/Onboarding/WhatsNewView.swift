@@ -119,7 +119,7 @@ struct WhatsNewView: View {
         switch step {
         case .smartModesScene:
             SmartModesScenePage(
-                eyebrow: Text("New in Dictus",
+                eyebrow: Text("New in Riff Keyboard",
                               comment: "What's new for existing users: small label above the title of its first page, the Smart Modes scene (#685)."),
                 modelManager: modelManager,
                 modelIdentifier: modelIdentifier,

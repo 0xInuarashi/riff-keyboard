@@ -11,7 +11,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Enable Dictus</string>
+			<string>Enable Riff Keyboard</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -27,7 +27,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>2. Enable Dictus</string>
+			<string>2. Enable Riff Keyboard</string>
 			<key>Key</key>
 			<string>step2</string>
 			<key>DefaultValue</key>
@@ -50,7 +50,7 @@
 			<key>Title</key>
 			<string>Privacy</string>
 			<key>FooterText</key>
-			<string>Dictus transcribes on your device. Full Access lets the keyboard exchange dictation requests and results with the app.</string>
+			<string>Riff Keyboard transcribes on your device. Full Access lets the keyboard exchange dictation requests and results with the app.</string>
 		</dict>
 		<!-- Troubleshooting -->
 		<dict>
@@ -59,7 +59,7 @@
 			<key>Title</key>
 			<string>Can't find Keyboards?</string>
 			<key>FooterText</key>
-			<string>Close Settings, then reopen the app settings for Dictus.</string>
+			<string>Close Settings, then reopen the app settings for Riff Keyboard.</string>
 		</dict>
 		<!-- Version -->
 		<dict>

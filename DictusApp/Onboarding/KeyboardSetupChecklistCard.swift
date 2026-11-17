@@ -32,7 +32,7 @@ struct KeyboardSetupChecklistCard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
                 DictusIconTile(logoHeight: 15)
-                Text("Set up Dictus", comment: "Title of the checklist card that floats over iOS Settings during keyboard setup (#682).")
+                Text("Set up Riff Keyboard", comment: "Title of the checklist card that floats over iOS Settings during keyboard setup (#682).")
                     .font(.system(size: 17, weight: .bold))
                     .foregroundStyle(.white)
             }
@@ -83,7 +83,7 @@ extension KeyboardSetupChecklistLine {
         case .tapKeyboards:
             return Text("Tap Keyboards", comment: "Checklist line over iOS Settings during keyboard setup (#682): tap the Keyboards row.")
         case .turnOnDictus:
-            return Text("Turn on Dictus", comment: "Checklist line over iOS Settings during keyboard setup (#682): turn on the Dictus keyboard switch.")
+            return Text("Turn on Riff Keyboard", comment: "Checklist line over iOS Settings during keyboard setup (#682): turn on the Dictus keyboard switch.")
         case .turnOnFullAccessAndAllow:
             return Text("Turn on Full Access, then Allow", comment: "Checklist line over iOS Settings during keyboard setup (#682): turn on the Full Access switch, then confirm iOS's alert. One line in a small window: keep it short.")
         }
@@ -95,7 +95,7 @@ extension KeyboardSetupChecklistLine {
         case .tapKeyboards:
             return String(localized: "Tap Keyboards", comment: "Checklist line over iOS Settings during keyboard setup (#682): tap the Keyboards row.")
         case .turnOnDictus:
-            return String(localized: "Turn on Dictus", comment: "Checklist line over iOS Settings during keyboard setup (#682): turn on the Dictus keyboard switch.")
+            return String(localized: "Turn on Riff Keyboard", comment: "Checklist line over iOS Settings during keyboard setup (#682): turn on the Dictus keyboard switch.")
         case .turnOnFullAccessAndAllow:
             return String(localized: "Turn on Full Access, then Allow", comment: "Checklist line over iOS Settings during keyboard setup (#682): turn on the Full Access switch, then confirm iOS's alert. One line in a small window: keep it short.")
         }

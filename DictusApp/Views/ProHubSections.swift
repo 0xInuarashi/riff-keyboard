@@ -25,7 +25,7 @@ struct ProHubHero: View {
                 .shadow(color: Color.dictusAccent.opacity(0.7), radius: compact ? 7 : 10)
                 .shadow(color: Color.dictusAccent.opacity(0.4), radius: compact ? 14 : 20)
 
-            Text("Dictus Pro")
+            Text("Riff Keyboard Pro")
                 .font(.system(compact ? .title2 : .largeTitle, design: .rounded, weight: .bold))
                 .foregroundStyle(
                     LinearGradient(

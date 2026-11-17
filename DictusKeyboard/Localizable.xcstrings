@@ -522,35 +522,35 @@
         }
       }
     },
-    "Dictus Pro" : {
+    "Riff Keyboard Pro" : {
       "comment" : "The Smart Mode fan row that leaves the keyboard for the paywall. A product name, so identical in French today, and in the catalog so a future locale can change it.",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus Pro"
+            "value" : "Riff Keyboard Pro"
           }
         }
       }
     },
-    "Enable Full Access in Settings > Keyboards > Dictus to use dictation." : {
+    "Enable Full Access in Settings > Keyboards > Riff Keyboard to use dictation." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erlaube vollen Zugriff unter Einstellungen > Tastaturen > Dictus, um zu diktieren."
+            "value" : "Erlaube vollen Zugriff unter Einstellungen > Tastaturen > Riff Keyboard, um zu diktieren."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activa el acceso total en Ajustes > Teclados > Dictus para usar el dictado."
+            "value" : "Activa el acceso total en Ajustes > Teclados > Riff Keyboard para usar el dictado."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activez l’Accès complet dans Réglages > Claviers > Dictus pour utiliser la dictée."
+            "value" : "Activez l’Accès complet dans Réglages > Claviers > Riff Keyboard pour utiliser la dictée."
           }
         }
       }
@@ -941,47 +941,47 @@
         }
       }
     },
-    "Open Dictus" : {
+    "Open Riff Keyboard" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictus öffnen"
+            "value" : "Riff Keyboard öffnen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Dictus"
+            "value" : "Abrir Riff Keyboard"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Dictus"
+            "value" : "Ouvrir Riff Keyboard"
           }
         }
       }
     },
-    "Open in Dictus" : {
+    "Open in Riff Keyboard" : {
       "comment" : "Accessibility label of the keyboard voice note reader's button that opens the note in the app (#637).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In Dictus öffnen"
+            "value" : "In Riff Keyboard öffnen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en Dictus"
+            "value" : "Abrir en Riff Keyboard"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans Dictus"
+            "value" : "Ouvrir dans Riff Keyboard"
           }
         }
       }

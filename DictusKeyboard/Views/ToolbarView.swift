@@ -929,7 +929,7 @@ struct ToolbarView: View {
             barIcon(systemName: "gearshape", size: 19, width: iconDiameter, shape: .circle)
         }
         .buttonStyle(GlassPressStyle())
-        .accessibilityLabel(Text("Open Dictus"))
+        .accessibilityLabel(Text("Open Riff Keyboard"))
     }
 
     /// Width and height of `AnimatedMicButton`'s pill body, mirrored here so the
@@ -1051,7 +1051,7 @@ struct ToolbarView: View {
     /// gear still never moves.
     private var proEntryLabel: Text {
         guard case .trialEnding(let daysLeft) = proPromotion else {
-            return Text(verbatim: "Dictus Pro")
+            return Text(verbatim: "Riff Keyboard Pro")
         }
         return Text(
             "Pro · \(daysLeft) days left",

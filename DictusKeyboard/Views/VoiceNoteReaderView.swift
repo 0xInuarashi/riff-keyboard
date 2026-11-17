@@ -364,7 +364,7 @@ struct VoiceNoteReaderView: View {
                         .contentShape(Circle())
                 }
                 .buttonStyle(GlassPressStyle())
-                .accessibilityLabel(Text("Open in Dictus", comment: "Accessibility label of the keyboard voice note reader's button that opens the note in the app (#637)."))
+                .accessibilityLabel(Text("Open in Riff Keyboard", comment: "Accessibility label of the keyboard voice note reader's button that opens the note in the app (#637)."))
                 .accessibilityIdentifier("voiceNoteReaderOpen")
 
                 Button {

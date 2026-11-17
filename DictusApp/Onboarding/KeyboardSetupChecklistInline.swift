@@ -27,7 +27,7 @@ struct KeyboardSetupChecklistInline: View {
 
     /// "Set up Dictus. Tap Keyboards, done. …" read in one go, with the ticked state.
     private var accessibilityText: String {
-        let title = String(localized: "Set up Dictus", comment: "Title of the checklist card that floats over iOS Settings during keyboard setup (#682).")
+        let title = String(localized: "Set up Riff Keyboard", comment: "Title of the checklist card that floats over iOS Settings during keyboard setup (#682).")
         let done = String(localized: "done", comment: "VoiceOver state of a ticked line of the keyboard setup checklist (#682).")
         let lineTexts = KeyboardSetupChecklistLine.allCases.map { line -> String in
             let isDone = player.lines.indices.contains(line.rawValue) && player.lines[line.rawValue] == .done

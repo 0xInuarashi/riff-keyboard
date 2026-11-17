@@ -296,7 +296,7 @@ struct GlobeKeyTutorialPage: View {
         case .beforeTap:
             return Text("Tap the field to open your keyboard")
         case .otherKeyboard:
-            return Text("Long-press the globe, then choose Dictus.")
+            return Text("Long-press the globe, then choose Riff Keyboard.")
         case .dictusKeyboard:
             return keyboardCanDictate
                 ? Text("Tap the blue mic and speak. The text lands here.")
@@ -507,7 +507,7 @@ private struct KeyboardSwitchAnimation: View {
         // Never taller than drawn; shorter when the page has less room (iPhone SE).
         .frame(maxWidth: .infinity, maxHeight: size.height)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Long-press the globe, then Dictus"))
+        .accessibilityLabel(Text("Long-press the globe, then Riff Keyboard"))
         .accessibilityIdentifier("onboarding.firstDictation.animation")
         .task(id: reduceMotion) { await run() }
     }
@@ -658,7 +658,7 @@ private struct KeyboardSwitchAnimation: View {
             Divider().opacity(0.3)
             menuRow(String(localized: "Emoji"))
             Divider().opacity(0.3)
-            menuRow("Dictus", highlighted: dictusHighlighted, accent: dictusHighlighted)
+            menuRow("Riff Keyboard", highlighted: dictusHighlighted, accent: dictusHighlighted)
         }
         .padding(.vertical, 4)
         .frame(width: Self.menuWidth)
