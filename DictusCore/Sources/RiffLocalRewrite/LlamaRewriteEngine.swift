@@ -23,7 +23,7 @@ public struct LlamaRewriteEngine: PolishEngineProtocol {
         let input: String
         if let mode = task.smartMode, mode.id == SmartModeCatalogue.personalizationIdentifier {
             instructions = mode.prompt.instructions
-            input = task.userTurn(raw: raw)
+            input = "\(mode.prompt.userInstruction)\n\nDictation:\n\(raw)"
         } else {
             instructions = Self.instructions(for: task)
             input = raw
