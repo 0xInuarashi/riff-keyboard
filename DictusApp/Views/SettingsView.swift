@@ -26,12 +26,12 @@ struct SettingsView: View {
     @AppStorage(SharedKeys.language, store: UserDefaults(suiteName: AppGroup.identifier))
     private var language = SupportedLanguage.defaultLanguage.rawValue
 
-    /// Transcription (STT) language mode, decoupled from the keyboard language (#226).
-    /// Stored as its raw App Group encoding: "follow" (default), "auto", or an
-    /// explicit code ("fr"/"en"/"es"/"de"). "follow" preserves the historical
-    /// behavior where STT tracks the keyboard language.
     @AppStorage(SharedKeys.transcriptionLanguage, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var transcriptionLanguage = TranscriptionLanguageMode.followStoredValue
+    private var transcriptionLanguage = TranscriptionLanguageMode.defaultMode.storedValue
+
+    private var transcriptionMode: TranscriptionLanguageMode {
+        TranscriptionLanguageMode(storedValue: transcriptionLanguage)
+    }
 
     /// Bumped whenever the Layout picker writes, to re-evaluate the body.
     ///
@@ -132,15 +132,25 @@ struct SettingsView: View {
         ModelInfo.forIdentifier(activeModel)?.engine == .parakeet
     }
 
-    /// Whether Auto-detect's "any language Whisper supports" sentence describes the active
-    /// engine. Only Whisper's, or no model at all, which is how the footer read before #558.
-    /// Parakeet already has its caveat, and Nemotron's auto-detect is not Whisper's.
-    private var describesWhisperAutoDetect: Bool {
-        switch ModelInfo.forIdentifier(activeModel)?.engine {
-        case .whisperKit, nil:
-            return true
-        case .parakeet, .nemotron:
-            return false
+    private var transcriptionLanguagePicker: some View {
+        let selection = Binding(
+            get: { transcriptionMode.storedValue },
+            set: { transcriptionLanguage = $0 }
+        )
+        return LabeledContent {
+            Picker("Transcription language", selection: selection) {
+                Text("Model decides").tag(TranscriptionLanguageMode.autoStoredValue)
+                Text("Match keyboard").tag(TranscriptionLanguageMode.followStoredValue)
+                ForEach(SupportedLanguage.allCases, id: \.rawValue) { language in
+                    Text(language.displayName).tag(language.rawValue)
+                }
+            }
+            .labelsHidden()
+            .pickerStyle(.menu)
+            .lineLimit(1)
+            .accessibilityIdentifier("settings.transcriptionLanguage")
+        } label: {
+            Text("Transcription language").lineLimit(1)
         }
     }
 
@@ -250,27 +260,7 @@ struct SettingsView: View {
 
             // Section 1: Transcription
             Section {
-                // STT language, decoupled from the keyboard language (#226).
-                // "Follow keyboard language" is the default and preserves the
-                // historical coupled behavior. "Auto-detect" lets Whisper pick
-                // the language itself, unlocking languages without a Dictus
-                // keyboard (Chinese, Italian, …). Explicit entries stay limited
-                // to the four tested languages by product decision — the long
-                // tail goes through Auto-detect only.
-                Picker("Transcription language", selection: $transcriptionLanguage) {
-                    Text("Follow keyboard language")
-                        .tag(TranscriptionLanguageMode.followStoredValue)
-                    Text("Auto-detect")
-                        .tag(TranscriptionLanguageMode.autoStoredValue)
-                    ForEach(SupportedLanguage.allCases, id: \.rawValue) { lang in
-                        Text(lang.displayName).tag(lang.rawValue)
-                    }
-                }
-                if isParakeetActive {
-                    Text("Parakeet automatically detects the spoken language. This setting only applies to Whisper models.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
+                transcriptionLanguagePicker
                 NavigationLink {
                     LocalRewriteSettings()
                 } label: {
@@ -300,20 +290,10 @@ struct SettingsView: View {
             } header: {
                 Text("Transcription")
             } footer: {
-                // Explain Auto-detect behavior (#226) — since #239 polish runs
-                // in this mode with the language-agnostic prompt — plus a
-                // pointer to the per-model language details (#240).
-                // The Whisper-specific line is hidden while Parakeet is active
-                // (the caveat above already says the setting has no effect
-                // there), but the per-model language pointer stays useful for
-                // both engines.
-                if transcriptionLanguage == TranscriptionLanguageMode.autoStoredValue {
-                    VStack(alignment: .leading, spacing: 4) {
-                        if describesWhisperAutoDetect {
-                            Text("Auto-detect lets you dictate in any language Whisper supports. Polish adapts to the language you speak.")
-                        }
-                        Text("Language support varies by model. Tap ⓘ on a model card in Models for details.")
-                    }
+                if transcriptionMode == .autoDetect {
+                    Text("Language support varies by model. Tap ⓘ on a model card in Models for details.")
+                } else if isParakeetActive {
+                    Text("Parakeet detects the spoken language. Your selection guides transcript cleanup.")
                 }
             }
 

@@ -19,10 +19,8 @@ final class TranscriptionLanguageModeTests: XCTestCase {
 
     // MARK: - Parsing (App Group stored value -> mode)
 
-    func testMissingValueParsesAsFollow() {
-        // Fresh installs and pre-#226 upgrades have no stored value:
-        // they must behave exactly as today (STT follows the keyboard).
-        XCTAssertEqual(TranscriptionLanguageMode(storedValue: nil), .followKeyboard)
+    func testMissingValueParsesAsAutoDetect() {
+        XCTAssertEqual(TranscriptionLanguageMode(storedValue: nil), .autoDetect)
     }
 
     func testFollowMarkerParsesAsFollow() {
@@ -40,13 +38,10 @@ final class TranscriptionLanguageModeTests: XCTestCase {
         XCTAssertEqual(TranscriptionLanguageMode(storedValue: "de"), .explicit(.german))
     }
 
-    func testUnknownValueDegradesToFollow() {
-        // Unknown codes (e.g. a future value read by an older build, or a
-        // corrupted default) must never break transcription — degrade to the
-        // safe historical behavior.
-        XCTAssertEqual(TranscriptionLanguageMode(storedValue: "zh"), .followKeyboard)
-        XCTAssertEqual(TranscriptionLanguageMode(storedValue: ""), .followKeyboard)
-        XCTAssertEqual(TranscriptionLanguageMode(storedValue: "garbage"), .followKeyboard)
+    func testUnknownValueDegradesToAutoDetect() {
+        XCTAssertEqual(TranscriptionLanguageMode(storedValue: "zh"), .autoDetect)
+        XCTAssertEqual(TranscriptionLanguageMode(storedValue: ""), .autoDetect)
+        XCTAssertEqual(TranscriptionLanguageMode(storedValue: "garbage"), .autoDetect)
     }
 
     // MARK: - Encoding round-trip
@@ -596,7 +591,7 @@ final class NemotronLanguagePolicyTests: XCTestCase {
         )
     }
 
-    /// `.followKeyboard` is the default and what "never set" means: forced to the keyboard.
+    /// `.followKeyboard` forces the keyboard language when selected.
     func testFollowKeyboardForcesTheKeyboardLanguage() {
         for keyboard in SupportedLanguage.allCases {
             let sut = policy(.followKeyboard, keyboard: keyboard)
@@ -604,8 +599,6 @@ final class NemotronLanguagePolicyTests: XCTestCase {
             XCTAssertEqual(NemotronLanguagePrompt.code(forSTTLanguageCode: sut.sttLanguageCode), keyboard.rawValue)
             XCTAssertFalse(sut.insertsTranscriptionAsIs)
         }
-        // The stored value nothing ever wrote resolves to the same thing.
-        XCTAssertEqual(TranscriptionLanguageMode(storedValue: nil), .followKeyboard)
     }
 
     /// `.explicit` forces the chosen language, whatever the keyboard says.

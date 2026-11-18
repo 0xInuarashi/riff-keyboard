@@ -68,19 +68,16 @@ public enum SharedKeys {
     /// Drives the keyboard layout, key labels, and autocorrect/prediction.
     /// Since issue #226 this is NO longer the STT language by itself — see
     /// `transcriptionLanguage` below. STT only follows this key when the
-    /// transcription language mode is "follow" (the default).
+    /// transcription language mode is "follow".
     public static let language = "dictus.language"
 
     // Transcription language decoupling (issue #226)
     /// Transcription (STT) language mode, decoupled from the keyboard language.
-    /// Values: "follow" (default — STT follows `language` above, today's behavior),
-    /// "auto" (Whisper language auto-detection, unlocks the long tail incl. zh),
-    /// or an explicit code "fr"/"en"/"es"/"de".
-    /// A missing or unrecognized value behaves as "follow" so fresh and upgraded
-    /// installs keep the exact pre-#226 behavior without any migration.
-    /// Written ONLY by the app's Settings — the keyboard toolbar language
-    /// switcher keeps writing `language`/`keyboardLayout` and can therefore
-    /// never override an explicit or auto transcription choice.
+    /// Values: "auto" (default, the speech model detects the language), "follow"
+    /// (STT follows `language` above), or an explicit code "en"/"fr"/"es"/"de".
+    /// A missing or unrecognized value behaves as "auto".
+    /// Onboarding and app Settings write this preference. The keyboard language
+    /// switcher updates only the keyboard language and layout.
     public static let transcriptionLanguage = "dictus.transcriptionLanguage"
     /// Whether haptic feedback is enabled, default true
     public static let hapticsEnabled = "dictus.hapticsEnabled"

@@ -147,21 +147,10 @@ public struct LanguageSetup: Equatable, Sendable {
         SupportedLanguage(rawValue: spokenLanguage) != nil
     }
 
-    /// The transcription language mode this setup writes.
-    ///
-    /// "Follow keyboard language" when the keyboard is in the spoken language, which is
-    /// the default and transcribes exactly that language.
-    ///
-    /// Auto-detect otherwise. Following the keyboard would force the KEYBOARD language on
-    /// the speech model, so a Chinese speaker on an English keyboard would be transcribed
-    /// as English. And an explicit mode cannot name Chinese: #226 decided that explicit
-    /// entries stop at the four tested languages and that the rest of Whisper's languages
-    /// are reached through Auto-detect only, which is the path #226 validated on device
-    /// with Mandarin. Parakeet ignores the setting either way, but polish does not: in
-    /// Auto-detect it polishes in the language spoken instead of translating into the
-    /// keyboard's (#239).
+    /// The speech model detects the language. The setup language guides the keyboard and
+    /// model recommendation.
     public var transcriptionMode: TranscriptionLanguageMode {
-        spokenLanguageHasDictusKeyboard ? .followKeyboard : .autoDetect
+        .defaultMode
     }
 
     /// A setup for `spokenLanguage`, with the keyboard language that goes with it and

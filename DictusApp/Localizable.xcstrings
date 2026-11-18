@@ -2235,52 +2235,6 @@
         }
       }
     },
-    "Auto-detect" : {
-      "comment" : "Transcription language picker option: Whisper detects the spoken language (issue #226).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatische Erkennung"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detección automática"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Détection automatique"
-          }
-        }
-      }
-    },
-    "Auto-detect lets you dictate in any language Whisper supports. Polish adapts to the language you speak." : {
-      "comment" : "Transcription section footer shown when Auto-detect is selected (issue #226; polish behavior since #239).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mit der automatischen Erkennung kannst du in jeder Sprache diktieren, die Whisper unterstützt. Die Verfeinerung passt sich an die gesprochene Sprache an."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La detección automática te permite dictar en cualquier idioma compatible con Whisper. El pulido se adapta al idioma que hablas."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La détection automatique vous permet de dicter dans toutes les langues prises en charge par Whisper. L’amélioration du texte s’adapte à la langue parlée."
-          }
-        }
-      }
-    },
     "Autocorrect" : {
       "localizations" : {
         "de" : {
@@ -3565,6 +3519,50 @@
         }
       }
     },
+    "Match keyboard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie Tastatur"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Como el teclado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comme le clavier"
+          }
+        }
+      }
+    },
+    "Model decides" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modell entscheidet"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El modelo decide"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le modèle décide"
+          }
+        }
+      }
+    },
     "New chat" : {
       "localizations" : {
         "fr" : {
@@ -3581,6 +3579,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Génération de la réponse"
+          }
+        }
+      }
+    },
+    "Parakeet detects the spoken language. Your selection guides transcript cleanup." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parakeet erkennt die gesprochene Sprache. Deine Auswahl steuert die Nachbearbeitung."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parakeet detecta el idioma hablado. Tu elección guía la corrección de la transcripción."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parakeet détecte la langue parlée. Votre choix guide la correction de la transcription."
           }
         }
       }
@@ -6733,29 +6753,6 @@
         }
       }
     },
-    "Follow keyboard language" : {
-      "comment" : "Transcription language picker option: STT tracks the keyboard language, the default (issue #226).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tastatursprache folgen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seguir el idioma del teclado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suivre la langue du clavier"
-          }
-        }
-      }
-    },
     "Forget %lld learned words" : {
       "localizations" : {
         "de" : {
@@ -9313,28 +9310,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Page %1$lld sur %2$lld"
-          }
-        }
-      }
-    },
-    "Parakeet automatically detects the spoken language. This setting only applies to Whisper models." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parakeet erkennt die gesprochene Sprache automatisch. Diese Einstellung gilt nur für Whisper-Modelle."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parakeet detecta automáticamente el idioma hablado. Este ajuste solo se aplica a los modelos Whisper."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parakeet détecte automatiquement la langue parlée. Ce réglage s’applique uniquement aux modèles Whisper."
           }
         }
       }

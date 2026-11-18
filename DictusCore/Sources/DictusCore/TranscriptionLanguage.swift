@@ -18,11 +18,9 @@ import Foundation
 /// WHY string-encoded modes instead of a raw-representable enum:
 /// The stored value mixes two namespaces — mode markers ("follow"/"auto") and
 /// language codes ("fr"/"en"/…). Custom parsing keeps the App Group encoding
-/// explicit and lets unknown values degrade safely to `.followKeyboard`,
-/// which is the exact pre-#226 behavior (zero-migration upgrades).
+/// explicit while preserving stored choices across versions.
 public enum TranscriptionLanguageMode: Equatable, Sendable {
     /// STT uses the current keyboard language (`SharedKeys.language`).
-    /// Default — preserves the historical coupled behavior exactly.
     case followKeyboard
     /// Whisper language auto-detection (no language token forced).
     /// Unlocks the Whisper long tail (zh, it, pt, …) without any keyboard work.
@@ -33,6 +31,8 @@ public enum TranscriptionLanguageMode: Equatable, Sendable {
     /// untested languages are reachable through `.autoDetect` only.
     case explicit(SupportedLanguage)
 
+    public static let defaultMode: TranscriptionLanguageMode = .autoDetect
+
     // MARK: - App Group encoding
 
     /// Stored marker for `.followKeyboard`.
@@ -40,22 +40,15 @@ public enum TranscriptionLanguageMode: Equatable, Sendable {
     /// Stored marker for `.autoDetect`.
     public static let autoStoredValue = "auto"
 
-    /// Parse the App Group stored value. `nil` (key never written) and any
-    /// unrecognized string resolve to `.followKeyboard` so existing installs
-    /// upgrade with zero behavior change.
+    /// Parse the App Group stored value, using model detection when no mode is recognized.
     public init(storedValue: String?) {
         switch storedValue {
+        case Self.followStoredValue:
+            self = .followKeyboard
         case Self.autoStoredValue:
             self = .autoDetect
-        case .some(let raw):
-            if let language = SupportedLanguage(rawValue: raw) {
-                self = .explicit(language)
-            } else {
-                // Covers "follow" and any unknown/corrupted value.
-                self = .followKeyboard
-            }
-        case .none:
-            self = .followKeyboard
+        default:
+            self = storedValue.flatMap(SupportedLanguage.init(rawValue:)).map(Self.explicit) ?? Self.defaultMode
         }
     }
 
@@ -82,7 +75,7 @@ public enum TranscriptionLanguageMode: Equatable, Sendable {
 
     // MARK: - Resolution
 
-    /// Reads the active mode from the App Group. Missing key = `.followKeyboard`.
+    /// Reads the active mode from the App Group, defaulting to model detection.
     public static var active: TranscriptionLanguageMode {
         TranscriptionLanguageMode(
             storedValue: AppGroup.defaults.string(forKey: SharedKeys.transcriptionLanguage)
@@ -184,19 +177,15 @@ public struct TranscriptionLanguagePolicy: Equatable, Sendable, Codable {
     /// (the markers "follow"/"auto" and a language code) and already has one
     /// canonical spelling — `storedValue`, the same string the App Group holds for
     /// the user's setting. Reusing it means the transport and the setting cannot
-    /// disagree about what "auto" is, and an unrecognised value degrades to
-    /// `.followKeyboard` on the far side exactly as it does on this one.
+    /// disagree about what "auto" is, and both sides use the same default for
+    /// an unrecognised value.
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.mode = TranscriptionLanguageMode(
             storedValue: try container.decode(String.self, forKey: .mode)
         )
-        // These two throw rather than falling back, unlike `mode` above. The mode
-        // has a documented degradation (an unknown value IS `.followKeyboard`,
-        // which is how #226 shipped without a migration); a language and an engine
-        // do not. Both are written from the enums themselves, so an unrecognised
-        // value means the record is corrupt — and guessing a language here is
-        // guessing what to translate the user's speech into.
+        // A keyboard language or engine outside the known enum values indicates a
+        // corrupt record. Guessing would misrepresent the transcription and its language.
         self.keyboardLanguage = try Self.decode(
             SupportedLanguage.self, from: container, forKey: .keyboardLanguage
         )

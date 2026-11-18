@@ -53,13 +53,13 @@ final class LanguageSetupTests: XCTestCase {
         XCTAssertEqual(SpokenLanguage.prefilled(from: []), "en")
     }
 
-    func testOnboardingStartsWithEnglishQwertyAndEnglishDictation() {
+    func testOnboardingStartsWithEnglishQwertyAndModelDetection() {
         let setup = LanguageSetup.prefilled()
         XCTAssertEqual(setup.spokenLanguage, "en")
         XCTAssertEqual(setup.keyboardLanguage, .english)
         XCTAssertEqual(setup.layout, .qwerty)
         XCTAssertTrue(setup.spokenLanguageHasDictusKeyboard)
-        XCTAssertEqual(setup.transcriptionMode, .followKeyboard)
+        XCTAssertEqual(setup.transcriptionMode, .autoDetect)
     }
 
     func testChoosingGermanGetsGermanQwertz() {
@@ -85,7 +85,7 @@ final class LanguageSetupTests: XCTestCase {
             let setup = LanguageSetup(spokenLanguage: language.rawValue, preferredLanguages: [])
             XCTAssertEqual(setup.keyboardLanguage, language)
             XCTAssertEqual(setup.layout, language.defaultLayout)
-            XCTAssertEqual(setup.transcriptionMode, .followKeyboard)
+            XCTAssertEqual(setup.transcriptionMode, .autoDetect)
         }
     }
 
@@ -136,7 +136,7 @@ final class LanguageSetupTests: XCTestCase {
         LanguageSetup(spokenLanguage: "de", preferredLanguages: []).apply()
         XCTAssertEqual(SupportedLanguage.active, .german)
         XCTAssertEqual(LayoutType.active, .qwertz)
-        XCTAssertEqual(TranscriptionLanguageMode.active, .followKeyboard)
+        XCTAssertEqual(TranscriptionLanguageMode.active, .autoDetect)
         XCTAssertEqual(defaults.string(forKey: SharedKeys.spokenLanguage), "de")
         XCTAssertTrue(KeyboardLayoutPreference.isInherited(for: .german), "a confirmed default stays a default")
     }
@@ -161,7 +161,7 @@ final class LanguageSetupTests: XCTestCase {
     func testApplyResetsAnEarlierExplicitTranscriptionLanguage() {
         defaults.set("de", forKey: SharedKeys.transcriptionLanguage)
         LanguageSetup(spokenLanguage: "en", preferredLanguages: []).apply()
-        XCTAssertEqual(TranscriptionLanguageMode.active, .followKeyboard)
+        XCTAssertEqual(TranscriptionLanguageMode.active, .autoDetect)
     }
 
     // MARK: - Which language the Models screen recommends for
