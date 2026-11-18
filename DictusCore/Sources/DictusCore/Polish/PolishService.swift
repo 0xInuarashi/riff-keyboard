@@ -42,6 +42,7 @@ public final class PolishService {
     /// itself is cheap to instantiate; gating is done dynamically in `polish()`
     /// by `PolishAvailability.isAppleFMAvailable` so a single launch can recover
     /// once iOS flips the state to `.available`.
+    private let localEngine: (@Sendable (LocalRewriteModel) -> PolishEngineProtocol)?
     private let appleFMEngine: PolishEngineProtocol?
     private let passthroughEngine: PolishEngineProtocol = PassthroughPolishEngine()
     private let defaults: UserDefaults
@@ -78,7 +79,9 @@ public final class PolishService {
     public init(sink: PolishEventSink,
                 onBecameUnavailable: (() -> Void)? = nil,
                 translationBudget: TranslationTimeBudget = .keyboard,
-                appState: @escaping @Sendable () async -> String = { "extension" }) {
+                appState: @escaping @Sendable () async -> String = { "extension" },
+                localEngine: (@Sendable (LocalRewriteModel) -> PolishEngineProtocol)? = nil) {
+        self.localEngine = localEngine
         self.defaults = AppGroup.defaults
         self.sink = sink
         self.onBecameUnavailable = onBecameUnavailable
@@ -115,6 +118,7 @@ public final class PolishService {
         #if DEBUG
         if defaults.bool(forKey: SharedKeys.debugPolishRefusalForced) { return DebugRefusingPolishEngine() }
         #endif
+        if let localEngine, let model = LocalRewriteModel.selected { return localEngine(model) }
         if let appleFMEngine, PolishAvailability.isAppleFMAvailable {
             return appleFMEngine
         }
@@ -151,7 +155,7 @@ public final class PolishService {
     /// No-op when the engine has nothing to warm, or when the toggle is off and no
     /// mode is armed: don't pay to load the model into memory if nothing will run.
     public func prewarm() {
-        guard let engineToWarm = appleFMEngine else { return }
+        guard LocalRewriteModel.selected == nil, let engineToWarm = appleFMEngine else { return }
         // Read, never resolve: `resolveArmedMode()` can clear the user's setting, and
         // a warm-up is not a dictation. Warming the session of a mode that turns out
         // to be unrunnable costs nothing — the engine only exists where the SDK does,

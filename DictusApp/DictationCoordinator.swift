@@ -392,6 +392,7 @@ class DictationCoordinator: ObservableObject {
             defaults.removeObject(forKey: SharedKeys.lastTranscription)
             defaults.removeObject(forKey: SharedKeys.lastTranscriptionTimestamp)
             defaults.removeObject(forKey: SharedKeys.lastTranscriptionPolicy)
+            defaults.removeObject(forKey: SharedKeys.localRewriteHandoff)
             defaults.removeObject(forKey: SharedKeys.lastTranscriptionEngineRaw)
             defaults.removeObject(forKey: SharedKeys.lastTranscriptionDuration)
             // Through the channel since #495: the polished text and the flag saying
@@ -1075,7 +1076,7 @@ class DictationCoordinator: ObservableObject {
                     // the user cancelled must not insert text a few seconds later
                     // (#267).
                     guard mayReport(session, "transcription result") else { return }
-                    handOffToKeyboard(
+                    await handOffToKeyboard(
                         transcript: transcript,
                         languagePolicy: languagePolicy,
                         smartMode: smartMode,
@@ -1084,7 +1085,7 @@ class DictationCoordinator: ObservableObject {
                     )
                 }
 
-                cleanupRecordingKeys()
+                if mayReport(session, "recording cleanup") { cleanupRecordingKeys() }
             } catch {
                 if #available(iOS 14.0, *) {
                     DictusLogger.app.error(
@@ -1309,6 +1310,7 @@ class DictationCoordinator: ObservableObject {
         defaults.removeObject(forKey: SharedKeys.waveformEnergy)
         defaults.removeObject(forKey: SharedKeys.recordingElapsedSeconds)
         defaults.removeObject(forKey: SharedKeys.recordingHeartbeat)
+        defaults.removeObject(forKey: SharedKeys.dictationDocumentIdentifier)
         defaults.set(false, forKey: SharedKeys.stopRequested)
         defaults.set(false, forKey: SharedKeys.cancelRequested)
         defaults.set(false, forKey: SharedKeys.coldStartActive)

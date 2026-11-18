@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		774D6C000000000000000003 /* LocalRewriteSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774D6C000000000000000004 /* LocalRewriteSettings.swift */; };
+		774D6C000000000000000001 /* RiffLocalRewrite in Frameworks */ = {isa = PBXBuildFile; productRef = 774D6C000000000000000002 /* RiffLocalRewrite */; };
 		AA913B01 /* DMSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA913F01 /* DMSans-ExtraLight.ttf */; };
 		AA913B02 /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA913F02 /* DMSans-Regular.ttf */; };
 		AA913B03 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA913F03 /* DMSans-Medium.ttf */; };
@@ -282,6 +284,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		774D6C000000000000000004 /* LocalRewriteSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRewriteSettings.swift; sourceTree = "<group>"; };
 		AA913F01 /* DMSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DMSans-ExtraLight.ttf; sourceTree = "<group>"; };
 		AA913F02 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DMSans-Regular.ttf; sourceTree = "<group>"; };
 		AA913F03 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DMSans-Medium.ttf; sourceTree = "<group>"; };
@@ -535,6 +538,7 @@
 			files = (
 				4647AD312F76AAA5003C3546 /* FluidAudio in Frameworks */,
 				AA000010 /* DictusCore in Frameworks */,
+				774D6C000000000000000001 /* RiffLocalRewrite in Frameworks */,
 				AA000042 /* WhisperKit in Frameworks */,
 				4647AD302F76AAA5003C3546 /* RecordingView.swift in Frameworks */,
 			);
@@ -774,6 +778,7 @@
 				AA100071 /* TestDictationView.swift */,
 				AA100092 /* DiagnosticDetailView.swift */,
 				AA1000A6 /* SettingsView.swift */,
+				774D6C000000000000000004 /* LocalRewriteSettings.swift */,
 				AA1000A7 /* LicensesView.swift */,
 				AA1000A8 /* DebugLogView.swift */,
 				AA1000E2 /* GaugeBarView.swift */,
@@ -1098,7 +1103,7 @@
 			name = DictusApp;
 			packageProductDependencies = (
 				AA900010 /* DictusCore */,
-				AA900020 /* WhisperKit */,
+				774D6C000000000000000002 /* RiffLocalRewrite */,				AA900020 /* WhisperKit */,
 				AA900030 /* FluidAudio */,
 			);
 			productName = DictusApp;
@@ -1473,6 +1478,7 @@
 				AA0000A5 /* GlobeKeyTutorialPage.swift in Sources */,
 				AA0000A9 /* OnboardingSuccessView.swift in Sources */,
 				AA0000A6 /* SettingsView.swift in Sources */,
+				774D6C000000000000000003 /* LocalRewriteSettings.swift in Sources */,
 				AA0000A7 /* LicensesView.swift in Sources */,
 				AA0000A8 /* DebugLogView.swift in Sources */,
 				AA0000EA /* LanguageSetupPage.swift in Sources */,
@@ -2136,6 +2142,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		774D6C000000000000000002 /* RiffLocalRewrite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA800001 /* XCLocalSwiftPackageReference "DictusCore" */;
+			productName = RiffLocalRewrite;
+		};
 		AA900010 /* DictusCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA800001 /* XCLocalSwiftPackageReference "DictusCore" */;

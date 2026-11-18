@@ -382,7 +382,7 @@ struct VoiceNoteCardView: View {
     // MARK: - Summary
 
     private var summaryUnavailableReason: SmartModeUnavailableReason? {
-        VoiceNoteAvailability.summaryUnavailableReason(engineState: PolishAvailability.state)
+        VoiceNoteAvailability.summaryUnavailableReason(engineState: PolishAvailability.rewriteState)
     }
 
     private func summariseIfNeeded(_ content: Content) async {

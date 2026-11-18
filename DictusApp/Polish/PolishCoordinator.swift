@@ -2,6 +2,7 @@
 import Foundation
 import UIKit
 import DictusCore
+import RiffLocalRewrite
 
 /// DictusApp's polish entry point: one `PolishService` for dictations started
 /// inside the app, plus the debug ring the settings screen and the JSON export
@@ -82,11 +83,14 @@ public final class PolishCoordinator {
         // `translationBudget` (#648): voice notes run minutes long, so Translate's wait
         // scales with the input here rather than taking the keyboard's 8 s.
         self.service = PolishService(sink: metricsRing, translationBudget: .app,
-                                     appState: Self.applicationStateName)
+                                     appState: Self.applicationStateName,
+                                     localEngine: { LlamaRewriteEngine(model: $0) })
         self.voiceNoteService = PolishService(sink: metricsRing, translationBudget: .app,
-                                              appState: Self.applicationStateName)
+                                              appState: Self.applicationStateName,
+                                     localEngine: { LlamaRewriteEngine(model: $0) })
         self.voiceNoteBackgroundService = PolishService(sink: metricsRing, translationBudget: .app,
-                                                        appState: Self.applicationStateName)
+                                                        appState: Self.applicationStateName,
+                                     localEngine: { LlamaRewriteEngine(model: $0) })
     }
 
     /// This app's state, read synchronously, for the voice note attempt line (#627).

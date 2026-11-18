@@ -651,6 +651,7 @@ class KeyboardState: ObservableObject {
         trace.write(to: defaults)
         pendingStopTrace = trace
 
+        defaults.set(currentDocumentIdentifier ?? "", forKey: SharedKeys.dictationDocumentIdentifier)
         defaults.set(true, forKey: SharedKeys.stopRequested)
         defaults.synchronize()
         DarwinNotificationCenter.post(DarwinNotificationName.stopRecording)
@@ -855,7 +856,7 @@ class KeyboardState: ObservableObject {
     /// because `polishUnavailable` is `private(set)` and Swift scopes that to the
     /// file — which is the property doing its job.
     func refreshPolishAvailability() {
-        polishUnavailable = PolishAvailabilityChannel.isUnavailable
+        polishUnavailable = LocalRewriteModel.selected == nil && PolishAvailabilityChannel.isUnavailable
     }
 
     /// Insert a finished dictation into the host field and return the keyboard to idle.
@@ -1537,6 +1538,7 @@ class KeyboardState: ObservableObject {
 
     /// Write "requested" status to App Group before triggering URL.
     func markRequested() {
+        defaults.set(currentDocumentIdentifier ?? "", forKey: SharedKeys.dictationDocumentIdentifier)
         logProbe("markRequested", details: sessionDetails())
         defaults.set(DictationStatus.requested.rawValue, forKey: SharedKeys.dictationStatus)
         defaults.synchronize()

@@ -72,6 +72,9 @@ struct SettingsView: View {
     @AppStorage(SharedKeys.polishEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
     private var polishEnabled = false
 
+    @AppStorage(LocalRewriteModel.preferenceKey, store: AppGroup.defaults)
+    private var rewriteModel = LocalRewriteModel.apple
+
     #if DEBUG
     /// Debug-only: logs autocorrect decisions with user text to the debug log.
     /// This toggle only exists in DEBUG builds — the Release binary doesn't contain
@@ -268,9 +271,22 @@ struct SettingsView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                if PolishAvailability.isToggleVisible {
+                NavigationLink {
+                    LocalRewriteSettings()
+                } label: {
+                    LabeledContent {
+                        if let model = LocalRewriteModel.catalog.first(where: { $0.id == rewriteModel && $0.isInstalled }) {
+                            Text(model.name)
+                        } else {
+                            Text("Apple Intelligence")
+                        }
+                    } label: {
+                        Text("Smart Mode model")
+                    }
+                }
+                if LocalRewriteModel.selected != nil || PolishAvailability.isToggleVisible {
                     Toggle("Polish transcription", isOn: $polishEnabled)
-                    polishStateFooter
+                    if LocalRewriteModel.selected == nil { polishStateFooter }
                 }
 
                 // Visible for a subscriber, and for anyone who still has saved

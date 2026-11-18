@@ -33,6 +33,11 @@ public enum PolishAvailabilityState: Equatable, Sendable {
 /// all — stays in DictusApp: it is UI policy, and it is gated by the app target's
 /// `DICTUS_POLISH_DEBUG_VISIBLE` build flag, which a framework cannot see.
 public enum PolishAvailability {
+    /// Availability of the configured rewrite engine, shared by app and keyboard.
+    public static var rewriteState: PolishAvailabilityState {
+        LocalRewriteModel.selected == nil ? state : .available
+    }
+
 
     /// Detailed availability state for the current device + OS + Apple
     /// Intelligence configuration.

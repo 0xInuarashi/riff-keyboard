@@ -68,13 +68,13 @@ final class KeyboardPolishCoordinator {
     var isPolishing: Bool { activePolish != nil }
 
     private init() {
-        self.service = PolishService(sink: AppendOnlyPolishEventSink()) {
+        self.service = PolishService(sink: AppendOnlyPolishEventSink(), onBecameUnavailable: {
             // The #315 notice describes this process's gate since #361. Written to the
             // App Group as well as published in memory, so a controller rebuilt while
             // the state holds still finds it.
             PolishAvailabilityChannel.markUnavailable()
             KeyboardState.shared.refreshPolishAvailability()
-        }
+        })
     }
 
     // MARK: - Entry point
@@ -88,6 +88,9 @@ final class KeyboardPolishCoordinator {
     /// stays until the dictation is either typed or refused.
     func handle(raw: String) {
         let policy = storedPolicy()
+        let localRewrite = defaults.data(forKey: SharedKeys.localRewriteHandoff).flatMap {
+            try? JSONDecoder().decode(LocalRewriteHandoff.self, from: $0)
+        }
         let duration = defaults.double(forKey: SharedKeys.lastTranscriptionDuration)
         let pending = PendingDictation(
             raw: raw,
@@ -96,12 +99,15 @@ final class KeyboardPolishCoordinator {
             policy: policy,
             smartMode: storedSmartMode(),
             skippedSmartMode: storedSkippedSmartMode(),
+            localRewriteOutcome: localRewrite?.outcome,
             recordingDuration: duration,
-            documentIdentifier: KeyboardState.shared.currentDocumentIdentifier
+            documentIdentifier: localRewrite == nil ? KeyboardState.shared.currentDocumentIdentifier
+                : localRewrite?.documentIdentifier
         )
         PendingDictationChannel.store(pending)
         handoffToken = defaults.string(forKey: SharedKeys.handoffToken)
         defaults.removeObject(forKey: SharedKeys.lastTranscriptionPolicy)
+        defaults.removeObject(forKey: SharedKeys.localRewriteHandoff)
         defaults.removeObject(forKey: SharedKeys.lastTranscriptionEngineRaw)
         defaults.removeObject(forKey: SharedKeys.lastTranscriptionDuration)
         defaults.removeObject(forKey: SharedKeys.lastTranscriptionSmartMode)
@@ -198,6 +204,11 @@ final class KeyboardPolishCoordinator {
         }
         PendingDictationChannel.clear()
 
+        if let outcome = pending.localRewriteOutcome {
+            finishOutcome(outcome, pending: pending)
+            return
+        }
+
         // The third insertion site, and the one that used to skip the rule the other
         // two enforce (#391). A pending record carrying an armed mode is a dictation
         // whose transformation never ran: typing its raw here would insert French
@@ -243,18 +254,12 @@ final class KeyboardPolishCoordinator {
 
     private func run(_ pending: PendingDictation) async {
         probeMemory("beforePolish")
-        let outcome = await service.polish(
-            raw: pending.raw,
-            languagePolicy: pending.policy,
-            smartMode: pending.smartMode,
-            recordingDuration: pending.recordingDuration,
-            // Recorded, never polished on (#80).
-            engineRaw: pending.engineRaw,
-            onEngineWillRun: { [weak self] in
-                self?.probeMemory("engineWillRun")
-                self?.announceProcessingStage()
-            }
-        )
+        let outcome: PolishOutcome
+        if let localOutcome = pending.localRewriteOutcome {
+            outcome = localOutcome
+        } else {
+            outcome = await polishInKeyboard(pending)
+        }
 
         probeMemory("afterPolish")
 
@@ -321,6 +326,25 @@ final class KeyboardPolishCoordinator {
         // inserted and the message still fires: degrading in silence and refusing in
         // silence are the same defect, which is why the message is keyed on the
         // failure and not on whether anything was typed.
+        finishOutcome(outcome, pending: pending)
+    }
+
+    private func polishInKeyboard(_ pending: PendingDictation) async -> PolishOutcome {
+        await service.polish(
+            raw: pending.raw,
+            languagePolicy: pending.policy,
+            smartMode: pending.smartMode,
+            recordingDuration: pending.recordingDuration,
+            // Recorded, never polished on (#80).
+            engineRaw: pending.engineRaw,
+            onEngineWillRun: { [weak self] in
+                self?.probeMemory("engineWillRun")
+                self?.announceProcessingStage()
+            }
+        )
+    }
+
+    private func finishOutcome(_ outcome: PolishOutcome, pending: PendingDictation) {
         let failure = outcome.smartModeFailure
         let degraded = outcome.isDegraded
 

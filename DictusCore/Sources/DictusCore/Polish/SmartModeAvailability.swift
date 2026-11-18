@@ -247,7 +247,7 @@ public enum SmartModeAvailability {
         #if DEBUG
         if AppGroup.defaults.bool(forKey: SharedKeys.debugAppleIntelligenceForced) { return .available }
         #endif
-        return PolishAvailability.state
+        return PolishAvailability.rewriteState
     }
 
     /// Armability as it stands in *this* process.
@@ -264,7 +264,7 @@ public enum SmartModeAvailability {
     public static var current: SmartModeArmability {
         armability(
             engineState: engineState,
-            engineIsRefusing: PolishAvailabilityChannel.isUnavailable,
+            engineIsRefusing: LocalRewriteModel.selected == nil && PolishAvailabilityChannel.isUnavailable,
             entitlement: SmartModeEntitlement.current
         )
     }

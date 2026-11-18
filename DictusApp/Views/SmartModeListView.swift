@@ -28,9 +28,13 @@ struct SmartModeListView: View {
     /// screen the user backs out of must not lose what they just arranged.
     @State private var pinnedIdentifiers: [String] = SmartModeStore.pinnedIdentifiers
 
-    /// Whether this iPhone can run Smart Modes at all. Read once: it cannot change
-    /// while this screen is open, short of an OS update.
-    private let deviceIsCapable = SmartModeAvailability.deviceIsCapable
+    @AppStorage(LocalRewriteModel.preferenceKey, store: AppGroup.defaults)
+    private var rewriteModel = LocalRewriteModel.apple
+
+    private var deviceIsCapable: Bool {
+        _ = rewriteModel
+        return SmartModeAvailability.deviceIsCapable
+    }
 
     private var pinnedModes: [SmartMode] {
         pinnedIdentifiers.compactMap(SmartModeCatalogue.mode(withIdentifier:))
@@ -73,7 +77,11 @@ struct SmartModeListView: View {
 
             if !deviceIsCapable {
                 Section {
-                    unsupportedNotice
+                    NavigationLink {
+                        LocalRewriteSettings()
+                    } label: {
+                        Text("Choose a local model")
+                    }
                 }
             }
 
@@ -155,23 +163,6 @@ struct SmartModeListView: View {
                     ? Text("Remove \(Self.listName(for: mode)) from the keyboard")
                     : Text("Add \(Self.listName(for: mode)) to the keyboard")
             )
-        }
-    }
-
-    /// The line a device that cannot run Smart Modes is owed, on the screen where it
-    /// would otherwise silently arrange a fan that never works (#79).
-    ///
-    /// The list stays usable underneath. The choice persists, and it becomes real the
-    /// day the user changes phone — hiding it would mean losing the arrangement they
-    /// made, for no gain.
-    private var unsupportedNotice: some View {
-        HStack(alignment: .top, spacing: 8) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.secondary)
-
-            Text("Smart Modes need Apple Intelligence, which this iPhone does not support. Your choices are saved for a device that does.")
-                .font(.dictusCaption)
-                .foregroundColor(.secondary)
         }
     }
 

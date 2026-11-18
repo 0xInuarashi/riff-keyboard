@@ -340,7 +340,7 @@ final class VoiceNoteProcessor: ObservableObject {
         guard VoiceNoteSmartModeAttempt.runsInBackground(
             mode: mode,
             transcriptLength: source.transcript.count,
-            unavailableReason: VoiceNoteAvailability.summaryUnavailableReason(engineState: PolishAvailability.state),
+            unavailableReason: VoiceNoteAvailability.summaryUnavailableReason(engineState: PolishAvailability.rewriteState),
             isEntitled: VoiceNoteAvailability.isEntitled,
             hasStoredResult: storedSummary(for: noteID) != nil
         ) else { return }

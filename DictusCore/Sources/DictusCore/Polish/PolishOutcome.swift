@@ -7,7 +7,7 @@ import Foundation
 /// Carries what a surface needs to say so without reopening the pipeline: which mode
 /// it was, and enough about the failure to tell a rejected transformation from a
 /// backend that never answered.
-public struct SmartModeFailure: Equatable, Sendable {
+public struct SmartModeFailure: Codable, Equatable, Sendable {
 
     /// `SmartMode.id` of the mode that was armed.
     public let modeIdentifier: String
@@ -95,7 +95,7 @@ public struct SmartModeFailure: Equatable, Sendable {
 /// user is told in both failing shapes. Refusing in silence and degrading in silence
 /// are the same defect, which is why `smartModeFailure` is what a surface keys on
 /// and `text` only decides whether anything is typed.
-public struct PolishOutcome: Equatable, Sendable {
+public struct PolishOutcome: Codable, Equatable, Sendable {
 
     /// The text to insert, or nil when an armed Smart Mode failed and nothing may be
     /// inserted in its place.
@@ -140,4 +140,15 @@ public struct PolishOutcome: Equatable, Sendable {
     /// Whether the text being inserted is the untransformed floor rather than the
     /// mode's own output. What tells the two failure messages apart.
     public var isDegraded: Bool { text != nil && smartModeFailure != nil }
+}
+
+/// App-side generation result addressed to the field that requested the dictation.
+public struct LocalRewriteHandoff: Codable, Sendable {
+    public let outcome: PolishOutcome
+    public let documentIdentifier: String?
+
+    public init(outcome: PolishOutcome, documentIdentifier: String?) {
+        self.outcome = outcome
+        self.documentIdentifier = documentIdentifier
+    }
 }

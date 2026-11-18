@@ -157,6 +157,7 @@ extension DictationCoordinator {
         // merely not written, because the previous dictation's blob could still be
         // lying here if no keyboard ever claimed it.
         defaults.removeObject(forKey: SharedKeys.lastTranscriptionPolicy)
+        defaults.removeObject(forKey: SharedKeys.localRewriteHandoff)
         // Same reason, and the same "cleared rather than not written": a previous
         // hand-off's engine text could still be lying here (#80).
         defaults.removeObject(forKey: SharedKeys.lastTranscriptionEngineRaw)
@@ -205,7 +206,7 @@ extension DictationCoordinator {
                            languagePolicy: TranscriptionLanguagePolicy,
                            smartMode: SmartModeResolution,
                            audioDuration: TimeInterval,
-                           session: Int) {
+                           session: Int) async {
         // The text the keyboard will type: the corrected one, not the engine's.
         // `transcript.engineRaw` travels beside it purely to be recorded (#80).
         let rawText = transcript.text
@@ -226,6 +227,17 @@ extension DictationCoordinator {
         polishHandoffHistoryID = TranscriptionHistoryStore.shared.append(TranscriptionRecord(
             text: rawText, policy: languagePolicy, duration: audioDuration
         ))?.id
+        if LocalRewriteModel.selected != nil {
+            let documentIdentifier = defaults.string(forKey: SharedKeys.dictationDocumentIdentifier)
+            let outcome = await rewriteForKeyboard(transcript: transcript, languagePolicy: languagePolicy,
+                                                   smartMode: smartMode.mode, audioDuration: audioDuration,
+                                                   session: session)
+            guard mayReport(session, "local rewrite result") else { return }
+            let result = LocalRewriteHandoff(outcome: outcome, documentIdentifier: documentIdentifier)
+            defaults.set(try? JSONEncoder().encode(result), forKey: SharedKeys.localRewriteHandoff)
+        } else {
+            defaults.removeObject(forKey: SharedKeys.localRewriteHandoff)
+        }
         status = .ready
         defaults.set(rawText, forKey: SharedKeys.lastTranscription)
         // Only when the vocabulary pass actually changed something (#80). Absent is
@@ -302,6 +314,36 @@ extension DictationCoordinator {
         }
 
         beginPolishHandoff(session: session, preview: rawText)
+    }
+
+    private func rewriteForKeyboard(transcript: DictationTranscript,
+                                    languagePolicy: TranscriptionLanguagePolicy,
+                                    smartMode: SmartMode?,
+                                    audioDuration: TimeInterval,
+                                    session: Int) async -> PolishOutcome {
+        let app = UIApplication.shared
+        var assertion = UIBackgroundTaskIdentifier.invalid
+        assertion = app.beginBackgroundTask(withName: "riff.localRewrite") { [weak self] in
+            if self?.mayReport(session, "local rewrite expiration") == true {
+                PolishCoordinator.shared.cancelInflight()
+            }
+            if assertion != .invalid {
+                app.endBackgroundTask(assertion)
+                assertion = .invalid
+            }
+        }
+        defer {
+            if assertion != .invalid { app.endBackgroundTask(assertion) }
+        }
+        return await PolishCoordinator.shared.polish(
+            raw: transcript.text, languagePolicy: languagePolicy, smartMode: smartMode,
+            recordingDuration: audioDuration, engineRaw: transcript.engineRaw,
+            onEngineWillRun: { [weak self] in
+                guard let self, self.mayReport(session, "local rewrite stage") else { return }
+                self.updateStatus(.processing)
+                LiveActivityManager.shared.transitionToProcessing()
+            }
+        )
     }
 
     // MARK: The Live Activity, waiting on the other process (decision 6)

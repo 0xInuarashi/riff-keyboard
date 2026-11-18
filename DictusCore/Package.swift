@@ -6,10 +6,17 @@ let package = Package(
     platforms: [.iOS(.v17), .macOS("26.0")],
     products: [
         .library(name: "DictusCore", targets: ["DictusCore"]),
+        .library(name: "RiffLocalRewrite", targets: ["RiffLocalRewrite"]),
         .executable(name: "polish-harness", targets: ["polish-harness"])
     ],
     targets: [
         .target(name: "DictusCore", path: "Sources/DictusCore"),
+        .target(name: "RiffLocalRewrite", dependencies: ["DictusCore", "llama"]),
+        .binaryTarget(
+            name: "llama",
+            url: "https://github.com/ggml-org/llama.cpp/releases/download/b8868/llama-b8868-xcframework.zip",
+            checksum: "8ece1077b7c5b287aa3461aeba67a0d192fae4a9a44d0eb0999fac1c9d15c7f5"
+        ),
         // The #570 / #581 fidelity scorers: proposition recall, person and stance,
         // order, and speaker-state fabrication. Deterministic and model-free.
         //

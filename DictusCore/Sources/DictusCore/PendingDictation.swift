@@ -78,6 +78,8 @@ public struct PendingDictation: Codable, Equatable, Sendable {
     /// `smartMode`: the worst case is a lost transient notice.
     public let skippedSmartMode: SmartModeSkipNotice?
 
+    public let localRewriteOutcome: PolishOutcome?
+
     /// How long the user spoke. Feeds the polish duration gate (#141), which is
     /// otherwise unanswerable in the extension: it never saw the audio.
     public let recordingDuration: TimeInterval
@@ -142,6 +144,7 @@ public struct PendingDictation: Codable, Equatable, Sendable {
                 policy: TranscriptionLanguagePolicy,
                 smartMode: SmartMode? = nil,
                 skippedSmartMode: SmartModeSkipNotice? = nil,
+                localRewriteOutcome: PolishOutcome? = nil,
                 recordingDuration: TimeInterval,
                 documentIdentifier: String?,
                 claimedAt: TimeInterval = Date().timeIntervalSince1970) {
@@ -150,6 +153,7 @@ public struct PendingDictation: Codable, Equatable, Sendable {
         self.policy = policy
         self.smartMode = smartMode
         self.skippedSmartMode = skippedSmartMode
+        self.localRewriteOutcome = localRewriteOutcome
         self.recordingDuration = recordingDuration
         self.documentIdentifier = documentIdentifier
         self.claimedAt = claimedAt

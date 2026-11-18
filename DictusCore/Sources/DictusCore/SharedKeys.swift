@@ -197,6 +197,8 @@ public enum SharedKeys {
     /// posts `transcriptionReady` for its own dictations too, and has since long
     /// before #361; those carry finished text and clear this key, so the keyboard
     /// types them without running the pipeline a second time.
+    public static let localRewriteHandoff = "dictus.localRewriteHandoff"
+    public static let dictationDocumentIdentifier = "dictus.dictationDocumentIdentifier"
     public static let lastTranscriptionPolicy = "dictus.lastTranscriptionPolicy"
     /// Double: how many seconds of audio produced `lastTranscription`. The keyboard
     /// cannot measure this — it never saw the audio — and the polish duration gate
