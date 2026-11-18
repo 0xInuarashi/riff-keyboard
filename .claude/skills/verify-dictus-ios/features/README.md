@@ -89,6 +89,7 @@ The table lists features, their sub-features in feature order, and the screens i
 | `smart-modes.list` | Pro | non |
 | `smart-modes.message` | Pro | non |
 | `smart-modes.summary` | Pro | non |
+| `smart-modes.personalization` | Pro | non |
 | `smart-modes.translate` | Pro | non |
 | `smart-modes.pin` | Pro | non |
 | `smart-modes.toggle` | Pro | non |

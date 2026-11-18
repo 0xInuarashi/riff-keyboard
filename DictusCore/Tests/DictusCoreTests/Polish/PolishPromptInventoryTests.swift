@@ -31,7 +31,8 @@ final class PolishPromptInventoryTests: XCTestCase {
             // written from the same list.
             ("smart.structured", SmartModeStructuredPrompt.instructions()),
             ("smart.message", SmartModeMessagePrompt.instructions()),
-            ("smart.summary", SmartModeSummaryPrompt.instructions())
+            ("smart.summary", SmartModeSummaryPrompt.instructions()),
+            ("smart.personalization", SmartModeCatalogue.personalization.prompt.instructions)
         ] + SupportedLanguage.allCases.map {
             ("smart.translate.\($0.rawValue)", SmartModeTranslatePrompt.instructions(target: $0))
         }
@@ -55,8 +56,7 @@ final class PolishPromptInventoryTests: XCTestCase {
         }
     }
 
-    /// The count is the point: fourteen builders, and the seventeen strings they
-    /// produce once Translate is expanded per target. A prompt added without a line
+    /// Each mode's prompt needs a line in this inventory. A prompt added without a line
     /// here would sit outside every check above — which is what happened to
     /// `smart.structured` between #523 and #572.
     ///
@@ -64,7 +64,7 @@ final class PolishPromptInventoryTests: XCTestCase {
     /// rather than this file's own list, so a mode whose prompt never got a line
     /// above fails here instead of being silently unmeasured.
     func testTheInventoryCoversEveryPromptTheBuildSends() {
-        XCTAssertEqual(shippingPrompts.count, 13 + SupportedLanguage.allCases.count)
+        XCTAssertEqual(shippingPrompts.count, 14 + SupportedLanguage.allCases.count)
         for mode in SmartModeCatalogue.builtIns {
             XCTAssertTrue(
                 shippingPrompts.contains { $0.1 == mode.prompt.instructions },

@@ -12,6 +12,7 @@
 - `smart-modes.list`: Liste: ideas as bullet points.
 - `smart-modes.message`: Message: a clear message, ready to send.
 - `smart-modes.summary`: Résumé: the gist in a few sentences.
+- `smart-modes.personalization`: Rewrite a dictation in Super Casual, Casual, Excited, Formal, Relaxed, or a Custom tone based on saved writing samples.
 - `smart-modes.translate`: Traduction → FR / EN / ES / DE.
 - `smart-modes.pin`: Choose up to three modes shown in the keyboard (add, remove, reorder).
 - `smart-modes.local-model`: Settings → Transcription → Smart Mode model. Tap a model to download and select it, then use the same Smart Mode fan. The model runs inside the app and the keyboard inserts its checked output.
@@ -24,6 +25,8 @@
 2. Hold the mic, slide up to a mode (e.g. Liste), let go, speak.
 3. Choose which three modes appear: Dictus → Réglages → Dictus Pro → Mode intelligent.
 4. In Dictus, tab Accueil: hold the mic, slide onto a mode on the ring around it, let go, speak. The keyboard then uses the same mode. Slide back to the starting mode before letting go to cancel.
+
+In Riff → Settings → Features → Smart Modes, open **Personalization tone**, choose a preset or enter writing samples for **Custom**, and tap **Save**. Pin **Personalization** to use it in the mic menu. Saved samples guide the selected on-device model's style when the mode is active.
 
 ## Driving it with axe + Argent
 
