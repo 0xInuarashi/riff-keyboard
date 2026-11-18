@@ -225,7 +225,7 @@ final internal class GiellaKeyboardView: UIView,
         addGestureRecognizer(longpressGestureRecognizer)
 
         // Pre-warm the local haptic generator so first touch has zero latency
-        hapticFeedback.prepare()
+        if HapticFeedback.isEnabled() { hapticFeedback.prepare() }
 
         isMultipleTouchEnabled = true
     }
@@ -443,7 +443,7 @@ final internal class GiellaKeyboardView: UIView,
     // MARK: - LongPressOverlayDelegate
 
     func longpress(didCreateOverlayContentView contentView: UIView) {
-        hapticFeedback.impactOccurred()
+        if HapticFeedback.isEnabled() { hapticFeedback.impactOccurred() }
 
         if overlays.first?.value.overlayContentView == nil {
             if let activeKey = activeKey {
@@ -697,7 +697,7 @@ final internal class GiellaKeyboardView: UIView,
         // but the user should FEEL the tap immediately on finger contact.
         // The matching click is played in handleTouches below, as soon as the touch
         // resolves to a key — it needs the key to pick a category, the haptic does not (#286).
-        hapticFeedback.prepare()
+        if HapticFeedback.isEnabled() { hapticFeedback.prepare() }
         HapticFeedback.keyTapped()
 
         if let longpressController = self.longpressController, let touch = touches.first {

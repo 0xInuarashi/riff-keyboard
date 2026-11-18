@@ -60,31 +60,21 @@ public enum HapticFeedback {
     /// WHY cached: Reading UserDefaults on every key tap adds ~0.5-1ms overhead.
     /// For a 16.67ms frame budget (60fps), that's 3-6% of the budget wasted.
     /// Caching eliminates this per-tap cost entirely.
-    ///
-    /// WHY `object(forKey:) as? Bool ?? true` instead of `bool(forKey:)`:
-    /// `bool(forKey:)` returns false when the key has never been set.
-    /// The correct default is true (haptics enabled out of the box).
-    /// `object(forKey:)` returns nil for missing keys, letting us provide the right default.
     #if canImport(UIKit) && !os(macOS)
-    private static var _isEnabled: Bool = {
-        let defaults = UserDefaults(suiteName: AppGroup.identifier)
-        return defaults?.object(forKey: SharedKeys.hapticsEnabled) as? Bool ?? true
-    }()
+    private static var _isEnabled = AppGroup.defaults.bool(forKey: SharedKeys.hapticsEnabled)
 
     /// Refresh cached enabled state from UserDefaults.
-    /// Call on keyboard appear (KeyboardRootView.onAppear) and when
-    /// settings-changed notification arrives.
+    /// Call when the keyboard appears or when the app's haptic setting changes.
     ///
     /// WHY not just cache forever: User may toggle haptics off in Settings.
     /// Refreshing on keyboard appear (which fires every time the keyboard opens)
     /// ensures staleness is at most one keyboard session.
     public static func refreshEnabledState() {
-        let defaults = UserDefaults(suiteName: AppGroup.identifier)
-        _isEnabled = defaults?.object(forKey: SharedKeys.hapticsEnabled) as? Bool ?? true
+        _isEnabled = AppGroup.defaults.bool(forKey: SharedKeys.hapticsEnabled)
     }
 
-    private static func isEnabled() -> Bool {
-        return _isEnabled
+    public static func isEnabled() -> Bool {
+        _isEnabled
     }
 
     /// Prime the Taptic Engine for the next tap. Call on every touchDown.
@@ -93,6 +83,7 @@ public enum HapticFeedback {
     /// Calling prepare() on every touchDown ensures the engine is ready for
     /// the NEXT tap even during rapid typing (>6 taps/second).
     public static func prepareForNextTap() {
+        guard isEnabled() else { return }
         selectionGenerator.prepare()
     }
     #endif
@@ -103,6 +94,7 @@ public enum HapticFeedback {
     /// Engine to spin up in advance.
     public static func warmUp() {
         #if canImport(UIKit) && !os(macOS)
+        guard isEnabled() else { return }
         lightGenerator.prepare()
         mediumGenerator.prepare()
         softGenerator.prepare()

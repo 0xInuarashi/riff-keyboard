@@ -8,11 +8,11 @@
 ## Sub-features
 
 - `keyboard.language-switch`: Français, English, Español, Deutsch, switched from the keyboard panel (☰ held).
-- `keyboard.layout`: AZERTY / QWERTY / QWERTZ per language.
-- `keyboard.number-row`: « Rangée de chiffres » above the letters.
+- `keyboard.layout`: AZERTY / QWERTY / QWERTZ per language. New installs start with English and QWERTY.
+- `keyboard.number-row`: The saved preference controls the digit row. The switch is hidden in Riff Settings.
 - `keyboard.default-page`: **retired (#888).** Was the « Page par défaut » ABC / 123 choice in Réglages; the setting is gone and the keyboard always opens on the letters. The ID stays retired, never reused.
 - `keyboard.reopen-letters`: the keyboard always opens on the letters, even when it was hidden on 123 or `#+=` (#889; Android uses the same ID, #291).
-- `keyboard.transcription-language`: Transcription language: « Suivre la langue du clavier » or fixed.
+- `keyboard.transcription-language`: **Model decides** by default. **Match keyboard** and fixed languages are also available.
 - `keyboard.open-app`: The panel's gear opens Dictus.
 
 ## How to get to it (user POV)

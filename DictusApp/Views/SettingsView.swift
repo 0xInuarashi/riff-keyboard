@@ -42,22 +42,13 @@ struct SettingsView: View {
     @State private var layoutRevision = 0
 
     @AppStorage(SharedKeys.hapticsEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var hapticsEnabled = true
-
-    /// Persistent digit row above the letter rows (#331). Off by default: it makes the
-    /// keyboard a fifth taller, and nobody's keyboard may change shape on update.
-    /// Portrait only — the keyboard reads this through `NumberRowPreference` and never draws
-    /// the row in landscape, where it would take 72% of the screen.
-    @AppStorage(SharedKeys.numberRowEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var numberRowEnabled = false
+    private var hapticsEnabled = false
 
     @AppStorage(SharedKeys.activeModel, store: UserDefaults(suiteName: AppGroup.identifier))
     private var activeModel = "openai_whisper-small"
 
-    /// WHY default true: Most users expect autocorrect to be active by default.
-    /// Power users who find it annoying can toggle it off here.
     @AppStorage(SharedKeys.autocorrectEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var autocorrectEnabled = true
+    private var autocorrectEnabled = false
 
     @AppStorage(SharedKeys.liveActivityEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
     private var liveActivityEnabled = true
@@ -328,18 +319,18 @@ struct SettingsView: View {
                     }
                 }
 
-                // Sits under the Layout picker because it changes the same thing: the shape
-                // of the key grid. It applies to every layout and every keyboard language —
-                // a number row is a hardware habit, not a language one (#331).
-                Toggle("Number row", isOn: $numberRowEnabled)
-
                 Toggle("Haptic feedback", isOn: $hapticsEnabled)
+                    .accessibilityIdentifier("settings.haptics")
+                    .onChange(of: hapticsEnabled) { _, _ in
+                        HapticFeedback.refreshEnabledState()
+                    }
 
                 NavigationLink("Sounds") {
                     SoundSettingsView()
                 }
 
                 Toggle("Autocorrect", isOn: $autocorrectEnabled)
+                    .accessibilityIdentifier("settings.autocorrect")
 
                 // Reset the learned-words dictionary (#222). Words learned by
                 // the keyboard bypass autocorrect forever, so users need a way
@@ -384,20 +375,6 @@ struct SettingsView: View {
             } header: {
                 Text("Keyboard")
             } footer: {
-                // Only shown once the row is on: the keyboard drops it in landscape by
-                // design (#331) and on iPad by design (#336), and without a word here either
-                // one reads as a bug to the person who just turned it on.
-                //
-                // WHY one sentence covering both rather than a device-aware one, and why the
-                // toggle stays visible on an iPad where it now does nothing: this target has
-                // no device detection at all — `DeviceContext` and DeviceKit are linked to the
-                // keyboard, not here, and `UIDevice.userInterfaceIdiom` reports `.phone` in
-                // compatibility mode, which is the only way an iPad reaches this app. A second
-                // copy of device detection in a second target, for a device class Dictus does
-                // not target, costs more than a sentence that is simply true on both.
-                if numberRowEnabled {
-                    Text("The number row is shown on iPhone in portrait only.")
-                }
                 if !liveActivityEnabled {
                     Text("Dynamic Island and Lock Screen notification are disabled.")
                 }

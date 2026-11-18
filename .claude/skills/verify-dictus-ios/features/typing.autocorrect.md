@@ -20,8 +20,8 @@
 
 ## How to get to it (user POV)
 
-1. Type with the Dictus keyboard in Notes or Messages.
-2. Suggestions appear above the keys; a mistyped word is corrected when you press space.
+1. Type with the Riff keyboard in Notes or Messages to see suggestions above the keys.
+2. Enable **Autocorrect** in Settings → Keyboard for automatic replacements.
 
 ## Driving it with axe + Argent
 
@@ -31,6 +31,7 @@ Measured 2026-10-20 (iPhone 17, iOS 26.5): a misspelling followed by space, type
 D=.claude/skills/verify-dictus-ios/scripts/drive.sh
 E=.claude/skills/verify-dictus-ios/scripts/evidence.sh
 $D set-default dictus.autocorrectDebugLogging -bool YES   # Debug builds: logs each decision
+$D set-default dictus.autocorrectEnabled -bool YES
 $D full-access && $D select-keyboard                     # makes Dictus the current keyboard
 xcrun simctl launch <udid> com.apple.reminders
 $D tap-label Continuer                                   # first-run splash

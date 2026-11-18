@@ -92,7 +92,7 @@ class SuggestionState: ObservableObject {
 
     /// Whether autocorrect is enabled (reads from App Group shared preferences).
     var autocorrectEnabled: Bool {
-        AppGroup.defaults.object(forKey: SharedKeys.autocorrectEnabled) as? Bool ?? true
+        AppGroup.defaults.bool(forKey: SharedKeys.autocorrectEnabled)
     }
 
     /// Updates suggestions based on the current text input state.

@@ -457,11 +457,8 @@ class KeyboardViewController: UIInputViewController {
             reloadKeyboardLayout()
         }
 
-        // Number row (#331): the user can only reach the toggle in DictusApp's Settings, and
-        // this keyboard is not on screen while they are there — so an appearance is the first
-        // moment we can find out. Same guarded shape as the globe above: the rebuild is a full
-        // ~200 ms UICollectionView teardown, so it only runs when the answer actually moved.
-        // With the setting off the value is false in both orientations and this never fires.
+        // A saved number-row preference can still affect the layout. Rebuild only when
+        // the effective value changes to avoid tearing down the collection view on every appearance.
         reloadIfNumberRowChanged(trigger: "viewWillAppear")
 
         // (Re)subscribe to the keyboard area mode here, not in viewDidLoad.

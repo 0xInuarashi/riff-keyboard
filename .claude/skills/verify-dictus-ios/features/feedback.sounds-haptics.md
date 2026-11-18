@@ -10,7 +10,7 @@
 - `sounds.toggle`: « Activer les sons ».
 - `sounds.volume`: Volume.
 - `sounds.per-event`: A sound per event: Début, Fin, Annuler.
-- `haptics.toggle`: « Retour haptique » on key presses.
+- `haptics.toggle`: Opt in to haptic feedback in Settings → Keyboard.
 
 ## How to get to it (user POV)
 

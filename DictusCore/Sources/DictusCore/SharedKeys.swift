@@ -79,7 +79,7 @@ public enum SharedKeys {
     /// Onboarding and app Settings write this preference. The keyboard language
     /// switcher updates only the keyboard language and layout.
     public static let transcriptionLanguage = "dictus.transcriptionLanguage"
-    /// Whether haptic feedback is enabled, default true
+    /// Whether haptic feedback is enabled, default false.
     public static let hapticsEnabled = "dictus.hapticsEnabled"
     /// Whether the user has completed onboarding, default false
     public static let hasCompletedOnboarding = "dictus.hasCompletedOnboarding"
@@ -118,7 +118,7 @@ public enum SharedKeys {
     public static let spokenLanguage = "dictus.spokenLanguage"
 
     // Text prediction preferences (added for Phase 08)
-    /// Whether autocorrect is enabled, default true
+    /// Whether autocorrect is enabled, default false.
     public static let autocorrectEnabled = "dictus.autocorrectEnabled"
 
     // Autocorrect debug logging (DEBUG builds only - see AutocorrectDebugLog).
