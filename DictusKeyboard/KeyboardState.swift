@@ -651,7 +651,9 @@ class KeyboardState: ObservableObject {
         trace.write(to: defaults)
         pendingStopTrace = trace
 
-        defaults.set(currentDocumentIdentifier ?? "", forKey: SharedKeys.dictationDocumentIdentifier)
+        if defaults.string(forKey: SharedKeys.dictationDocumentIdentifier) == nil {
+            defaults.set(currentDocumentIdentifier ?? "", forKey: SharedKeys.dictationDocumentIdentifier)
+        }
         defaults.set(true, forKey: SharedKeys.stopRequested)
         defaults.synchronize()
         DarwinNotificationCenter.post(DarwinNotificationName.stopRecording)

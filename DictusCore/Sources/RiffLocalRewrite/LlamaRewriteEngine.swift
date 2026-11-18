@@ -5,15 +5,21 @@ import llama
 /// App-side engine. CPU inference works while a host app owns the foreground.
 public struct LlamaRewriteEngine: PolishEngineProtocol {
     private let model: LocalRewriteModel
+    private let file: URL?
 
     public init(model: LocalRewriteModel) {
+        self.init(model: model, file: model.fileURL)
+    }
+
+    init(model: LocalRewriteModel, file: URL?) {
         self.model = model
+        self.file = file
     }
 
     public var identifier: String { model.id }
 
     public func polish(raw: String, targetLanguage: SupportedLanguage, task: PolishTask) async throws -> String {
-        guard let file = model.fileURL else { throw RewriteError.modelUnavailable }
+        guard let file else { throw RewriteError.modelUnavailable }
         let instructions = Self.instructions(for: task)
         // All six catalog models use ChatML. Escape role markers in dictated text.
         let input = raw.replacingOccurrences(of: "<|", with: "<\u{200B}|")

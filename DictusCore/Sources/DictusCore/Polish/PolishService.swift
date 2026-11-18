@@ -42,8 +42,8 @@ public final class PolishService {
     /// itself is cheap to instantiate; gating is done dynamically in `polish()`
     /// by `PolishAvailability.isAppleFMAvailable` so a single launch can recover
     /// once iOS flips the state to `.available`.
-    private let localEngine: (@Sendable (LocalRewriteModel) -> PolishEngineProtocol)?
     private let appleFMEngine: PolishEngineProtocol?
+    private let localEngine: (@Sendable (LocalRewriteModel) -> PolishEngineProtocol)?
     private let passthroughEngine: PolishEngineProtocol = PassthroughPolishEngine()
     private let defaults: UserDefaults
     private let sink: PolishEventSink

@@ -237,9 +237,9 @@ public enum SmartModeAvailability {
         }
     }
 
-    /// The Apple Foundation Models state every armability below is read from.
+    /// The configured rewrite engine state every armability below is read from.
     ///
-    /// `PolishAvailability.state`, except in a Debug build whose App Group sets
+    /// `PolishAvailability.rewriteState`, except in a Debug build whose App Group sets
     /// `SharedKeys.debugAppleIntelligenceForced`: a simulator has no Apple Intelligence,
     /// so without it no screen that draws an armable mode can be captured there (#489).
     /// Compiled out of Release with the key, like `PremiumFlags.debugProEntitlementForced`.

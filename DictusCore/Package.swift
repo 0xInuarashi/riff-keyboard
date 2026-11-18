@@ -42,6 +42,7 @@ let package = Package(
             exclude: ["README.md"],
             resources: [.copy("fixtures")]
         ),
+        .testTarget(name: "RiffLocalRewriteTests", dependencies: ["DictusCore", "RiffLocalRewrite"]),
         .testTarget(
             name: "DictusCoreTests",
             dependencies: ["DictusCore", "PolishFidelity"],

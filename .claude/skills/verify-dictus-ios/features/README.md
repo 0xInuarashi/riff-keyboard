@@ -90,6 +90,7 @@ Every ID in this map, in one table: the 18 features first, then their 118 sub-fe
 | `smart-modes.translate` | Pro | non |
 | `smart-modes.pin` | Pro | non |
 | `smart-modes.toggle` | Pro | non |
+| `smart-modes.local-model` | Pro | iPhone for latency and memory |
 | `smart-modes.home-ring` | Pro | non |
 | `history.list` | Pro | non |
 | `history.search` | Pro | non |

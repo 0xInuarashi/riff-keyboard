@@ -1697,6 +1697,16 @@
         }
       }
     },
+    "Apple Intelligence uses the system model on supported devices." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence utilise le modèle système sur les appareils compatibles."
+          }
+        }
+      }
+    },
     "Apple shows this message for every keyboard that asks for Full Access. It is all or nothing: iOS offers no partial access." : {
       "comment" : "Full Access explainer sheet subtitle, above the drawn Apple alert (#704).",
       "localizations" : {
@@ -2701,6 +2711,16 @@
         }
       }
     },
+    "Choose a local model" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisir un modèle local"
+          }
+        }
+      }
+    },
     "Clear" : {
       "localizations" : {
         "de" : {
@@ -3411,6 +3431,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dictée en cours"
+          }
+        }
+      }
+    },
+    "Downloadable local models" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modèles locaux à télécharger"
+          }
+        }
+      }
+    },
+    "Downloads are one-time. Smart Modes run on this iPhone with the selected model." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les téléchargements sont uniques. Les modes intelligents utilisent le modèle choisi sur cet iPhone."
+          }
+        }
+      }
+    },
+    "Downloading model" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargement du modèle"
+          }
+        }
+      }
+    },
+    "Download model" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Télécharger le modèle"
           }
         }
       }
@@ -4656,6 +4716,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Un appui long, un Smart Mode"
+          }
+        }
+      }
+    },
+    "Smart Mode model" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modèle des modes intelligents"
+          }
+        }
+      }
+    },
+    "The model could not be downloaded. Tap it to retry." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec du téléchargement du modèle. Touchez-le pour réessayer."
+          }
+        }
+      }
+    },
+    "Selected" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionné"
           }
         }
       }

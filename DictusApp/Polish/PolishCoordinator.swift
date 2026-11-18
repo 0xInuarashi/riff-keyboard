@@ -17,7 +17,7 @@ import RiffLocalRewrite
 ///
 /// What could not move is the app-only half: the ring's memory cache and retention,
 /// the export, and the prewarm scheduled from the recording. A keyboard dictation
-/// never reaches this object at all.
+/// reaches this object when its selected engine runs in the app.
 @MainActor
 public final class PolishCoordinator {
 
@@ -87,10 +87,10 @@ public final class PolishCoordinator {
                                      localEngine: { LlamaRewriteEngine(model: $0) })
         self.voiceNoteService = PolishService(sink: metricsRing, translationBudget: .app,
                                               appState: Self.applicationStateName,
-                                     localEngine: { LlamaRewriteEngine(model: $0) })
+                                              localEngine: { LlamaRewriteEngine(model: $0) })
         self.voiceNoteBackgroundService = PolishService(sink: metricsRing, translationBudget: .app,
                                                         appState: Self.applicationStateName,
-                                     localEngine: { LlamaRewriteEngine(model: $0) })
+                                              localEngine: { LlamaRewriteEngine(model: $0) })
     }
 
     /// This app's state, read synchronously, for the voice note attempt line (#627).
