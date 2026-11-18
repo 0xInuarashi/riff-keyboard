@@ -7,11 +7,11 @@ final class PersonalizationProfileTests: XCTestCase {
         XCTAssertEqual(tones.count, 6)
         var instructions = Set<String>()
         for tone in tones {
-            let profile = PersonalizationProfile(tone: tone, samples: "Thanks, sounds good!")
+            let profile = PersonalizationProfile(tone: tone, samples: "thanks, sounds good!")
             let saved = try XCTUnwrap(profile.storedValue)
             XCTAssertEqual(PersonalizationProfile(storedValue: saved), profile)
             instructions.insert(profile.prompt.instructions)
-            XCTAssertEqual(profile.prompt.userInstruction.contains("Thanks, sounds good!"), tone == .custom)
+            XCTAssertFalse(profile.prompt.userInstruction.contains("thanks, sounds good!"))
         }
         XCTAssertEqual(instructions.count, 6)
     }
@@ -36,9 +36,21 @@ final class PersonalizationProfileTests: XCTestCase {
         XCTAssertEqual(resolved.id, base.id)
         XCTAssertEqual(resolved.contract, base.contract)
         XCTAssertTrue(resolved.isPinned)
-        XCTAssertTrue(resolved.prompt.userInstruction.contains(samples.debugDescription))
+        XCTAssertTrue(resolved.prompt.userInstruction.contains("casual, conversational"))
+        XCTAssertFalse(resolved.prompt.userInstruction.contains("works for me!"))
         XCTAssertFalse(base.prompt.userInstruction.contains("works for me!"))
         XCTAssertEqual(PersonalizationProfile.resolve(SmartModeCatalogue.message, defaults: defaults),
                        SmartModeCatalogue.message)
+    }
+
+    func testCustomSamplesChangeStyleCuesWithoutPassingThroughTheirText() {
+        let informal = PersonalizationProfile(tone: .custom, samples: "hey! got a sec?\nthanks!")
+        let formal = PersonalizationProfile(tone: .custom, samples: """
+            I would appreciate confirmation when you have finished reviewing the invoice.
+            Please let me know if I can provide any further information.
+            """)
+        XCTAssertTrue(informal.prompt.userInstruction.contains("contractions"))
+        XCTAssertTrue(formal.prompt.userInstruction.contains("professional"))
+        XCTAssertFalse(formal.prompt.userInstruction.contains("invoice"))
     }
 }
