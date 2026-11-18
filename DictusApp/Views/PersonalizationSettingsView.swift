@@ -15,8 +15,7 @@ struct PersonalizationSettingsView: View {
     }
 
     private var profile: PersonalizationProfile {
-        let savedSamples = PersonalizationProfile(storedValue: storedProfile).samples
-        return PersonalizationProfile(tone: tone, samples: tone == .custom ? samples : savedSamples)
+        PersonalizationProfile(tone: tone, samples: samples)
     }
 
     var body: some View {
@@ -35,7 +34,7 @@ struct PersonalizationSettingsView: View {
                 Text("Tone")
             }
 
-            if tone == .custom {
+            if tone == .custom || !profile.isValid {
                 Section {
                     TextEditor(text: $samples)
                         .frame(minHeight: 148)

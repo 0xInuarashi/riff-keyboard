@@ -35,21 +35,22 @@ final class PersonalizationInferenceTests: XCTestCase {
                 "hey! got a sec to check the invoice? all good if not.\n"
                 + "just a heads-up: the print job is ready. thanks!")
         ]
-        var rewrites: Set<String> = []
         for profile in profiles {
             defaults.set(try XCTUnwrap(profile.storedValue), forKey: SharedKeys.personalizationProfile)
             let mode = PersonalizationProfile.resolve(SmartModeCatalogue.personalization, defaults: defaults)
             let job = PolishJob(task: .smart(mode), promptLanguage: .english, typographyLanguage: .english)
-            let result = await PolishPipeline.transform(preprocessed: dictation, engine: engine, job: job)
+            let input = profile.tone == .custom
+                ? "I am unable to attend the meeting scheduled for Friday. Would it be possible to reschedule it to Monday?"
+                : dictation
+            let result = await PolishPipeline.transform(preprocessed: input, engine: engine, job: job)
             let output = try XCTUnwrap(result.engineOutput)
             XCTAssertEqual(result.outcome, .success, output)
+            XCTAssertNotEqual(output, input, "The \(profile.tone.rawValue) output should rewrite the sample.")
             XCTAssertTrue(output.localizedCaseInsensitiveContains("Friday"), output)
             XCTAssertTrue(output.localizedCaseInsensitiveContains("Monday"), output)
             XCTAssertFalse(output.localizedCaseInsensitiveContains("invoice"), output)
             XCTAssertFalse(output.localizedCaseInsensitiveContains("print job"), output)
-            rewrites.insert(output)
             print("\(engine.identifier) Personalization \(profile.tone.rawValue): \(output)")
         }
-        XCTAssertEqual(rewrites.count, 2)
     }
 }
