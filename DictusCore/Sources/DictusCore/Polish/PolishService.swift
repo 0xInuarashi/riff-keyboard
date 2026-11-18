@@ -160,7 +160,9 @@ public final class PolishService {
         // a warm-up is not a dictation. Warming the session of a mode that turns out
         // to be unrunnable costs nothing — the engine only exists where the SDK does,
         // and the dictation resolves the mode again from scratch.
-        let armedTask = SmartModeStore.armedMode.map(PolishTask.smart)
+        let armedTask = SmartModeStore.armedMode.map {
+            PolishTask.smart(PersonalizationProfile.resolve($0, defaults: defaults))
+        }
         guard PolishGatePolicy.runsDespiteToggle(
             task: armedTask ?? .natural,
             polishEnabled: defaults.bool(forKey: SharedKeys.polishEnabled)
@@ -342,7 +344,7 @@ public final class PolishService {
             raw: raw,
             engineRaw: engineRaw,
             languagePolicy: languagePolicy,
-            smartMode: smartMode,
+            smartMode: smartMode.map { PersonalizationProfile.resolve($0, defaults: defaults) },
             recordingDuration: recordingDuration,
             methodStart: methodStart,
             detectedCode: detectedCode,

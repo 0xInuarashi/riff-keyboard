@@ -272,6 +272,9 @@ public enum SharedKeys {
     /// from `SmartModeCatalogue.defaultPinnedIdentifiers`; an empty array is a real
     /// choice and is honoured.
     public static let smartModePinned = "dictus.smartModePinned"
+
+    /// Encoded `PersonalizationProfile` shared by both rewrite processes.
+    public static let personalizationProfile = "dictus.personalizationProfile"
     /// Bool: whether the user has ever completed the long-press fan gesture.
     ///
     /// The only thing it does is retire the discovery hint from the toolbar's centre

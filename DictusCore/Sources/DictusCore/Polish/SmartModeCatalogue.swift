@@ -63,6 +63,8 @@ public enum SmartModeCatalogue {
     /// the metrics event and the per-dictation App Group snapshot.
     public static let summaryIdentifier = "summary"
 
+    public static let personalizationIdentifier = "personalization"
+
     /// Identifier of the Translate mode targeting `language`.
     public static func translateIdentifier(target: SupportedLanguage) -> String {
         "translate.\(target.rawValue)"
@@ -488,7 +490,22 @@ public enum SmartModeCatalogue {
     /// than inserted, so no row a user has already read moves, and not in the seed,
     /// which is still full.
     public static let builtIns: [SmartMode] =
-        [structured, notes, message, summary] + SupportedLanguage.allCases.map { translate(to: $0) }
+        [structured, notes, message, summary, personalization] + SupportedLanguage.allCases.map { translate(to: $0) }
+
+    public static let personalization = SmartMode(
+        id: personalizationIdentifier,
+        displayName: "Personalization",
+        icon: "person.crop.circle",
+        prompt: PersonalizationProfile().prompt,
+        contract: PolishAcceptanceContract(
+            minimumLengthRatio: 0.55,
+            maximumLengthRatio: 1.8,
+            outputLanguage: .sameAsInput,
+            requiresGroundedNames: true,
+            requiresAlignedPrefix: false
+        ),
+        floorBehaviour: .insertRawText
+    )
 
     /// Every mode, with the user's pin state stamped on each row.
     public static var all: [SmartMode] {

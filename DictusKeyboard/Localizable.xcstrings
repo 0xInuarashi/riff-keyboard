@@ -1,6 +1,28 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Personalization" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalisierung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalización"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnalisation"
+          }
+        }
+      }
+    },
     "%@ is unavailable. Dictated as Normal." : {
       "comment" : "Shown after a dictation whose armed Smart Mode did not run for a reason the user cannot act on. The placeholder is the mode's name.",
       "localizations" : {

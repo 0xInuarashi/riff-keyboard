@@ -64,6 +64,8 @@ extension SmartMode {
                 localized: "Summary",
                 comment: "Name of the Smart Mode that condenses a dictation into its gist, in a few sentences of prose (#571)."
             )
+        case SmartModeCatalogue.personalizationIdentifier:
+            return String(localized: "Personalization")
         default:
             return fallback
         }

@@ -159,6 +159,8 @@ struct SmartModePickPage: View {
         case SmartModeCatalogue.summaryIdentifier:
             return Text("The gist in a few sentences.",
                         comment: "Onboarding Smart Mode pick: one-line explanation of the Summary mode (#677).")
+        case SmartModeCatalogue.personalizationIdentifier:
+            return Text("Match your tone.")
         default:
             // A mode added to `builtIns` later shows its name alone until it gets a line.
             return Text(verbatim: "")

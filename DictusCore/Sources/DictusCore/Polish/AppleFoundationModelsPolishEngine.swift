@@ -150,9 +150,11 @@ public final class AppleFoundationModelsPolishEngine: PolishEngineProtocol, Send
     public func contextFit(input: String,
                            targetLanguage: SupportedLanguage,
                            task: PolishTask) -> PolishContextFit {
-        Self.contextBudget.fit(
+        let framedInput = task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier
+            ? task.userTurn(raw: input) : input
+        return Self.contextBudget.fit(
             instructions: resolvedInstructions(task: task, language: targetLanguage),
-            input: input
+            input: framedInput
         )
     }
 

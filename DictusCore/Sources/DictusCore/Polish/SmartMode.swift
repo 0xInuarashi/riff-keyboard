@@ -435,15 +435,18 @@ public struct SmartMode: Equatable, Sendable, Codable, Identifiable {
     public func resolvingExamples(forTranscriptLanguage code: String?) -> SmartMode {
         let resolved = prompt.instructions(forTranscriptLanguage: code)
         guard resolved != prompt.instructions else { return self }
-        return SmartMode(
-            id: id, displayName: displayName, icon: icon, badge: badge,
-            prompt: SmartModePrompt(
-                instructions: resolved,
-                userInstruction: prompt.userInstruction,
-                outputMarker: prompt.outputMarker,
-                shortOutputBlockLimit: prompt.shortOutputBlockLimit,
-                localizedInstructions: prompt.localizedInstructions
-            ),
+        return replacingPrompt(SmartModePrompt(
+            instructions: resolved,
+            userInstruction: prompt.userInstruction,
+            outputMarker: prompt.outputMarker,
+            shortOutputBlockLimit: prompt.shortOutputBlockLimit,
+            localizedInstructions: prompt.localizedInstructions
+        ))
+    }
+
+    func replacingPrompt(_ prompt: SmartModePrompt) -> SmartMode {
+        SmartMode(
+            id: id, displayName: displayName, icon: icon, badge: badge, prompt: prompt,
             contract: contract, floorBehaviour: floorBehaviour, isPinned: isPinned,
             minimumInputCharacters: minimumInputCharacters,
             minimumListItems: minimumListItems

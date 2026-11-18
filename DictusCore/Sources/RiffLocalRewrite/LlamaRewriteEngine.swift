@@ -19,8 +19,16 @@ public struct LlamaRewriteEngine: PolishEngineProtocol {
 
     public func polish(raw: String, targetLanguage: SupportedLanguage, task: PolishTask) async throws -> String {
         guard let file else { throw LocalInferenceError.modelUnavailable }
-        let instructions = Self.instructions(for: task)
-        let prompt = ChatML.prompt(instructions: instructions, messages: [.init(role: .user, text: raw)],
+        let instructions: String
+        let input: String
+        if let mode = task.smartMode, mode.id == SmartModeCatalogue.personalizationIdentifier {
+            instructions = mode.prompt.instructions
+            input = task.userTurn(raw: raw)
+        } else {
+            instructions = Self.instructions(for: task)
+            input = raw
+        }
+        let prompt = ChatML.prompt(instructions: instructions, messages: [.init(role: .user, text: input)],
                                    suppressesThinking: model.suppressesThinking)
         return try await LlamaSession.shared.generate(prompts: [prompt], file: file, mode: .rewrite).text
     }
