@@ -40,7 +40,8 @@ final class PersonalizationInferenceTests: XCTestCase {
             let mode = PersonalizationProfile.resolve(SmartModeCatalogue.personalization, defaults: defaults)
             let job = PolishJob(task: .smart(mode), promptLanguage: .english, typographyLanguage: .english)
             let input = profile.tone == .custom
-                ? "I am unable to attend the meeting scheduled for Friday. Would it be possible to reschedule it to Monday?"
+                ? "I will be unable to attend the meeting scheduled for Friday, "
+                    + "would it be possible to reschedule it to Monday? I can send the agenda before then."
                 : dictation
             let result = await PolishPipeline.transform(preprocessed: input, engine: engine, job: job)
             let output = try XCTUnwrap(result.engineOutput)
@@ -48,6 +49,10 @@ final class PersonalizationInferenceTests: XCTestCase {
             XCTAssertNotEqual(output, input, "The \(profile.tone.rawValue) output should rewrite the sample.")
             XCTAssertTrue(output.localizedCaseInsensitiveContains("Friday"), output)
             XCTAssertTrue(output.localizedCaseInsensitiveContains("Monday"), output)
+            XCTAssertTrue(output.contains("?"), output)
+            if profile.tone == .custom {
+                XCTAssertTrue(output.localizedCaseInsensitiveContains("agenda"), output)
+            }
             XCTAssertFalse(output.localizedCaseInsensitiveContains("invoice"), output)
             XCTAssertFalse(output.localizedCaseInsensitiveContains("print job"), output)
             print("\(engine.identifier) Personalization \(profile.tone.rawValue): \(output)")

@@ -118,6 +118,7 @@ public enum PolishGuardrail {
         /// every other check because it is the one that answers "the model changed
         /// what the speaker said" rather than "the model added something".
         case lostWord
+        case lostQuestion
 
         public var description: String { rawValue }
     }

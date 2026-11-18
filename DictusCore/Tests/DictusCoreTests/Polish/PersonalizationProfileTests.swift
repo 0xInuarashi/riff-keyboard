@@ -53,4 +53,24 @@ final class PersonalizationProfileTests: XCTestCase {
         XCTAssertTrue(formal.prompt.userInstruction.contains("professional"))
         XCTAssertFalse(formal.prompt.userInstruction.contains("invoice"))
     }
+
+    func testQuestionLossFallsBackToTheTranscript() async {
+        let input = "Can we move the meeting to Monday?"
+        let job = PolishJob(
+            task: .smart(SmartModeCatalogue.personalization),
+            promptLanguage: .english,
+            typographyLanguage: .english
+        )
+        let result = await PolishPipeline.transform(preprocessed: input, engine: QuestionDroppingEngine(), job: job)
+        XCTAssertEqual(result.rejectedCheck, .lostQuestion)
+        XCTAssertEqual(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job), input)
+    }
+}
+
+private struct QuestionDroppingEngine: PolishEngineProtocol {
+    let identifier = "question-dropping-test"
+
+    func polish(raw: String, targetLanguage: SupportedLanguage, task: PolishTask) async throws -> String {
+        "We can move the meeting to Monday."
+    }
 }

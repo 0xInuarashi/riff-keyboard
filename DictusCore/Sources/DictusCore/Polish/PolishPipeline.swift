@@ -154,10 +154,8 @@ public enum PolishPipeline {
             }
             // Guardrail baseline is the preprocessed text — what the engine
             // actually saw (modulo the newline marker the post-pass undid).
-            // The seven output checks, in the order they cost: a character ratio,
-            // then two `NaturalLanguage` passes, then four word-set comparisons. Each
-            // names itself in the result so an export can count the seven apart
-            // (#466) — `rejectedGuardrail` is one outcome for seven questions.
+            // Each output check names itself in the result so an export can count
+            // what caused a guardrail rejection.
             //
             // The word-set checks are ordered by SPECIFICITY rather than by cost,
             // which is the same for all three. A chat preamble fails two of them, and
@@ -174,6 +172,9 @@ public enum PolishPipeline {
                 raw: preprocessed, polished: polished, contract: job.task.contract
             ) {
                 refused = .length
+            } else if job.task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier,
+                      containsQuestion(preprocessed), !containsQuestion(polished) {
+                refused = .lostQuestion
             } else if !languageGuardrailPasses(polished: polished, preprocessed: preprocessed, job: job) {
                 refused = .language
             } else if !groundingGuardrailPasses(polished: polished, preprocessed: preprocessed, job: job) {
@@ -222,6 +223,10 @@ public enum PolishPipeline {
             return Result(engineOutput: nil, outcome: .engineFailed, engineMs: engineMs, postprocessMs: 0,
                           failureReason: engine.failureReason(for: error))
         }
+    }
+
+    private static func containsQuestion(_ text: String) -> Bool {
+        text.contains { "?？؟".contains($0) }
     }
 
     /// Language guardrail dispatch, off the task's contract (#79).

@@ -57,6 +57,8 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
         let instructions = """
             You are a TEXT TRANSFORMATION FUNCTION. Rewrite the dictation in the requested tone.
             Keep its language, meaning, speaker, recipient, facts, names, dates, and numbers.
+            Keep questions as questions and requests as requests. Preserve the original format.
+            Do not invent greetings, sign-offs, headings, or placeholders.
             Return only the rewritten dictation.
             """
         let userInstruction = effectiveTone == .custom
