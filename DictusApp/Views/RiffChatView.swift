@@ -50,21 +50,22 @@ struct RiffChatView: View {
         .navigationTitle("Chat")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
+            ToolbarItem(placement: .principal) {
                 Button {
                     composing = false
                     showsModels = true
                 } label: {
-                    Label {
+                    HStack(spacing: 5) {
                         if let name = model?.name ?? systemModelName {
                             Text(name)
                         } else {
                             Text("Choose model")
                         }
-                    } icon: {
-                        Image(systemName: "cpu")
+                        Image(systemName: "chevron.down")
+                            .font(.caption2.weight(.semibold))
+                            .accessibilityHidden(true)
                     }
-                    .font(.subheadline.weight(.medium))
+                    .font(.headline)
                     .lineLimit(1)
                 }
                 .disabled(chat.isGenerating)
@@ -81,9 +82,7 @@ struct RiffChatView: View {
             Button("New chat", role: .destructive) { chat.reset() }
             Button("Cancel", role: .cancel) {}
         }
-        .sheet(isPresented: $showsModels, onDismiss: {
-            appleModelName = PolishAvailability.appleSystemModelName
-        }) {
+        .sheet(isPresented: $showsModels, onDismiss: refreshAppleModelName, content: {
             NavigationStack {
                 OnDeviceModelPicker(
                     selection: $selection,
@@ -97,13 +96,17 @@ struct RiffChatView: View {
                     }
                 }
             }
-        }
-        .onAppear { appleModelName = PolishAvailability.appleSystemModelName }
+        })
+        .onAppear(perform: refreshAppleModelName)
         .onDisappear { chat.stop() }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { appleModelName = PolishAvailability.appleSystemModelName }
+            if phase == .active { refreshAppleModelName() }
             if phase == .background { chat.stop() }
         }
+    }
+
+    private func refreshAppleModelName() {
+        appleModelName = PolishAvailability.appleSystemModelName
     }
 
     private var conversation: some View {
