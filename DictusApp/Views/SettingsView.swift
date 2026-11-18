@@ -68,10 +68,6 @@ struct SettingsView: View {
     @AppStorage(SharedKeys.warmEngineTimeout, store: UserDefaults(suiteName: AppGroup.identifier))
     private var warmEngineTimeout: WarmEngineTimeoutOption = .defaultOption
 
-    /// Post-STT polish toggle (issue #141). Off by default — opt-in measurement at round 1.
-    @AppStorage(SharedKeys.polishEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var polishEnabled = false
-
     @AppStorage(LocalRewriteModel.preferenceKey, store: AppGroup.defaults)
     private var rewriteModel = LocalRewriteModel.apple
 
@@ -123,7 +119,7 @@ struct SettingsView: View {
     }
 
     /// Whether the currently active model uses the Parakeet engine (CTC/TDT).
-    /// Parakeet auto-detects language — the language picker has no effect on it.
+    /// Parakeet detects the language from the audio regardless of the picker selection.
     ///
     /// Nemotron is NOT Parakeet here (#558), even though both run through FluidAudio: the
     /// setting forces Nemotron's language, so the "only applies to Whisper models" caveat
@@ -274,10 +270,7 @@ struct SettingsView: View {
                         Text("Smart Mode model")
                     }
                 }
-                if LocalRewriteModel.selected != nil || PolishAvailability.isToggleVisible {
-                    Toggle("Polish transcription", isOn: $polishEnabled)
-                    if LocalRewriteModel.selected == nil { polishStateFooter }
-                }
+                .accessibilityIdentifier("settings.smartModeModel")
 
                 // Visible for a subscriber, and for anyone who still has saved
                 // transcriptions after an entitlement went away (#70). See
@@ -644,57 +637,6 @@ struct SettingsView: View {
                 isExporting = false
                 exportURL = tempURL
             }
-        }
-    }
-
-    /// Footer row under the polish toggle — surfaces the specific reason
-    /// Apple Foundation Models is or isn't usable. When the state is `.available`
-    /// no footer is shown (the toggle alone is enough).
-    @ViewBuilder
-    private var polishStateFooter: some View {
-        let state = PolishAvailability.state
-        if state != .available {
-            VStack(alignment: .leading, spacing: 6) {
-                Text(polishStateMessage(for: state))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                if PolishAvailability.canOpenSystemSettings(for: state) {
-                    Button {
-                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                            UIApplication.shared.open(url)
-                        }
-                    } label: {
-                        Text("Open iPhone Settings")
-                            .font(.caption.bold())
-                    }
-                }
-            }
-            .padding(.vertical, 2)
-        }
-    }
-
-    /// User-facing explanation per availability state. Strings live in this
-    /// view so Localizable.xcstrings can auto-detect them.
-    ///
-    /// WHY `LocalizedStringKey` (#792): `Text` shows a `String` verbatim, so these
-    /// sentences stayed English on a French iPhone. A key is looked up in the catalog,
-    /// and the interpolated `reason` below becomes its `%@`.
-    private func polishStateMessage(for state: PolishAvailabilityState) -> LocalizedStringKey {
-        switch state {
-        case .available:
-            return ""
-        case .appleIntelligenceNotEnabled:
-            return "Apple Intelligence is required for polish. Enable it in iPhone Settings → Apple Intelligence & Siri. Apple requires Siri and your iPhone to use the same language — if Siri is in English and your iPhone is in French (or vice versa), Apple Intelligence stays off."
-        case .modelNotReady:
-            return "The Apple Intelligence model is downloading on your device. Try again in a few minutes."
-        case .deviceNotEligible:
-            return "Apple Intelligence isn't supported on this device. Polish requires an iPhone 15 Pro / 15 Pro Max or newer."
-        case .osTooOld:
-            return "Polish requires iOS 26 or later."
-        case .sdkMissing:
-            return "Polish isn't available in this build of Riff."
-        case .other(let reason):
-            return "Apple Intelligence is unavailable (\(reason))."
         }
     }
 

@@ -1,6 +1,7 @@
 import CryptoKit
 import DictusCore
 import SwiftUI
+import UIKit
 
 struct LocalRewriteSettings: View {
     @AppStorage(LocalRewriteModel.preferenceKey, store: AppGroup.defaults)
@@ -10,7 +11,8 @@ struct LocalRewriteSettings: View {
         OnDeviceModelPicker(
             selection: $selection,
             title: "Smart Mode model",
-            caption: "Downloads are one-time. Smart Modes run on this iPhone with the selected model."
+            caption: "Smart Modes and transcription cleanup run on this iPhone with the selected model.",
+            showsPolishTranscription: true
         )
     }
 }
@@ -20,20 +22,25 @@ struct OnDeviceModelPicker: View {
     let title: LocalizedStringKey
     let caption: LocalizedStringKey
     let allowsUnavailableApple: Bool
+    let showsPolishTranscription: Bool
 
     @ObservedObject private var downloads = LocalRewriteDownloads.shared
 
     init(selection: Binding<String>, title: LocalizedStringKey, caption: LocalizedStringKey,
-         allowsUnavailableApple: Bool = true) {
+         allowsUnavailableApple: Bool = true, showsPolishTranscription: Bool = false) {
         self._selection = selection
         self.title = title
         self.caption = caption
         self.allowsUnavailableApple = allowsUnavailableApple
+        self.showsPolishTranscription = showsPolishTranscription
     }
 
     var body: some View {
         let systemModelName = PolishAvailability.appleSystemModelName
         List {
+            if showsPolishTranscription {
+                PolishTranscriptionSection(usesLocalModel: LocalRewriteModel.selected != nil)
+            }
             Section {
                 Button {
                     selection = LocalRewriteModel.apple
@@ -103,6 +110,74 @@ struct OnDeviceModelPicker: View {
             } else if !installed {
                 Image(systemName: "arrow.down.circle").accessibilityLabel("Download model")
             }
+        }
+    }
+}
+
+private struct PolishTranscriptionSection: View {
+    let usesLocalModel: Bool
+
+    @AppStorage(SharedKeys.polishEnabled, store: AppGroup.defaults)
+    private var polishEnabled = false
+
+    var body: some View {
+        if usesLocalModel || PolishAvailability.isToggleVisible {
+            Section {
+                Toggle("Polish transcription", isOn: $polishEnabled)
+                    .accessibilityIdentifier("settings.polishTranscription")
+                if !usesLocalModel { polishStateFooter }
+            }
+        }
+    }
+
+    /// Footer row under the polish toggle — surfaces the specific reason
+    /// Apple Foundation Models is or isn't usable. When the state is `.available`
+    /// no footer is shown (the toggle alone is enough).
+    @ViewBuilder
+    private var polishStateFooter: some View {
+        let state = PolishAvailability.state
+        if state != .available {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(polishStateMessage(for: state))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                if PolishAvailability.canOpenSystemSettings(for: state) {
+                    Button {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    } label: {
+                        Text("Open iPhone Settings")
+                            .font(.caption.bold())
+                    }
+                }
+            }
+            .padding(.vertical, 2)
+        }
+    }
+
+    /// User-facing explanation per availability state. Strings live in this
+    /// view so Localizable.xcstrings can auto-detect them.
+    ///
+    /// WHY `LocalizedStringKey` (#792): `Text` shows a `String` verbatim, so these
+    /// sentences stayed English on a French iPhone. A key is looked up in the catalog,
+    /// and the interpolated `reason` below becomes its `%@`.
+    private func polishStateMessage(for state: PolishAvailabilityState) -> LocalizedStringKey {
+        switch state {
+        case .available:
+            return ""
+        case .appleIntelligenceNotEnabled:
+            return "Apple Intelligence is required for polish. Enable it in iPhone Settings → Apple Intelligence & Siri. Apple requires Siri and your iPhone to use the same language — if Siri is in English and your iPhone is in French (or vice versa), Apple Intelligence stays off."
+        case .modelNotReady:
+            return "The Apple Intelligence model is downloading on your device. Try again in a few minutes."
+        case .deviceNotEligible:
+            return "Apple Intelligence isn't supported on this device. Polish requires an iPhone 15 Pro / 15 Pro Max or newer."
+        case .osTooOld:
+            return "Polish requires iOS 26 or later."
+        case .sdkMissing:
+            return "Polish isn't available in this build of Riff."
+        case .other(let reason):
+            return "Apple Intelligence is unavailable (\(reason))."
         }
     }
 }

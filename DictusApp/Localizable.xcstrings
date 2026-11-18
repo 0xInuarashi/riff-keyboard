@@ -3489,16 +3489,6 @@
         }
       }
     },
-    "Downloads are one-time. Smart Modes run on this iPhone with the selected model." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les téléchargements sont uniques. Les modes intelligents utilisent le modèle choisi sur cet iPhone."
-          }
-        }
-      }
-    },
     "Downloading model" : {
       "localizations" : {
         "fr" : {
@@ -4856,6 +4846,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer"
+          }
+        }
+      }
+    },
+    "Smart Modes and transcription cleanup run on this iPhone with the selected model." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smart Modes und die Nachbearbeitung laufen mit dem ausgewählten Modell auf diesem iPhone."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los modos inteligentes y la corrección de transcripciones usan el modelo seleccionado en este iPhone."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les modes intelligents et la correction de la transcription utilisent le modèle choisi sur cet iPhone."
           }
         }
       }
