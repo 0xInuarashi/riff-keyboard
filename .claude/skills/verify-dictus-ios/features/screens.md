@@ -36,7 +36,7 @@ Captures are in [`docs/agents/screens/`](../../../../docs/agents/screens/), one 
 | `app.settings.licences` | Réglages → Licences | … tap-label Licences | diagnostics.logs | [oui](../../../../docs/agents/screens/app.settings.licences.png) |
 | `app.settings.polish-debug` | Polish debug screen | Réglages → tap « Version » five times | polish | non |
 | `app.pro.hub` | Dictus Pro hub (#216, #913): large hero with « Votre voix, sans limites », four large cards with « Activé » and a chevron, no bar, floating cross `proHub.close`. During the trial: « Plus que N jours d’essai gratuit » and « Continuer avec Dictus Pro » (`proHub.continueToOffers`), which opens `app.paywall` full screen; subscriber and lifetime: the membership card | Pro on, Réglages → tap-label « Dictus Pro, Pro actif » (trial: « Dictus Pro, Pro · 14 jours restants ») | pro.subscription | [oui](../../../../docs/agents/evidence/913/after-hero-trial-hub-iphone17promax-fr.png) (trial), [forced Pro](../../../../docs/agents/evidence/913/after-hub-forced-pro-light-iphone17promax-fr.png) |
-| `app.settings.smart-mode-model` | Local rewrite model picker | Settings → Smart Mode model | smart-modes.local-model | non |
+| `app.settings.smart-mode-model` | Local rewrite model picker | Settings → Smart Mode model | smart-modes.local-model | [English, iOS 18.3](../../../../docs/agents/screens/app.settings.smart-mode-model.png) |
 | `app.pro.smart-modes` | Pro → Mode intelligent (pinned modes) | hub → « Mode intelligent, … » | smart-modes | [oui](../../../../docs/agents/screens/app.pro.smart-modes.png) |
 | `app.pro.history` | Pro → Historique (switch, demo) | hub → « Recherche dans l’historique, … » | history | [oui](../../../../docs/agents/screens/app.pro.history.png) |
 | `app.pro.vocabulary` | Pro → Vocabulaire (switch, « Comment ça marche » card that names « Analyser mes transcriptions », terms with « Remplace : … » or « En attente d’erreurs à corriger », « Ajouter un terme », « Analyser mes transcriptions ») | hub → « Vocabulaire, … » | vocabulary | [oui](../../../../docs/agents/screens/app.pro.vocabulary.png) |
@@ -66,7 +66,7 @@ Captures are in [`docs/agents/screens/`](../../../../docs/agents/screens/), one 
 | `share.voice-note` | Share extension sheet | Partager → Dictus from a messaging app | voice-notes | non |
 | `widget.live-activity` | Live Activity in the Dynamic Island | leave Dictus with standby on (not reproduced) | live-activity | non |
 
-45 of 53 screens captured. Each « non » is explained in the Gotchas of the feature it belongs to: a model download, a recording of the Mac's microphone, Apple Intelligence, StoreKit or a messaging app.
+46 of 54 screens captured. Each « non » is explained in the Gotchas of the feature it belongs to: a model download, a recording of the Mac's microphone, Apple Intelligence, StoreKit or a messaging app.
 
 ## The keyboard's top bar: states and transitions
 
