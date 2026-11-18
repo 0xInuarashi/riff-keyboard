@@ -90,7 +90,7 @@ public final class PolishCoordinator {
                                               localEngine: { LlamaRewriteEngine(model: $0) })
         self.voiceNoteBackgroundService = PolishService(sink: metricsRing, translationBudget: .app,
                                                         appState: Self.applicationStateName,
-                                              localEngine: { LlamaRewriteEngine(model: $0) })
+                                                        localEngine: { LlamaRewriteEngine(model: $0) })
     }
 
     /// This app's state, read synchronously, for the voice note attempt line (#627).

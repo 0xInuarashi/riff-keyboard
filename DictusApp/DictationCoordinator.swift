@@ -1301,22 +1301,6 @@ class DictationCoordinator: ObservableObject {
         DarwinNotificationCenter.post(DarwinNotificationName.statusChanged)
     }
 
-    /// Clean up recording-related App Group keys after recording completes or is cancelled.
-    private func cleanupRecordingKeys() {
-        // NOTE: Do NOT clear lastTranscription here — the keyboard extension reads it
-        // asynchronously via Darwin notification. Clearing it here would race with the
-        // keyboard and delete the transcription before it can be inserted.
-        // Stale transcriptions are cleaned up on app launch (5-min threshold in init).
-        defaults.removeObject(forKey: SharedKeys.waveformEnergy)
-        defaults.removeObject(forKey: SharedKeys.recordingElapsedSeconds)
-        defaults.removeObject(forKey: SharedKeys.recordingHeartbeat)
-        defaults.removeObject(forKey: SharedKeys.dictationDocumentIdentifier)
-        defaults.set(false, forKey: SharedKeys.stopRequested)
-        defaults.set(false, forKey: SharedKeys.cancelRequested)
-        defaults.set(false, forKey: SharedKeys.coldStartActive)
-        defaults.synchronize()
-    }
-
     /// Reads the list of downloaded model identifiers from App Group UserDefaults.
     private func readDownloadedModels() -> [String] {
         guard let data = defaults.data(forKey: SharedKeys.downloadedModels),

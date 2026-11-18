@@ -346,6 +346,22 @@ extension DictationCoordinator {
         )
     }
 
+    /// Clean up recording-related App Group keys after recording completes or is cancelled.
+    func cleanupRecordingKeys() {
+        // NOTE: Do NOT clear lastTranscription here — the keyboard extension reads it
+        // asynchronously via Darwin notification. Clearing it here would race with the
+        // keyboard and delete the transcription before it can be inserted.
+        // Stale transcriptions are cleaned up on app launch (5-min threshold in init).
+        defaults.removeObject(forKey: SharedKeys.waveformEnergy)
+        defaults.removeObject(forKey: SharedKeys.recordingElapsedSeconds)
+        defaults.removeObject(forKey: SharedKeys.recordingHeartbeat)
+        defaults.removeObject(forKey: SharedKeys.dictationDocumentIdentifier)
+        defaults.set(false, forKey: SharedKeys.stopRequested)
+        defaults.set(false, forKey: SharedKeys.cancelRequested)
+        defaults.set(false, forKey: SharedKeys.coldStartActive)
+        defaults.synchronize()
+    }
+
     // MARK: The Live Activity, waiting on the other process (decision 6)
 
     /// Start waiting for the keyboard to finish the dictation.

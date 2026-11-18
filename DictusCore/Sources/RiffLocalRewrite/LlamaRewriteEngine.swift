@@ -139,8 +139,8 @@ private actor LlamaSession {
             try checkBudget()
             var token = llama_sampler_sample(sampler, context, -1)
             if llama_vocab_is_eog(vocab, token) {
-                let text = String(decoding: output, as: UTF8.self).trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !text.isEmpty else { throw RewriteError.incompleteOutput }
+                guard let text = String(data: output, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines),
+                      !text.isEmpty else { throw RewriteError.incompleteOutput }
                 return text
             }
             let length = piece.withUnsafeMutableBufferPointer { buffer in

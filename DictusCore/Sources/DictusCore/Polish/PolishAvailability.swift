@@ -38,7 +38,6 @@ public enum PolishAvailability {
         LocalRewriteModel.selected == nil ? state : .available
     }
 
-
     /// Detailed availability state for the current device + OS + Apple
     /// Intelligence configuration.
     public static var state: PolishAvailabilityState {
