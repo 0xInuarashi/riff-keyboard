@@ -22,10 +22,7 @@ public struct LlamaRewriteEngine: PolishEngineProtocol {
         let instructions: String
         let input: String
         if let mode = task.smartMode, mode.id == SmartModeCatalogue.personalizationIdentifier {
-            instructions = """
-                You are a text editor. Return only the rewritten text.
-                Preserve the facts and language of the dictation. Keep questions and requests. Keep offers as offers, for example "I can send" stays an offer.
-                """
+            instructions = "You are a text editor. Add punctuation and fix capitalization without changing words."
             input = "\(mode.prompt.userInstruction)\n\n\(raw)"
         } else {
             instructions = Self.instructions(for: task)

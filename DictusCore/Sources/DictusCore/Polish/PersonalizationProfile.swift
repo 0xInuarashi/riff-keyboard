@@ -8,17 +8,17 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
         fileprivate var instruction: String {
             switch self {
             case .superCasual:
-                return "Rewrite this passage in a very informal tone, with short sentences and natural contractions."
+                return "Use lowercase for a very informal style. Keep question marks and use light punctuation."
             case .casual:
-                return "Rewrite this passage in a friendly, conversational tone."
+                return "Use conversational punctuation and ordinary capitalization."
             case .excited:
-                return "Rewrite this passage in an upbeat, enthusiastic tone without overstating anything."
+                return "Use ordinary capitalization and an occasional exclamation mark to show enthusiasm."
             case .formal:
-                return "Rewrite this passage in a formal, professional tone."
+                return "Use standard capitalization and punctuation:"
             case .relaxed:
-                return "Rewrite this passage in a calm, easygoing tone."
+                return "Use ordinary capitalization, with periods and commas for a calm tone."
             case .custom:
-                return "Rewrite this passage to match the user's writing style."
+                return "Use the capitalization and punctuation style of the writing samples."
             }
         }
     }
@@ -55,12 +55,10 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
     var prompt: SmartModePrompt {
         let effectiveTone = isValid ? tone : .casual
         let instructions = """
-            You are a TEXT TRANSFORMATION FUNCTION. Rewrite the dictation in the requested tone.
-            Keep its language, meaning, speaker, recipient, facts, names, dates, and numbers.
-            Keep questions as questions and requests as requests. Preserve the original format.
-            Keep offers and commitments at the same level of certainty.
-            Do not invent greetings, sign-offs, headings, or placeholders.
-            Return only the rewritten dictation.
+            You are a TEXT TRANSFORMATION FUNCTION. Format the dictation's capitalization and punctuation.
+            Keep all words, spelling, numbers, and their order. Never add, delete, or substitute words.
+            You may insert a missing apostrophe, such as thats → that's. Keep questions as questions.
+            Keep numbers and links intact. Return only the formatted dictation.
             """
         let userInstruction = effectiveTone == .custom
             ? customInstruction
@@ -68,7 +66,7 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
         return SmartModePrompt(
             instructions: instructions + "\n" + userInstruction,
             userInstruction: userInstruction,
-            outputMarker: "Rewritten text:"
+            outputMarker: "Formatted text:"
         )
     }
 
@@ -78,34 +76,12 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
         let messages = samples.split(whereSeparator: \.isNewline)
         let initials = messages.compactMap { $0.first(where: \.isLetter) }
         let lowercase = initials.filter(\.isLowercase).count * 2 > initials.count
-        let words = samples.split(whereSeparator: \.isWhitespace)
-        let sentenceCount = samples.split { $0.isNewline || ".!?。！？".contains($0) }.count
-        let shortSentences = words.count <= 12 * max(1, sentenceCount)
-        let normalized = samples.lowercased().replacingOccurrences(of: "’", with: "'")
-        let usesContractions = ["n't", "'m", "'re", "'ve", "'ll"].contains { normalized.contains($0) }
-        let enthusiastic = samples.filter { $0 == "!" || $0 == "！" }.count * 2 >= max(1, sentenceCount)
-
-        let register = lowercase || usesContractions ? "casual, conversational" : "composed, professional"
-        let pace = shortSentences ? "shorter sentences" : "complete, connected sentences"
-        let contractionStyle = lowercase || usesContractions ? "natural contractions and " : ""
-        let emphasis = enthusiastic ? " Use occasional exclamation marks when appropriate." : ""
-        return "Rewrite this passage in \(register) language with \(contractionStyle)\(pace).\(emphasis)"
-    }
-
-    /// Detect a first-person offer rewritten as a new promise using the same verb.
-    static func addsCommitment(raw: String, rewritten: String) -> Bool {
-        func verbs(in text: String, committed: Bool) -> [Substring] {
-            text.lowercased().matches(of: !committed
-                ? #/\b(?:i|we)\s+can\s+([a-z]+)\b/#
-                : #/\b(?:i|we)(?:\s+will|['’]ll)\s+([a-z]+)\b/#
-            ).map { $0.1 }
-        }
-        let offers = Set(verbs(in: raw, committed: false))
-        let original = verbs(in: raw, committed: true)
-        let revised = verbs(in: rewritten, committed: true)
-        return offers.contains { verb in
-            revised.filter { $0 == verb }.count > original.filter { $0 == verb }.count
-        }
+        let sentences = samples.split { $0.isNewline || ".!?。！？".contains($0) }
+        let exclamations = samples.filter { $0 == "!" || $0 == "！" }.count
+        let capitalization = lowercase ? "Use lowercase sentence starts." : "Use ordinary capitalization."
+        let punctuation = exclamations * 2 >= max(1, sentences.count)
+            ? "Use occasional exclamation marks." : "Use light punctuation."
+        return "\(capitalization) \(punctuation)"
     }
 
     /// Resolve in the engine process so the saved style applies to both rewrite engines.

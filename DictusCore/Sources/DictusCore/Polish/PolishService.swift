@@ -530,7 +530,8 @@ public final class PolishService {
         // doing this reliably in French — handling it in code bypasses the
         // model entirely for this concern. It stays keyed on the SPOKEN language
         // whatever the mode does to the output (#79): the user still says "virgule".
-        let preprocessed = VerbalPunctuationPrepass.apply(raw, language: target)
+        let preprocessed = request.smartMode?.id == SmartModeCatalogue.personalizationIdentifier
+            ? raw : VerbalPunctuationPrepass.apply(raw, language: target)
 
         // Duration gate (#141): on a flash dictation (< engineMinDuration) the
         // user wants instant text and the LLM rarely adds value — so we skip the
@@ -734,7 +735,8 @@ public final class PolishService {
         // as its key — and, exactly like the per-language path, flash
         // dictations must still get their spoken commands converted even when
         // the LLM is skipped (#185).
-        let preprocessed = PolishPipeline.autoPreprocess(raw, detectedCode: request.detectedCode)
+        let preprocessed = request.smartMode?.id == SmartModeCatalogue.personalizationIdentifier
+            ? raw : PolishPipeline.autoPreprocess(raw, detectedCode: request.detectedCode)
 
         // Duration gate (#141): on a flash dictation the user wants instant
         // text, so the LLM is skipped — but the deterministic floor is kept.

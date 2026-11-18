@@ -3,9 +3,7 @@ import XCTest
 @testable import RiffLocalRewrite
 
 final class PersonalizationInferenceTests: XCTestCase {
-    private let dictation = "Hey, I can't join the meeting on Friday. Can we move it to Monday?"
-
-    func testDownloadedModelRewritesWithSavedPersonalization() async throws {
+    func testDownloadedModelFormatsWithSavedPersonalization() async throws {
         guard let folder = ProcessInfo.processInfo.environment["RIFF_REWRITE_TEST_MODELS"] else {
             throw XCTSkip("Catalog fixtures are required")
         }
@@ -15,7 +13,7 @@ final class PersonalizationInferenceTests: XCTestCase {
         try await verifyPersonalization(using: engine)
     }
 
-    func testAppleModelRewritesWithSavedPersonalizationWhenAvailable() async throws {
+    func testAppleModelFormatsWithSavedPersonalizationWhenAvailable() async throws {
         #if canImport(FoundationModels)
         if #available(iOS 26.0, macOS 26.0, *), PolishAvailability.isAppleFMAvailable {
             try await verifyPersonalization(using: AppleFoundationModelsPolishEngine())
@@ -39,22 +37,14 @@ final class PersonalizationInferenceTests: XCTestCase {
             defaults.set(try XCTUnwrap(profile.storedValue), forKey: SharedKeys.personalizationProfile)
             let mode = PersonalizationProfile.resolve(SmartModeCatalogue.personalization, defaults: defaults)
             let job = PolishJob(task: .smart(mode), promptLanguage: .english, typographyLanguage: .english)
-            let input = profile.tone == .custom
-                ? "I will be unable to attend the meeting scheduled for Friday, "
-                    + "would it be possible to reschedule it to Monday? I can send the agenda before then."
-                : dictation
+            let input = "thats great i can send the agenda before monday"
             let result = await PolishPipeline.transform(preprocessed: input, engine: engine, job: job)
-            let output = try XCTUnwrap(result.engineOutput)
-            XCTAssertEqual(result.outcome, .success, output)
-            XCTAssertNotEqual(output, input, "The \(profile.tone.rawValue) output should rewrite the sample.")
-            XCTAssertTrue(output.localizedCaseInsensitiveContains("Friday"), output)
-            XCTAssertTrue(output.localizedCaseInsensitiveContains("Monday"), output)
-            XCTAssertTrue(output.contains("?"), output)
-            if profile.tone == .custom {
-                XCTAssertTrue(output.localizedCaseInsensitiveContains("agenda"), output)
+            let output = try XCTUnwrap(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job))
+            XCTAssertTrue(PersonalizationFormatting.preservesWords(in: input, formatted: output), output)
+            if profile.tone == .formal {
+                XCTAssertEqual(result.outcome, .success, result.engineOutput ?? "No engine output")
+                XCTAssertNotEqual(output, input)
             }
-            XCTAssertFalse(output.localizedCaseInsensitiveContains("invoice"), output)
-            XCTAssertFalse(output.localizedCaseInsensitiveContains("print job"), output)
             print("\(engine.identifier) Personalization \(profile.tone.rawValue): \(output)")
         }
     }

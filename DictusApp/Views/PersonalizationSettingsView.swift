@@ -53,7 +53,7 @@ struct PersonalizationSettingsView: View {
                     if profile.samples.utf8.count > PersonalizationProfile.maximumSampleBytes {
                         Text("Shorten your samples to \(PersonalizationProfile.maximumSampleBytes) bytes to save.")
                     } else {
-                        Text("Paste a few short messages that sound like you. Riff uses their style when Personalization is selected.")
+                        Text("Paste a few short messages that sound like you. Riff uses their capitalization and punctuation.")
                     }
                 }
             }
@@ -90,17 +90,17 @@ extension PersonalizationProfile.Tone {
     var localizedExample: LocalizedStringKey {
         switch self {
         case .superCasual:
-            return "hey! can we move the meeting to monday? i can send the agenda."
+            return "that’s great! i can send the agenda"
         case .casual:
-            return "Hey, can we move the meeting to Monday? I can send the agenda."
+            return "That’s great, I can send the agenda."
         case .excited:
-            return "Hey! Could we move the meeting to Monday? I’d be happy to send the agenda!"
+            return "That’s great! I can send the agenda!"
         case .formal:
-            return "Would it be possible to reschedule the meeting for Monday? I can send the agenda."
+            return "That’s great. I can send the agenda."
         case .relaxed:
-            return "How about moving the meeting to Monday? I can send the agenda if that helps."
+            return "That’s great… I can send the agenda."
         case .custom:
-            return "Example style: “quick one — monday for the meeting? i can send the agenda.”"
+            return "Example style: “that’s great — i can send the agenda”"
         }
     }
 }

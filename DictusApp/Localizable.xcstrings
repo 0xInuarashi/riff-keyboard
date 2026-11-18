@@ -1,134 +1,134 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "hey! can we move the meeting to monday? i can send the agenda." : {
+    "that’s great! i can send the agenda" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "hey! können wir das treffen auf montag verschieben? ich kann die tagesordnung schicken."
+            "value" : "das ist gut! ich kann die tagesordnung schicken"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¡hey! ¿movemos la reunión al lunes? puedo mandar el orden del día."
+            "value" : "qué bien! puedo enviar el orden del día"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "salut ! on décale la réunion à lundi ? je peux envoyer l’ordre du jour."
+            "value" : "c’est super ! je peux envoyer l’ordre du jour"
           }
         }
       }
     },
-    "Hey, can we move the meeting to Monday? I can send the agenda." : {
+    "That’s great, I can send the agenda." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hey, können wir das Treffen auf Montag verschieben? Ich kann die Tagesordnung schicken."
+            "value" : "Das ist gut, ich kann die Tagesordnung schicken."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hola, ¿podemos mover la reunión al lunes? Puedo mandar el orden del día."
+            "value" : "Qué bien, puedo enviar el orden del día."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salut, on peut déplacer la réunion à lundi ? Je peux envoyer l’ordre du jour."
+            "value" : "C’est super, je peux envoyer l’ordre du jour."
           }
         }
       }
     },
-    "Hey! Could we move the meeting to Monday? I’d be happy to send the agenda!" : {
+    "That’s great! I can send the agenda!" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hey! Können wir das Treffen auf Montag verschieben? Ich kann gern die Tagesordnung schicken!"
+            "value" : "Das ist gut! Ich kann die Tagesordnung schicken!"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¡Hola! ¿Podríamos mover la reunión al lunes? ¡Con gusto puedo enviar el orden del día!"
+            "value" : "¡Qué bien! ¡Puedo enviar el orden del día!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salut ! On pourrait déplacer la réunion à lundi ? Je peux envoyer l’ordre du jour avec plaisir !"
+            "value" : "C’est super ! Je peux envoyer l’ordre du jour !"
           }
         }
       }
     },
-    "Would it be possible to reschedule the meeting for Monday? I can send the agenda." : {
+    "That’s great. I can send the agenda." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wäre es möglich, die Besprechung auf Montag zu verlegen? Ich kann die Tagesordnung zusenden."
+            "value" : "Das ist gut. Ich kann die Tagesordnung schicken."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Sería posible reprogramar la reunión para el lunes? Puedo enviar el orden del día."
+            "value" : "Qué bien. Puedo enviar el orden del día."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Serait-il possible de reporter la réunion à lundi ? Je peux vous transmettre l’ordre du jour."
+            "value" : "C’est super. Je peux envoyer l’ordre du jour."
           }
         }
       }
     },
-    "How about moving the meeting to Monday? I can send the agenda if that helps." : {
+    "That’s great… I can send the agenda." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie wär’s, wenn wir das Treffen auf Montag verschieben? Ich kann die Tagesordnung schicken, wenn das hilft."
+            "value" : "Das ist gut… Ich kann die Tagesordnung schicken."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Qué tal si pasamos la reunión al lunes? Puedo mandar el orden del día si te sirve."
+            "value" : "Qué bien… Puedo enviar el orden del día."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ça te dirait de déplacer la réunion à lundi ? Je peux envoyer l’ordre du jour si ça aide."
+            "value" : "C’est super… Je peux envoyer l’ordre du jour."
           }
         }
       }
     },
-    "Example style: “quick one — monday for the meeting? i can send the agenda.”" : {
+    "Example style: “that’s great — i can send the agenda”" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beispielstil: „kurze frage – montag fürs treffen? ich kann die tagesordnung schicken.“"
+            "value" : "Beispielstil: „das ist gut – ich kann die tagesordnung schicken“"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ejemplo de estilo: «una cosita, ¿el lunes para la reunión? puedo mandar el orden del día»."
+            "value" : "Ejemplo de estilo: «qué bien — puedo enviar el orden del día»"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exemple de style : « petite question, lundi pour la réunion ? je peux envoyer l’ordre du jour. »"
+            "value" : "Exemple de style : « c’est super — je peux envoyer l’ordre du jour »"
           }
         }
       }
@@ -243,24 +243,24 @@
         }
       }
     },
-    "Paste a few short messages that sound like you. Riff uses their style when Personalization is selected." : {
+    "Paste a few short messages that sound like you. Riff uses their capitalization and punctuation." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Füge einige kurze Nachrichten in deinem Stil ein. Riff übernimmt ihren Stil, wenn Personalisierung ausgewählt ist."
+            "value" : "Füge einige kurze Nachrichten in deinem Stil ein. Riff übernimmt ihre Groß- und Kleinschreibung und Zeichensetzung."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pega algunos mensajes breves que suenen a ti. Riff usa su estilo al seleccionar Personalización."
+            "value" : "Pega algunos mensajes breves que suenen a ti. Riff usa sus mayúsculas y su puntuación."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collez quelques messages courts qui vous ressemblent. Riff s’inspire de leur style quand Personnalisation est sélectionnée."
+            "value" : "Collez quelques messages courts qui vous ressemblent. Riff s’inspire de leurs majuscules et de leur ponctuation."
           }
         }
       }

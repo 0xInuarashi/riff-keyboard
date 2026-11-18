@@ -36,7 +36,7 @@ final class PersonalizationProfileTests: XCTestCase {
         XCTAssertEqual(resolved.id, base.id)
         XCTAssertEqual(resolved.contract, base.contract)
         XCTAssertTrue(resolved.isPinned)
-        XCTAssertTrue(resolved.prompt.userInstruction.contains("casual, conversational"))
+        XCTAssertTrue(resolved.prompt.userInstruction.contains("lowercase"))
         XCTAssertFalse(resolved.prompt.userInstruction.contains("works for me!"))
         XCTAssertFalse(base.prompt.userInstruction.contains("works for me!"))
         XCTAssertEqual(PersonalizationProfile.resolve(SmartModeCatalogue.message, defaults: defaults),
@@ -49,26 +49,50 @@ final class PersonalizationProfileTests: XCTestCase {
             I would appreciate confirmation when you have finished reviewing the invoice.
             Please let me know if I can provide any further information.
             """)
-        XCTAssertTrue(informal.prompt.userInstruction.contains("contractions"))
-        XCTAssertTrue(formal.prompt.userInstruction.contains("professional"))
+        XCTAssertTrue(informal.prompt.userInstruction.contains("lowercase"))
+        XCTAssertTrue(formal.prompt.userInstruction.contains("ordinary capitalization"))
         XCTAssertFalse(formal.prompt.userInstruction.contains("invoice"))
     }
 
-    func testOfferBecomingAPromiseFallsBackToTheTranscript() async {
+    func testWordSubstitutionFallsBackToTheTranscript() async {
         let input = "I can send the agenda before Monday."
         let job = PolishJob(task: .smart(SmartModeCatalogue.personalization),
                             promptLanguage: .english, typographyLanguage: .english)
         let engine = FixedToneEngine(output: "I’ll send the agenda before Monday.")
         let result = await PolishPipeline.transform(preprocessed: input, engine: engine, job: job)
-        XCTAssertEqual(result.rejectedCheck, .addedCommitment)
+        XCTAssertEqual(result.rejectedCheck, .changedWords)
         XCTAssertEqual(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job), input)
     }
 
-    func testExistingPromiseAndRewordedOfferAreAllowed() {
-        XCTAssertFalse(PersonalizationProfile.addsCommitment(
-            raw: "I can send the agenda. I will book the room.",
-            rewritten: "I can share the agenda. I'll book the room."
-        ))
+    func testCapitalizationPunctuationAndMissingApostropheAreAllowed() async {
+        let input = "thats great i can send the agenda"
+        let formatted = "That’s great! I can send the agenda."
+        let job = PolishJob(task: .smart(SmartModeCatalogue.personalization),
+                            promptLanguage: .english, typographyLanguage: .english)
+        let result = await PolishPipeline.transform(
+            preprocessed: input, engine: FixedToneEngine(output: formatted), job: job
+        )
+        XCTAssertEqual(result.outcome, .success)
+        XCTAssertEqual(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job), formatted)
+    }
+
+    func testWordOrderBoundariesSpellingAndSignificantSymbolsArePreserved() {
+        let cases = [
+            ("Call me Monday", "Monday, call me."),
+            ("I can send it", "I can send it today."),
+            ("Um I can send it", "I can send it."),
+            ("That's cool", "That is cool."),
+            ("We’ll send it", "Well send it."),
+            ("art work", "artwork"),
+            ("Pay 1.50", "Pay 150."),
+            ("Use .5", "Use 5."),
+            ("Send it to a@b.com", "Send it to a@c.com."),
+            ("Keep C++", "Keep C."),
+            ("ça marche", "ca marche")
+        ]
+        for (original, formatted) in cases {
+            XCTAssertFalse(PersonalizationFormatting.preservesWords(in: original, formatted: formatted), formatted)
+        }
     }
 
     func testQuestionLossFallsBackToTheTranscript() async {

@@ -83,6 +83,7 @@ public enum PolishPipeline {
         // them (#587). Resolved once, here, so the context guard, the engine and its
         // session cache all price, send and key on the same string.
         let job = job.resolvingExamples()
+        let isPersonalization = job.task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier
         // Polish is in its unavailable state for this engine (#315): two
         // consecutive `rateLimited` refusals said this process is on the wrong
         // side of Apple's background rate limit, and only a fresh process
@@ -110,7 +111,7 @@ public enum PolishPipeline {
         // Encode newlines as a marker so the model can't "naturalise" them into
         // ", " + capital — see `PolishPostpass`. Sub-millisecond, kept out of the
         // engine timing below.
-        let engineInput = PolishPostpass.encodeForEngine(preprocessed)
+        let engineInput = isPersonalization ? preprocessed : PolishPostpass.encodeForEngine(preprocessed)
         // Context guard (#270). The backend answers whether this exact input,
         // with the instructions it will resolve for `(mode, target)`, fits its
         // window. Engines with no ceiling answer `.fits` by default, so this is
@@ -144,7 +145,7 @@ public enum PolishPipeline {
             // A closing fence the model appended is dropped before anything judges
             // the text (#587): it carries no word, so no guardrail would refuse it
             // and it would reach the document as the last line.
-            let polished = PolishPostpass.stripTrailingFenceLines(job.typographyLanguage.map {
+            let polished = isPersonalization ? polishedRaw : PolishPostpass.stripTrailingFenceLines(job.typographyLanguage.map {
                 PolishPostpass.decodeFromEngine(polishedRaw, language: $0)
             } ?? PolishPostpass.decodeNewlines(polishedRaw))
             if Task.isCancelled {
@@ -172,12 +173,10 @@ public enum PolishPipeline {
                 raw: preprocessed, polished: polished, contract: job.task.contract
             ) {
                 refused = .length
-            } else if job.task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier,
-                      containsQuestion(preprocessed), !containsQuestion(polished) {
+            } else if isPersonalization, containsQuestion(preprocessed), !containsQuestion(polished) {
                 refused = .lostQuestion
-            } else if job.task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier,
-                      PersonalizationProfile.addsCommitment(raw: preprocessed, rewritten: polished) {
-                refused = .addedCommitment
+            } else if isPersonalization, !PersonalizationFormatting.preservesWords(in: preprocessed, formatted: polished) {
+                refused = .changedWords
             } else if !languageGuardrailPasses(polished: polished, preprocessed: preprocessed, job: job) {
                 refused = .language
             } else if !groundingGuardrailPasses(polished: polished, preprocessed: preprocessed, job: job) {
@@ -429,7 +428,8 @@ public enum PolishPipeline {
     /// the language's typography decoded on the per-language path. Named so #573's
     /// declined list can insert the same floor when no second call fits the budget.
     public static func deterministicFloor(preprocessed: String, job: PolishJob) -> String {
-        guard let typography = job.typographyLanguage else { return preprocessed }
+        guard job.task.smartMode?.id != SmartModeCatalogue.personalizationIdentifier,
+              let typography = job.typographyLanguage else { return preprocessed }
         return PolishPostpass.decodeFromEngine(preprocessed, language: typography)
     }
 
