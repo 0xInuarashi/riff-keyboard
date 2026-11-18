@@ -12,7 +12,7 @@ import XCTest
 final class SettingsFrenchCopyTests: XCTestCase {
 
     private static let catalogue = "DictusApp/Localizable.xcstrings"
-    private static let settingsSource = "DictusApp/Views/SettingsView.swift"
+    private static let polishSettingsSource = "DictusApp/Views/LocalRewriteSettings.swift"
 
     /// Every Settings string #792 found without a French value. The polish footer's
     /// six sentences, one per `PolishAvailabilityState` that has a message, are all
@@ -30,6 +30,9 @@ final class SettingsFrenchCopyTests: XCTestCase {
         "Reset learned words?",
         "Forget %lld learned words",
         "Words the keyboard learned from your typing will be forgotten and autocorrect will apply to them again.",
+        "Keyboard autocorrect",
+        "Model decides",
+        "Match keyboard",
         "Live Activity",
         "Dynamic Island and Lock Screen notification are disabled."
     ]
@@ -74,7 +77,7 @@ final class SettingsFrenchCopyTests: XCTestCase {
     /// shipped with the sentences sitting in the code.
     func testThePolishFooterIsLookedUpAsAKey() throws {
         let source = try String(
-            contentsOf: repoRoot().appendingPathComponent(Self.settingsSource), encoding: .utf8
+            contentsOf: repoRoot().appendingPathComponent(Self.polishSettingsSource), encoding: .utf8
         )
         XCTAssertTrue(
             source.contains("func polishStateMessage(for state: PolishAvailabilityState) -> LocalizedStringKey"),
