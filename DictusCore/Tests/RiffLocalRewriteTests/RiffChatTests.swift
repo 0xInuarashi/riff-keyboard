@@ -43,13 +43,15 @@ final class RiffChatTests: XCTestCase {
         XCTAssertTrue(reply.text.lowercased().contains("pear"), reply.text)
     }
 
-    func testAppleChatWhenSystemModelIsAvailable() async throws {
+    func testAppleModelUsesEarlierChatTurnsWhenAvailable() async throws {
         guard PolishAvailability.appleSystemModelName != nil else {
             throw XCTSkip("Apple Intelligence is unavailable on this Mac")
         }
-        let reply = try await RiffChatEngine.reply(
-            to: [.init(role: .user, text: "Answer with the word hello.")], using: .apple
-        )
-        XCTAssertTrue(reply.text.lowercased().contains("hello"), reply.text)
+        let reply = try await RiffChatEngine.reply(to: [
+            .init(role: .user, text: "My favorite fruit is a pear."),
+            .init(role: .assistant, text: "Your favorite fruit is a pear."),
+            .init(role: .user, text: "What is my favorite fruit? Reply in one word.")
+        ], using: .apple)
+        XCTAssertTrue(reply.text.lowercased().contains("pear"), reply.text)
     }
 }
