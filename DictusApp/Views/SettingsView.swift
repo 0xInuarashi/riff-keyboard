@@ -124,7 +124,12 @@ struct SettingsView: View {
             get: { transcriptionMode.storedValue },
             set: { transcriptionLanguage = $0 }
         )
-        return LabeledContent {
+        return HStack(spacing: 8) {
+            Text("Transcription language")
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .accessibilityHidden(true)
+            Spacer(minLength: 0)
             Picker("Transcription language", selection: selection) {
                 Text("Model decides").tag(TranscriptionLanguageMode.autoStoredValue)
                 Text("Match keyboard").tag(TranscriptionLanguageMode.followStoredValue)
@@ -136,8 +141,6 @@ struct SettingsView: View {
             .pickerStyle(.menu)
             .lineLimit(1)
             .accessibilityIdentifier("settings.transcriptionLanguage")
-        } label: {
-            Text("Transcription language").lineLimit(1)
         }
     }
 
