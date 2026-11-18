@@ -2721,6 +2721,16 @@
         }
       }
     },
+    "Choose a local model in Riff settings to use Smart Modes on this iPhone." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez un modèle local dans les réglages de Riff pour utiliser les modes intelligents sur cet iPhone."
+          }
+        }
+      }
+    },
     "Clear" : {
       "localizations" : {
         "de" : {

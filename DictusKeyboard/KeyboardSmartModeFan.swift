@@ -513,21 +513,8 @@ final class KeyboardSmartModeState: ObservableObject {
                 localized: "Apple Intelligence is still downloading. Smart Modes will work once it finishes.",
                 comment: "Shown in the Smart Mode fan while the on-device model is downloading."
             )
-        case .deviceNotEligible:
-            return String(
-                localized: "Smart Modes need Apple Intelligence, which this iPhone does not support.",
-                comment: "Shown in the Smart Mode fan on hardware that cannot run Apple Foundation Models."
-            )
-        case .osTooOld:
-            return String(
-                localized: "Smart Modes need iOS 26 or later.",
-                comment: "Shown in the Smart Mode fan when the OS predates Apple Foundation Models."
-            )
-        case .sdkMissing:
-            return String(
-                localized: "Smart Modes are not available in this build.",
-                comment: "Shown in the Smart Mode fan when the build has no FoundationModels SDK."
-            )
+        case .deviceNotEligible, .osTooOld, .sdkMissing:
+            return String(localized: "Choose a local model in Riff settings to use Smart Modes on this iPhone.")
         case .engineRefusing:
             return String(
                 localized: "Apple Intelligence is busy right now. Smart Modes will come back shortly.",

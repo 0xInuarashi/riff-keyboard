@@ -19,9 +19,12 @@ public struct LocalRewriteModel: Identifiable, Sendable, Equatable {
         self.bytes = bytes
         self.sha256 = sha256
         self.suppressesThinking = suppressesThinking
-        self.url = URL(string: "https://huggingface.co")?
-            .appendingPathComponent(repository, isDirectory: true)
-            .appendingPathComponent("resolve/\(revision)/\(filename)") ?? URL(fileURLWithPath: "/")
+        var source = URLComponents()
+        source.scheme = "https"
+        source.host = "huggingface.co"
+        source.path = "/\(repository)/resolve/\(revision)/\(filename)"
+        guard let url = source.url else { preconditionFailure("Invalid model repository URL") }
+        self.url = url
     }
 
     public static let catalog: [Self] = [
