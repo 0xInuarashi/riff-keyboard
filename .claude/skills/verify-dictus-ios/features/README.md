@@ -14,6 +14,7 @@ Each file has the same four sections: **Sub-features** (each with its own stable
 | [`models.transcription`](models.transcription.md) | Transcription models | Gratuit | Yes (download is real traffic); RAM gates no |
 | [`polish`](polish.md) | Polish | Gratuit, needs Apple Intelligence | Toggle only |
 | [`smart-modes`](smart-modes.md) | Smart Modes | Pro | Fan, Home ring and settings; no rewrite (no Apple Intelligence); the refusal message with Debug keys (#455) |
+| [`chat`](chat.md) | On-device chat | Gratuit | Downloadable model selection and multi-turn conversation |
 | [`history`](history.md) | History of transcriptions | Pro | Empty state and settings |
 | [`vocabulary`](vocabulary.md) | Custom vocabulary | Pro | Yes, except its effect on a transcript |
 | [`voice-notes`](voice-notes.md) | Voice notes transcription | Pro | Keyboard reader and settings; no share sheet |
@@ -31,7 +32,7 @@ Out of the map on purpose: the "Developer" section of Réglages (Debug builds on
 
 ## All IDs
 
-Every ID in this map, in one table: the 18 features first, then their 118 sub-features (in the order of the feature files), then the 58 screens of [screens.md](screens.md) — 194 IDs in all. **Gratuit/Pro** is the tier of the feature the ID belongs to. **Spécifique iOS** is « oui » when the ID has no Android equivalent to compare against: the keyboard-to-app hand-off and Full Access (an iOS keyboard extension cannot record and must ask for Full Access), return to the host app, Apple Intelligence (polish), the Dynamic Island (Live Activity, stopping standby), and the App Group check.
+The table lists features, their sub-features in feature order, and the screens in [screens.md](screens.md). **Gratuit/Pro** gives the feature's tier. **Spécifique iOS** is « oui » for the keyboard-to-app hand-off, Full Access, return to the host app, Apple Intelligence (polish), Live Activity, and the App Group check.
 
 | ID | Gratuit/Pro | Spécifique iOS |
 | --- | --- | --- |
@@ -41,6 +42,7 @@ Every ID in this map, in one table: the 18 features first, then their 118 sub-fe
 | [`models.transcription`](models.transcription.md) | Gratuit | non |
 | [`polish`](polish.md) | Gratuit | oui |
 | [`smart-modes`](smart-modes.md) | Pro | non |
+| [`chat`](chat.md) | Gratuit | non |
 | [`history`](history.md) | Pro | non |
 | [`vocabulary`](vocabulary.md) | Pro | non |
 | [`voice-notes`](voice-notes.md) | Pro | non |
@@ -91,8 +93,9 @@ Every ID in this map, in one table: the 18 features first, then their 118 sub-fe
 | `smart-modes.pin` | Pro | non |
 | `smart-modes.toggle` | Pro | non |
 | `smart-modes.local-model` | Pro | iPhone for latency and memory |
-| `app.chat` | Gratuit | iPhone for Apple Intelligence and latency |
 | `smart-modes.home-ring` | Pro | non |
+| `chat.model` | Gratuit | non |
+| `chat.conversation` | Gratuit | non |
 | `history.list` | Pro | non |
 | `history.search` | Pro | non |
 | `history.delete` | Pro | non |
@@ -197,6 +200,7 @@ Every ID in this map, in one table: the 18 features first, then their 118 sub-fe
 | `app.models` | Gratuit | non |
 | `app.models.languages` | Gratuit | non |
 | `app.models.loading` | Gratuit | non |
+| `app.chat` | Gratuit | non |
 | `app.settings` | Gratuit | non |
 | `app.settings.sounds` | Gratuit | non |
 | `app.settings.diagnostic` | Gratuit | oui |
