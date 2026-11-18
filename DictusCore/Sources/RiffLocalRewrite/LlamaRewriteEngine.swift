@@ -77,7 +77,7 @@ private actor LlamaSession {
     }
 
     func generate(prompt: String, file: URL) throws -> String {
-        let deadline = ContinuousClock.now.advanced(by: .seconds(16))
+        let deadline = ContinuousClock.now.advanced(by: .seconds(20))
         func checkBudget() throws {
             try Task.checkCancellation()
             guard ContinuousClock.now < deadline else { throw RewriteError.deadline }
@@ -87,7 +87,13 @@ private actor LlamaSession {
         var modelParameters = llama_model_default_params()
         modelParameters.n_gpu_layers = 0
         modelParameters.use_mmap = true
-        guard let model = file.path.withCString({ llama_model_load_from_file($0, modelParameters) }) else {
+        // A nil list asks llama.cpp to discover GPU devices, even with zero GPU layers.
+        var cpuOnly: [OpaquePointer?] = [nil]
+        let loaded = cpuOnly.withUnsafeMutableBufferPointer { devices in
+            modelParameters.devices = devices.baseAddress
+            return file.path.withCString { llama_model_load_from_file($0, modelParameters) }
+        }
+        guard let model = loaded else {
             throw RewriteError.modelUnavailable
         }
         defer { llama_model_free(model) }

@@ -24,7 +24,10 @@ struct LocalRewriteSettings: View {
             Section {
                 ForEach(LocalRewriteModel.catalog) { model in
                     Button {
-                        downloads.select(model)
+                        downloads.select(model) {
+                            selection = model.id
+                            AppGroup.defaults.synchronize()
+                        }
                     } label: {
                         modelRow(model)
                     }
@@ -83,11 +86,11 @@ private final class LocalRewriteDownloads: ObservableObject {
     @Published private(set) var error: LocalizedStringKey?
     private var task: Task<Void, Never>?
 
-    func select(_ model: LocalRewriteModel) {
+    func select(_ model: LocalRewriteModel, activate: @escaping () -> Void) {
         guard task == nil else { return }
         error = nil
         if model.isInstalled {
-            AppGroup.defaults.set(model.id, forKey: LocalRewriteModel.preferenceKey)
+            activate()
             return
         }
         activeID = model.id
@@ -99,7 +102,7 @@ private final class LocalRewriteDownloads: ObservableObject {
             do {
                 try await Self.install(model)
                 try Task.checkCancellation()
-                AppGroup.defaults.set(model.id, forKey: LocalRewriteModel.preferenceKey)
+                activate()
             } catch {
                 if !Task.isCancelled {
                     self.error = "The model could not be downloaded. Tap it to retry."

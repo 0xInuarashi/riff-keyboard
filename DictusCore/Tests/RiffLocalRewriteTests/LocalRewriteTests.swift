@@ -27,7 +27,7 @@ final class LocalRewriteTests: XCTestCase {
             let file = folder.appendingPathComponent("\(model.id).gguf")
             let engine = LlamaRewriteEngine(model: model, file: file)
             let result = await PolishPipeline.transform(preprocessed: raw, engine: engine, job: job)
-            print("\(model.id) \(result.outcome.rawValue) \(result.engineMs) ms")
+            print("\(model.id) \(result.outcome.rawValue) \(result.engineMs) ms \(String(describing: result.failureReason))")
             XCTAssertNotEqual(result.outcome, .engineFailed, model.id)
             XCTAssertNotNil(result.engineOutput, model.id)
         }
