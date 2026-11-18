@@ -24,7 +24,7 @@ public struct LlamaRewriteEngine: PolishEngineProtocol {
         if let mode = task.smartMode, mode.id == SmartModeCatalogue.personalizationIdentifier {
             instructions = """
                 You are a text editor. Return only the rewritten text.
-                Preserve the facts and language of the dictation. Keep questions as questions and requests as requests.
+                Preserve the facts and language of the dictation. Keep questions and requests. Keep offers as offers, for example "I can send" stays an offer.
                 """
             input = "\(mode.prompt.userInstruction)\n\n\(raw)"
         } else {

@@ -119,6 +119,7 @@ public enum PolishGuardrail {
         /// what the speaker said" rather than "the model added something".
         case lostWord
         case lostQuestion
+        case addedCommitment
 
         public var description: String { rawValue }
     }

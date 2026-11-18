@@ -58,6 +58,7 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
             You are a TEXT TRANSFORMATION FUNCTION. Rewrite the dictation in the requested tone.
             Keep its language, meaning, speaker, recipient, facts, names, dates, and numbers.
             Keep questions as questions and requests as requests. Preserve the original format.
+            Keep offers and commitments at the same level of certainty.
             Do not invent greetings, sign-offs, headings, or placeholders.
             Return only the rewritten dictation.
             """
@@ -89,6 +90,22 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
         let contractionStyle = lowercase || usesContractions ? "natural contractions and " : ""
         let emphasis = enthusiastic ? " Use occasional exclamation marks when appropriate." : ""
         return "Rewrite this passage in \(register) language with \(contractionStyle)\(pace).\(emphasis)"
+    }
+
+    /// Detect a first-person offer rewritten as a new promise using the same verb.
+    static func addsCommitment(raw: String, rewritten: String) -> Bool {
+        func verbs(in text: String, committed: Bool) -> [Substring] {
+            text.lowercased().matches(of: !committed
+                ? #/\b(?:i|we)\s+can\s+([a-z]+)\b/#
+                : #/\b(?:i|we)(?:\s+will|['’]ll)\s+([a-z]+)\b/#
+            ).map { $0.1 }
+        }
+        let offers = Set(verbs(in: raw, committed: false))
+        let original = verbs(in: raw, committed: true)
+        let revised = verbs(in: rewritten, committed: true)
+        return offers.contains { verb in
+            revised.filter { $0 == verb }.count > original.filter { $0 == verb }.count
+        }
     }
 
     /// Resolve in the engine process so the saved style applies to both rewrite engines.

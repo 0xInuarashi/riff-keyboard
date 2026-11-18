@@ -54,6 +54,23 @@ final class PersonalizationProfileTests: XCTestCase {
         XCTAssertFalse(formal.prompt.userInstruction.contains("invoice"))
     }
 
+    func testOfferBecomingAPromiseFallsBackToTheTranscript() async {
+        let input = "I can send the agenda before Monday."
+        let job = PolishJob(task: .smart(SmartModeCatalogue.personalization),
+                            promptLanguage: .english, typographyLanguage: .english)
+        let engine = FixedToneEngine(output: "I’ll send the agenda before Monday.")
+        let result = await PolishPipeline.transform(preprocessed: input, engine: engine, job: job)
+        XCTAssertEqual(result.rejectedCheck, .addedCommitment)
+        XCTAssertEqual(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job), input)
+    }
+
+    func testExistingPromiseAndRewordedOfferAreAllowed() {
+        XCTAssertFalse(PersonalizationProfile.addsCommitment(
+            raw: "I can send the agenda. I will book the room.",
+            rewritten: "I can share the agenda. I'll book the room."
+        ))
+    }
+
     func testQuestionLossFallsBackToTheTranscript() async {
         let input = "Can we move the meeting to Monday?"
         let job = PolishJob(
@@ -61,16 +78,17 @@ final class PersonalizationProfileTests: XCTestCase {
             promptLanguage: .english,
             typographyLanguage: .english
         )
-        let result = await PolishPipeline.transform(preprocessed: input, engine: QuestionDroppingEngine(), job: job)
+        let result = await PolishPipeline.transform(preprocessed: input, engine: FixedToneEngine(output: "We can move the meeting to Monday."), job: job)
         XCTAssertEqual(result.rejectedCheck, .lostQuestion)
         XCTAssertEqual(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job), input)
     }
 }
 
-private struct QuestionDroppingEngine: PolishEngineProtocol {
-    let identifier = "question-dropping-test"
+private struct FixedToneEngine: PolishEngineProtocol {
+    let identifier = "fixed-tone-test"
+    let output: String
 
     func polish(raw: String, targetLanguage: SupportedLanguage, task: PolishTask) async throws -> String {
-        "We can move the meeting to Monday."
+        output
     }
 }

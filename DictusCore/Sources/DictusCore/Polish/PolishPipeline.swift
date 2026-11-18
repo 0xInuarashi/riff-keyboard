@@ -175,6 +175,9 @@ public enum PolishPipeline {
             } else if job.task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier,
                       containsQuestion(preprocessed), !containsQuestion(polished) {
                 refused = .lostQuestion
+            } else if job.task.smartMode?.id == SmartModeCatalogue.personalizationIdentifier,
+                      PersonalizationProfile.addsCommitment(raw: preprocessed, rewritten: polished) {
+                refused = .addedCommitment
             } else if !languageGuardrailPasses(polished: polished, preprocessed: preprocessed, job: job) {
                 refused = .language
             } else if !groundingGuardrailPasses(polished: polished, preprocessed: preprocessed, job: job) {
