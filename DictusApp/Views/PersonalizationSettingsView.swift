@@ -23,9 +23,16 @@ struct PersonalizationSettingsView: View {
             Section {
                 Picker("Tone", selection: $tone) {
                     ForEach(PersonalizationProfile.Tone.allCases, id: \.self) { option in
-                        Text(option.localizedTitle)
-                            .tag(option)
-                            .accessibilityIdentifier("personalization.tone.\(option.rawValue)")
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(option.localizedTitle)
+                            Text(option.localizedExample)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .accessibilityElement(children: .combine)
+                        .tag(option)
+                        .accessibilityIdentifier("personalization.tone.\(option.rawValue)")
                     }
                 }
                 .pickerStyle(.inline)
@@ -77,6 +84,23 @@ extension PersonalizationProfile.Tone {
         case .formal: return "Formal"
         case .relaxed: return "Relaxed"
         case .custom: return "Custom"
+        }
+    }
+
+    var localizedExample: LocalizedStringKey {
+        switch self {
+        case .superCasual:
+            return "hey! can we move the meeting to monday? i can send the agenda."
+        case .casual:
+            return "Hey, can we move the meeting to Monday? I can send the agenda."
+        case .excited:
+            return "Hey! Could we move the meeting to Monday? I’d be happy to send the agenda!"
+        case .formal:
+            return "Would it be possible to reschedule the meeting for Monday? I can send the agenda."
+        case .relaxed:
+            return "How about moving the meeting to Monday? I can send the agenda if that helps."
+        case .custom:
+            return "Example style: “quick one — monday for the meeting? i can send the agenda.”"
         }
     }
 }

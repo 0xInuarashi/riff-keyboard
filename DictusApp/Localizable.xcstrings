@@ -1,6 +1,138 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "hey! can we move the meeting to monday? i can send the agenda." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hey! können wir das treffen auf montag verschieben? ich kann die tagesordnung schicken."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡hey! ¿movemos la reunión al lunes? puedo mandar el orden del día."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "salut ! on décale la réunion à lundi ? je peux envoyer l’ordre du jour."
+          }
+        }
+      }
+    },
+    "Hey, can we move the meeting to Monday? I can send the agenda." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hey, können wir das Treffen auf Montag verschieben? Ich kann die Tagesordnung schicken."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hola, ¿podemos mover la reunión al lunes? Puedo mandar el orden del día."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salut, on peut déplacer la réunion à lundi ? Je peux envoyer l’ordre du jour."
+          }
+        }
+      }
+    },
+    "Hey! Could we move the meeting to Monday? I’d be happy to send the agenda!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hey! Können wir das Treffen auf Montag verschieben? Ich kann gern die Tagesordnung schicken!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Hola! ¿Podríamos mover la reunión al lunes? ¡Con gusto puedo enviar el orden del día!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salut ! On pourrait déplacer la réunion à lundi ? Je peux envoyer l’ordre du jour avec plaisir !"
+          }
+        }
+      }
+    },
+    "Would it be possible to reschedule the meeting for Monday? I can send the agenda." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wäre es möglich, die Besprechung auf Montag zu verlegen? Ich kann die Tagesordnung zusenden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Sería posible reprogramar la reunión para el lunes? Puedo enviar el orden del día."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serait-il possible de reporter la réunion à lundi ? Je peux vous transmettre l’ordre du jour."
+          }
+        }
+      }
+    },
+    "How about moving the meeting to Monday? I can send the agenda if that helps." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie wär’s, wenn wir das Treffen auf Montag verschieben? Ich kann die Tagesordnung schicken, wenn das hilft."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué tal si pasamos la reunión al lunes? Puedo mandar el orden del día si te sirve."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ça te dirait de déplacer la réunion à lundi ? Je peux envoyer l’ordre du jour si ça aide."
+          }
+        }
+      }
+    },
+    "Example style: “quick one — monday for the meeting? i can send the agenda.”" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beispielstil: „kurze frage – montag fürs treffen? ich kann die tagesordnung schicken.“"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ejemplo de estilo: «una cosita, ¿el lunes para la reunión? puedo mandar el orden del día»."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exemple de style : « petite question, lundi pour la réunion ? je peux envoyer l’ordre du jour. »"
+          }
+        }
+      }
+    },
     "Casual" : {
       "localizations" : {
         "de" : {
