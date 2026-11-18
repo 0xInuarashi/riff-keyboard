@@ -2235,28 +2235,6 @@
         }
       }
     },
-    "Autocorrect" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autokorrektur"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autocorrección"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correction automatique"
-          }
-        }
-      }
-    },
     "Automatic detection transcribes each voice note in the language it was spoken in." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7715,6 +7693,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clavier détecté"
+          }
+        }
+      }
+    },
+    "Keyboard autocorrect" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastatur-Autokorrektur"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autocorrección del teclado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correction automatique du clavier"
           }
         }
       }

@@ -15,13 +15,13 @@
 - `typing.auto-full-stop`: Double space inserts a full stop.
 - `typing.accents`: Long-press a letter for its accents.
 - `typing.dead-keys`: Dead keys compose accented letters.
-- `typing.autocorrect-toggle`: « Correction automatique » switch in Réglages → Clavier.
+- `typing.autocorrect-toggle`: « Correction automatique du clavier » switch in Réglages → Clavier.
 - `typing.contacts-and-replacements`: Contact names and iOS text replacements (#873). A contact name or a phrase-only replacement is never corrected, a lowercase contact name takes its casing (`zofiak` → `Zofiak`), a shortcut is replaced by its phrase with the undo chip (`qqc` → `Quelque chose` at sentence start).
 
 ## How to get to it (user POV)
 
 1. Type with the Riff keyboard in Notes or Messages to see suggestions above the keys.
-2. Enable **Autocorrect** in Settings → Keyboard for automatic replacements.
+2. Enable **Keyboard autocorrect** in Settings → Keyboard for automatic replacements.
 
 ## Driving it with axe + Argent
 

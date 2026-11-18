@@ -329,7 +329,7 @@ struct SettingsView: View {
                     SoundSettingsView()
                 }
 
-                Toggle("Autocorrect", isOn: $autocorrectEnabled)
+                Toggle("Keyboard autocorrect", isOn: $autocorrectEnabled)
                     .accessibilityIdentifier("settings.autocorrect")
 
                 // Reset the learned-words dictionary (#222). Words learned by
