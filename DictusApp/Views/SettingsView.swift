@@ -278,7 +278,7 @@ struct SettingsView: View {
                         if let model = LocalRewriteModel.catalog.first(where: { $0.id == rewriteModel && $0.isInstalled }) {
                             Text(model.name)
                         } else {
-                            Text("Apple Intelligence")
+                            Text(PolishAvailability.appleSystemModelName ?? "Apple Intelligence")
                         }
                     } label: {
                         Text("Smart Mode model")

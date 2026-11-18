@@ -1,12 +1,12 @@
 // DictusApp/Views/MainTabView.swift
-// Root navigation container with 3 tabs and full-screen recording overlay.
+// Root navigation container with a full-screen recording overlay.
 import SwiftUI
 import DictusCore
 
-/// Root view presenting the 3-tab navigation structure.
+/// Root view presenting the app tabs.
 ///
 /// WHY TabView instead of NavigationStack:
-/// The app has 3 distinct sections (Home, Models, Settings) that the user should be able
+/// The app has distinct sections that the user should be able
 /// to switch between freely. A TabView provides standard iOS navigation for this pattern.
 /// Each tab wraps its content in its own NavigationStack so push navigation works
 /// independently per tab.
@@ -20,6 +20,7 @@ struct MainTabView: View {
     @EnvironmentObject var trialCoordinator: ProTrialCoordinator
     @EnvironmentObject var proStatus: ProStatusManager
     @StateObject private var modelManager = ModelManager()
+    @StateObject private var chat = RiffChat()
 
     @State private var selectedTab: Int = 0
 
@@ -255,6 +256,14 @@ struct MainTabView: View {
                         Label("Models", systemImage: "cpu")
                     }
                     .tag(1)
+
+                    NavigationStack {
+                        RiffChatView(chat: chat)
+                    }
+                    .tabItem {
+                        Label("Chat", systemImage: "bubble.left.and.bubble.right")
+                    }
+                    .tag(3)
 
                     // Tab 2: Settings
                     NavigationStack {

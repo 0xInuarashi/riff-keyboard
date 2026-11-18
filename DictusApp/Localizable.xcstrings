@@ -1555,6 +1555,16 @@
         }
       }
     },
+    "Apple Intelligence is currently unavailable on this iPhone." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence est actuellement indisponible sur cet iPhone."
+          }
+        }
+      }
+    },
     "Apple Intelligence is getting ready" : {
       "comment" : "Onboarding Apple Intelligence step (#683). Title shown on a return to the app while Apple Intelligence is not available. Calm: nothing failed.",
       "localizations" : {
@@ -2619,6 +2629,36 @@
         }
       }
     },
+    "Chat" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discussion"
+          }
+        }
+      }
+    },
+    "Chat model" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modèle de discussion"
+          }
+        }
+      }
+    },
+    "Chat on this iPhone" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discuter sur cet iPhone"
+          }
+        }
+      }
+    },
     "Check Full Access in Settings" : {
       "comment" : "Onboarding keyboard step, discreet link under \"Keyboard detected\" (#709): opens Dictus' page in iOS Settings so the user can check Full Access, which the app cannot see.",
       "localizations" : {
@@ -2727,6 +2767,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisissez un modèle local dans les réglages de Riff pour utiliser les modes intelligents sur cet iPhone."
+          }
+        }
+      }
+    },
+    "Choose model" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisir un modèle"
+          }
+        }
+      }
+    },
+    "Choose a model to start a conversation." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez un modèle pour commencer à discuter."
+          }
+        }
+      }
+    },
+    "Choose an available model to continue." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez un modèle disponible pour continuer."
           }
         }
       }
@@ -3455,6 +3525,16 @@
         }
       }
     },
+    "Downloaded models are shared with Smart Modes." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les modèles téléchargés sont partagés avec les modes intelligents."
+          }
+        }
+      }
+    },
     "Downloads are one-time. Smart Modes run on this iPhone with the selected model." : {
       "localizations" : {
         "fr" : {
@@ -3481,6 +3561,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Télécharger le modèle"
+          }
+        }
+      }
+    },
+    "New chat" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvelle discussion"
+          }
+        }
+      }
+    },
+    "Generating reply" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Génération de la réponse"
           }
         }
       }
@@ -4730,12 +4830,32 @@
         }
       }
     },
+    "Send" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyer"
+          }
+        }
+      }
+    },
     "Smart Mode model" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modèle des modes intelligents"
+          }
+        }
+      }
+    },
+    "Start a new chat?" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencer une nouvelle discussion ?"
           }
         }
       }
@@ -4756,6 +4876,56 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionné"
+          }
+        }
+      }
+    },
+    "Type a message to start a conversation." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écrivez un message pour commencer à discuter."
+          }
+        }
+      }
+    },
+    "iOS chooses the Apple model for this device." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS choisit le modèle Apple pour cet appareil."
+          }
+        }
+      }
+    },
+    "This message is too long for the selected model." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce message est trop long pour le modèle sélectionné."
+          }
+        }
+      }
+    },
+    "The reply reached its length limit." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La réponse a atteint sa longueur maximale."
+          }
+        }
+      }
+    },
+    "The model couldn’t reply. Try again." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le modèle n’a pas pu répondre. Réessayez."
           }
         }
       }

@@ -65,6 +65,20 @@ public enum PolishAvailability {
         #endif
     }
 
+    /// The installed system model when Apple makes it available to the app.
+    public static var appleSystemModelName: String? {
+        #if canImport(FoundationModels)
+        guard isAppleFMAvailable else { return nil }
+        if #available(iOS 27.0, macOS 27.0, *) {
+            return SystemLanguageModel.default.variant.displayName
+        }
+        if #available(iOS 26.4, macOS 26.4, *) { return "AFM 2.1 Core" }
+        return "AFM 2 Core"
+        #else
+        return nil
+        #endif
+    }
+
     /// True only when Apple Foundation Models is actually usable on this device.
     public static var isAppleFMAvailable: Bool {
         state == .available

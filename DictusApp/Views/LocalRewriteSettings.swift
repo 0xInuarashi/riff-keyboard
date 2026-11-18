@@ -6,19 +6,40 @@ struct LocalRewriteSettings: View {
     @AppStorage(LocalRewriteModel.preferenceKey, store: AppGroup.defaults)
     private var selection = LocalRewriteModel.apple
 
-    @StateObject private var downloads = LocalRewriteDownloads.shared
+    var body: some View {
+        OnDeviceModelPicker(
+            selection: $selection,
+            title: "Smart Mode model",
+            caption: "Downloads are one-time. Smart Modes run on this iPhone with the selected model."
+        )
+    }
+}
+
+struct OnDeviceModelPicker: View {
+    @Binding var selection: String
+    let title: LocalizedStringKey
+    let caption: LocalizedStringKey
+    var allowsUnavailableApple = true
+
+    @ObservedObject private var downloads = LocalRewriteDownloads.shared
 
     var body: some View {
+        let systemModelName = PolishAvailability.appleSystemModelName
         List {
             Section {
                 Button {
                     selection = LocalRewriteModel.apple
                 } label: {
-                    modelLabel("Apple Intelligence", selected: selection == LocalRewriteModel.apple)
+                    modelLabel(systemModelName ?? "Apple Intelligence", selected: selection == LocalRewriteModel.apple)
                 }
-                .disabled(downloads.activeID != nil)
+                .disabled(downloads.activeID != nil || (!allowsUnavailableApple && systemModelName == nil))
+                .accessibilityIdentifier("rewriteModel.apple")
             } footer: {
-                Text("Apple Intelligence uses the system model on supported devices.")
+                if systemModelName != nil {
+                    Text("iOS chooses the Apple model for this device.")
+                } else {
+                    Text("Apple Intelligence is currently unavailable on this iPhone.")
+                }
             }
 
             Section {
@@ -43,14 +64,14 @@ struct LocalRewriteSettings: View {
             } header: {
                 Text("Downloadable local models")
             } footer: {
-                Text("Downloads are one-time. Smart Modes run on this iPhone with the selected model.")
+                Text(caption)
             }
         }
-        .navigationTitle("Smart Mode model")
+        .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    private func modelLabel(_ label: LocalizedStringKey, selected: Bool) -> some View {
+    private func modelLabel(_ label: String, selected: Bool) -> some View {
         HStack {
             Text(label).foregroundStyle(.primary)
             Spacer()

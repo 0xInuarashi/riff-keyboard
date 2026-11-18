@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		774D6C000000000000000005 /* RiffChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774D6C000000000000000006 /* RiffChatView.swift */; };
 		774D6C000000000000000003 /* LocalRewriteSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774D6C000000000000000004 /* LocalRewriteSettings.swift */; };
 		774D6C000000000000000001 /* RiffLocalRewrite in Frameworks */ = {isa = PBXBuildFile; productRef = 774D6C000000000000000002 /* RiffLocalRewrite */; };
 		AA913B01 /* DMSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA913F01 /* DMSans-ExtraLight.ttf */; };
@@ -284,6 +285,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		774D6C000000000000000006 /* RiffChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiffChatView.swift; sourceTree = "<group>"; };
 		774D6C000000000000000004 /* LocalRewriteSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRewriteSettings.swift; sourceTree = "<group>"; };
 		AA913F01 /* DMSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DMSans-ExtraLight.ttf; sourceTree = "<group>"; };
 		AA913F02 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DMSans-Regular.ttf; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 				AA100092 /* DiagnosticDetailView.swift */,
 				AA1000A6 /* SettingsView.swift */,
 				774D6C000000000000000004 /* LocalRewriteSettings.swift */,
+				774D6C000000000000000006 /* RiffChatView.swift */,
 				AA1000A7 /* LicensesView.swift */,
 				AA1000A8 /* DebugLogView.swift */,
 				AA1000E2 /* GaugeBarView.swift */,
@@ -1479,6 +1482,7 @@
 				AA0000A9 /* OnboardingSuccessView.swift in Sources */,
 				AA0000A6 /* SettingsView.swift in Sources */,
 				774D6C000000000000000003 /* LocalRewriteSettings.swift in Sources */,
+				774D6C000000000000000005 /* RiffChatView.swift in Sources */,
 				AA0000A7 /* LicensesView.swift in Sources */,
 				AA0000A8 /* DebugLogView.swift in Sources */,
 				AA0000EA /* LanguageSetupPage.swift in Sources */,
