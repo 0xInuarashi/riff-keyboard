@@ -18,7 +18,7 @@ public struct LlamaRewriteEngine: PolishEngineProtocol {
     public var identifier: String { model.id }
 
     public func polish(raw: String, targetLanguage: SupportedLanguage, task: PolishTask) async throws -> String {
-        guard let file else { throw RewriteError.modelUnavailable }
+        guard let file else { throw LocalInferenceError.modelUnavailable }
         let instructions = Self.instructions(for: task)
         let prompt = ChatML.prompt(instructions: instructions, messages: [.init(role: .user, text: raw)],
                                    suppressesThinking: model.suppressesThinking)

@@ -81,7 +81,9 @@ struct RiffChatView: View {
             Button("New chat", role: .destructive) { chat.reset() }
             Button("Cancel", role: .cancel) {}
         }
-        .sheet(isPresented: $showsModels) {
+        .sheet(isPresented: $showsModels, onDismiss: {
+            appleModelName = PolishAvailability.appleSystemModelName
+        }) {
             NavigationStack {
                 OnDeviceModelPicker(
                     selection: $selection,
@@ -147,6 +149,7 @@ struct RiffChatView: View {
     private var composer: some View {
         HStack(alignment: .bottom, spacing: 10) {
             TextField("Message", text: $chat.draft, axis: .vertical)
+                .font(.body)
                 .lineLimit(1...5)
                 .padding(12)
                 .background(Color.dictusSurface, in: RoundedRectangle(cornerRadius: 16))

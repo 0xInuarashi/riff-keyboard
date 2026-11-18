@@ -91,6 +91,7 @@ Every ID in this map, in one table: the 18 features first, then their 118 sub-fe
 | `smart-modes.pin` | Pro | non |
 | `smart-modes.toggle` | Pro | non |
 | `smart-modes.local-model` | Pro | iPhone for latency and memory |
+| `app.chat` | Gratuit | iPhone for Apple Intelligence and latency |
 | `smart-modes.home-ring` | Pro | non |
 | `history.list` | Pro | non |
 | `history.search` | Pro | non |

@@ -19,9 +19,17 @@ struct OnDeviceModelPicker: View {
     @Binding var selection: String
     let title: LocalizedStringKey
     let caption: LocalizedStringKey
-    var allowsUnavailableApple = true
+    let allowsUnavailableApple: Bool
 
     @ObservedObject private var downloads = LocalRewriteDownloads.shared
+
+    init(selection: Binding<String>, title: LocalizedStringKey, caption: LocalizedStringKey,
+         allowsUnavailableApple: Bool = true) {
+        self._selection = selection
+        self.title = title
+        self.caption = caption
+        self.allowsUnavailableApple = allowsUnavailableApple
+    }
 
     var body: some View {
         let systemModelName = PolishAvailability.appleSystemModelName
