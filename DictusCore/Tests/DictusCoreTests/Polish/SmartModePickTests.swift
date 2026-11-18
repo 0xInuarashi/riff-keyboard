@@ -40,11 +40,11 @@ final class SmartModePickTests: XCTestCase {
         )
     }
 
-    func testTranslateOffersTheFourTargetsMinusTheSpokenLanguage() {
+    func testTranslateOffersTheTargetsEnglishFirstMinusTheSpokenLanguage() {
         XCTAssertEqual(SmartModePick.translateTargets(spokenLanguage: "fr"), [.english, .spanish, .german])
         XCTAssertEqual(SmartModePick.translateTargets(spokenLanguage: "en"), [.french, .spanish, .german])
-        XCTAssertEqual(SmartModePick.translateTargets(spokenLanguage: "es"), [.french, .english, .german])
-        XCTAssertEqual(SmartModePick.translateTargets(spokenLanguage: "de"), [.french, .english, .spanish])
+        XCTAssertEqual(SmartModePick.translateTargets(spokenLanguage: "es"), [.english, .french, .german])
+        XCTAssertEqual(SmartModePick.translateTargets(spokenLanguage: "de"), [.english, .french, .spanish])
     }
 
     func testASpokenLanguageWithoutADictusKeyboardRemovesNoTarget() {
