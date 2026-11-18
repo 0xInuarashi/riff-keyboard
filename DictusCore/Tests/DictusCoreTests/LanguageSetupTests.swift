@@ -53,10 +53,8 @@ final class LanguageSetupTests: XCTestCase {
         XCTAssertEqual(SpokenLanguage.prefilled(from: []), "en")
     }
 
-    // MARK: - Acceptance: an English, German or Spanish iPhone gets its own keyboard
-
-    func testEnglishIPhoneGetsEnglishQwerty() {
-        let setup = LanguageSetup.prefilled(preferredLanguages: ["en-GB"])
+    func testOnboardingStartsWithEnglishQwertyAndEnglishDictation() {
+        let setup = LanguageSetup.prefilled()
         XCTAssertEqual(setup.spokenLanguage, "en")
         XCTAssertEqual(setup.keyboardLanguage, .english)
         XCTAssertEqual(setup.layout, .qwerty)
@@ -64,20 +62,20 @@ final class LanguageSetupTests: XCTestCase {
         XCTAssertEqual(setup.transcriptionMode, .followKeyboard)
     }
 
-    func testGermanIPhoneGetsGermanQwertz() {
-        let setup = LanguageSetup.prefilled(preferredLanguages: ["de-AT"])
+    func testChoosingGermanGetsGermanQwertz() {
+        let setup = LanguageSetup(spokenLanguage: "de", preferredLanguages: [])
         XCTAssertEqual(setup.keyboardLanguage, .german)
         XCTAssertEqual(setup.layout, .qwertz)
     }
 
-    func testSpanishIPhoneGetsSpanishQwerty() {
-        let setup = LanguageSetup.prefilled(preferredLanguages: ["es-MX"])
+    func testChoosingSpanishGetsSpanishQwerty() {
+        let setup = LanguageSetup(spokenLanguage: "es", preferredLanguages: [])
         XCTAssertEqual(setup.keyboardLanguage, .spanish)
         XCTAssertEqual(setup.layout, .qwerty)
     }
 
-    func testFrenchIPhoneGetsFrenchAzerty() {
-        let setup = LanguageSetup.prefilled(preferredLanguages: ["fr-CA"])
+    func testChoosingFrenchGetsFrenchAzerty() {
+        let setup = LanguageSetup(spokenLanguage: "fr", preferredLanguages: [])
         XCTAssertEqual(setup.keyboardLanguage, .french)
         XCTAssertEqual(setup.layout, .azerty)
     }
@@ -93,8 +91,8 @@ final class LanguageSetupTests: XCTestCase {
 
     // MARK: - A spoken language without a Dictus keyboard
 
-    func testChineseIPhoneAsksForAKeyboardAndAutoDetects() {
-        let setup = LanguageSetup.prefilled(preferredLanguages: ["zh-Hans-CN"])
+    func testChoosingChineseAsksForAKeyboardAndAutoDetects() {
+        let setup = LanguageSetup(spokenLanguage: "zh", preferredLanguages: ["zh-Hans-CN"])
         XCTAssertEqual(setup.spokenLanguage, "zh")
         XCTAssertFalse(setup.spokenLanguageHasDictusKeyboard)
         XCTAssertEqual(setup.keyboardLanguage, .english, "no supported language among the preferred ones")
@@ -102,7 +100,7 @@ final class LanguageSetupTests: XCTestCase {
     }
 
     func testKeyboardForAnUnsupportedLanguageComesFromTheNextPreferredLanguage() {
-        let setup = LanguageSetup.prefilled(preferredLanguages: ["it-IT", "fr-FR", "en-US"])
+        let setup = LanguageSetup(spokenLanguage: "it", preferredLanguages: ["it-IT", "fr-FR", "en-US"])
         XCTAssertEqual(setup.spokenLanguage, "it")
         XCTAssertEqual(setup.keyboardLanguage, .french)
         XCTAssertEqual(setup.layout, .azerty)
@@ -135,7 +133,7 @@ final class LanguageSetupTests: XCTestCase {
     // MARK: - What the screen writes
 
     func testApplyWritesKeyboardLanguageModeAndSpokenLanguage() {
-        LanguageSetup.prefilled(preferredLanguages: ["de-DE"]).apply()
+        LanguageSetup(spokenLanguage: "de", preferredLanguages: []).apply()
         XCTAssertEqual(SupportedLanguage.active, .german)
         XCTAssertEqual(LayoutType.active, .qwertz)
         XCTAssertEqual(TranscriptionLanguageMode.active, .followKeyboard)

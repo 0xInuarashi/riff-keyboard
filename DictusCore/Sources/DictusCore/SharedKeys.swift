@@ -64,7 +64,7 @@ public enum SharedKeys {
     public static let recordingElapsedSeconds = "dictus.recordingElapsedSeconds"
 
     // User preferences (added for Plan 4.1 onboarding + settings)
-    /// Keyboard language code ("fr"/"en"/"es"/"de"), default "fr".
+    /// Keyboard language code ("en"/"fr"/"es"/"de"), default "en".
     /// Drives the keyboard layout, key labels, and autocorrect/prediction.
     /// Since issue #226 this is NO longer the STT language by itself — see
     /// `transcriptionLanguage` below. STT only follows this key when the

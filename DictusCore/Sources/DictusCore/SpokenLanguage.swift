@@ -49,8 +49,8 @@ public enum SpokenLanguage {
         return selectableSet.contains(normalized) ? normalized : nil
     }
 
-    /// The spoken language the onboarding prefills: the first of the iPhone's preferred
-    /// languages that a model can transcribe, or English when none can.
+    /// The first of the iPhone's preferred languages that a model can transcribe, or
+    /// English when none can.
     ///
     /// - Parameter preferredLanguages: `Locale.preferredLanguages`, injected.
     public static func prefilled(from preferredLanguages: [String]) -> String {
@@ -186,15 +186,13 @@ public struct LanguageSetup: Equatable, Sendable {
         self.layout = layoutFor(keyboard)
     }
 
-    /// The setup the screen opens on: the iPhone's language, so most users confirm it in
-    /// one tap.
+    /// The setup the screen opens on before the user picks a language.
     public static func prefilled(
-        preferredLanguages: [String],
         layoutFor: (SupportedLanguage) -> LayoutType = { $0.defaultLayout }
     ) -> LanguageSetup {
         LanguageSetup(
-            spokenLanguage: SpokenLanguage.prefilled(from: preferredLanguages),
-            preferredLanguages: preferredLanguages,
+            spokenLanguage: SupportedLanguage.defaultLanguage.rawValue,
+            preferredLanguages: [],
             layoutFor: layoutFor
         )
     }

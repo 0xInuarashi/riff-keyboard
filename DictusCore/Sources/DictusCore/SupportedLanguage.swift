@@ -10,10 +10,12 @@ import Foundation
 /// A single enum prevents typos, centralizes display names and layout defaults,
 /// and makes adding new languages a one-place change.
 public enum SupportedLanguage: String, CaseIterable, Codable, Sendable {
-    case french = "fr"
     case english = "en"
+    case french = "fr"
     case spanish = "es"
     case german = "de"
+
+    public static let defaultLanguage: SupportedLanguage = .english
 
     /// Localized display name for settings UI.
     public var displayName: String {
@@ -81,13 +83,10 @@ public enum SupportedLanguage: String, CaseIterable, Codable, Sendable {
         return SupportedLanguage(rawValue: base) ?? .english
     }
 
-    /// Reads the active language from App Group, defaulting to French.
+    /// Reads the active language from App Group, defaulting to English.
     public static var active: SupportedLanguage {
-        guard let raw = AppGroup.defaults.string(forKey: SharedKeys.language),
-              let lang = SupportedLanguage(rawValue: raw) else {
-            return .french
-        }
-        return lang
+        AppGroup.defaults.string(forKey: SharedKeys.language)
+            .flatMap(SupportedLanguage.init(rawValue:)) ?? defaultLanguage
     }
 
     /// Makes `language` the active keyboard language.

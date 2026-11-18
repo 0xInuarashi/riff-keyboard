@@ -65,14 +65,15 @@ final class LayoutTypeTests: XCTestCase {
     // MARK: - Fallback
 
     func testUnknownStoredValueFallsBackToAzerty() {
+        defaults?.set(SupportedLanguage.french.rawValue, forKey: SharedKeys.language)
         defaults?.set([SupportedLanguage.active.rawValue: "dvorak"], forKey: SharedKeys.keyboardLayoutsByLanguage)
         XCTAssertEqual(LayoutType.active, .azerty,
                        "An unrecognised stored layout must keep falling back to the default, AZERTY for French.")
     }
 
-    func testMissingStoredValueFallsBackToAzerty() {
-        XCTAssertEqual(LayoutType.active, .azerty,
-                       "Nothing stored and no language stored: French, therefore AZERTY.")
+    func testMissingLanguageAndLayoutFallBackToEnglishQwerty() {
+        XCTAssertEqual(SupportedLanguage.active, .english)
+        XCTAssertEqual(LayoutType.active, .qwerty)
     }
 
     // MARK: - Display names

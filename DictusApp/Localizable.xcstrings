@@ -6447,6 +6447,29 @@
         }
       }
     },
+    "English is selected by default. You can change it here or later in Settings." : {
+      "comment" : "Onboarding language screen subtitle (#675).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Englisch ist voreingestellt. Du kannst die Sprache hier oder später in den Einstellungen ändern."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El inglés está seleccionado de forma predeterminada. Puedes cambiarlo aquí o más tarde en Ajustes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’anglais est sélectionné par défaut. Vous pouvez changer la langue ici ou plus tard dans Réglages."
+          }
+        }
+      }
+    },
     "English (US)" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -13965,29 +13988,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos idées en liste à puces."
-          }
-        }
-      }
-    },
-    "Your iPhone's language, already selected. You can change it later in Settings." : {
-      "comment" : "Onboarding language screen subtitle (#675).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Sprache deines iPhone, bereits ausgewählt. Du kannst sie später in den Einstellungen ändern."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El idioma de tu iPhone, ya seleccionado. Puedes cambiarlo más tarde en Ajustes."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Celle de votre iPhone, déjà choisie. Vous pourrez la changer plus tard dans Réglages."
           }
         }
       }

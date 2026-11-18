@@ -6,7 +6,7 @@ import Foundation
 /// the defaults it writes when a key is missing.
 public enum AppLaunchDefaults {
 
-    /// Write the defaults a missing key stands for: `language = "fr"` and
+    /// Write the defaults a missing key stands for: `language = "en"` and
     /// `liveActivityEnabled = true`.
     ///
     /// WHY at launch: `@AppStorage` defaults live in memory only, and the transcription
@@ -28,7 +28,7 @@ public enum AppLaunchDefaults {
         let state = AppGroupReadCheck.state(of: store, protectedData: protectedData, fileValues: fileValues)
         guard state == .trusted else { return false }
         if store.string(forKey: SharedKeys.language) == nil {
-            store.set("fr", forKey: SharedKeys.language)
+            store.set(SupportedLanguage.defaultLanguage.rawValue, forKey: SharedKeys.language)
         }
         if store.object(forKey: SharedKeys.liveActivityEnabled) == nil {
             store.set(true, forKey: SharedKeys.liveActivityEnabled)

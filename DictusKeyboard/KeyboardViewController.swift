@@ -583,8 +583,7 @@ class KeyboardViewController: UIInputViewController {
         // Refresh prediction language from App Group on every keyboard appearance.
         // WHY here not viewDidLoad: The user can change language in the app between
         // keyboard appearances. viewWillAppear fires each time, picking up the change.
-        let lang = AppGroup.defaults.string(forKey: SharedKeys.language) ?? "fr"
-        suggestionState.setLanguage(lang)
+        suggestionState.setLanguage(SupportedLanguage.active.rawValue)
 
         PersistentLog.log(.diagnosticProbe(
             component: "KeyboardViewController",

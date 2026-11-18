@@ -44,13 +44,20 @@ final class ProtectedDataLaunchReproTests: XCTestCase {
     private let locked = FixedProtectedData(isProtectedDataAvailable: false)
     private let unlocked = FixedProtectedData(isProtectedDataAvailable: true)
 
-    /// An existing user's App Group: onboarding done, English, Live Activity turned off.
+    /// An existing user's App Group: onboarding done, French, Live Activity turned off.
     private func existingUserStore(isLocked: Bool) -> LockableAppGroupStore {
         LockableAppGroupStore(values: [
             SharedKeys.hasCompletedOnboarding: true,
-            SharedKeys.language: "en",
+            SharedKeys.language: "fr",
             SharedKeys.liveActivityEnabled: false
         ], isLocked: isLocked)
+    }
+
+    func testFreshLaunchWritesEnglishAsTheKeyboardDefault() {
+        let store = LockableAppGroupStore(values: [:], isLocked: false)
+
+        XCTAssertTrue(AppLaunchDefaults.writeMissingDefaults(to: store, protectedData: unlocked))
+        XCTAssertEqual(store.string(forKey: SharedKeys.language), "en")
     }
 
     /// Log B, session C0E845CE: the keyboard wrote `stopRequested = true` and posted the
@@ -92,7 +99,7 @@ final class ProtectedDataLaunchReproTests: XCTestCase {
         store.isLocked = false
         AppLaunchDefaults.writeMissingDefaults(to: store, protectedData: unlocked)
         XCTAssertEqual(AppLaunchDefaults.onboardingCompleted(in: store, protectedData: unlocked), true)
-        XCTAssertEqual(store.string(forKey: SharedKeys.language), "en")
+        XCTAssertEqual(store.string(forKey: SharedKeys.language), "fr")
         XCTAssertEqual(store.object(forKey: SharedKeys.liveActivityEnabled) as? Bool, false)
     }
 

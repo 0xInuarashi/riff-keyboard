@@ -24,7 +24,7 @@ struct SettingsView: View {
     // MARK: - Preferences (App Group persisted)
 
     @AppStorage(SharedKeys.language, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var language = "fr"
+    private var language = SupportedLanguage.defaultLanguage.rawValue
 
     /// Transcription (STT) language mode, decoupled from the keyboard language (#226).
     /// Stored as its raw App Group encoding: "follow" (default), "auto", or an
@@ -98,7 +98,7 @@ struct SettingsView: View {
 
     /// The keyboard language the pickers below operate on.
     private var keyboardLanguage: SupportedLanguage {
-        SupportedLanguage(rawValue: language) ?? .french
+        SupportedLanguage(rawValue: language) ?? .defaultLanguage
     }
 
     /// The Layout picker's selection: the layout of whichever keyboard language is

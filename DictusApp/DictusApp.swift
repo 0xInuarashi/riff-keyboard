@@ -341,7 +341,7 @@ struct DictusApp: App {
             DictusLogger.app.info("ngramDiagnostic: \(ngramDiag, privacy: .public)")
         }
 
-        // `language = "fr"` and `liveActivityEnabled = true` when missing, so the
+        // `language = "en"` and `liveActivityEnabled = true` when missing, so the
         // transcription service and the Live Activity read a stored value.
         AppLaunchDefaults.writeMissingDefaults(
             to: AppGroup.defaults,

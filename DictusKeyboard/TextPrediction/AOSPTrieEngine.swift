@@ -25,7 +25,7 @@ final class AOSPTrieEngine {
 
     /// The currently loaded language code ("fr", "en", "es").
     /// Set by load(language:) so overrides and apostrophe handling can be language-aware.
-    private var currentLanguage: String = "fr"
+    private var currentLanguage = SupportedLanguage.defaultLanguage.rawValue
 
     /// The language whose data is mmap'd **right now**, or nil when none is.
     ///

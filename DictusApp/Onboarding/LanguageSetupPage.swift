@@ -12,8 +12,7 @@ import DictusCore
 /// recommended model depended on the device only, so a Chinese speaker was handed Parakeet,
 /// which does not speak Chinese. The language decides both, so it is asked first.
 ///
-/// WHY PREFILLED: the iPhone's own language is the right answer for almost everyone, so
-/// the screen opens on it and "Continue" is the whole interaction.
+/// English is selected initially. Users can choose another language before continuing.
 ///
 /// WHY NO MODEL CHOICE: offered a choice, users take the lightest model instead of the
 /// best one (#649 decision 4). The screen names the model and its size, in small type,
@@ -49,7 +48,6 @@ struct LanguageSetupPage: View {
         // `KeyboardLayoutPreference.layout(for:)` rather than `defaultLayout`: a user who
         // runs the onboarding again keeps the layout they already chose for a language.
         _setup = State(initialValue: draft.wrappedValue ?? LanguageSetup.prefilled(
-            preferredLanguages: Locale.preferredLanguages,
             layoutFor: { KeyboardLayoutPreference.layout(for: $0) }
         ))
     }
@@ -57,7 +55,7 @@ struct LanguageSetupPage: View {
     var body: some View {
         OnboardingPage(
             title: Text("Your language"),
-            subtitle: Text("Your iPhone's language, already selected. You can change it later in Settings.")
+            subtitle: Text("English is selected by default. You can change it here or later in Settings.")
         ) {
             VStack(alignment: .leading, spacing: 0) {
                 languageCard
