@@ -238,7 +238,7 @@ private extension OnboardingIntroScene {
     /// The page's headline (mock-ups `01a`, `01b`, `01c`).
     var headline: Text {
         switch self {
-        case .walking: return Text("Speak. Riff Keyboard writes.")
+        case .walking: return Text("Speak. Riff 2 writes.")
         case .metro: return Text("Even offline.")
         case .keyboard: return Text("In your keyboard.")
         }

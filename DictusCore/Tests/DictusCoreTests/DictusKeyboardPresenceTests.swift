@@ -8,10 +8,10 @@ final class DictusKeyboardPresenceTests: XCTestCase {
     func testDictusInTheListIsListedUnderItsIdentifier() {
         let presence = DictusKeyboardPresence(inputModeIdentifiers: [
             "fr_FR@sw=AZERTY-French;hw=Automatic",
-            "com.pivi.dictus.keyboard",
+            "dev.starkharness.riff2.keyboard",
             "emoji@sw=Emoji"
         ])
-        XCTAssertEqual(presence, .listed(identifier: "com.pivi.dictus.keyboard"))
+        XCTAssertEqual(presence, .listed(identifier: "dev.starkharness.riff2.keyboard"))
         XCTAssertTrue(presence.isListed)
     }
 

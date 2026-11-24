@@ -1255,7 +1255,7 @@ class DictationCoordinator: ObservableObject {
     /// an overlay from.
     ///
     /// WHY `.requested` is excluded: the keyboard writes it moments before opening
-    /// `dictus://dictate`, i.e. moments before launching this very process. Clearing
+    /// `riff2://dictate`, i.e. moments before launching this very process. Clearing
     /// it here would break every cold-start dictation — including the retry in
     /// `didBecomeActive`, which proceeds only while the stored status is still
     /// `requested`.

@@ -18,13 +18,13 @@ final class KeyboardOpenURLTests: XCTestCase {
 
     func testTheProIntentIsTheOneThePaywallRoutesOn() throws {
         let url = try XCTUnwrap(KeyboardOpenURL.url(intent: .pro))
-        XCTAssertEqual(url.absoluteString, "dictus://open?source=keyboard&intent=pro")
+        XCTAssertEqual(url.absoluteString, "riff2://open?source=keyboard&intent=pro")
     }
 
     /// The scheme is public, so a screen request is only ours when we sent it — the
     /// same rule `KeyboardDictationURL` applies for the same reason.
     func testAUrlWithoutTheKeyboardSourceIsNotOurs() throws {
-        let url = try XCTUnwrap(URL(string: "dictus://open?intent=pro"))
+        let url = try XCTUnwrap(URL(string: "riff2://open?intent=pro"))
         XCTAssertNil(KeyboardOpenURL.intent(from: url))
     }
 
@@ -33,9 +33,9 @@ final class KeyboardOpenURLTests: XCTestCase {
     /// first frame of a dictation.
     func testDictationURLsAreNotScreenRequests() throws {
         for raw in [
-            "dictus://dictate?source=keyboard",
-            "dictus://dictate?source=keyboard&intent=prepare",
-            "dictus://stop"
+            "riff2://dictate?source=keyboard",
+            "riff2://dictate?source=keyboard&intent=prepare",
+            "riff2://stop"
         ] {
             let url = try XCTUnwrap(URL(string: raw))
             XCTAssertNil(KeyboardOpenURL.intent(from: url), raw)
@@ -70,14 +70,14 @@ final class KeyboardOpenURLTests: XCTestCase {
 
     /// `voiceNote` lives on its own host; an `open` URL naming it was not built here.
     func testTheVoiceNoteIntentIsNotAcceptedOnTheOpenHost() throws {
-        let url = try XCTUnwrap(URL(string: "dictus://open?source=keyboard&intent=voiceNote"))
+        let url = try XCTUnwrap(URL(string: "riff2://open?source=keyboard&intent=voiceNote"))
         XCTAssertNil(KeyboardOpenURL.intent(from: url))
     }
 
     /// An intent a future build sends and this one has never heard of reads as nil,
     /// which routes nowhere rather than routing wrongly.
     func testAnUnknownIntentIsRefusedRatherThanGuessed() throws {
-        let url = try XCTUnwrap(URL(string: "dictus://open?source=keyboard&intent=history"))
+        let url = try XCTUnwrap(URL(string: "riff2://open?source=keyboard&intent=history"))
         XCTAssertNil(KeyboardOpenURL.intent(from: url))
     }
 }

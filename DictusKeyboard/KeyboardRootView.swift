@@ -194,16 +194,16 @@ struct KeyboardRootView: View {
             onProTap: { leavePanel { state.openDictusApp(intent: .pro) } },
             armedSmartMode: smartModes.armedMode,
             effectiveSmartMode: smartModes.effectiveMode,
-            offersSmartModeHint: smartModes.offersHint,
-            onSmartModeFanOpen: { smartModes.open() },
+            offersSmartModeHint: false,
+            onSmartModeFanOpen: nil,
             onSmartModeFanDrag: { y in smartModes.track(y: y) },
             onSmartModeFanRelease: { smartModes.commit() },
             isSmartModeFanOpen: smartModes.fan != nil,
-            ringsMenuForVoiceNotes: voiceNotes.showsMenuHalo,
-            offersPanelHint: voiceNotes.offersPanelHint,
+            ringsMenuForVoiceNotes: false,
+            offersPanelHint: false,
             // #639: the ☰'s tap is the voice note reader; its long press opens the
             // panel through `onPanelToggle` above and retires the panel hint here.
-            onMenuTap: { voiceNotes.openFromTap() },
+            onMenuTap: { state.openDictusApp(intent: .settings) },
             onMenuLongPress: { voiceNotes.menuLongPressRecognised() }
         )
         .frame(height: toolbarHeight)

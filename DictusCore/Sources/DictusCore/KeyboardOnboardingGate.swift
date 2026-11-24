@@ -37,7 +37,7 @@ public enum KeyboardOnboardingGate {
 
     /// DictusApp's bundle identifier, as host resolution reports it when the keyboard's
     /// host is a text field inside the app.
-    public static let dictusHostId = "com.pivi.dictus"
+    public static let dictusHostId = "dev.starkharness.riff2"
 
     /// The decision for one keyboard action.
     ///
@@ -71,7 +71,7 @@ public enum KeyboardOnboardingGate {
         defaults.object(forKey: SharedKeys.hasCompletedOnboarding) as? Bool ?? false
     }
 
-    /// The screen a keyboard `dictus://open` request may ask for.
+    /// The screen a keyboard `riff2://open` request may ask for.
     ///
     /// Before onboarding is done, `.pro` becomes `.settings`, which has no route of its
     /// own: the app comes forward and onboarding stays on screen. Every other intent is
@@ -92,7 +92,7 @@ public enum KeyboardOnboardingGate {
         onboardingCompleted || appIsActive
     }
 
-    /// What DictusApp does with a `dictus://dictate` URL.
+    /// What DictusApp does with a `riff2://dictate` URL.
     public enum DictateURLRoute: Equatable, Sendable {
         /// The keyboard asks for a model warm-up only (#262): no recording.
         case prepare
@@ -102,7 +102,7 @@ public enum KeyboardOnboardingGate {
         case dictate
     }
 
-    /// The route for one `dictus://dictate` URL.
+    /// The route for one `riff2://dictate` URL.
     ///
     /// WHY `prepare` COMES FIRST (#868): it records nothing and has no model to fail on, so
     /// the #827 rule (no dictation, no error before onboarding) has nothing to refuse there.

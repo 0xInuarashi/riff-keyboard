@@ -71,9 +71,9 @@ public enum FirstDictationStage: Equatable, Sendable {
     /// Whether a text input mode identifier is the Dictus keyboard's.
     ///
     /// A third-party keyboard's input mode identifier is its extension's bundle identifier
-    /// (`com.pivi.dictus.keyboard`). The test accepts the Dictus prefix itself or a bundle
-    /// identifier under it (`com.pivi.dictus.` at the start), so another vendor's id that
-    /// merely contains the prefix (`com.example.com.pivi.dictus.keyboard`) is not Dictus.
+    /// (`dev.starkharness.riff2.keyboard`). The test accepts the Dictus prefix itself or a bundle
+    /// identifier under it (`dev.starkharness.riff2.` at the start), so another vendor's id that
+    /// merely contains the prefix (`com.example.dev.starkharness.riff2.keyboard`) is not Dictus.
     /// A nil identifier (the key could not be read) is not Dictus.
     public static func isDictusInputMode(identifier: String?) -> Bool {
         guard let identifier else { return false }
@@ -81,7 +81,7 @@ public enum FirstDictationStage: Equatable, Sendable {
     }
 
     /// The prefix every Dictus bundle identifier shares.
-    static let dictusBundlePrefix = "com.pivi.dictus"
+    static let dictusBundlePrefix = "dev.starkharness.riff2"
 
     /// Shortest text that completes the step.
     ///

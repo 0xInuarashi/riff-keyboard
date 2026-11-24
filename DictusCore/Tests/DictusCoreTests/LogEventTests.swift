@@ -512,10 +512,10 @@ final class LogEventTests: XCTestCase {
     }
 
     func testBackgroundSessionEventsIsInfoLifecycle() {
-        let event = LogEvent.appBackgroundSessionEvents(identifier: "com.pivi.dictus.model-download")
+        let event = LogEvent.appBackgroundSessionEvents(identifier: "dev.starkharness.riff2.model-download")
         XCTAssertEqual(event.level, .info)
         XCTAssertEqual(event.subsystem, .lifecycle)
-        XCTAssertEqual(event.message, "identifier=com.pivi.dictus.model-download")
+        XCTAssertEqual(event.message, "identifier=dev.starkharness.riff2.model-download")
     }
 
     // MARK: - Model download task diagnosis (#707)

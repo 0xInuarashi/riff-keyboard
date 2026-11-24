@@ -42,7 +42,7 @@ public enum HostForegroundDebt: Equatable, Sendable, CaseIterable {
     case engineDead
 
     /// Nothing is owed. Either the URL is not a keyboard hand-off at all — the widget's
-    /// `dictus://dictate` carries no `source=keyboard` and its dictation belongs in the
+    /// `riff2://dictate` carries no `source=keyboard` and its dictation belongs in the
     /// app — or the app was genuinely warm, engine running, and never took the foreground
     /// away. Returning here would yank a user who is deliberately looking at Dictus.
     case nothingOwed
@@ -65,7 +65,7 @@ public enum HostForegroundDebt: Equatable, Sendable, CaseIterable {
         }
     }
 
-    /// Reads the three facts available when the `dictus://dictate` URL arrives.
+    /// Reads the three facts available when the `riff2://dictate` URL arrives.
     ///
     /// - Parameters:
     ///   - isFromKeyboard: the URL carries `source=keyboard`, i.e. a keyboard extension

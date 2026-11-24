@@ -24,7 +24,7 @@ import Foundation
 /// warn about it.
 public enum DictationStatus: String, Codable, CaseIterable, Sendable {
     case idle         // No dictation in progress
-    case requested    // Keyboard triggered dictus://dictate
+    case requested    // Keyboard triggered riff2://dictate
     case recording    // Main app is recording audio
     case transcribing // Main app is running transcription
     case processing   // Main app is running the LLM stage on the transcript

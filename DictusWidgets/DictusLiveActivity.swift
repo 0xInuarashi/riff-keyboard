@@ -66,7 +66,7 @@ struct DictusLiveActivity: Widget {
     /// Where a tap goes: the voice note screen when the ring owns the island, the app
     /// as before otherwise.
     private func tapURL(context: ActivityViewContext<DictusLiveActivityAttributes>) -> URL? {
-        voiceNotes(context)?.url ?? URL(string: "dictus://open")
+        voiceNotes(context)?.url ?? URL(string: "riff2://open")
     }
 
     // MARK: - Compact Views (Dynamic Island pill)
@@ -283,7 +283,7 @@ struct DictusLiveActivity: Widget {
                 // Record button
                 // Force unwrap is safe: compile-time constant deep link, always well-formed.
                 // swiftlint:disable:next force_unwrapping
-                Link(destination: URL(string: "dictus://dictate")!) {
+                Link(destination: URL(string: "riff2://dictate")!) {
                     Image(systemName: "mic.fill")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(.black)
@@ -295,7 +295,7 @@ struct DictusLiveActivity: Widget {
                 // Stop button (left side)
                 // Force unwrap is safe: compile-time constant deep link, always well-formed.
                 // swiftlint:disable:next force_unwrapping
-                Link(destination: URL(string: "dictus://stop")!) {
+                Link(destination: URL(string: "riff2://stop")!) {
                     Image(systemName: "stop.fill")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(.black)
@@ -431,7 +431,7 @@ struct DictusLiveActivity: Widget {
                     .buttonStyle(.plain)
                     // Force unwrap is safe: compile-time constant deep link, always well-formed.
                     // swiftlint:disable:next force_unwrapping
-                    Link(destination: URL(string: "dictus://dictate")!) {
+                    Link(destination: URL(string: "riff2://dictate")!) {
                         Image(systemName: "mic.fill")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.black)
@@ -443,7 +443,7 @@ struct DictusLiveActivity: Widget {
             case .recording:
                 // Force unwrap is safe: compile-time constant deep link, always well-formed.
                 // swiftlint:disable:next force_unwrapping
-                Link(destination: URL(string: "dictus://stop")!) {
+                Link(destination: URL(string: "riff2://stop")!) {
                     Image(systemName: "stop.fill")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(.black)

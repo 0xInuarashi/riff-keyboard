@@ -60,7 +60,7 @@ final class HostForegroundDebtTests: XCTestCase {
     }
 
     func testANonKeyboardURLNeverOwesAnything() {
-        // The widget's `dictus://dictate` carries no `source=keyboard`. Its dictation
+        // The widget's `riff2://dictate` carries no `source=keyboard`. Its dictation
         // completes in the app, and there is no host app to send anyone back to.
         for hasBeenActive in [true, false] {
             for isEngineRunning in [true, false] {

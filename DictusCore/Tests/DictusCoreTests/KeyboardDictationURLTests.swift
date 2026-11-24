@@ -7,46 +7,46 @@ final class KeyboardDictationURLTests: XCTestCase {
 
     /// The URL the keyboard opens on a microphone tap (KeyboardState).
     func testRecordURLFromKeyboard() {
-        let url = URL(string: "dictus://dictate?source=keyboard")!
+        let url = URL(string: "riff2://dictate?source=keyboard")!
         XCTAssertEqual(KeyboardDictationURL.intent(from: url), .record)
     }
 
     /// The prepare-only URL from issue #262 must never be read as a recording request:
     /// it loads the model and shows the loading overlay, nothing else.
     func testPrepareURLFromKeyboard() {
-        let url = URL(string: "dictus://dictate?source=keyboard&intent=prepare")!
+        let url = URL(string: "riff2://dictate?source=keyboard&intent=prepare")!
         XCTAssertEqual(KeyboardDictationURL.intent(from: url), .prepare)
     }
 
     /// Query item order must not matter — the rule is a lookup, not a prefix match.
     func testPrepareURLWithReversedQueryOrder() {
-        let url = URL(string: "dictus://dictate?intent=prepare&source=keyboard")!
+        let url = URL(string: "riff2://dictate?intent=prepare&source=keyboard")!
         XCTAssertEqual(KeyboardDictationURL.intent(from: url), .prepare)
     }
 
     /// An unknown intent value is still a recording request: only `prepare` diverts.
     func testUnknownIntentFallsBackToRecord() {
-        let url = URL(string: "dictus://dictate?source=keyboard&intent=whatever")!
+        let url = URL(string: "riff2://dictate?source=keyboard&intent=whatever")!
         XCTAssertEqual(KeyboardDictationURL.intent(from: url), .record)
     }
 
     /// The Live Activity deep link opens the same host without a source, and must not
     /// be mistaken for a keyboard cold start (it would show the swipe-back overlay).
     func testWidgetDictateURLIsNotAKeyboardRequest() {
-        let url = URL(string: "dictus://dictate")!
+        let url = URL(string: "riff2://dictate")!
         XCTAssertNil(KeyboardDictationURL.intent(from: url))
     }
 
     /// Another source value is not the keyboard.
     func testOtherSourceIsNotAKeyboardRequest() {
-        let url = URL(string: "dictus://dictate?source=widget")!
+        let url = URL(string: "riff2://dictate?source=widget")!
         XCTAssertNil(KeyboardDictationURL.intent(from: url))
     }
 
-    /// `dictus://stop` and `dictus://open` share the scheme but not the host.
+    /// `riff2://stop` and `riff2://open` share the scheme but not the host.
     func testOtherHostsAreNotKeyboardRequests() {
-        XCTAssertNil(KeyboardDictationURL.intent(from: URL(string: "dictus://stop")!))
-        XCTAssertNil(KeyboardDictationURL.intent(from: URL(string: "dictus://open?source=keyboard")!))
+        XCTAssertNil(KeyboardDictationURL.intent(from: URL(string: "riff2://stop")!))
+        XCTAssertNil(KeyboardDictationURL.intent(from: URL(string: "riff2://open?source=keyboard")!))
     }
 
     /// A foreign scheme never matches, even with an identical host and query.
@@ -95,18 +95,18 @@ extension KeyboardDictationURLTests {
     /// empty string a caller might treat as a bundle identifier.
     func testAbsentAndEmptyHostsBothReadAsNil() {
         // swiftlint:disable:next force_unwrapping
-        let noHost = URL(string: "dictus://dictate?source=keyboard")!
+        let noHost = URL(string: "riff2://dictate?source=keyboard")!
         XCTAssertNil(KeyboardDictationURL.hostId(from: noHost))
         // swiftlint:disable:next force_unwrapping
-        let emptyHost = URL(string: "dictus://dictate?source=keyboard&hostId=")!
+        let emptyHost = URL(string: "riff2://dictate?source=keyboard&hostId=")!
         XCTAssertNil(KeyboardDictationURL.hostId(from: emptyHost))
     }
 
-    /// The widget's `dictus://dictate` is not a keyboard hand-off, so it has no host even
+    /// The widget's `riff2://dictate` is not a keyboard hand-off, so it has no host even
     /// if something appends one.
     func testAWidgetURLNeverYieldsAHost() {
         // swiftlint:disable:next force_unwrapping
-        let widget = URL(string: "dictus://dictate?hostId=com.apple.mobilenotes")!
+        let widget = URL(string: "riff2://dictate?hostId=com.apple.mobilenotes")!
         XCTAssertNil(KeyboardDictationURL.hostId(from: widget))
     }
 }

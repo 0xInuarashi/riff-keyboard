@@ -122,8 +122,8 @@ final class KnownAppSchemesTests: XCTestCase {
 
     /// Dictus hosting its own keyboard is not a return target.
     func testDictusIsNotItsOwnReturnTarget() {
-        XCTAssertNil(KnownAppSchemes.returnURL(forHostId: "com.pivi.dictus"))
-        XCTAssertFalse(KnownAppSchemes.isWorthReporting("com.pivi.dictus"))
+        XCTAssertNil(KnownAppSchemes.returnURL(forHostId: "dev.starkharness.riff2"))
+        XCTAssertFalse(KnownAppSchemes.isWorthReporting("dev.starkharness.riff2"))
     }
 
     /// An unmapped host nobody has classified is exactly what the log line is for.

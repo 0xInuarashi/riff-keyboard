@@ -21,8 +21,8 @@ public enum DictusKeyboardPresence: Equatable, Sendable {
     /// The list came back empty: nothing can be concluded.
     case unreadable
 
-    /// The fragment every Dictus keyboard identifier contains (`com.pivi.dictus.keyboard`).
-    public static let identifierFragment = "com.pivi.dictus"
+    /// The fragment every Dictus keyboard identifier contains (`dev.starkharness.riff2.keyboard`).
+    public static let identifierFragment = "dev.starkharness.riff2"
 
     /// Reads the presence from the identifiers of the active input modes.
     public init(inputModeIdentifiers identifiers: [String]) {

@@ -128,11 +128,11 @@ final class VoiceNoteRulesTests: XCTestCase {
     func testTheLinkRoundTrips() throws {
         let id = UUID()
         let url = try XCTUnwrap(VoiceNoteURL.url(for: id))
-        XCTAssertEqual(url.absoluteString, "dictus://voice-note?id=\(id.uuidString)")
+        XCTAssertEqual(url.absoluteString, "riff2://voice-note?id=\(id.uuidString)")
         XCTAssertEqual(VoiceNoteURL.target(of: url), .some(id))
         let screen = try XCTUnwrap(VoiceNoteActivityContent(segments: [.ready]).url)
         XCTAssertEqual(VoiceNoteURL.target(of: screen), .some(nil))
-        XCTAssertNil(VoiceNoteURL.target(of: try XCTUnwrap(URL(string: "dictus://dictate"))))
+        XCTAssertNil(VoiceNoteURL.target(of: try XCTUnwrap(URL(string: "riff2://dictate"))))
     }
 
     func testThePayloadStaysSmall() throws {

@@ -76,7 +76,7 @@ enum PersonalizationFormatting {
             let endsLine = i == words.count - 1 || tail.contains(where: \.isNewline)
             let canAddMark = endsLine && tail.allSatisfy(\.isWhitespace) &&
                 word.contains { $0.isUppercase || $0.isLowercase }
-            if globalTone == .superCasual && !marks.contains(where: questionMarks.contains) {
+            if (globalTone == .superCasual || globalTone == .casual), !marks.contains(where: questionMarks.contains) {
                 result += marks.filter { !"!！.。…".contains($0) }
             } else {
                 result += statementMarks(marks, style: style, endsLine: endsLine, canAddMark: canAddMark)

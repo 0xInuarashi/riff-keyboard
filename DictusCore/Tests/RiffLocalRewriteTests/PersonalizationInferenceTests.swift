@@ -63,7 +63,7 @@ final class PersonalizationInferenceTests: XCTestCase {
                 case .formal:
                     XCTAssertTrue(output.hasSuffix("."), output)
                     XCTAssertFalse(output.contains("!"), output)
-                case .relaxed:
+                case .standard, .relaxed:
                     XCTAssertFalse(output.contains("!"), output)
                 case .casual:
                     break

@@ -177,7 +177,7 @@ final class VoiceNoteProcessor: ObservableObject {
         // (or a delete), not because it was read here.
     }
 
-    /// `dictus://voice-note[?id=…]`, from the Live Activity: the voice note screen,
+    /// `riff2://voice-note[?id=…]`, from the Live Activity: the voice note screen,
     /// on the unread stack (see `VoiceNoteStackView`).
     func open(_ target: UUID?) {
         // The island's link names no note; the share extension's cold-path link does.
@@ -450,7 +450,7 @@ final class VoiceNoteProcessor: ObservableObject {
     /// island's segment), and prune what outlived its window.
     ///
     /// Called from every way in (#639): launch, every activation and every background,
-    /// every `dictus://` URL before it is handled, the keyboard's Darwin recording
+    /// every `riff2://` URL before it is handled, the keyboard's Darwin recording
     /// start, and the keyboard's own receipt signal while this process is alive. The
     /// device test of 5f27a393 is why: two notes read in the keyboard stayed unread in
     /// the island because the app, alive in the background since a mic-tap dictation,

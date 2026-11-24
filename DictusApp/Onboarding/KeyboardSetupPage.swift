@@ -522,7 +522,7 @@ struct KeyboardSetupPage: View {
     /// This is the only public API to detect installed keyboards. It returns
     /// an array of UITextInputMode objects whose `value(forKey: "identifier")`
     /// contains the bundle identifier. We look for our keyboard extension's
-    /// bundle ID "com.pivi.dictus.keyboard".
+    /// bundle ID "dev.starkharness.riff2.keyboard".
     ///
     /// WHY defensive coding:
     /// UITextInputMode.activeInputModes can be unstable during rapid scenePhase

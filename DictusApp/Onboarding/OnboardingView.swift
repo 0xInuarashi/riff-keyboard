@@ -282,7 +282,7 @@ struct OnboardingView: View {
     /// - How to stop Dictus: passed over on an iPad, where iPadOS shows no Live Activity
     ///   (#681, `OnboardingStep.passedOver(on:)`). Every iPhone sees it.
     private var satisfiedSteps: Set<OnboardingStep> {
-        var satisfied: Set<OnboardingStep> = []
+        var satisfied: Set<OnboardingStep> = [.appleIntelligence, .smartModesScene, .smartModePick, .voiceNotesScene, .vocabularyScene, .historyScene, .stopStandby]
         if !AppleIntelligenceOnboarding.isStepNeeded {
             satisfied.insert(.appleIntelligence)
         }

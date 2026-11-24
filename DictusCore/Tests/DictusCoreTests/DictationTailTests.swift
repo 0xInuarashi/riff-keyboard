@@ -21,9 +21,9 @@ final class DictationTailTests: XCTestCase {
 
     // MARK: - The historical separator
 
-    func testUnpunctuatedTextGetsAFullStopAndASpace() {
+    func testUnpunctuatedTextGetsASpace() {
         let out = DictationTail.apply("bonjour tout le monde", policy: policy(mode: .followKeyboard))
-        XCTAssertEqual(out, "bonjour tout le monde. ")
+        XCTAssertEqual(out, "bonjour tout le monde ")
     }
 
     func testTextEndingInAFullStopGetsOnlyASpace() {
@@ -40,12 +40,11 @@ final class DictationTailTests: XCTestCase {
 
     func testExplicitModeKeepsTheSeparator() {
         let out = DictationTail.apply("hello", policy: policy(mode: .explicit(.english)))
-        XCTAssertEqual(out, "hello. ")
+        XCTAssertEqual(out, "hello ")
     }
 
-    func testEmptyTextGetsTheDefaultSeparator() {
-        // No last character to inspect, so the punctuated branch cannot be taken.
-        XCTAssertEqual(DictationTail.apply("", policy: policy(mode: .followKeyboard)), ". ")
+    func testEmptyTextStaysEmpty() {
+        XCTAssertEqual(DictationTail.apply("", policy: policy(mode: .followKeyboard)), "")
     }
 
     // MARK: - Whisper auto-detect inserts as-is
@@ -59,7 +58,7 @@ final class DictationTailTests: XCTestCase {
         // The setting is Whisper-only-effective: Parakeet auto-detects natively and
         // ignores it, so its flows stay byte-identical to the pre-#226 behaviour.
         let out = DictationTail.apply("bonjour", policy: policy(mode: .autoDetect, engine: .parakeet))
-        XCTAssertEqual(out, "bonjour. ")
+        XCTAssertEqual(out, "bonjour ")
     }
 
     func testPersonalizationKeepsItsOwnPunctuationOnBothSpeechEngines() {
@@ -73,6 +72,22 @@ final class DictationTailTests: XCTestCase {
             XCTAssertEqual(DictationTail.apply("", policy: policy, smartMode: mode), "")
         }
     }
+    func testRiffTwoFiveTonesKeepTheSameWords() throws {
+        let policy = policy(mode: .autoDetect, engine: .parakeet)
+        let input = "That’s great. I can send it."
+        let cases: [(PersonalizationProfile.Tone, String)] = [
+            (.superCasual, "thats great i can send it "),
+            (.casual, "that’s great i can send it "),
+            (.standard, "That’s great. I can send it. "),
+            (.formal, "That’s great. I can send it. "),
+            (.excited, "That’s great. I can send it! "),
+        ]
+        for (tone, expected) in cases {
+            let saved = try XCTUnwrap(PersonalizationProfile(tone: tone).storedValue)
+            XCTAssertEqual(DictationTail.apply(input, policy: policy, personalization: saved), expected, tone.rawValue)
+        }
+    }
+
     func testSavedToneAppliesWithAndWithoutASmartMode() throws {
         let input = "That’s great! I can send https://example.com/Agenda before 1.50."
         let policy = policy(mode: .autoDetect, engine: .parakeet)
@@ -86,7 +101,7 @@ final class DictationTailTests: XCTestCase {
             XCTAssertEqual(
                 DictationTail.apply("That’s great, I can send it.", policy: policy,
                                     smartMode: mode, personalization: casual),
-                "that’s great, i can send it. "
+                "that’s great, i can send it "
             )
             XCTAssertEqual(
                 DictationTail.apply("Can I send it?", policy: policy, smartMode: mode, personalization: superCasual),

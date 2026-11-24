@@ -210,6 +210,7 @@ extension PersonalizationProfile.Tone {
         switch self {
         case .superCasual: return "Super Casual"
         case .casual: return "Casual"
+        case .standard: return "Standard"
         case .excited: return "Excited"
         case .formal: return "Formal"
         case .relaxed: return "Relaxed"
@@ -222,7 +223,9 @@ extension PersonalizationProfile.Tone {
         case .superCasual:
             return "thats great i can send the agenda"
         case .casual:
-            return "that’s great, i can send the agenda."
+            return "that’s great i can send the agenda"
+        case .standard:
+            return "Keep the transcript as recognized."
         case .excited:
             return "That’s great! I can send the agenda!"
         case .formal:

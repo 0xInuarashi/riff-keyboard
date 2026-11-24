@@ -191,10 +191,10 @@ extension UIApplication.State {
 /// the #853 path (the held host return and "Preparing the microphone…").
 ///
 /// Off unless the key is set, on the device under test:
-/// `xcrun simctl spawn <udid> defaults write com.pivi.dictus debugSimulateAudioServerResetMs -int 2500`.
+/// `xcrun simctl spawn <udid> defaults write dev.starkharness.riff2 debugSimulateAudioServerResetMs -int 2500`.
 /// 2500 ms outlasts the activation retry (250 ms) and ends inside the reset wait (3 s), so
 /// the activation after the wait works, as it did on the 2026-10-28 device capture. Turn it
-/// off with `defaults delete com.pivi.dictus debugSimulateAudioServerResetMs`.
+/// off with `defaults delete dev.starkharness.riff2 debugSimulateAudioServerResetMs`.
 ///
 /// #899: a second key, `debugSimulateAudioServerResetPostMs`, also posts
 /// `mediaServicesWereResetNotification` that long after the first activation, so the late

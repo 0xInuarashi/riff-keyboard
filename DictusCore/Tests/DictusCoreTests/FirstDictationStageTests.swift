@@ -65,7 +65,7 @@ final class FirstDictationStageTests: XCTestCase {
     // MARK: - Which input mode is Dictus
 
     func testTheKeyboardExtensionIsDictus() {
-        XCTAssertTrue(FirstDictationStage.isDictusInputMode(identifier: "com.pivi.dictus.keyboard"))
+        XCTAssertTrue(FirstDictationStage.isDictusInputMode(identifier: "dev.starkharness.riff2.keyboard"))
     }
 
     func testAppleKeyboardsAreNotDictus() {
@@ -76,8 +76,8 @@ final class FirstDictationStageTests: XCTestCase {
     }
 
     func testAnIdentifierThatOnlyContainsThePrefixIsNotDictus() {
-        XCTAssertFalse(FirstDictationStage.isDictusInputMode(identifier: "com.example.com.pivi.dictus.keyboard"))
-        XCTAssertFalse(FirstDictationStage.isDictusInputMode(identifier: "com.pivi.dictusplus.keyboard"))
+        XCTAssertFalse(FirstDictationStage.isDictusInputMode(identifier: "com.example.dev.starkharness.riff2.keyboard"))
+        XCTAssertFalse(FirstDictationStage.isDictusInputMode(identifier: "dev.starkharness.riff2plus.keyboard"))
     }
 
     func testAnUnreadableIdentifierIsNotDictus() {

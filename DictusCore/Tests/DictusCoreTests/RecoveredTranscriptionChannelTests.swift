@@ -83,7 +83,7 @@ final class RecoveredTranscriptionChannelTests: XCTestCase {
 
     func testTheBannerOpensTheTranscriptionIntent() throws {
         let url = try XCTUnwrap(KeyboardOpenURL.url(intent: .transcription))
-        XCTAssertEqual(url.absoluteString, "dictus://open?source=keyboard&intent=transcription")
+        XCTAssertEqual(url.absoluteString, "riff2://open?source=keyboard&intent=transcription")
         XCTAssertEqual(KeyboardOpenURL.intent(from: url), .transcription)
     }
 }

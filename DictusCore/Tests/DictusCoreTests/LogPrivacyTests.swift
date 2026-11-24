@@ -130,7 +130,7 @@ final class LogPrivacyTests: XCTestCase {
             .appLaunched(version: "1.2"),
             .appLaunchState(state: "background"),
             // The background session's identifier, a constant of the app (#707).
-            .appBackgroundSessionEvents(identifier: "com.pivi.dictus.model-download"),
+            .appBackgroundSessionEvents(identifier: "dev.starkharness.riff2.model-download"),
             .appDidBecomeActive,
             .appWillResignActive,
             .appDidEnterBackground,

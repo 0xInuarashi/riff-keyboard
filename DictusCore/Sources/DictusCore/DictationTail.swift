@@ -29,6 +29,9 @@ public enum DictationTail {
                 ? formatted + " " : formatted
         }
         guard !policy.insertsTranscriptionAsIs else { return text }
+        if personalization == nil, smartMode == nil {
+            return text.last?.isWhitespace == false ? text + " " : text
+        }
         if smartMode?.id == SmartModeCatalogue.personalizationIdentifier {
             // Personalization already chose the punctuation. Only separate consecutive dictations.
             return text.last?.isWhitespace == false ? text + " " : text

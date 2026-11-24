@@ -9,7 +9,7 @@ import FluidAudio
 // Temporary diagnostic: UIApplicationDelegateAdaptor captures sourceApplication
 // from the legacy application(_:open:options:) callback, which SwiftUI's onOpenURL
 // does not expose. This lets us empirically confirm that sourceApplication returns nil
-// for cross-team apps (e.g., WhatsApp opening DictusApp via dictus:// URL).
+// for cross-team apps (e.g., WhatsApp opening DictusApp via riff2:// URL).
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -704,7 +704,7 @@ struct DictusApp: App {
     }
 
     private func handleIncomingURL(_ url: URL) {
-        guard url.scheme == "dictus" else { return }
+        guard url.scheme == "riff2" else { return }
 
         // Before anything this URL raises: the island's link opens the voice note
         // cards, and `onOpenURL` may run before the `.active` transition that also
@@ -795,7 +795,7 @@ struct DictusApp: App {
 
             Self.hasBeenActive = true
             // `dictate` is not only the keyboard's URL. `KeyboardDictationURL.intent`
-            // returns nil for the widget's `dictus://dictate`, which carries no
+            // returns nil for the widget's `riff2://dictate`, which carries no
             // `source=keyboard`, and that dictation completes in the app like any
             // other. Handing it off would write a hand-off record no keyboard is there
             // to claim, and the result would wait out the watchdog unpolished.

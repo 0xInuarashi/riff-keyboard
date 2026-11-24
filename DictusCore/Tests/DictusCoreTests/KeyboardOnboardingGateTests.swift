@@ -75,7 +75,7 @@ final class KeyboardOnboardingGateTests: XCTestCase {
     }
 
     func testAKeyboardOrAppBundleIdIsNotTheDictusHost() {
-        for host in ["com.pivi.dictus.keyboard", "com.example.com.pivi.dictus", "com.pivi.dictusx"] {
+        for host in ["dev.starkharness.riff2.keyboard", "com.example.dev.starkharness.riff2", "dev.starkharness.riff2x"] {
             XCTAssertEqual(
                 KeyboardOnboardingGate.decide(onboardingCompleted: false, hostId: host, appPhase: .background),
                 .openOnboarding,

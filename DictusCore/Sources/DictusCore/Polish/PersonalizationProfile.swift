@@ -3,7 +3,7 @@ import Foundation
 /// Saved tone and optional writing samples for the Personalization Smart Mode.
 public struct PersonalizationProfile: Codable, Equatable, Sendable {
     public enum Tone: String, CaseIterable, Codable, Sendable {
-        case superCasual, casual, excited, formal, relaxed, custom
+        case superCasual, casual, standard, excited, formal, relaxed, custom
 
         fileprivate var instruction: String {
             switch self {
@@ -11,6 +11,8 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
                 return "Lowercase ordinary words. Use light punctuation and omit final periods in statements. Keep question marks and apostrophes."
             case .casual:
                 return "Use ordinary capitalization and conversational commas. Use one exclamation mark only when the original sounds enthusiastic."
+            case .standard:
+                return "Keep the original transcript."
             case .excited:
                 return "Use ordinary capitalization. End an enthusiastic statement with one exclamation mark. Keep questions as questions."
             case .formal:
@@ -49,7 +51,7 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
     private let vocabulary: [Substitution]?
     public var substitutions: [Substitution] { vocabulary ?? [] }
 
-    public init(tone: Tone = .casual, samples: String = "", substitutions: [Substitution] = []) {
+    public init(tone: Tone = .standard, samples: String = "", substitutions: [Substitution] = []) {
         var sources = Set<String>()
         vocabulary = Array(substitutions.filter {
             $0.isValid && sources.insert(Self.sourceKey($0.spoken)).inserted
@@ -141,7 +143,8 @@ public struct PersonalizationProfile: Codable, Equatable, Sendable {
         )
         switch effectiveTone {
         case .superCasual: prompt.personalizationStatementStyle = .open
-        case .casual: prompt.personalizationStatementStyle = .conversational
+        case .casual: prompt.personalizationStatementStyle = .open
+        case .standard: break
         case .excited: prompt.personalizationStatementStyle = .enthusiastic
         case .formal: prompt.personalizationStatementStyle = .formal
         case .relaxed: prompt.personalizationStatementStyle = .relaxed

@@ -15,7 +15,7 @@ import Foundation
 /// `UIApplication.applicationState` is the closest available proxy and is not one —
 /// it describes when the user stopped, not who started.
 public enum DictationOrigin: String, Codable, Sendable {
-    /// Requested by the keyboard extension, over Darwin or the `dictus://dictate`
+    /// Requested by the keyboard extension, over Darwin or the `riff2://dictate`
     /// URL. The result is typed into a host app's text field.
     case keyboard
     /// Started inside DictusApp. The result is shown in the app.

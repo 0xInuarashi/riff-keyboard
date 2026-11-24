@@ -27,9 +27,9 @@ final class PersonalizationProfileTests: XCTestCase {
         XCTAssertTrue(profile.substitutions.isEmpty)
     }
 
-    func testAllSixTonesRoundTripAndUseDistinctInstructions() throws {
+    func testProfilesRoundTripAndUseDistinctInstructions() throws {
         let tones = PersonalizationProfile.Tone.allCases
-        XCTAssertEqual(tones.count, 6)
+        XCTAssertEqual(tones.count, 7)
         var instructions = Set<String>()
         for tone in tones {
             let profile = PersonalizationProfile(tone: tone, samples: "thanks, sounds good!")
@@ -38,14 +38,14 @@ final class PersonalizationProfileTests: XCTestCase {
             instructions.insert(profile.prompt.instructions)
             XCTAssertFalse(profile.prompt.userInstruction.contains("thanks, sounds good!"))
         }
-        XCTAssertEqual(instructions.count, 6)
+        XCTAssertEqual(instructions.count, 7)
     }
 
     func testInvalidCustomSamplesCannotBeSaved() {
         XCTAssertNil(PersonalizationProfile(tone: .custom, samples: "  \n").storedValue)
         let large = String(repeating: "é", count: PersonalizationProfile.maximumSampleBytes)
         XCTAssertNil(PersonalizationProfile(tone: .custom, samples: large).storedValue)
-        XCTAssertEqual(PersonalizationProfile(storedValue: Data("bad".utf8)).tone, .casual)
+        XCTAssertEqual(PersonalizationProfile(storedValue: Data("bad".utf8)).tone, .standard)
     }
 
     func testResolverReadsSavedStyleWithoutPuttingSamplesInTheCatalogue() throws {
@@ -137,7 +137,7 @@ final class PersonalizationProfileTests: XCTestCase {
         )
         let expected: [(PersonalizationProfile.Tone, String, String)] = [
             (.superCasual, "that’s great! i can send the agenda", "thats great! i can send the agenda"),
-            (.casual, "That’s great! I can send the agenda.", "Thats great! I can send the agenda."),
+            (.casual, "That’s great! I can send the agenda", "Thats great! I can send the agenda"),
             (.excited, "That’s great! I can send the agenda!", "Thats great! I can send the agenda!"),
             (.formal, "That’s great. I can send the agenda.", "Thats great. I can send the agenda."),
             (.relaxed, "That’s great… I can send the agenda.", "Thats great… I can send the agenda."),

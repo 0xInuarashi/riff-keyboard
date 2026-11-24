@@ -26,14 +26,14 @@ public enum KeyboardOpenIntent: String, Sendable, Equatable, CaseIterable {
     case transcription
 
     /// A shared voice note's result screen, from the keyboard's voice note reader
-    /// (#637). Unlike the two above it does not travel on `dictus://open`: it targets
+    /// (#637). Unlike the two above it does not travel on `riff2://open`: it targets
     /// the voice note link the Live Activity and the share extension already use,
-    /// `dictus://voice-note?id=<uuid>`, so the app routes it with the code that
+    /// `riff2://voice-note?id=<uuid>`, so the app routes it with the code that
     /// already opens a note — `VoiceNoteURL`, then `VoiceNoteProcessor.open`.
     case voiceNote
 }
 
-/// The `dictus://open` URLs, built by the keyboard and read by the app.
+/// The `riff2://open` URLs, built by the keyboard and read by the app.
 ///
 /// WHY a shared type rather than a string on each side: the keyboard extension has no
 /// test bundle, so a URL it builds by interpolation and the app parses by hand is a
@@ -45,13 +45,13 @@ public enum KeyboardOpenIntent: String, Sendable, Equatable, CaseIterable {
 ///
 /// WHY the host is not `dictate`: `KeyboardDictationURL` deliberately answers nil for
 /// everything that is not a dictation, and that nil is load-bearing — it is what keeps
-/// the widget's own `dictus://dictate` out of the keyboard hand-off path. Adding a
+/// the widget's own `riff2://dictate` out of the keyboard hand-off path. Adding a
 /// screen intent to that enum would put a paywall request inside the type the
 /// cold-start overlay switches on.
 public enum KeyboardOpenURL {
 
     /// The scheme registered by DictusApp in `CFBundleURLTypes`.
-    private static let scheme = "dictus"
+    private static let scheme = "riff2"
 
     /// The host that carries a "bring the app to this screen" request.
     private static let host = "open"

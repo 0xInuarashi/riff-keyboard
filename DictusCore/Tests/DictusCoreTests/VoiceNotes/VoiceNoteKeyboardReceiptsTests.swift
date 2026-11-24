@@ -105,7 +105,7 @@ final class VoiceNoteKeyboardReceiptsTests: XCTestCase {
             DarwinNotificationName.voiceNoteResultReady
         ]
         let name = DarwinNotificationName.voiceNoteKeyboardReceipt as String
-        XCTAssertEqual(name, "com.pivi.dictus.voiceNoteKeyboardReceipt")
+        XCTAssertEqual(name, "dev.starkharness.riff2.voiceNoteKeyboardReceipt")
         XCTAssertFalse(others.map { $0 as String }.contains(name))
     }
 }

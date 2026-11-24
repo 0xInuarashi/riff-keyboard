@@ -126,7 +126,7 @@ public struct FeatureGate {
     /// Seeded to `true` at first launch by `ProStatusManager.seedFeatureTogglesIfNeeded`,
     /// so "never touched the toggle" reads as on rather than off.
     public static func isEnabled(_ feature: ProFeature) -> Bool {
-        AppGroup.defaults.object(forKey: feature.settingsKey) as? Bool ?? true
+        feature == .history
     }
 
     /// Check if Pro subscription is active (beta OR paid).
