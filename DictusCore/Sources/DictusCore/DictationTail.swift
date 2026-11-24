@@ -18,8 +18,21 @@ public enum DictationTail {
     /// language is unknown, and coercing Western punctuation/spacing onto e.g.
     /// Chinese ("你好。" + ". ") would corrupt the text. Follow and explicit modes —
     /// and Parakeet in every mode — keep the historical separator behavior.
-    public static func apply(_ text: String, policy: TranscriptionLanguagePolicy) -> String {
+    public static func apply(_ text: String, policy: TranscriptionLanguagePolicy, smartMode: SmartMode? = nil, personalization: Data? = nil) -> String {
+        if let personalization {
+            let profile = PersonalizationProfile(storedValue: personalization)
+            let styled = PersonalizationFormatting.apply(
+                to: text, source: text, prompt: profile.prompt, globalTone: profile.tone
+            )
+            let formatted = profile.applyingVocabulary(to: styled)
+            return !policy.insertsTranscriptionAsIs && formatted.last?.isWhitespace == false
+                ? formatted + " " : formatted
+        }
         guard !policy.insertsTranscriptionAsIs else { return text }
+        if smartMode?.id == SmartModeCatalogue.personalizationIdentifier {
+            // Personalization already chose the punctuation. Only separate consecutive dictations.
+            return text.last?.isWhitespace == false ? text + " " : text
+        }
         if let last = text.last, ".!?…".contains(last) {
             return text + " "
         }

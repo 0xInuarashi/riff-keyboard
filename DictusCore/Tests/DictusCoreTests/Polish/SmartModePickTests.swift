@@ -28,8 +28,7 @@ final class SmartModePickTests: XCTestCase {
             SmartModeCatalogue.structuredIdentifier,
             SmartModeCatalogue.notesIdentifier,
             SmartModeCatalogue.messageIdentifier,
-            SmartModeCatalogue.summaryIdentifier,
-            SmartModeCatalogue.personalizationIdentifier
+            SmartModeCatalogue.summaryIdentifier
         ])
     }
 
@@ -37,7 +36,7 @@ final class SmartModePickTests: XCTestCase {
         // The page draws `icon`, so the cards show what the app's mode list shows.
         XCTAssertEqual(
             SmartModePick.cardModes.map(\.icon),
-            ["text.alignleft", "list.bullet", "bubble.left", "text.quote", "person.crop.circle"]
+            ["text.alignleft", "list.bullet", "bubble.left", "text.quote"]
         )
     }
 

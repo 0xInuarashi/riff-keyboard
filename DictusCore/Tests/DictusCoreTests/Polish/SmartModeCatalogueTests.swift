@@ -8,12 +8,12 @@ final class SmartModeCatalogueTests: XCTestCase {
     // MARK: - The rows
 
     func testCatalogueShipsNotesAndOneTranslateEntryPerSupportedLanguage() {
-        XCTAssertEqual(SmartModeCatalogue.builtIns.count, 5 + SupportedLanguage.allCases.count)
+        XCTAssertEqual(SmartModeCatalogue.builtIns.count, 4 + SupportedLanguage.allCases.count)
         XCTAssertTrue(SmartModeCatalogue.builtIns.contains { $0.id == "notes" })
         XCTAssertTrue(SmartModeCatalogue.builtIns.contains { $0.id == "structured" })
         XCTAssertTrue(SmartModeCatalogue.builtIns.contains { $0.id == "message" })
         XCTAssertTrue(SmartModeCatalogue.builtIns.contains { $0.id == "summary" })
-        XCTAssertTrue(SmartModeCatalogue.builtIns.contains { $0.id == "personalization" })
+        XCTAssertFalse(SmartModeCatalogue.builtIns.contains { $0.id == "personalization" })
         for language in SupportedLanguage.allCases {
             XCTAssertTrue(
                 SmartModeCatalogue.builtIns.contains { $0.id == "translate.\(language.rawValue)" },

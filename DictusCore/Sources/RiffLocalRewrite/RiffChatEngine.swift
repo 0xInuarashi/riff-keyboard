@@ -41,22 +41,23 @@ public enum RiffChatEngine {
         Use earlier turns when relevant. Keep replies concise and say when you are unsure.
         """
 
-    public static func reply(to messages: [ChatMessage], using backend: Backend) async throws -> ChatReply {
+    public static func reply(to messages: [ChatMessage], using backend: Backend, instructions customInstructions: String? = nil) async throws -> ChatReply {
+        let instructions = customInstructions ?? Self.instructions
         switch backend {
         case .apple:
             #if canImport(FoundationModels)
             if #available(iOS 26.0, macOS 26.0, *) {
-                return try await appleReply(to: messages)
+                return try await appleReply(to: messages, instructions: instructions)
             }
             #endif
             throw Failure.modelUnavailable
         case .downloaded(let model):
             guard model.isInstalled, let file = model.fileURL else { throw Failure.modelUnavailable }
-            return try await localReply(to: messages, model: model, file: file)
+            return try await localReply(to: messages, model: model, file: file, instructions: instructions)
         }
     }
 
-    static func localReply(to messages: [ChatMessage], model: LocalRewriteModel, file: URL) async throws -> ChatReply {
+    static func localReply(to messages: [ChatMessage], model: LocalRewriteModel, file: URL, instructions: String = Self.instructions) async throws -> ChatReply {
         let prompts = historyCandidates(messages).map {
             ChatML.prompt(instructions: instructions, messages: $0, suppressesThinking: model.suppressesThinking)
         }
@@ -82,13 +83,13 @@ public enum RiffChatEngine {
 
     #if canImport(FoundationModels)
     @available(iOS 26.0, macOS 26.0, *)
-    private static func appleReply(to messages: [ChatMessage]) async throws -> ChatReply {
+    private static func appleReply(to messages: [ChatMessage], instructions: String) async throws -> ChatReply {
         let model = SystemLanguageModel.default
         guard model.isAvailable else { throw Failure.modelUnavailable }
         let replyLimit = 512
         for candidate in historyCandidates(messages) {
             guard let current = candidate.last else { continue }
-            let entries = appleEntries(for: candidate)
+            let entries = appleEntries(for: candidate, instructions: instructions)
             if #available(iOS 26.4, macOS 26.4, *) {
                 let tokens = try await model.tokenCount(for: entries)
                 guard tokens + replyLimit < model.contextSize else { continue }
@@ -107,7 +108,7 @@ public enum RiffChatEngine {
     }
 
     @available(iOS 26.0, macOS 26.0, *)
-    private static func appleEntries(for messages: [ChatMessage]) -> [Transcript.Entry] {
+    private static func appleEntries(for messages: [ChatMessage], instructions: String) -> [Transcript.Entry] {
         let system = Transcript.Entry.instructions(.init(
             segments: [.text(.init(content: instructions))], toolDefinitions: []
         ))

@@ -651,8 +651,12 @@ class KeyboardState: ObservableObject {
         trace.write(to: defaults)
         pendingStopTrace = trace
 
-        if defaults.string(forKey: SharedKeys.dictationDocumentIdentifier) == nil {
-            defaults.set(currentDocumentIdentifier ?? "", forKey: SharedKeys.dictationDocumentIdentifier)
+        // Returning from the app can recreate the host's text proxy. Address the
+        // result to the attached field where the user explicitly stopped dictation,
+        // before the app starts rewriting. The insertion guard still checks this
+        // snapshot if the user leaves that field while the result is processing.
+        if keyboardIsAttached, let documentIdentifier = currentDocumentIdentifier {
+            defaults.set(documentIdentifier, forKey: SharedKeys.dictationDocumentIdentifier)
         }
         defaults.set(true, forKey: SharedKeys.stopRequested)
         defaults.synchronize()

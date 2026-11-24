@@ -293,9 +293,8 @@ struct ModelCardView: View {
                     .font(.caption2.bold())
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
-                    .background(Color.dictusAccent)
-                    .foregroundColor(.dictusOnAccent)
-                    .cornerRadius(4)
+                    .foregroundStyle(.secondary)
+                    .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(Color.dictusBorder))
 
                 if modelManager.isRecommended(model.identifier) {
                     Text("Recommended")
@@ -348,7 +347,7 @@ struct ModelCardView: View {
                         .foregroundStyle(.secondary)
                 }
             } else {
-                // Normal gauge bars (Accuracy + Speed) — both blue palette
+                // Model accuracy and speed meters.
                 HStack(spacing: 16) {
                     GaugeBarView(
                         value: model.accuracyScore,
@@ -376,24 +375,16 @@ struct ModelCardView: View {
             }
         }
         .padding(16)
-        .background(
-            Group {
-                if isActive {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.dictusAccent.opacity(0.10))
-                }
-            }
-        )
-        .dictusGlass()
-        .overlay(
-            // Active model gets a dark blue border stroke on top of glass
-            Group {
-                if isActive {
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.dictusAccent.opacity(0.6), lineWidth: 2)
-                }
-            }
-        )
+        .padding(.leading, 4)
+        .dictusGlass(in: RoundedRectangle(cornerRadius: 12))
+        .overlay(alignment: .leading) {
+            Capsule()
+                .fill(isActive ? Color.dictusAccent : Color.dictusBorder)
+                .frame(width: 2)
+                .padding(.vertical, 15)
+                .padding(.leading, 5)
+                .allowsHitTesting(false)
+        }
     }
 
     // MARK: - Tap handler

@@ -66,6 +66,18 @@ final class DictationTallyTests: XCTestCase {
                        .init(words: 70, audioSeconds: 28))
     }
 
+    func testLifetimeWordsPerMinuteUsesTotalRecordingTime() {
+        let defaults = makeDefaults()
+        XCTAssertNil(DictationTally.lifetimeTotals(in: defaults).wordsPerMinute)
+
+        record(10, 5, at: t0, in: defaults)
+        record(20, 25, at: t0.addingTimeInterval(day), in: defaults)
+
+        let totals = DictationTally.lifetimeTotals(in: defaults)
+        XCTAssertEqual(totals.words, 30)
+        XCTAssertEqual(totals.wordsPerMinute, 60)
+    }
+
     func testAnEmptyTranscriptCountsNothing() {
         let defaults = makeDefaults()
         record(0, 12, at: t0, in: defaults)

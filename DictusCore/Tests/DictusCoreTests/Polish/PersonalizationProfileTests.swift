@@ -2,6 +2,31 @@ import XCTest
 @testable import DictusCore
 
 final class PersonalizationProfileTests: XCTestCase {
+    func testCustomVocabularyIsApprovedStoredAndDoesNotCascade() throws {
+        let samples = "dunno\ni kno"
+        let draft = PersonalizationProfile(tone: .custom, samples: samples)
+        let suggestions = draft.vocabularySuggestions(from: """
+        [{"spoken":"don't know","written":"dunno"},{"spoken":"know","written":"kno"},
+         {"spoken":"walk","written":"invented"},{"spoken":"I","written":"i"}]
+        """)
+        XCTAssertEqual(suggestions.map(\.written), ["dunno", "kno"])
+        XCTAssertEqual(draft.applyingVocabulary(to: "I don’t know"), "I don’t know")
+
+        let profile = PersonalizationProfile(tone: .custom, samples: samples, substitutions: suggestions)
+        let saved = PersonalizationProfile(storedValue: try XCTUnwrap(profile.storedValue))
+        XCTAssertEqual(saved, profile)
+        XCTAssertEqual(saved.applyingVocabulary(to: "I don’t know, and I know. knowledge https://example.org/know"),
+                       "I dunno, and I kno. knowledge https://example.org/know")
+        XCTAssertEqual(PersonalizationProfile(tone: .casual, substitutions: suggestions)
+            .applyingVocabulary(to: "I know"), "I know")
+    }
+
+    func testOlderProfilesLoadWithoutVocabulary() {
+        let profile = PersonalizationProfile(storedValue: Data(#"{"tone":"custom","samples":"dunno"}"#.utf8))
+        XCTAssertEqual(profile.tone, .custom)
+        XCTAssertTrue(profile.substitutions.isEmpty)
+    }
+
     func testAllSixTonesRoundTripAndUseDistinctInstructions() throws {
         let tones = PersonalizationProfile.Tone.allCases
         XCTAssertEqual(tones.count, 6)
@@ -74,6 +99,77 @@ final class PersonalizationProfileTests: XCTestCase {
         )
         XCTAssertEqual(result.outcome, .success)
         XCTAssertEqual(PolishPipeline.resolvedOutput(result, preprocessed: input, job: job), formatted)
+    }
+
+    func testSuperCasualLowercasesAcceptedOutputAndFallbackWithoutChangingLinks() async {
+        let profile = PersonalizationProfile(tone: .superCasual)
+        let mode = SmartModeCatalogue.personalization.replacingPrompt(profile.prompt)
+        let job = PolishJob(task: .smart(mode), promptLanguage: .english, typographyLanguage: nil)
+        let input = "Thats Great!\nI can send https://example.com/Agenda."
+        let result = await PolishPipeline.transform(
+            preprocessed: input,
+            engine: FixedToneEngine(output: "That's great!\nI can send https://example.com/Agenda."),
+            job: job
+        )
+        XCTAssertEqual(result.outcome, .success)
+        XCTAssertEqual(
+            PolishPipeline.resolvedOutput(result, preprocessed: input, job: job),
+            "that's great!\ni can send https://example.com/Agenda."
+        )
+
+        let rejected = await PolishPipeline.transform(
+            preprocessed: input,
+            engine: FixedToneEngine(output: "That's great!\nI will send https://example.com/Agenda."),
+            job: job
+        )
+        XCTAssertEqual(rejected.rejectedCheck, .changedWords)
+        XCTAssertEqual(
+            PolishPipeline.resolvedOutput(rejected, preprocessed: input, job: job),
+            "thats great!\ni can send https://example.com/Agenda."
+        )
+    }
+
+    func testAllTonesFormatModelAndFallbackPunctuation() async throws {
+        let input = "Thats great! I can send the agenda."
+        let modelOutput = "THAT’S great! I CAN send the agenda."
+        let policy = TranscriptionLanguagePolicy(
+            mode: .autoDetect, keyboardLanguage: .english, engine: .parakeet, modelIdentifier: "test"
+        )
+        let expected: [(PersonalizationProfile.Tone, String, String)] = [
+            (.superCasual, "that’s great! i can send the agenda", "thats great! i can send the agenda"),
+            (.casual, "That’s great! I can send the agenda.", "Thats great! I can send the agenda."),
+            (.excited, "That’s great! I can send the agenda!", "Thats great! I can send the agenda!"),
+            (.formal, "That’s great. I can send the agenda.", "Thats great. I can send the agenda."),
+            (.relaxed, "That’s great… I can send the agenda.", "Thats great… I can send the agenda."),
+            (.custom, "that’s great! i can send the agenda", "thats great! i can send the agenda")
+        ]
+        for (tone, accepted, fallback) in expected {
+            let profile = PersonalizationProfile(tone: tone, samples: "hey, thanks!\nall good")
+            let mode = SmartModeCatalogue.personalization.replacingPrompt(profile.prompt)
+            let decoded = try JSONDecoder().decode(SmartMode.self, from: JSONEncoder().encode(mode))
+            let job = PolishJob(task: .smart(decoded), promptLanguage: .english, typographyLanguage: nil)
+            let reply = await PolishPipeline.transform(
+                preprocessed: input, engine: FixedToneEngine(output: modelOutput), job: job
+            )
+            XCTAssertEqual(reply.outcome, .success, tone.rawValue)
+            let formatted = try XCTUnwrap(PolishPipeline.resolvedOutput(reply, preprocessed: input, job: job))
+            XCTAssertEqual(DictationTail.apply(formatted, policy: policy, smartMode: decoded), accepted + " ", tone.rawValue)
+            let rejected = await PolishPipeline.transform(
+                preprocessed: input, engine: FixedToneEngine(output: "I will send the agenda."), job: job
+            )
+            XCTAssertEqual(rejected.rejectedCheck, .changedWords, tone.rawValue)
+            let recovered = try XCTUnwrap(PolishPipeline.resolvedOutput(rejected, preprocessed: input, job: job))
+            XCTAssertEqual(DictationTail.apply(recovered, policy: policy, smartMode: decoded), fallback + " ", tone.rawValue)
+        }
+    }
+
+    func testEveryExplicitQuestionBoundaryIsPreserved() {
+        XCTAssertFalse(PersonalizationFormatting.preservesQuestions(
+            in: "Can you send it? Is it ready?", formatted: "Can you send it. Is it ready?"
+        ))
+        XCTAssertTrue(PersonalizationFormatting.preservesQuestions(
+            in: "Can you send it? Is it ready", formatted: "can you send it? is it ready?"
+        ))
     }
 
     func testWordOrderBoundariesSpellingAndSignificantSymbolsArePreserved() {

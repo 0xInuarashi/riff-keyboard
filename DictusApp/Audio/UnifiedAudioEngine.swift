@@ -1045,8 +1045,7 @@ class UnifiedAudioEngine: ObservableObject {
     /// Used to recover from zombie engine state where isRunning == true but tap receives no buffers.
     func forceRestart() {
         cancelIdleRelease()
-        engine.inputNode.removeTap(onBus: 0)
-        engine.stop()
+        replaceEngine()
         sessionConfigured = false
         PersistentLog.log(.audioEngineStopped)
 
@@ -1137,12 +1136,8 @@ class UnifiedAudioEngine: ObservableObject {
         isRecording = false
         isRecordingFlag = false
 
-        engine.inputNode.removeTap(onBus: 0)
-        engine.stop()
-
-        // Bump generation so any in-flight tap callback bails out before mutating
-        // shared audio-thread state (matches the mediaServicesWereReset pattern).
-        engineGeneration &+= 1
+        // The next start needs an input node built for the reactivated route.
+        replaceEngine()
         try? setInputMuted(false, context: "releaseWarmState-\(reason)")
 
         try? AVAudioSession.sharedInstance().setActive(
@@ -1150,8 +1145,6 @@ class UnifiedAudioEngine: ObservableObject {
             options: .notifyOthersOnDeactivation
         )
         sessionConfigured = false
-        converter = nil
-        lastUnconvertibleInputFormat = nil
         lastIdleStartTime = nil
         // Cancelled, not just dropped (#380): Immediately releases from outside the
         // timer, and a backstop left scheduled would fire into whatever warm state

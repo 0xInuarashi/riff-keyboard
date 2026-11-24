@@ -156,7 +156,9 @@ struct ModelManagerView: View {
                 Section {
                     // Inline section header — scrolls with content (not sticky)
                     Text("Downloaded")
-                        .font(.dictusSubheading)
+                        .font(.system(.caption, design: .monospaced, weight: .semibold))
+                        .textCase(.uppercase)
+                        .tracking(2)
                         .foregroundStyle(.secondary)
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
@@ -210,7 +212,9 @@ struct ModelManagerView: View {
                 Section {
                     // Inline section header — scrolls with content (not sticky)
                     Text("Available")
-                        .font(.dictusSubheading)
+                        .font(.system(.caption, design: .monospaced, weight: .semibold))
+                        .textCase(.uppercase)
+                        .tracking(2)
                         .foregroundStyle(.secondary)
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
@@ -263,6 +267,7 @@ struct ModelManagerView: View {
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .navigationTitle("Models")
+        .navigationBarTitleDisplayMode(.large)
         .background(Color.dictusBackground.ignoresSafeArea())
         // Sync state from onboarding's separate ModelManager instance (Bug #25 fix).
         // WHY onAppear loadState:

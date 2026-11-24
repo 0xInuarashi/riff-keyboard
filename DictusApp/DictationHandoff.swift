@@ -124,7 +124,8 @@ extension DictationCoordinator {
             return
         }
 
-        let finalText = DictationTail.apply(text, policy: languagePolicy)
+        let finalText = DictationTail.apply(text, policy: languagePolicy, smartMode: smartMode,
+                                personalization: defaults.data(forKey: SharedKeys.personalizationProfile))
 
         // Same gate the keyboard path applies before its own write, and for the same
         // reason: everything below is irreversible from the user's point of view.

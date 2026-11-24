@@ -31,9 +31,6 @@ struct SmartModeListView: View {
     @AppStorage(LocalRewriteModel.preferenceKey, store: AppGroup.defaults)
     private var rewriteModel = LocalRewriteModel.apple
 
-    @AppStorage(SharedKeys.personalizationProfile, store: AppGroup.defaults)
-    private var personalizationProfile = Data()
-
     private var deviceIsCapable: Bool {
         _ = rewriteModel
         return SmartModeAvailability.deviceIsCapable
@@ -86,17 +83,6 @@ struct SmartModeListView: View {
                         Text("Choose a local model")
                     }
                 }
-            }
-
-            Section {
-                NavigationLink {
-                    PersonalizationSettingsView(storedProfile: $personalizationProfile)
-                } label: {
-                    LabeledContent("Personalization tone") {
-                        Text(PersonalizationProfile(storedValue: personalizationProfile).tone.localizedTitle)
-                    }
-                }
-                .accessibilityIdentifier("smartModes.personalization")
             }
 
             Section {

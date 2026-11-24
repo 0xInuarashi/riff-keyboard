@@ -16,7 +16,7 @@ struct SoundSettingsView: View {
     // MARK: - Preferences (App Group persisted)
 
     @AppStorage(SharedKeys.soundFeedbackEnabled, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var soundFeedbackEnabled = false
+    private var soundFeedbackEnabled = true
 
     @AppStorage(SharedKeys.recordStartSoundName, store: UserDefaults(suiteName: AppGroup.identifier))
     private var recordStartSoundName = "electronic_01f"
@@ -28,7 +28,7 @@ struct SoundSettingsView: View {
     private var recordCancelSoundName = "electronic_03c"
 
     @AppStorage(SharedKeys.soundVolume, store: UserDefaults(suiteName: AppGroup.identifier))
-    private var soundVolume = 0.5
+    private var soundVolume = 0.25
 
     // MARK: - Body
 

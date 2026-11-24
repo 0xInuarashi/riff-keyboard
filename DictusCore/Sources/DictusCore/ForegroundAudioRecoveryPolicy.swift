@@ -102,8 +102,9 @@ public enum ForegroundAudioRecoveryPolicy {
 
     /// - Parameter sessionNeedsRecovery: sampled when the ordinary ceiling is reached, so a
     ///   loss that arrived after the hand-off still counts.
-    public static func returnAtCeiling(sessionNeedsRecovery: Bool) -> ReturnDecision {
-        sessionNeedsRecovery ? .hold(untilMilliseconds: recoveryHoldCeilingMilliseconds) : .openNow
+    public static func returnAtCeiling(sessionNeedsRecovery: Bool, restartingStoppedEngine: Bool = false) -> ReturnDecision {
+        sessionNeedsRecovery || restartingStoppedEngine
+            ? .hold(untilMilliseconds: recoveryHoldCeilingMilliseconds) : .openNow
     }
 
     /// Whether a cold start may call `engine.start()` now that its session is active.

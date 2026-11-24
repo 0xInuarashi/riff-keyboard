@@ -23,6 +23,7 @@ struct MainTabView: View {
     @StateObject private var chat = RiffChat()
 
     @State private var selectedTab: Int = 0
+    private static let chatTab = 3
 
     /// In-memory flag: true after the first URL has been handled in this process.
     /// Resets naturally when iOS terminates the process (true cold start).
@@ -263,7 +264,7 @@ struct MainTabView: View {
                     .tabItem {
                         Label("Chat", systemImage: "bubble.left.and.bubble.right")
                     }
-                    .tag(3)
+                    .tag(Self.chatTab)
 
                     // Tab 2: Settings
                     NavigationStack {
@@ -313,7 +314,9 @@ struct MainTabView: View {
             // WHY not shown in cold start mode: During cold start, the recording runs
             // in the background while the user sees the SwipeBackOverlayView. Showing
             // RecordingView would cover the swipe-back instructions.
-            if coordinator.status != .idle && !isColdStartMode {
+            // Chat keeps its composer visible while the keyboard presents dictation.
+            if coordinator.status != .idle && !isColdStartMode
+                && (selectedTab != Self.chatTab || coordinator.dictationOrigin == .app) {
                 RecordingView(mode: .standalone)
             }
         }
@@ -407,6 +410,14 @@ struct MainTabView: View {
                     modelIdentifier: activeModelIdentifier,
                     context: .keyboardColdStart
                 )
+                return
+            }
+
+            // A dictation URL can arrive from Riff's own keyboard while Chat is
+            // already foregrounded. The user is already in the input field.
+            if selectedTab == Self.chatTab, let host = KeyboardDictationURL.hostId(from: url),
+               host == Bundle.main.bundleIdentifier {
+                Self.hasHandledURL = true
                 return
             }
 

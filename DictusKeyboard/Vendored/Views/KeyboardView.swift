@@ -214,6 +214,10 @@ final internal class GiellaKeyboardView: UIView,
         collectionView.register(KeyCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.isUserInteractionEnabled = false
         collectionView.isScrollEnabled = false
+        // The grid never scrolls. Keep the system edge fade off the top row of keys.
+        if #available(iOS 26.0, *) {
+            collectionView.topEdgeEffect.isHidden = true
+        }
 
         addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: topAnchor).enable()

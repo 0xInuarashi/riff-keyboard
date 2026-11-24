@@ -76,7 +76,7 @@ class DictationCoordinator: ObservableObject {
     /// Set by `startDictation` and read by `stopDictation`, which is the whole
     /// reason it exists: the two are seconds apart, `stopDictation` is reached
     /// identically from both origins, and the answer decides which process polishes.
-    private var dictationOrigin: DictationOrigin = .app
+    private(set) var dictationOrigin: DictationOrigin = .app
 
     /// The session whose polish DictusApp is waiting for the keyboard to finish
     /// (#361 decision 6), or nil when it is waiting for none.
@@ -700,11 +700,6 @@ class DictationCoordinator: ObservableObject {
         // Cancel any in-flight dictation before starting a new one
         dictationTask?.cancel()
 
-        // Play start sound BEFORE configuring the audio session.
-        // WHY before: Once the audio session is configured with .playAndRecord,
-        // AudioServicesPlaySystemSound may be suppressed.
-        SoundFeedbackService.playRecordStart()
-
         // Configure audio session NOW while we're in the foreground.
         //
         // WHY the error is kept rather than dropped by `try?` (#775): a cold start that went
@@ -739,9 +734,10 @@ class DictationCoordinator: ObservableObject {
                     // capturing for a dictation the user called off -- the orphaned
                     // engine of #60, arrived at from the other end.
                     guard mayReport(session, "warm start") else { return }
+                    try audioEngine.startRecording()
+                    SoundFeedbackService.playRecordStart()
                     updateStatus(.recording)
                     LiveActivityManager.shared.transitionToRecording()
-                    try audioEngine.startRecording()
                     PersistentLog.log(.audioEngineStarted)
                     schedulePolishPrewarm()
                     await verifyAudioFlow()
@@ -789,6 +785,7 @@ class DictationCoordinator: ObservableObject {
                     // session is up before the engine waits on its route (#775).
                     guard try await activateSessionForColdStart(after: firstActivation, engine: audioEngine, session: session, origin: origin) else { return }
                     try audioEngine.startRecording()
+                    SoundFeedbackService.playRecordStart()
                     updateStatus(.recording)
                     LiveActivityManager.shared.transitionToRecording()
                     PersistentLog.log(.audioEngineStarted)
@@ -916,8 +913,11 @@ class DictationCoordinator: ObservableObject {
             do {
                 // Also where the engine goes quiet: it stays warm, and `collectSamples`
                 // mutes its input (#430), so there is no separate engine-stop step.
+                let wasRecording = audioEngine.isRecording
                 let samples = audioEngine.collectSamples()
                 stopTrace?.log("samplesCollected")
+                if playsStopSound && wasRecording { SoundFeedbackService.playRecordStop() }
+                stopTrace?.log("stopFeedbackDone")
 
                 guard !samples.isEmpty else {
                     // Logged before the session gate, like `recordingTooShort` below:
@@ -953,8 +953,6 @@ class DictationCoordinator: ObservableObject {
                 // Arm watchdog: if DI fails to leave .recording, force recovery after 10s.
                 // If transitionToTranscribing succeeded, the watchdog's guard exits harmlessly.
                 LiveActivityManager.shared.startRecordingWatchdog()
-                if playsStopSound { SoundFeedbackService.playRecordStop() }
-                stopTrace?.log("stopFeedbackDone")
 
                 // The engine is shared with the voice note queue since #620. Taken
                 // before the model load and handed back once the transcript exists, so

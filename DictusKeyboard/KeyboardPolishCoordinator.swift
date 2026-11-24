@@ -240,7 +240,8 @@ final class KeyboardPolishCoordinator {
         PersistentLog.log(.polishHandoff(step: "recovered", outcome: "raw", chars: pending.raw.count))
         // Typed, so the app is told the same string the document received — the tailed
         // one, which is what `lastResult` has always carried on the inserted paths.
-        let recovered = DictationTail.apply(pending.raw, policy: pending.policy)
+        let recovered = DictationTail.apply(pending.raw, policy: pending.policy, smartMode: pending.smartMode,
+                                personalization: defaults.data(forKey: SharedKeys.personalizationProfile))
         finish(reporting: recovered, inserting: recovered)
         // The dictation this record carries ran Normal because a mode was resolved
         // away, and it is still owed the sentence (#423). After `finish`, for the
@@ -351,7 +352,8 @@ final class KeyboardPolishCoordinator {
         if let polished = outcome.text {
             // The insertion was not refused above, so the app hears the same string the
             // document receives, tail included.
-            let tailed = DictationTail.apply(polished, policy: pending.policy)
+            let tailed = DictationTail.apply(polished, policy: pending.policy, smartMode: pending.smartMode,
+                                personalization: defaults.data(forKey: SharedKeys.personalizationProfile))
             finish(reporting: tailed, inserting: tailed)
         } else {
             // A mode that produced nothing insertable. There is no text to report

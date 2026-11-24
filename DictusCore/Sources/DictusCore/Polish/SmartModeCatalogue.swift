@@ -490,7 +490,7 @@ public enum SmartModeCatalogue {
     /// than inserted, so no row a user has already read moves, and not in the seed,
     /// which is still full.
     public static let builtIns: [SmartMode] =
-        [structured, notes, message, summary, personalization] + SupportedLanguage.allCases.map { translate(to: $0) }
+        [structured, notes, message, summary] + SupportedLanguage.allCases.map { translate(to: $0) }
 
     public static let personalization = SmartMode(
         id: personalizationIdentifier,

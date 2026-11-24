@@ -61,4 +61,37 @@ final class DictationTailTests: XCTestCase {
         let out = DictationTail.apply("bonjour", policy: policy(mode: .autoDetect, engine: .parakeet))
         XCTAssertEqual(out, "bonjour. ")
     }
+
+    func testPersonalizationKeepsItsOwnPunctuationOnBothSpeechEngines() {
+        let mode = SmartModeCatalogue.personalization
+        for engine in [SpeechEngine.parakeet, .whisperKit] {
+            let policy = policy(mode: .explicit(.english), engine: engine)
+            XCTAssertEqual(DictationTail.apply("sounds good", policy: policy, smartMode: mode), "sounds good ")
+            XCTAssertEqual(DictationTail.apply("sounds good?", policy: policy, smartMode: mode), "sounds good? ")
+            XCTAssertEqual(DictationTail.apply("你好。", policy: policy, smartMode: mode), "你好。 ")
+            XCTAssertEqual(DictationTail.apply("sounds good ", policy: policy, smartMode: mode), "sounds good ")
+            XCTAssertEqual(DictationTail.apply("", policy: policy, smartMode: mode), "")
+        }
+    }
+    func testSavedToneAppliesWithAndWithoutASmartMode() throws {
+        let input = "That’s great! I can send https://example.com/Agenda before 1.50."
+        let policy = policy(mode: .autoDetect, engine: .parakeet)
+        let superCasual = try XCTUnwrap(PersonalizationProfile(tone: .superCasual).storedValue)
+        let casual = try XCTUnwrap(PersonalizationProfile(tone: .casual).storedValue)
+        for mode in [nil, SmartModeCatalogue.message] {
+            XCTAssertEqual(
+                DictationTail.apply(input, policy: policy, smartMode: mode, personalization: superCasual),
+                "thats great i can send https://example.com/Agenda before 1.50. "
+            )
+            XCTAssertEqual(
+                DictationTail.apply("That’s great, I can send it.", policy: policy,
+                                    smartMode: mode, personalization: casual),
+                "that’s great, i can send it. "
+            )
+            XCTAssertEqual(
+                DictationTail.apply("Can I send it?", policy: policy, smartMode: mode, personalization: superCasual),
+                "can i send it? "
+            )
+        }
+    }
 }

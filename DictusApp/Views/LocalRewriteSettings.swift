@@ -11,8 +11,7 @@ struct LocalRewriteSettings: View {
         OnDeviceModelPicker(
             selection: $selection,
             title: "Smart Mode model",
-            caption: "Smart Modes and transcription cleanup run on this iPhone with the selected model.",
-            showsPolishTranscription: true
+            caption: "Smart Modes and transcription cleanup run on this iPhone with the selected model."
         )
     }
 }
@@ -22,25 +21,20 @@ struct OnDeviceModelPicker: View {
     let title: LocalizedStringKey
     let caption: LocalizedStringKey
     let allowsUnavailableApple: Bool
-    let showsPolishTranscription: Bool
 
     @ObservedObject private var downloads = LocalRewriteDownloads.shared
 
     init(selection: Binding<String>, title: LocalizedStringKey, caption: LocalizedStringKey,
-         allowsUnavailableApple: Bool = true, showsPolishTranscription: Bool = false) {
+         allowsUnavailableApple: Bool = true) {
         self._selection = selection
         self.title = title
         self.caption = caption
         self.allowsUnavailableApple = allowsUnavailableApple
-        self.showsPolishTranscription = showsPolishTranscription
     }
 
     var body: some View {
         let systemModelName = PolishAvailability.appleSystemModelName
         List {
-            if showsPolishTranscription {
-                PolishTranscriptionSection(usesLocalModel: LocalRewriteModel.selected != nil)
-            }
             Section {
                 Button {
                     selection = LocalRewriteModel.apple
@@ -114,7 +108,7 @@ struct OnDeviceModelPicker: View {
     }
 }
 
-private struct PolishTranscriptionSection: View {
+struct PolishTranscriptionRows: View {
     let usesLocalModel: Bool
 
     @AppStorage(SharedKeys.polishEnabled, store: AppGroup.defaults)
@@ -122,11 +116,16 @@ private struct PolishTranscriptionSection: View {
 
     var body: some View {
         if usesLocalModel || PolishAvailability.isToggleVisible {
-            Section {
-                Toggle("Polish transcription", isOn: $polishEnabled)
-                    .accessibilityIdentifier("settings.polishTranscription")
-                if !usesLocalModel { polishStateFooter }
+            Toggle(isOn: $polishEnabled) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Polish transcription")
+                    Text("Uses your Smart Mode model to clean up punctuation, filler words, and false starts.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
+            .accessibilityIdentifier("settings.polishTranscription")
+            if !usesLocalModel { polishStateFooter }
         }
     }
 

@@ -23,6 +23,9 @@ struct SettingsView: View {
 
     // MARK: - Preferences (App Group persisted)
 
+    @AppStorage(SharedKeys.personalizationProfile, store: AppGroup.defaults)
+    private var personalizationProfile = Data()
+
     @AppStorage(SharedKeys.language, store: UserDefaults(suiteName: AppGroup.identifier))
     private var language = SupportedLanguage.defaultLanguage.rawValue
 
@@ -148,8 +151,6 @@ struct SettingsView: View {
     @State private var isExporting = false
     @State private var exportURL: URL?
 
-    /// Hidden polish debug screen (#141). Reached via long-press 3s on the Version row.
-    @State private var showPolishDebug = false
 
     /// Confirmation dialog for resetting the learned-words dictionary (#222).
     @State private var showResetDictionaryConfirmation = false
@@ -266,6 +267,17 @@ struct SettingsView: View {
                 }
                 .accessibilityIdentifier("settings.smartModeModel")
 
+                NavigationLink {
+                    PersonalizationSettingsView(storedProfile: $personalizationProfile)
+                } label: {
+                    LabeledContent("Personalization tone") {
+                        Text(PersonalizationProfile(storedValue: personalizationProfile).tone.localizedTitle)
+                    }
+                }
+                .accessibilityIdentifier("settings.personalizationTone")
+
+                PolishTranscriptionRows(usesLocalModel: LocalRewriteModel.selected != nil)
+
                 // Visible for a subscriber, and for anyone who still has saved
                 // transcriptions after an entitlement went away (#70). See
                 // `HistoryAvailability.clearRowIsVisible`.
@@ -322,18 +334,36 @@ struct SettingsView: View {
                     }
                 }
 
+                NavigationLink("Sounds") {
+                    SoundSettingsView()
+                }
+
                 Toggle("Haptic feedback", isOn: $hapticsEnabled)
                     .accessibilityIdentifier("settings.haptics")
                     .onChange(of: hapticsEnabled) { _, _ in
                         HapticFeedback.refreshEnabledState()
                     }
 
-                NavigationLink("Sounds") {
-                    SoundSettingsView()
-                }
-
                 Toggle("Keyboard autocorrect", isOn: $autocorrectEnabled)
                     .accessibilityIdentifier("settings.autocorrect")
+
+                Toggle("Live Activity", isOn: $liveActivityEnabled)
+                    .onChange(of: liveActivityEnabled) { _, enabled in
+                        if !enabled {
+                            LiveActivityManager.shared.stopStandbyActivity()
+                        }
+                    }
+
+                // Beside the Live Activity toggle because it decides how long the standby
+                // pill lasts (#380). Applied at once: a warm engine re-arms on the new value.
+                Picker("Inactivity timeout", selection: $warmEngineTimeout) {
+                    ForEach(WarmEngineTimeoutOption.allCases, id: \.self) { option in
+                        Text(warmEngineTimeoutLabel(for: option)).tag(option)
+                    }
+                }
+                .onChange(of: warmEngineTimeout) { _, _ in
+                    DictationCoordinator.shared.warmEngineTimeoutDidChange()
+                }
 
                 // Reset the learned-words dictionary (#222). Words learned by
                 // the keyboard bypass autocorrect forever, so users need a way
@@ -357,24 +387,6 @@ struct SettingsView: View {
                 } message: {
                     Text("Words the keyboard learned from your typing will be forgotten and autocorrect will apply to them again.")
                 }
-
-                Toggle("Live Activity", isOn: $liveActivityEnabled)
-                    .onChange(of: liveActivityEnabled) { _, enabled in
-                        if !enabled {
-                            LiveActivityManager.shared.stopStandbyActivity()
-                        }
-                    }
-
-                // Beside the Live Activity toggle because it decides how long the standby
-                // pill lasts (#380). Applied at once: a warm engine re-arms on the new value.
-                Picker("Inactivity timeout", selection: $warmEngineTimeout) {
-                    ForEach(WarmEngineTimeoutOption.allCases, id: \.self) { option in
-                        Text(warmEngineTimeoutLabel(for: option)).tag(option)
-                    }
-                }
-                .onChange(of: warmEngineTimeout) { _, _ in
-                    DictationCoordinator.shared.warmEngineTimeoutDidChange()
-                }
             } header: {
                 Text("Keyboard")
             } footer: {
@@ -386,6 +398,64 @@ struct SettingsView: View {
                 Text("The inactivity timeout is how long Riff stays ready after your last dictation. A shorter one saves battery and ends the Dynamic Island sooner. A longer one starts your next keyboard dictation faster. Unlimited lasts until iOS ends it.")
             }
 
+            Section {
+                NavigationLink("My Stats") {
+                    let totals = DictationTally.lifetimeTotals()
+                    List {
+                        LabeledContent("Total words dictated", value: totals.words.formatted())
+                        LabeledContent(
+                            "Average words per minute",
+                            value: totals.wordsPerMinute?.formatted(.number.precision(.fractionLength(0))) ?? "—"
+                        )
+                    }
+                    .scrollContentBackground(.hidden)
+                    .background(Color.dictusBackground.ignoresSafeArea())
+                    .navigationTitle("My Stats")
+                    .navigationBarTitleDisplayMode(.inline)
+                }
+                .accessibilityIdentifier("settings.myStats")
+            }
+
+            // Section 4: A propos
+            Section("About") {
+                LabeledContent("Version", value: appVersion)
+
+                // WHY Button instead of Link:
+                // Link doesn't respond to ButtonStyle and gets no press highlight
+                // in a List with .scrollContentBackground(.hidden). Using Button
+                // with UIApplication.shared.open gives native row press feedback.
+                Button {
+                    // Force unwrap is safe: compile-time constant URL that cannot be malformed.
+                    // swiftlint:disable:next force_unwrapping
+                    UIApplication.shared.open(URL(string: "https://github.com/Pivii/dictus")!)
+                } label: {
+                    HStack {
+                        Text("GitHub")
+                        Spacer()
+                        Image(systemName: "arrow.up.right")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+
+                NavigationLink("Licenses") {
+                    LicensesView()
+                }
+
+                NavigationLink("Developer Settings") {
+                    developerSettings
+                }
+                .accessibilityIdentifier("settings.developer")
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .background(Color.dictusBackground.ignoresSafeArea())
+        .navigationTitle("Settings")
+        .paywallCover(isPresented: $showPaywall)
+    }
+
+    private var developerSettings: some View {
+        List {
             #if DEBUG
             // Section: Developer (visible ONLY in Debug builds — not in Release/TestFlight/App Store).
             // WHY #if DEBUG: Code inside is compile-time excluded from production builds.
@@ -449,40 +519,10 @@ struct SettingsView: View {
             }
             #endif
 
-            // Section 4: A propos
-            Section("About") {
-                LabeledContent("Version", value: appVersion)
-                    .contentShape(Rectangle())
-                    // Five quick taps reveals the polish debug ring. Replaces
-                    // the previous 3-second long-press — taps are easier to
-                    // perform on the device than holding still on a List row,
-                    // and the secret-gesture posture stays the same.
-                    .onTapGesture(count: 5) {
-                        showPolishDebug = true
-                    }
-
-                // WHY Button instead of Link:
-                // Link doesn't respond to ButtonStyle and gets no press highlight
-                // in a List with .scrollContentBackground(.hidden). Using Button
-                // with UIApplication.shared.open gives native row press feedback.
-                Button {
-                    // Force unwrap is safe: compile-time constant URL that cannot be malformed.
-                    // swiftlint:disable:next force_unwrapping
-                    UIApplication.shared.open(URL(string: "https://github.com/Pivii/dictus")!)
-                } label: {
-                    HStack {
-                        Text("GitHub")
-                        Spacer()
-                        Image(systemName: "arrow.up.right")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
+            Section("Diagnostics") {
+                NavigationLink("Polish diagnostics") {
+                    PolishDebugView()
                 }
-
-                NavigationLink("Licenses") {
-                    LicensesView()
-                }
-
                 NavigationLink("Diagnostic") {
                     diagnosticView
                 }
@@ -511,11 +551,8 @@ struct SettingsView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.dictusBackground.ignoresSafeArea())
-        .navigationTitle("Settings")
-        .navigationDestination(isPresented: $showPolishDebug) {
-            PolishDebugView()
-        }
-        .paywallCover(isPresented: $showPaywall)
+        .navigationTitle("Developer Settings")
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: Binding(
             get: { exportURL != nil },
             set: { isPresented in

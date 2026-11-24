@@ -173,7 +173,7 @@ public enum PolishPipeline {
                 raw: preprocessed, polished: polished, contract: job.task.contract
             ) {
                 refused = .length
-            } else if isPersonalization, containsQuestion(preprocessed), !containsQuestion(polished) {
+            } else if isPersonalization, !PersonalizationFormatting.preservesQuestions(in: preprocessed, formatted: polished) {
                 refused = .lostQuestion
             } else if isPersonalization, !PersonalizationFormatting.preservesWords(in: preprocessed, formatted: polished) {
                 refused = .changedWords
@@ -202,13 +202,14 @@ public enum PolishPipeline {
                               engineMs: engineMs, postprocessMs: postMs, rejectedCheck: refused,
                               producedBy: labelled.engine)
             }
-            // Layout only, and only after every check has accepted the model's own
-            // output (#572): the guardrails judge what the model wrote, and this pass
-            // cannot change a word of it. Note the export then logs the tightened text,
-            // as it already logs the decoded one.
-            let delivered = job.task.smartMode?.prompt.shortOutputBlockLimit.map {
+            // Apply layout and casing once the guardrails have accepted what the
+            // model wrote. These changes preserve the words in that output.
+            var delivered = job.task.smartMode?.prompt.shortOutputBlockLimit.map {
                 PolishPostpass.tightenBlocks(polished, whenShorterThan: $0)
             } ?? polished
+            if isPersonalization, let prompt = job.task.smartMode?.prompt {
+                delivered = PersonalizationFormatting.apply(to: delivered, source: preprocessed, prompt: prompt)
+            }
             let postMs = Int(Date().timeIntervalSince(postStart) * 1000)
             return Result(engineOutput: delivered, outcome: .success, engineMs: engineMs, postprocessMs: postMs,
                           producedBy: labelled.engine)
@@ -225,10 +226,6 @@ public enum PolishPipeline {
             return Result(engineOutput: nil, outcome: .engineFailed, engineMs: engineMs, postprocessMs: 0,
                           failureReason: engine.failureReason(for: error))
         }
-    }
-
-    private static func containsQuestion(_ text: String) -> Bool {
-        text.contains { "?？؟".contains($0) }
     }
 
     /// Language guardrail dispatch, off the task's contract (#79).
@@ -428,8 +425,10 @@ public enum PolishPipeline {
     /// the language's typography decoded on the per-language path. Named so #573's
     /// declined list can insert the same floor when no second call fits the budget.
     public static func deterministicFloor(preprocessed: String, job: PolishJob) -> String {
-        guard job.task.smartMode?.id != SmartModeCatalogue.personalizationIdentifier,
-              let typography = job.typographyLanguage else { return preprocessed }
+        if let mode = job.task.smartMode, mode.id == SmartModeCatalogue.personalizationIdentifier {
+            return PersonalizationFormatting.apply(to: preprocessed, source: preprocessed, prompt: mode.prompt)
+        }
+        guard let typography = job.typographyLanguage else { return preprocessed }
         return PolishPostpass.decodeFromEngine(preprocessed, language: typography)
     }
 

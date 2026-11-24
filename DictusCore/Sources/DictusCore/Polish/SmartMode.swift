@@ -77,14 +77,20 @@ public struct SmartModePrompt: Equatable, Sendable, Codable {
     /// resolve differently from the app, and it is paid once per dictation.
     public let localizedInstructions: [String: String]?
 
+    /// A casing rule applied to the delivered text independently of the model.
+    let lowercasesWords: Bool?
+    var personalizationStatementStyle: PersonalizationFormatting.StatementStyle?
+
     public init(instructions: String, userInstruction: String, outputMarker: String,
                 shortOutputBlockLimit: Int? = nil,
-                localizedInstructions: [String: String]? = nil) {
+                localizedInstructions: [String: String]? = nil,
+                lowercasesWords: Bool? = nil) {
         self.instructions = instructions
         self.userInstruction = userInstruction
         self.outputMarker = outputMarker
         self.shortOutputBlockLimit = shortOutputBlockLimit
         self.localizedInstructions = localizedInstructions
+        self.lowercasesWords = lowercasesWords
     }
 
     /// The system prompt for a transcript in `code`: the exact code's entry, else its
@@ -122,6 +128,10 @@ public struct SmartModePrompt: Equatable, Sendable, Codable {
         // was written with, whatever the transcript's language.
         self.localizedInstructions = try container.decodeIfPresent(
             [String: String].self, forKey: .localizedInstructions
+        )
+        self.lowercasesWords = try container.decodeIfPresent(Bool.self, forKey: .lowercasesWords)
+        self.personalizationStatementStyle = try container.decodeIfPresent(
+            PersonalizationFormatting.StatementStyle.self, forKey: .personalizationStatementStyle
         )
     }
 }
@@ -435,13 +445,16 @@ public struct SmartMode: Equatable, Sendable, Codable, Identifiable {
     public func resolvingExamples(forTranscriptLanguage code: String?) -> SmartMode {
         let resolved = prompt.instructions(forTranscriptLanguage: code)
         guard resolved != prompt.instructions else { return self }
-        return replacingPrompt(SmartModePrompt(
+        var localizedPrompt = SmartModePrompt(
             instructions: resolved,
             userInstruction: prompt.userInstruction,
             outputMarker: prompt.outputMarker,
             shortOutputBlockLimit: prompt.shortOutputBlockLimit,
-            localizedInstructions: prompt.localizedInstructions
-        ))
+            localizedInstructions: prompt.localizedInstructions,
+            lowercasesWords: prompt.lowercasesWords
+        )
+        localizedPrompt.personalizationStatementStyle = prompt.personalizationStatementStyle
+        return replacingPrompt(localizedPrompt)
     }
 
     func replacingPrompt(_ prompt: SmartModePrompt) -> SmartMode {

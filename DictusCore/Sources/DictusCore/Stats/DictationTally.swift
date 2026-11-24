@@ -54,6 +54,12 @@ public enum DictationTally {
             self.audioSeconds = audioSeconds
         }
 
+        /// Words per minute weighted by the duration of each recording.
+        public var wordsPerMinute: Double? {
+            guard audioSeconds > 0 else { return nil }
+            return Double(words) * 60 / Double(audioSeconds)
+        }
+
         public static let zero = Totals(words: 0, audioSeconds: 0)
     }
 
@@ -95,9 +101,17 @@ public enum DictationTally {
         let last = dayKey(for: end, calendar: calendar)
         // Zero-padded ISO days compare as strings in calendar order.
         let inRange = storedDays(in: defaults).filter { $0.key >= first && $0.key <= last }.values
-        return Totals(
-            words: inRange.reduce(0) { $0 + ($1[wordsField] ?? 0) },
-            audioSeconds: inRange.reduce(0) { $0 + ($1[audioSecondsField] ?? 0) }
+        return sum(inRange)
+    }
+
+    public static func lifetimeTotals(in defaults: UserDefaults = AppGroup.defaults) -> Totals {
+        sum(storedDays(in: defaults).values)
+    }
+
+    private static func sum(_ days: some Sequence<[String: Int]>) -> Totals {
+        Totals(
+            words: days.reduce(0) { $0 + ($1[wordsField] ?? 0) },
+            audioSeconds: days.reduce(0) { $0 + ($1[audioSecondsField] ?? 0) }
         )
     }
 

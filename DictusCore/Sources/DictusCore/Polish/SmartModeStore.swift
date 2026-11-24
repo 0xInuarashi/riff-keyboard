@@ -244,7 +244,7 @@ public enum SmartModeStore {
         guard let stored = defaults.stringArray(forKey: SharedKeys.smartModePinned) else {
             return SmartModeCatalogue.defaultPinnedIdentifiers
         }
-        return stored
+        return stored.filter { $0 != SmartModeCatalogue.personalizationIdentifier }
     }
 
     /// The pinned list as stored, or nil when the user has never chosen one, where

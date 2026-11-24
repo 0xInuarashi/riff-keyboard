@@ -28,6 +28,13 @@ final class ForegroundAudioRecoveryPolicyTests: XCTestCase {
 
     /// The capture: the first activation refused with `'msrv'`. The return holds instead of
     /// opening the host app at 250 ms, which is what sent the start to the background.
+    func testStoppedEngineRestartHoldsEvenAfterSuccessfulSessionActivation() {
+        XCTAssertEqual(
+            ForegroundAudioRecoveryPolicy.returnAtCeiling(sessionNeedsRecovery: false, restartingStoppedEngine: true),
+            .hold(untilMilliseconds: ForegroundAudioRecoveryPolicy.recoveryHoldCeilingMilliseconds)
+        )
+    }
+
     func testAnActivationRefusedWithMsrvHoldsTheReturn() {
         XCTAssertEqual(AudioSessionActivationPolicy.fourCharacterCode(Self.mediaServicesFailed.code), "msrv")
         let needsRecovery = ForegroundAudioRecoveryPolicy.sessionNeedsRecovery(

@@ -578,7 +578,9 @@ struct DictusApp: App {
     /// on the line precisely so the real distribution can be read instead of assumed.
     private static let recordingWaitCeilingMs = ForegroundAudioRecoveryPolicy.recordingWaitCeilingMilliseconds
 
-    private func returnToHostApp(hostId: String?, coordinator: DictationCoordinator) {
+    private func returnToHostApp(
+        hostId: String?, coordinator: DictationCoordinator, restartingStoppedEngine: Bool
+    ) {
         guard let hostId else {
             PersistentLog.log(.hostReturn(hostId: "unknown", outcome: "table-miss"))
             return
@@ -648,15 +650,21 @@ struct DictusApp: App {
             // rather than at the hand-off so a loss posted in between still counts; every
             // other start opens exactly as before.
             let decision = ForegroundAudioRecoveryPolicy.returnAtCeiling(
-                sessionNeedsRecovery: coordinator.isRecoveringAudioSession)
+                sessionNeedsRecovery: coordinator.isRecoveringAudioSession,
+                restartingStoppedEngine: restartingStoppedEngine)
             guard case .hold(let holdCeilingMs) = decision else {
                 openNow(trigger: "ceiling")
                 return
             }
             let waitedMs = Int(Date().timeIntervalSince(startedAt) * 1000)
+            if coordinator.status == .failed {
+                openNow(trigger: "failed")
+                return
+            }
+            let holdReason = coordinator.isRecoveringAudioSession ? "audioSessionRecovering" : "engineRestart"
             PersistentLog.log(.hostReturn(
                 hostId: hostId,
-                outcome: "holding reason=audioSessionRecovering waitedMs=\(waitedMs) holdCeilingMs=\(holdCeilingMs)"
+                outcome: "holding reason=\(holdReason) waitedMs=\(waitedMs) holdCeilingMs=\(holdCeilingMs)"
             ))
             // `.recording` is already covered by `readyCancellable`. A failure opens too:
             // the keyboard is where its "tap again" is read. `dropFirst` skips the replayed
@@ -760,8 +768,11 @@ struct DictusApp: App {
             // the auto-return. They used to be two expressions that happened to agree,
             // and #567 is what that cost — see `HostForegroundDebt` for the whole story.
             // Keep both gates reading `owesReturnToHost`; do not re-derive either.
+            let isOwnKeyboard = KeyboardDictationURL.hostId(from: url).map {
+                $0 == Bundle.main.bundleIdentifier
+            } ?? false
             let foregroundDebt = HostForegroundDebt.resolve(
-                isFromKeyboard: isFromKeyboard,
+                isFromKeyboard: isFromKeyboard && !isOwnKeyboard,
                 hasBeenActive: Self.hasBeenActive,
                 isEngineRunning: DictationCoordinator.shared.isEngineRunning
             )
@@ -817,7 +828,10 @@ struct DictusApp: App {
             // already on screen at this point and stays the floor: unresolved host, host
             // with no known scheme, and `open()` returning false all land there.
             if foregroundDebt.owesReturnToHost {
-                returnToHostApp(hostId: KeyboardDictationURL.hostId(from: url), coordinator: coordinator)
+                returnToHostApp(
+                    hostId: KeyboardDictationURL.hostId(from: url), coordinator: coordinator,
+                    restartingStoppedEngine: foregroundDebt == .engineDead
+                )
             } else if isFromKeyboard {
                 // A hand-off that is deliberately not attempted still says so. #567 was
                 // diagnosed from an *absent* `hostReturn` line, which cannot be told from

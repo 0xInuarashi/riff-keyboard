@@ -8,8 +8,7 @@ import DictusCore
 /// WHY AVAudioPlayer (not AudioServicesPlaySystemSound):
 /// AudioServicesPlaySystemSound respects the silent switch natively but has no volume
 /// control — sounds play at full system volume. AVAudioPlayer has a .volume property
-/// (0.0–1.0) for user-adjustable volume. To still respect the silent switch, we use
-/// the .ambient audio category which is silenced when the hardware switch is flipped.
+/// (0.0–1.0) for user-adjustable volume without switching the recording audio session.
 ///
 /// WHY static cached players:
 /// Creating an AVAudioPlayer from a URL has ~5-10ms overhead (file I/O + decode).
@@ -29,14 +28,11 @@ enum SoundFeedbackService {
 
     private static func isEnabled() -> Bool {
         let defaults = UserDefaults(suiteName: AppGroup.identifier)
-        // Default OFF: AVAudioSession is .playAndRecord (for recording), which ignores
-        // the hardware silent switch. Sounds would play even in silent mode. Rather than
-        // risk breaking recording by switching categories, we default to off and let
-        // users opt-in via Settings, knowing sounds will always play.
-        return defaults?.object(forKey: SharedKeys.soundFeedbackEnabled) as? Bool ?? false
+        // Keep explicit settings across upgrades. New installs get quiet cues.
+        return defaults?.object(forKey: SharedKeys.soundFeedbackEnabled) as? Bool ?? true
     }
 
-    /// Read the user's volume preference (0.0–1.0), default 0.5.
+    /// Read the user's volume preference (0.0–1.0), default 0.25.
     ///
     /// WHY Double then Float() conversion:
     /// @AppStorage stores Double in UserDefaults. Casting directly to Float via
@@ -54,7 +50,7 @@ enum SoundFeedbackService {
         // double(forKey:) returns 0.0 if key not set, and `defaults` is nil when the
         // App Group is unavailable — both collapse to 0, i.e. "use default".
         let stored = defaults?.double(forKey: SharedKeys.soundVolume) ?? 0
-        let sliderValue: Float = stored > 0 ? Float(stored) : 0.5
+        let sliderValue: Float = stored > 0 ? Float(stored) : 0.25
         return sliderValue * maxVolume
     }
 
@@ -62,7 +58,7 @@ enum SoundFeedbackService {
 
     /// Play a sound by file name (without .wav extension).
     ///
-    /// Uses AVAudioPlayer with the ambient category so the silent switch is respected.
+    /// Uses the current shared audio session without changing the recording route.
     /// Volume is applied from user preferences on each play.
     ///
     /// - Parameter soundName: File name without extension (e.g., "electronic_01f")
